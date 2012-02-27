@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="acuteauto" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<mapping-file>META-INF/queries.xml</mapping-file>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractAdvertisement</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractCategory</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractClient</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractCountry</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractEnum</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractEnumType</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractFeature</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractFeatureGroup</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractImage</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractLocation</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractMake</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractModel</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractPrivilege</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractRole</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractState</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractStyle</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractUserInfo</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractVehicle</class>
+		<class>com.acminds.acuteauto.persistence.dto.Advertisement</class>
+		<class>com.acminds.acuteauto.persistence.dto.Category</class>
+		<class>com.acminds.acuteauto.persistence.dto.Client</class>
+		<class>com.acminds.acuteauto.persistence.dto.Country</class>
+		<class>com.acminds.acuteauto.persistence.dto.Enum</class>
+		<class>com.acminds.acuteauto.persistence.dto.EnumType</class>
+		<class>com.acminds.acuteauto.persistence.dto.Feature</class>
+		<class>com.acminds.acuteauto.persistence.dto.FeatureGroup</class>
+		<class>com.acminds.acuteauto.persistence.dto.Image</class>
+		<class>com.acminds.acuteauto.persistence.dto.Location</class>
+		<class>com.acminds.acuteauto.persistence.dto.Make</class>
+		<class>com.acminds.acuteauto.persistence.dto.Model</class>
+		<class>com.acminds.acuteauto.persistence.dto.Privilege</class>
+		<class>com.acminds.acuteauto.persistence.dto.Role</class>
+		<class>com.acminds.acuteauto.persistence.dto.State</class>
+		<class>com.acminds.acuteauto.persistence.dto.Style</class>
+		<class>com.acminds.acuteauto.persistence.dto.UserInfo</class>
+		<class>com.acminds.acuteauto.persistence.dto.Vehicle</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+			<property name="hibernate.default_schema" value="carobar"/>
+			<property name="hibernate.connection.username" value="carobar"/>
+			<property name="hibernate.connection.password" value="carobar"/>
+			<property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.max_fetch_depth" value="0"/>
+            <property name="hibernate.c3p0.min_size" value="5"/>
+            <property name="hibernate.c3p0.max_size" value="50"/>
+            <property name="hibernate.c3p0.timeout" value="1800"/>
+            <property name="hibernate.c3p0.max_statements" value="0"/>
+            <property name="hibernate.c3p0.idle_test_period" value="30"/>
+            <property name="hibernate.hbm2ddl.auto" value="none"/>
+            <property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://db4free.net/carobar"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://db4free.net/carobar"/>
+            <property name="javax.persistence.jdbc.user" value="carobar"/>
+            <property name="javax.persistence.jdbc.password" value="carobar"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>

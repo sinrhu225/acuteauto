@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<named-query name="getMakeByYear">
+		<description>Retrieve Brands by Year</description>
+		<query>select m from Make m where :year between m.yearStart and m.yearEnd</query>
+	</named-query>
+	<named-query name="getValuesByType">
+		<description>Retrieve Enum objects by Type</description>
+		<query>select e from Enum e where e.enumType= :type</query>
+	</named-query>
+</entity-mappings>
