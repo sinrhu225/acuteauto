@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
+        <property name="hibernate.connection.password">carobar</property>
+        <property name="hibernate.connection.url">jdbc:mysql://db4free.net/carobar</property>
+        <property name="hibernate.connection.username">carobar</property>
+        <property name="hibernate.default_schema">carobar</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        
+        <property name="show_sql">false</property>
+		<property name="format_sql">true</property>
+		<property name="use_sql_comments">true</property>
+		<property name="max_fetch_depth">0</property>
+		<property name="generate_statistics">true</property>
+
+		<property name="order_updates">true</property>
+
+		<property name="jdbc.batch_size">20</property>
+		<property name="jdbc.fetch_size">100</property>
+
+		<property name="jdbc.use_streams_for_binary">true</property>
+
+		<property name="cache.use_second_level_cache">false</property>
+
+		<property name="c3p0.max_size">150</property>
+		<property name="c3p0.min_size">5</property>
+
+		<!-- in seconds -->
+		<property name="c3p0.timeout">1800</property>
+
+		<!-- in seconds -->
+		<property name="c3p0.idle_test_period">30</property>
+		<property name="c3p0.acquire_increment">2</property>
+		<property name="c3p0.validate">false</property>
+		<property name="c3p0.max_statements">0</property>
+
+		<property name="current_session_context_class">thread</property>
+    </session-factory>
+</hibernate-configuration>
