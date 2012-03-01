@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,7 @@ public abstract class AbstractModel extends
 	private Integer yearEnd;
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
 	private List<Style> styles = new ArrayList<Style>(0);
+	private List<FindVehicle> findVehicles = new ArrayList<FindVehicle>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -108,6 +109,15 @@ public abstract class AbstractModel extends
 
 	public void setStyles(List<Style> styles) {
 		this.styles = styles;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "model")
+	public List<FindVehicle> getFindVehicles() {
+		return this.findVehicles;
+	}
+
+	public void setFindVehicles(List<FindVehicle> findVehicles) {
+		this.findVehicles = findVehicles;
 	}
 
 }

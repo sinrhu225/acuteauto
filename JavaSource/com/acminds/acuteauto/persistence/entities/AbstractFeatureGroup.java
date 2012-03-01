@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +29,9 @@ public abstract class AbstractFeatureGroup extends
 	private Integer featureGroupId;
 	private FeatureGroup featureGroup;
 	private String name;
-	private Integer displayAs;
+	private Integer displayType;
 	private String description;
+	private Integer groupType;
 	private List<FeatureGroup> featureGroups = new ArrayList<FeatureGroup>(0);
 	private List<Feature> features = new ArrayList<Feature>(0);
 
@@ -64,13 +65,13 @@ public abstract class AbstractFeatureGroup extends
 		this.name = name;
 	}
 
-	@Column(name = "DISPLAY_AS")
-	public Integer getDisplayAs() {
-		return this.displayAs;
+	@Column(name = "DISPLAY_TYPE")
+	public Integer getDisplayType() {
+		return this.displayType;
 	}
 
-	public void setDisplayAs(Integer displayAs) {
-		this.displayAs = displayAs;
+	public void setDisplayType(Integer displayType) {
+		this.displayType = displayType;
 	}
 
 	@Column(name = "DESCRIPTION", length = 100)
@@ -80,6 +81,15 @@ public abstract class AbstractFeatureGroup extends
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Column(name = "GROUP_TYPE")
+	public Integer getGroupType() {
+		return this.groupType;
+	}
+
+	public void setGroupType(Integer groupType) {
+		this.groupType = groupType;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "featureGroup")

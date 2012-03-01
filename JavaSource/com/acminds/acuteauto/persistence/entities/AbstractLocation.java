@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ public abstract class AbstractLocation extends
 	private Employment employment;
 	private UserInfo userInfo;
 	private Account account;
-	private Integer locationType;
+	private int locationType;
 	private String locationDesc;
 	private String address1;
 	private String address2;
@@ -41,6 +41,7 @@ public abstract class AbstractLocation extends
 	private String busNumber;
 	private String email;
 	private String country;
+	private Boolean mailing;
 	private Boolean rented;
 	private BigDecimal rentAmount;
 	private Integer periodOfStay;
@@ -97,12 +98,12 @@ public abstract class AbstractLocation extends
 		this.account = account;
 	}
 
-	@Column(name = "LOCATION_TYPE")
-	public Integer getLocationType() {
+	@Column(name = "LOCATION_TYPE", nullable = false)
+	public int getLocationType() {
 		return this.locationType;
 	}
 
-	public void setLocationType(Integer locationType) {
+	public void setLocationType(int locationType) {
 		this.locationType = locationType;
 	}
 
@@ -203,6 +204,15 @@ public abstract class AbstractLocation extends
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	@Column(name = "MAILING")
+	public Boolean getMailing() {
+		return this.mailing;
+	}
+
+	public void setMailing(Boolean mailing) {
+		this.mailing = mailing;
 	}
 
 	@Column(name = "RENTED")

@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.dto;
 
-// Generated Feb 27, 2012 11:04:20 PM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:25:37 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

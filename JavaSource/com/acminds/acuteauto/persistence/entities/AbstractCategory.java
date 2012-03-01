@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -34,6 +34,7 @@ public abstract class AbstractCategory extends
 	private Category category;
 	private String name;
 	private String description;
+	private Integer categoryType;
 	private Date createDate;
 	private int createdBy;
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
@@ -76,6 +77,15 @@ public abstract class AbstractCategory extends
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Column(name = "CATEGORY_TYPE")
+	public Integer getCategoryType() {
+		return this.categoryType;
+	}
+
+	public void setCategoryType(Integer categoryType) {
+		this.categoryType = categoryType;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

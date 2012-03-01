@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -46,6 +46,7 @@ public abstract class AbstractUserInfo extends
 	private int status;
 	private Date lastLoginDate;
 	private Date createDate;
+	private List<Inquiry> inquiries = new ArrayList<Inquiry>(0);
 	private List<Employment> employments = new ArrayList<Employment>(0);
 	private List<Advertisement> advertisements = new ArrayList<Advertisement>(0);
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
@@ -217,6 +218,15 @@ public abstract class AbstractUserInfo extends
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
+	public List<Inquiry> getInquiries() {
+		return this.inquiries;
+	}
+
+	public void setInquiries(List<Inquiry> inquiries) {
+		this.inquiries = inquiries;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")

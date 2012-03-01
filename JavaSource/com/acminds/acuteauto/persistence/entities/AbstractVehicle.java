@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 28, 2012 12:49:46 AM by Hibernate Tools 3.4.0.CR1
+// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -37,7 +37,6 @@ public abstract class AbstractVehicle extends
 	private Make make;
 	private Model model;
 	private UserInfo userInfo;
-	private String name;
 	private String description;
 	private int year;
 	private String engine;
@@ -45,14 +44,17 @@ public abstract class AbstractVehicle extends
 	private String driveTrain;
 	private Integer fuelType;
 	private String vin;
-	private int mileage;
-	private BigDecimal price;
+	private Integer mileage;
+	private BigDecimal dealerPrice;
+	private BigDecimal salePrice;
+	private BigDecimal specialPrice;
 	private String colorExt;
 	private String colorInt;
 	private Integer warrantyType;
 	private Integer warrantyTerm;
 	private Integer warrantyMiles;
 	private int status;
+	private int condition;
 	private String carfaxApprvUrl;
 	private String additionalInfo;
 	private Date createDate;
@@ -60,6 +62,7 @@ public abstract class AbstractVehicle extends
 			0);
 	private List<Advertisement> advertisements = new ArrayList<Advertisement>(0);
 	private List<Image> images = new ArrayList<Image>(0);
+	private List<Inquiry> inquiries = new ArrayList<Inquiry>(0);
 	private List<Feature> features = new ArrayList<Feature>(0);
 	private List<Category> categories = new ArrayList<Category>(0);
 
@@ -75,7 +78,7 @@ public abstract class AbstractVehicle extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "STYLE_ID", nullable = false)
+	@JoinColumn(name = "STYLE_ID")
 	public Style getStyle() {
 		return this.style;
 	}
@@ -114,15 +117,6 @@ public abstract class AbstractVehicle extends
 		this.userInfo = userInfo;
 	}
 
-	@Column(name = "NAME", length = 60)
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	@Column(name = "DESCRIPTION", length = 100)
 	public String getDescription() {
 		return this.description;
@@ -141,7 +135,7 @@ public abstract class AbstractVehicle extends
 		this.year = year;
 	}
 
-	@Column(name = "ENGINE", nullable = false, length = 60)
+	@Column(name = "ENGINE", length = 60)
 	public String getEngine() {
 		return this.engine;
 	}
@@ -150,7 +144,7 @@ public abstract class AbstractVehicle extends
 		this.engine = engine;
 	}
 
-	@Column(name = "TRANSMISSION", nullable = false, length = 60)
+	@Column(name = "TRANSMISSION", length = 60)
 	public String getTransmission() {
 		return this.transmission;
 	}
@@ -186,25 +180,43 @@ public abstract class AbstractVehicle extends
 		this.vin = vin;
 	}
 
-	@Column(name = "MILEAGE", nullable = false)
-	public int getMileage() {
+	@Column(name = "MILEAGE")
+	public Integer getMileage() {
 		return this.mileage;
 	}
 
-	public void setMileage(int mileage) {
+	public void setMileage(Integer mileage) {
 		this.mileage = mileage;
 	}
 
-	@Column(name = "PRICE", nullable = false, precision = 8)
-	public BigDecimal getPrice() {
-		return this.price;
+	@Column(name = "DEALER_PRICE", precision = 8)
+	public BigDecimal getDealerPrice() {
+		return this.dealerPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setDealerPrice(BigDecimal dealerPrice) {
+		this.dealerPrice = dealerPrice;
 	}
 
-	@Column(name = "COLOR_EXT", nullable = false, length = 60)
+	@Column(name = "SALE_PRICE", precision = 8)
+	public BigDecimal getSalePrice() {
+		return this.salePrice;
+	}
+
+	public void setSalePrice(BigDecimal salePrice) {
+		this.salePrice = salePrice;
+	}
+
+	@Column(name = "SPECIAL_PRICE", precision = 8)
+	public BigDecimal getSpecialPrice() {
+		return this.specialPrice;
+	}
+
+	public void setSpecialPrice(BigDecimal specialPrice) {
+		this.specialPrice = specialPrice;
+	}
+
+	@Column(name = "COLOR_EXT", length = 60)
 	public String getColorExt() {
 		return this.colorExt;
 	}
@@ -256,6 +268,15 @@ public abstract class AbstractVehicle extends
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	@Column(name = "CONDITION", nullable = false)
+	public int getCondition() {
+		return this.condition;
+	}
+
+	public void setCondition(int condition) {
+		this.condition = condition;
 	}
 
 	@Column(name = "CARFAX_APPRV_URL", length = 200)
@@ -311,6 +332,15 @@ public abstract class AbstractVehicle extends
 
 	public void setImages(List<Image> images) {
 		this.images = images;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle")
+	public List<Inquiry> getInquiries() {
+		return this.inquiries;
+	}
+
+	public void setInquiries(List<Inquiry> inquiries) {
+		this.inquiries = inquiries;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
