@@ -62,6 +62,10 @@ public class WebUtils {
 	public static int retrieveId(String displayId) {
 		return Integer.parseInt(displayId.substring(4));
 	}
+	
+	public static boolean isWebRequest() {
+		return getFacesContext()!=null;
+	}
 		
 	private static String getValueForKey(String key) {
 		String val = null;

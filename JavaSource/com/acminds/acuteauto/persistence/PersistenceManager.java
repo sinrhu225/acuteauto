@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import com.acminds.acuteauto.batch.BatchPersistenceManager;
 import com.acminds.acuteauto.ui.WebPersistenceManager;
+import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author MANSUR
@@ -19,9 +21,13 @@ public abstract class PersistenceManager {
 	private static PersistenceManager instance;
 	
 	
-	private static PersistenceManager getInstance() {
-		if(instance == null)
-			instance = new WebPersistenceManager();
+	public static PersistenceManager getInstance() {
+		if(instance == null) {
+			if(WebUtils.isWebRequest())
+				instance = new WebPersistenceManager();
+			else 
+				instance = new BatchPersistenceManager();
+		}
 		return instance;
 	}
 	
