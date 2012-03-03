@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  * @author MANSUR
@@ -16,7 +17,7 @@ import javax.persistence.Query;
 public class BaseDAO {
 	private EntityManager em = PersistenceManager.getEntityManager();
 	
-	public BaseDTO get(Class<BaseDTO> clazz, Integer id) {
+	public <T>T get(Class<T> clazz, Integer id) {
 		return em.find(clazz, id);
 	}
 	
@@ -94,12 +95,20 @@ public class BaseDAO {
 	 * ************************************************************************
 	 * ************************************************************************
 	 * 
-	 * Named Queries
+	 * Queries
 	 * 
 	 * ************************************************************************
 	 * ************************************************************************
 	 */
 
+	public Query createQuery(String query) {
+		return em.createQuery(query);
+	}
+	
+	public <T>TypedQuery<T> createQuery(String query, Class<T> clazz) {
+		return em.createQuery(query, clazz);
+	}
+	
 	public Query createNamedQuery(String name) {
 		return em.createNamedQuery(name);
 	}
