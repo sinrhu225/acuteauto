@@ -91,7 +91,7 @@ INSERT INTO ENUM_TYPE VALUES ('6', 'CATEGORY_TYPE', 'Type of User', null);
 INSERT INTO ENUM_TYPE VALUES ('7', 'FUEL_TYPE', 'Type of Fuel used for the car', null);
 INSERT INTO ENUM_TYPE VALUES ('8', 'WARRANTY_TYPE', 'Type of Warranty', null);
 INSERT INTO ENUM_TYPE VALUES ('9', 'VEHICLE_STATUS', 'Status of a car', null);
-INSERT INTO ENUM_TYPE VALUES ('10', 'CONDITION', 'Condition of a car', null);
+INSERT INTO ENUM_TYPE VALUES ('10', 'VEHICLE_CONDITION', 'Condition of a car', null);
 INSERT INTO ENUM_TYPE VALUES ('11', 'DISPLAY_TYPE', 'Type of Display', null);
 INSERT INTO ENUM_TYPE VALUES ('12', 'IMAGE_TYPE', 'Type of Photo for the car', null);
 INSERT INTO ENUM_TYPE VALUES ('13', 'AD_STATUS', 'Status of Advertisement', null);

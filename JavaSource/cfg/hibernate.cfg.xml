@@ -6,10 +6,9 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">org.gjt.mm.mysql.Driver</property>
         <property name="hibernate.connection.password">carobar</property>
-        <property name="hibernate.connection.url">jdbc:mysql://db4free.net/carobar</property>
+        <property name="hibernate.connection.url">jdbc:mysql://db4free.net</property>
         <property name="hibernate.connection.username">carobar</property>
-        <property name="hibernate.default_schema">carobar</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
         
         <property name="show_sql">false</property>
 		<property name="format_sql">true</property>
