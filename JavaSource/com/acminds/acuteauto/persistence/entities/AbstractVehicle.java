@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -57,6 +57,7 @@ public abstract class AbstractVehicle extends
 	private int condition;
 	private String carfaxApprvUrl;
 	private String additionalInfo;
+	private Date dateSold;
 	private Date createDate;
 	private List<LoanApplication> loanApplications = new ArrayList<LoanApplication>(
 			0);
@@ -189,7 +190,7 @@ public abstract class AbstractVehicle extends
 		this.mileage = mileage;
 	}
 
-	@Column(name = "DEALER_PRICE", precision = 8)
+	@Column(name = "DEALER_PRICE", nullable = false, precision = 8)
 	public BigDecimal getDealerPrice() {
 		return this.dealerPrice;
 	}
@@ -198,7 +199,7 @@ public abstract class AbstractVehicle extends
 		this.dealerPrice = dealerPrice;
 	}
 
-	@Column(name = "SALE_PRICE", precision = 8)
+	@Column(name = "SALE_PRICE", nullable = false, precision = 8)
 	public BigDecimal getSalePrice() {
 		return this.salePrice;
 	}
@@ -295,6 +296,16 @@ public abstract class AbstractVehicle extends
 
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATE_SOLD", length = 10)
+	public Date getDateSold() {
+		return this.dateSold;
+	}
+
+	public void setDateSold(Date dateSold) {
+		this.dateSold = dateSold;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

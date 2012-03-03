@@ -12,7 +12,15 @@ public class CarSearchForm {
 	private String makeId;
 	private String modelId;
 	private String year;
+	private String price;
 	private String mileage;
+	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
 	public String getMakeId() {
 		return makeId;
 	}

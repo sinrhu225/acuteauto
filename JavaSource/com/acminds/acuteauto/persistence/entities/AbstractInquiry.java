@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -37,6 +37,7 @@ public abstract class AbstractInquiry extends
 	private String phoneNumber;
 	private String email;
 	private Integer inquiryType;
+	private String notes;
 	private Date createDate;
 	private List<FindVehicle> findVehicles = new ArrayList<FindVehicle>(0);
 
@@ -114,6 +115,15 @@ public abstract class AbstractInquiry extends
 
 	public void setInquiryType(Integer inquiryType) {
 		this.inquiryType = inquiryType;
+	}
+
+	@Column(name = "NOTES", length = 800)
+	public String getNotes() {
+		return this.notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

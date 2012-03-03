@@ -18,4 +18,11 @@ import com.acminds.acuteauto.persistence.entities.AbstractVehicle;
 public class Vehicle extends AbstractVehicle {
 	private static final long serialVersionUID = 1L;
 
+	public String getBannerLocation() {
+		for(Image im: getImages()) {
+			if(im.getBanner())
+				return im.getImageLocation();
+		}
+		return null;
+	}
 }

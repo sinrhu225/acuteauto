@@ -3,29 +3,34 @@
  */
 package com.acminds.acuteauto.ui.controller;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
+
+import com.acminds.acuteauto.persistence.dto.Vehicle;
+import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
-import com.acminds.acuteauto.ui.form.CarSearchForm;
 
 /**
  * @author Mansur
  *
  */
-@ManagedBean(name="hmpCtrl")
-@RequestScoped
+@ManagedBean(name="hmpCtrl", eager=true)
+@ApplicationScoped
 public class HomePageController extends BaseController{
+	private InventoryService service = new InventoryService();
 	
-	private CarSearchForm csForm = new CarSearchForm();
-	public CarSearchForm getCsForm() {
-		return csForm;
-	}
-	public void setCsForm(CarSearchForm csForm) {
-		this.csForm = csForm;
+	public List<Vehicle> getCarsForBanner() {
+		return service.getCarsForBanner();
 	}
 	
-	public String searchCars() {
-		return null;
+	public List<Vehicle> getFeaturedCars() {
+		return service.getCarsByCategory(0, "FEATURED");
 	}
+	
+	public List<Vehicle> getCarsForAdvertisement() {
+		return service.getCarsForAdvertisement();
+	}
+	
 }

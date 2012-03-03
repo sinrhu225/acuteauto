@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -34,7 +34,7 @@ public abstract class AbstractImage extends
 	private String mimeType;
 	private String imageLocation;
 	private Integer imageType;
-	private Boolean advertise;
+	private Boolean banner;
 	private Date createDate;
 
 	@Id
@@ -112,13 +112,13 @@ public abstract class AbstractImage extends
 		this.imageType = imageType;
 	}
 
-	@Column(name = "ADVERTISE")
-	public Boolean getAdvertise() {
-		return this.advertise;
+	@Column(name = "BANNER")
+	public Boolean getBanner() {
+		return this.banner;
 	}
 
-	public void setAdvertise(Boolean advertise) {
-		this.advertise = advertise;
+	public void setBanner(Boolean banner) {
+		this.banner = banner;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

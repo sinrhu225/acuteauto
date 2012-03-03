@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;

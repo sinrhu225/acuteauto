@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Feb 29, 2012 11:21:36 PM by Hibernate Tools 3.4.0.CR1
+// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -35,6 +35,8 @@ public abstract class AbstractCategory extends
 	private String name;
 	private String description;
 	private Integer categoryType;
+	private Date effectiveDate;
+	private Date expiryDate;
 	private Date createDate;
 	private int createdBy;
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
@@ -86,6 +88,26 @@ public abstract class AbstractCategory extends
 
 	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "EFFECTIVE_DATE", nullable = false, length = 10)
+	public Date getEffectiveDate() {
+		return this.effectiveDate;
+	}
+
+	public void setEffectiveDate(Date effectiveDate) {
+		this.effectiveDate = effectiveDate;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "EXPIRY_DATE", length = 10)
+	public Date getExpiryDate() {
+		return this.expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
