@@ -128,7 +128,7 @@ INSERT INTO ENUM VALUES ('46', '5', 'SUV', null, null);
 INSERT INTO ENUM VALUES ('47', '5', 'Hybrid', null, null);
 INSERT INTO ENUM VALUES ('48', '5', 'Convertible', null, null);
 INSERT INTO ENUM VALUES ('49', '5', 'Pickup', null, null);
-INSERT INTO ENUM VALUES ('50', '5', 'Van/Minivan', null, null);
+INSERT INTO ENUM VALUES ('50', '5', 'Minivan', null, null);
 INSERT INTO ENUM VALUES ('51', '5', 'Truck', null, null);
 -- CATEGORY_TYPE
 INSERT INTO ENUM VALUES ('60', '6', 'RESERVED', 'Reserved for Future Use', null);
@@ -168,7 +168,7 @@ INSERT INTO ENUM VALUES ('151', '15', 'Under Review', null, null);
 INSERT INTO ENUM VALUES ('152', '15', 'Approved', null, null);
 -- FINANCE_TYPE
 INSERT INTO ENUM VALUES ('160', '16', 'Purchase', null, null);
-INSERT INTO ENUM VALUES ('161', '17', 'Lease', null, null);
+INSERT INTO ENUM VALUES ('161', '16', 'Lease', null, null);
 -- ACCOUNT_TYPE
 INSERT INTO ENUM VALUES ('170', '17', 'Checking', null, null);
 INSERT INTO ENUM VALUES ('171', '17', 'Savings', null, null);

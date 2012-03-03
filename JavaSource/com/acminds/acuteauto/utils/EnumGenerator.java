@@ -39,10 +39,10 @@ public class EnumGenerator {
 		.append("\n");
 		List<EnumType> types = eg.getEnumTypes();
 		for(EnumType et:types) {
+			sb.append("\t").append(MessageFormat.format(FIELD_DECL, new Object[]{et.getCodeName().toUpperCase(), et.getEnumTypeId()})).append("\n");
 			sb.append(eg.getClassAsString(et)).append("\n");			
 		}
 		sb.append(BRAC_CLOSE);
-		System.out.println(sb.toString());
 		FileUtils.writeStringToFile(new File(javaPath), sb.toString());
 	}
 	
@@ -54,7 +54,7 @@ public class EnumGenerator {
 			.append("\t\t")
 			.append(MessageFormat.format(FIELD_DECL, new Object[]{e.getEnumValue().toUpperCase().replace(" ", "_"), e.getEnumId()}));
 		}		
-		sb.append("\n\t").append(BRAC_CLOSE);
+		sb.append("\n\t").append(BRAC_CLOSE).append("\n");
 		return sb.toString();
 	}
 	
