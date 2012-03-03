@@ -77,3 +77,100 @@ INSERT INTO ROLE VALUES ('1', 'Application Administrator', 'Can edit all');
 INSERT INTO ROLE VALUES ('2', 'Store Administrator', 'Can edit everything in his store');
 INSERT INTO ROLE VALUES ('3', 'Employee', 'Employee who attends to the customer');
 INSERT INTO ROLE VALUES ('4', 'Customer', 'Customer who registers into our system');
+
+
+-- ----------------------------
+-- Records for "ENUM_TYPE"
+-- ----------------------------
+INSERT INTO ENUM_TYPE VALUES ('1', 'USER_TYPE', 'Type of User', null);
+INSERT INTO ENUM_TYPE VALUES ('2', 'USER_STATUS', 'Status of User', null);
+INSERT INTO ENUM_TYPE VALUES ('3', 'LOCATION_TYPE', 'Type of Location', null);
+INSERT INTO ENUM_TYPE VALUES ('4', 'STYLE_TYPE', 'Style of a Car : Trim/Package', null);
+INSERT INTO ENUM_TYPE VALUES ('5', 'BODY_TYPE', 'Body type of a Vehicle', null);
+INSERT INTO ENUM_TYPE VALUES ('6', 'CATEGORY_TYPE', 'Type of User', null);
+INSERT INTO ENUM_TYPE VALUES ('7', 'FUEL_TYPE', 'Type of Fuel used for the car', null);
+INSERT INTO ENUM_TYPE VALUES ('8', 'WARRANTY_TYPE', 'Type of Warranty', null);
+INSERT INTO ENUM_TYPE VALUES ('9', 'VEHICLE_STATUS', 'Status of a car', null);
+INSERT INTO ENUM_TYPE VALUES ('10', 'CONDITION', 'Condition of a car', null);
+INSERT INTO ENUM_TYPE VALUES ('11', 'DISPLAY_TYPE', 'Type of Display', null);
+INSERT INTO ENUM_TYPE VALUES ('12', 'IMAGE_TYPE', 'Type of Photo for the car', null);
+INSERT INTO ENUM_TYPE VALUES ('13', 'AD_STATUS', 'Status of Advertisement', null);
+INSERT INTO ENUM_TYPE VALUES ('14', 'AD_UNITS', 'Unit of Advertisement', null);
+INSERT INTO ENUM_TYPE VALUES ('15', 'LOAN_STATUS', 'Status of Loan', null);
+INSERT INTO ENUM_TYPE VALUES ('16', 'FINANCE_TYPE', 'Type of Finance', null);
+INSERT INTO ENUM_TYPE VALUES ('17', 'ACCOUNT_TYPE', 'Type of Account', null);
+INSERT INTO ENUM_TYPE VALUES ('18', 'INQUIRY_TYPE', 'Type of Inquiry', null);
+
+-- ----------------------------
+-- Records for "ENUM"
+-- ----------------------------
+-- USER_TYPE
+INSERT INTO ENUM VALUES ('1', '1', 'Client', null, null);
+INSERT INTO ENUM VALUES ('2', '1', 'Customer', null, null);
+-- USER_STATUS
+INSERT INTO ENUM VALUES ('10', '2', 'Active', null, null);
+INSERT INTO ENUM VALUES ('11', '2', 'InActive', null, null);
+INSERT INTO ENUM VALUES ('12', '2', 'Suspended', null, null);
+-- LOCATION_TYPE
+INSERT INTO ENUM VALUES ('20', '3', 'Primary', null, null);
+INSERT INTO ENUM VALUES ('21', '3', 'Secondary', null, null);
+-- STYLE_TYPE
+INSERT INTO ENUM VALUES ('30', '4', 'Trim', null, null);
+INSERT INTO ENUM VALUES ('31', '4', 'Package', null, null);
+-- BODY_TYPE
+INSERT INTO ENUM VALUES ('40', '5', 'Sedan', null, null);
+INSERT INTO ENUM VALUES ('41', '5', 'Wagon', null, null);
+INSERT INTO ENUM VALUES ('42', '5', 'Crossover', null, null);
+INSERT INTO ENUM VALUES ('43', '5', 'Luxury', null, null);
+INSERT INTO ENUM VALUES ('44', '5', 'Coupe', null, null);
+INSERT INTO ENUM VALUES ('45', '5', 'Hatchback', null, null);
+INSERT INTO ENUM VALUES ('46', '5', 'SUV', null, null);
+INSERT INTO ENUM VALUES ('47', '5', 'Hybrid', null, null);
+INSERT INTO ENUM VALUES ('48', '5', 'Convertible', null, null);
+INSERT INTO ENUM VALUES ('49', '5', 'Pickup', null, null);
+INSERT INTO ENUM VALUES ('50', '5', 'Van/Minivan', null, null);
+INSERT INTO ENUM VALUES ('51', '5', 'Truck', null, null);
+-- CATEGORY_TYPE
+INSERT INTO ENUM VALUES ('60', '6', 'RESERVED', 'Reserved for Future Use', null);
+-- FUEL_TYPE
+INSERT INTO ENUM VALUES ('70', '7', 'Gasoline', null, null);
+INSERT INTO ENUM VALUES ('71', '7', 'Premium Gasoline', null, null);
+INSERT INTO ENUM VALUES ('72', '7', 'Diesel', null, null);
+-- WARRANTY_TYPE
+INSERT INTO ENUM VALUES ('80', '8', 'Standard', null, null);
+INSERT INTO ENUM VALUES ('81', '8', 'Extended', null, null);
+-- VEHICLE_STATUS
+INSERT INTO ENUM VALUES ('90', '9', 'Available', null, null);
+INSERT INTO ENUM VALUES ('91', '9', 'Sold', null, null);
+INSERT INTO ENUM VALUES ('92', '9', 'OnHold', null, null);
+-- CONDITION
+INSERT INTO ENUM VALUES ('100', '10', 'New', null, null);
+INSERT INTO ENUM VALUES ('101', '10', 'Used', null, null);
+INSERT INTO ENUM VALUES ('102', '10', 'Certified', null, null);
+-- DISPLAY_TYPE
+INSERT INTO ENUM VALUES ('110', '11', 'Select One', null, null);
+INSERT INTO ENUM VALUES ('111', '11', 'Select Many', null, null);
+-- IMAGE_TYPE
+INSERT INTO ENUM VALUES ('120', '12', 'Primary', null, null);
+-- AD_STATUS
+INSERT INTO ENUM VALUES ('130', '13', 'Active', null, null);
+INSERT INTO ENUM VALUES ('131', '13', 'Suspended', null, null);
+INSERT INTO ENUM VALUES ('132', '13', 'Expired', null, null);
+-- AD_UNITS
+INSERT INTO ENUM VALUES ('140', '14', 'Hourly', null, null);
+INSERT INTO ENUM VALUES ('141', '14', 'Daily', null, null);
+INSERT INTO ENUM VALUES ('142', '14', 'Weekly', null, null);
+INSERT INTO ENUM VALUES ('143', '14', 'Monthly', null, null);
+INSERT INTO ENUM VALUES ('144', '14', 'Yearly', null, null);
+-- LOAN_STATUS
+INSERT INTO ENUM VALUES ('150', '15', 'Submitted', null, null);
+INSERT INTO ENUM VALUES ('151', '15', 'Under Review', null, null);
+INSERT INTO ENUM VALUES ('152', '15', 'Approved', null, null);
+-- FINANCE_TYPE
+INSERT INTO ENUM VALUES ('160', '16', 'Purchase', null, null);
+INSERT INTO ENUM VALUES ('161', '17', 'Lease', null, null);
+-- ACCOUNT_TYPE
+INSERT INTO ENUM VALUES ('170', '17', 'Checking', null, null);
+INSERT INTO ENUM VALUES ('171', '17', 'Savings', null, null);
+-- INQUIRY_TYPE
+INSERT INTO ENUM VALUES ('180', '18', 'Reserved', 'For future use', null);
