@@ -1,0 +1,461 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, banner, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+
+/* Global properties ======================================================== */
+* {margin:0; padding:0;}
+
+html {width:100%;}
+
+body { 	 
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:100%; 
+	color:#939393;
+	position:relative;
+	z-index:2;
+	min-width:1010px;
+	background:url(../images/tail-top.gif) 0 0 repeat-x #eeece7;
+}
+
+.bg {width:50%; position:absolute; top:0; right:0; height:185px; z-index:1; background:url(../images/tail-top2.gif) 0 0 repeat-x;}
+
+.main {
+	width:1010px; 	
+	padding:0;
+	margin:0 auto;
+	font-size:0.75em;
+	line-height:1.416em;
+	position:relative;
+	z-index:3;
+}
+
+img {border:0; vertical-align:top; text-align:left;}
+
+a {color:#7ac142; outline:none;}
+a:hover {text-decoration:none;}
+
+object {outline:none;}
+fieldset {border:0;}
+
+ul {list-style:none;}
+
+table, table td {padding:0; border:none; border-collapse:collapse;}
+
+.clear {clear:both; width:100%; line-height:0; font-size:0;}
+
+.col-1, .col-2, .col-3, .col-4 {float:left;}
+.column-1, .column-2, .column-3 {float:left;}  
+
+.wrapper {width:100%; overflow:hidden;}
+.extra-wrap {overflow:hidden;}
+.extra-box {overflow:hidden;}
+ 
+.container {width:100%;}
+
+p {margin-bottom:17px;}
+.p1 {margin-bottom:8px;}
+.p2 {margin-bottom:15px;}
+.p3 {margin-bottom:30px;}
+.p4 {margin-bottom:40px;}
+.p5 {margin-bottom:50px;}
+
+.reg {text-transform:uppercase;}
+
+.fleft {float:left;}
+.fright {float:right;}
+
+.alignright {text-align:right;}
+.aligncenter {text-align:center;}
+
+.title {margin-bottom:18px;}
+
+.it {font-style:italic;}
+
+.letter {letter-spacing:-1px;}
+
+.color-1 {color:#fff;}
+.color-2 {color:#000;}
+.color-3 {color:#939393;}
+.color-4 {color:#7ac142;}
+
+
+/*********************************boxes**********************************/
+.margin-bot {margin-bottom:35px;}
+
+.spacing {margin-right:35px;}
+.spacing2 {margin-right:45px;}
+.spacing3 {margin-right:60px;}
+
+.spacing-bot {margin-bottom:25px;}
+
+.indent {padding:0 0 0px 30px;}
+.indent2 {padding-left:50px;}
+.indent-bot {margin-bottom:20px;}
+.indent-bot2 {margin-bottom:30px;}
+.indent-bot3 {margin-bottom:45px;}
+
+.img-indent-bot {margin-bottom:25px;}
+.img-indent {float:left; margin:0 20px 0px 0;}	
+.img-indent2 {float:left; margin:0 13px 0px 0;}	
+.img-indent-r {float:right; margin:0 0px 0px 40px;}	
+
+.img-box {float:left; margin-bottom:20px;}	
+
+.prev-indent-bot {margin-bottom:10px;}
+.prev-indent {float:left; margin:0 17px 0px 0;}	
+.prev-box {float:left; margin-bottom:8px;}	
+
+.border {border:3px solid #000;}
+.border2 {border:1px solid #000;}
+
+.buttons a:hover {cursor:pointer;}
+
+.menu li a,
+.sub-menu li a,
+.list-1 li a,
+.button-top, 
+.button, 
+.button1, 
+footer a, 
+.link,
+.link-off, 
+.tabs li a, 
+.logo {text-decoration:none;}	
+
+/*********************************header*************************************/
+header {height:198px; width:100%; background:url(../images/header.gif) 0 0 no-repeat;}
+banner {height:335px; width:100%;}
+
+header .row-1 {height:129px;}
+header .row-2 {height:69px;}
+
+banner .row-3 .col-1 {width:252px; margin-right:13px;}
+banner .row-3 .col-2 {width:745px; color:#55544c; position:relative; background:#fff;}
+banner .row-3 .col-2 .padding {padding:15px 20px 0;}
+
+h1 {float:left; padding:32px 0 0 0; position:relative; font-size:18px; line-height:1.2em; color:#4c4c4c; text-transform:uppercase; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.logo {float:left; font-size:70px; line-height:1.2em; color:#7ac142;}
+.logo:hover {color:#4c4c4c;} 
+h1 strong {font-weight:normal; float:left; padding-top:48px;}
+
+.button-top {float:right; font-size:20px; line-height:1.2em; color:#fdfdfd; padding:15px 22px; margin:0 0 6px 18px; text-transform:uppercase; font-weight:bold; background:#7ac142; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.button-top:hover {background:#55544c;}
+
+.sub-menu {float:right; padding:21px 0px 0 0px;}
+.sub-menu li {float:left; padding:0 0 0 8px; line-height:21px; text-transform:uppercase;}
+.sub-menu li a {color:#736f65;}
+.sub-menu li a strong {color:#7ac142;}
+.sub-menu li a:hover {text-decoration:underline;}
+
+.menu {padding:0px 0px 0 0;}
+.menu li {float:left; font-size:17px; line-height:1.2em; text-transform:uppercase; font-weight:bold; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.menu li a {display:block; color:#fff; padding:18px 19px;}
+.menu li .active, .menu li a:hover {background:#8e8c7f;} 
+
+.text-top {font-size:19px; line-height:1.2em;}
+.text-top span {color:#c3c3c2;}
+
+.price {font-size:23px; line-height:1.2em; color:#7ac142; margin-top:-9px; text-transform:uppercase;}
+
+.link-top {display:inline-block; font-weight:bold; padding-right:12px;  color:#fff; background:url(../images/marker-2.gif) right 7px no-repeat; text-transform:none;}
+
+/**********tabs***********/
+.tabs {float:left;}
+.tabs li {float:left; position:relative; overflow:hidden; text-transform:uppercase; background:#fff;}
+.tabs li a {display:block; width:126px; text-align:center; padding:13px 0 12px; font-size:17px; line-height:20px; font-weight:bold; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.tabs li a:hover {background:#ddd;} 
+.tabs li.active a, .tabs li.active a:hover {color:#fff; background:#7ac142;} 
+
+.tab_container {width:100%; color:#fff; text-transform:uppercase; overflow:hidden; background:#7ac142;}
+.padding_container {padding:20px 35px 19px 38px;}
+/*********************************content*************************************/
+#content {width:100%; position:relative;}
+#content .row-1 {width:100%; position:relative; background:#fff;}
+#content .row-2 {width:100%; position:relative; background:#f7f6f3;}
+#content .row-1 .padding {padding:16px 20px 32px;}
+
+#content p strong {color:#55544c;}
+
+.spacer-1 {width:100%; background:url(../images/pic-1.gif) 217px 0 repeat-y;}
+.spacer-2 {width:100%; background:url(../images/pic-1.gif) 460px 0 repeat-y;}
+
+h3 {font-size:20px; line-height:1.2em; padding:10px 19px; margin:0px 0 6px; color:#fff; text-transform:uppercase; background:#8e8c7f; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+h4 {font-size:19px; line-height:1.2em; color:#55544c; margin:0px 0 10px; font-weight:normal;}
+h4 span {color:#7ac142;}
+#content .row-2 h3 {background:#7ac142;}
+
+.head {padding-bottom:18px; margin-bottom:17px; background:url(../images/pic-1.gif) 0 bottom repeat-x;} 
+
+.scroll {overflow:auto; height:180px; position:relative;}
+.scroll .padding-right {height:1%; padding-right:50px;}
+
+.border-bot {width:100%; padding-bottom:25px; background:url(../images/pic-1.gif) 0 bottom repeat-x;}
+.padding-top {padding-top:16px;}
+
+.button {display:inline-block; color:#000; background:url(../images/button-tail.gif) 0 0 repeat-x;}
+.button strong {display:inline-block; cursor:pointer; background:url(../images/button-left.gif) 0 0 no-repeat;}
+.button strong strong {padding:0px 19px 0px; background:url(../images/button-right.gif) right 0 no-repeat;}
+.button:hover {color:#fff;}
+
+.button1 {display:inline-block; font-size:11px; padding:4px 10px 4px 10px; color:#fff; background:#8e8c7f;}
+.button1 strong {display:inline-block; padding-right:12px; cursor:pointer; background:url(../images/marker-2.gif) right 7px no-repeat;}
+.button1:hover {background:#7ac142;}
+
+.list-1 li {line-height:19px; padding-left:10px; background:url(../images/marker-3.gif) 0 8px no-repeat;}
+.list-1 li a {color:#939393;}
+.list-1 li a:hover {color:#7ac142;}
+
+.list-2 li {font-size:11px; line-height:17px; font-weight:bold; padding-left:12px; background:url(../images/marker-4.gif) 0 8px no-repeat;}
+.list-2 li a {color:#7ac142;}
+.list-2 li a:hover {color:#939393;}
+
+.marker {float:left; width:35px; font-size:16px; line-height:1.2em; color:#fff; text-align:center; padding:8px 0; margin-right:10px; background:url(../images/bull.gif) 0 0 no-repeat;}
+
+
+.box {float:left; font-size:12px; line-height:20px; color:#55544c; font-weight:bold; overflow:hidden;}
+.box a {color:#55544c;} 
+.box div {padding:13px 20px 18px; overflow:hidden;}
+.box div a {float:right; font-size:11px; padding-right:12px; background:url(../images/marker-1.gif) right 8px no-repeat;}
+.box p {margin-bottom:0;}
+.box p strong {font-size:12px;}
+.box strong {font-size:17px; color:#7ac142;}
+
+.link:hover {text-decoration:underline;} 
+
+.link-1 {display:inline-block; font-size:14px; padding-right:8px; background:url(../images/marker-3.gif) right 8px no-repeat;}
+.link-1:hover {color:#fff;} 
+
+.link-2 {color:#858875;}
+.link-2:hover {color:#000;} 
+
+.link-off {display:inline-block; position:absolute; right:-92px; bottom:0; font-size:11px; padding:10px 16px 13px 20px; color:#fff; background:#7ac142; text-transform:uppercase;}
+.link-off strong {display:inline-block; padding-right:12px; cursor:pointer; background:url(../images/marker-2.gif) right 7px no-repeat;}
+.link-off:hover {background:#8e8c7f;}
+
+.text-1 {font-size:13px;} 
+.text-2 {font-size:12px; line-height:17em;}  
+.text-3 {font-size:11px; line-height:1.272em;}  
+
+.info, .info2 {line-height:19px;}
+.info span {float:left; width:75px;}
+.info2 span {float:left; width:55px;}
+
+.table-1 tr td {line-height:19px;}
+.table-1 tr .td-1 {width:155px;}
+.table-1 strong {color:#55544c;}
+.table-1 strong strong {color:#262626;}
+
+#form-1, #form-2 {padding-bottom:14px; font-size:13px;}
+#form-1 label, #form-2 label {display:block; height:49px;  overflow:hidden;}
+#form-1 select, #form-2 select {width:179px; font-size:12px; color:#a4a4a4; text-transform:none; padding:3px; font-family:Arial, Helvetica, sans-serif; border:0; background:#fff;}
+#form-1 select option, #form-2 select option {color:#a4a4a4;} 
+#form-1 .select, #form-2 .select {width:83px;}
+#form-1 .button, #form-2 .button {width:179px; text-align:center; font-size:18px; color:#8e8c7f; font-weight:bold; padding:8px 0; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; background:#fff;}
+#form-1 .button:hover, #form-2 .button:hover {color:#fff; background:#8e8c7f;} 
+
+#form-main {display:block; width:208px;}
+#form-main label {display:block; height:40px;}
+#form-main input {width:196px; font-size:1em; color:#666; padding:0px 5px; font-family:Arial, Helvetica, sans-serif; border-top:1px solid #7e7e7e; border-left:1px solid #7e7e7e; border-right:1px solid #cad2d5; border-bottom:1px solid #cad2d5; background:#fff;}
+#form-main textarea {height:174px; overflow:auto; width:196px; font-size:1em; color:#666; padding:0px 5px; font-family:Arial, Helvetica, sans-serif; border-top:1px solid #7e7e7e; border-left:1px solid #7e7e7e; border-right:1px solid #cad2d5; border-bottom:1px solid #cad2d5; background:#fff;}
+
+.buttons {padding-top:16px; text-align:right;}
+.buttons a {margin-left:20px;}
+
+/****************************footer************************/
+footer {width:100%; font-size:12px; line-height:26px; color:#8e8c7f; padding:0px 0 20px; text-transform:uppercase;}
+
+footer a {color:#7ac142;}
+footer a:hover {color:#000;}
+footer span {padding-right:11px;}
+footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#8e8c7f;}
+
+.menu-bot {padding:0 0 5px 20px;}
+.menu-bot li {float:left; padding-right:18px;}
+.menu-bot li a {color:#f7f6f3;}
+.menu-bot li a:hover {color:#7ac142;}
+
+.menu-bot2 {padding-left:20px; clear:both;}
+.menu-bot2 li {float:left; padding-right:20px; font-weight:bold;}
+.menu-bot2 li a {color:#f7f6f3;}
+.menu-bot2 li a:hover, .menu-bot2 li .active {color:#7ac142;}
+
+
+
+
+/****************************js***************************/
+
+.jcarousel-clip {
+    z-index: 2;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.jcarousel-list {
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+.jcarousel-list {
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+
+/**
+ * The buttons are added dynamically by jCarousel before
+ * the <ul> list (inside the <div> described above) and
+ * have the classnames "jcarousel-next" and "jcarousel-prev".
+ */
+.jcarousel-next {
+    z-index: 3;
+    display: none;
+}
+
+.jcarousel-prev {
+    z-index: 3;
+    display: none;
+}
+/* gallery */
+
+#loopedSlider {
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	height:484px;
+}
+	
+		
+		/***********************
+		
+		**********************
+		
+		**************************/
+
+/****************************js***************************/
+
+#loopedSlider2 {
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	height:370px;
+}
+	#loopedSlider2 .looped-container {
+		width:575px;
+		height:281px;
+		overflow:hidden;
+		position:absolute;
+		top:0;
+		left:0;
+		cursor:pointer;
+		float:left;
+		}
+		#loopedSlider2 .slides {
+			width:575px; 
+			height:281px; 
+			position:relative;
+			top:0;
+			left:0;
+			z-index:1;
+		}
+			#loopedSlider2 .slides .blocks {
+				position:absolute;
+				top:0;
+				left:0; 
+				z-index:1;
+				width:575px; 
+				height:281px; 
+				display:none; 
+			}
+			
+				#loopedSlider2 .slides div img {
+					height:auto;
+					overflow:inherit;
+					border:1px solid #e5e5e5;
+				}
+			
+				#loopedSlider2 .img-big {
+					height:281px;
+				}
+			
+			
+			/************/		
+			
+			/*----------------*/
+			#loopedSlider2 .jcarousel-skin-tango {
+				position:relative;
+				width:316px; 
+				height:80px;
+				padding:0 0 0 44px;
+				margin:0;
+				left:0px;
+				top:290px;
+				z-index:999 !important; 
+			}
+						
+			#loopedSlider2 .jcarousel-skin-tango .jcarousel-container-horizontal {
+				width: 316px;
+				height: 80px; 
+				margin:0px 0px 0px 0px;
+				padding:0;
+			}
+			
+			#loopedSlider2 .jcarousel-skin-tango .jcarousel-clip-horizontal {
+				width: 316px;
+				height: 80px; 
+				padding:0px 0px 0px 0px; 
+				margin:0px 0px 0px 0px;
+			}
+			
+			#loopedSlider2 .jcarousel-skin-tango #third-carousel2 { 
+				margin:0px 0px 0px 0px; 
+				padding:0px 0px 0px 0px;
+			}
+			
+			#loopedSlider2 .jcarousel-skin-tango li.jcarousel-item {
+				width: 100px;
+				float:left;
+				background: none !important; 
+				height: 80px; 
+				padding:0px 0px 0px 0px;
+				margin-right:8px;
+				}
+				
+			#loopedSlider2 .jcarousel-skin-tango li.jcarousel-item img {}
+			
+			.model-name {padding:0 0 0 8px; line-height:2.5em;}
+			.model-name span {color:#c3c3c2;}
+			
+			/***  Vertical Buttons ***/
+			#loopedSlider2 .jcarousel-skin-tango .jcarousel-prev-horizontal {
+				position: absolute;
+				top:22px; left:0;
+				width:35px; height:35px; text-align:center;
+				background:url(../images/button-prev.gif) no-repeat 0 0px;
+				cursor:pointer;
+				}
+			
+			#loopedSlider2 .jcarousel-skin-tango .jcarousel-next-horizontal {
+				position: absolute;
+				top:22px; right:-44px;
+				width:35px; height:35px; text-align:center;
+				background:url(../images/button-next.gif) no-repeat 0 0px;
+				cursor:pointer;
+				}
+		 	.jcarousel-skin-tango .jcarousel-prev-vertical:hover {background:url(../images/prev-h.gif) no-repeat center 12px #8e8c7f;}
+			.jcarousel-skin-tango .jcarousel-next-vertical:hover {background:url(../images/next-h.gif) no-repeat center 12px #8e8c7f;}
+		
+		
+		/********/
