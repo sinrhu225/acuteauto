@@ -17,7 +17,7 @@
                         <div class="tab_container">
 	                    	<div style="display: block;" id="tab1" class="tab_content">
                             <div class="padding_container">
-                            	<form id="form-1" action="" method="post" enctype="multipart/form-data">
+                            	<h:form id="form-1">
                                 	<fieldset>
                                     	<label>
                                         	Make<br/>
@@ -55,14 +55,14 @@
    	                                        	<option selected="selected">Min</option>
                                             </select>
                                         </div>
-                                        <a class="button" href="#">search</a>
+                                        <h:commandLink styleClass="button" value="search" action="#{hmpCtrl.reset}"/>
                                     </fieldset>
-                                </form>                                
+                                </h:form>                                
                                 </div>
                             </div>
                             <div style="display: none;" id="tab2" class="tab_content">
                             	<div class="padding_container">
-                            	<form id="form-2" action="" method="post" enctype="multipart/form-data">
+                            	<h:form id="form-2">
                                 	<fieldset>
                                     	<label>
                                         	Make<br/>
@@ -102,7 +102,7 @@
                                         </div>
                                         <a class="button" href="#">search</a>
                                     </fieldset>
-                                </form>                                
+                                </h:form>                                
                                 </div>
                             </div>
                         </div>
@@ -111,11 +111,11 @@
                 <div class="col-2">
                 	<div class="slider-wrapper theme-default">
                 		<div id="slider" class="nivoSlider">
-                			<h:graphicImage value="/images/slide1.jpg" height="325" />
-                			<h:graphicImage value="/images/slide2.jpg" title="#htmlcaption" height="325"/>
-                			<h:graphicImage value="/images/slide3.jpg" title="This is an example of a caption" height="325"/>
-                			<h:graphicImage value="/images/slide4.jpg" height="325"/>
-             				<h:graphicImage value="/images/slide5.jpg" height="325"/>
+                			<h:graphicImage value="/images/slide1.jpg"/>
+                			<h:graphicImage value="/images/slide2.jpg" title="#htmlcaption"/>
+                			<h:graphicImage value="/images/slide3.jpg" title="This is an example of a caption"/>
+                			<h:graphicImage value="/images/slide4.jpg"/>
+             				<h:graphicImage value="/images/slide5.jpg"/>
 						</div>
 						<div id="htmlcaption" class="nivo-html-caption">
 							<strong>Acura MDX</strong><br/>

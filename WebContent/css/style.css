@@ -124,13 +124,13 @@ footer a,
 
 /*********************************header*************************************/
 header {height:198px; width:100%; background:url(../images/header.gif) 0 0 no-repeat;}
-banner {height:335px; width:100%;}
+banner {height:305px; width:100%;}
 
 header .row-1 {height:129px;}
 header .row-2 {height:69px;}
 
-banner .row-3 .col-1 {width:252px; margin-right:13px;}
-banner .row-3 .col-2 {width:745px; color:#55544c; position:relative; background:#fff;}
+banner .row-3 .col-1 {width:276px; margin-right:13px;}
+banner .row-3 .col-2 {width:721px; color:#55544c; position:relative; background:#fff;}
 banner .row-3 .col-2 .padding {padding:15px 20px 0;}
 
 h1 {float:left; padding:32px 0 0 0; position:relative; font-size:18px; line-height:1.2em; color:#4c4c4c; text-transform:uppercase; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
@@ -162,12 +162,12 @@ h1 strong {font-weight:normal; float:left; padding-top:48px;}
 /**********tabs***********/
 .tabs {float:left;}
 .tabs li {float:left; position:relative; overflow:hidden; text-transform:uppercase; background:#fff;}
-.tabs li a {display:block; width:126px; text-align:center; padding:13px 0 12px; font-size:17px; line-height:20px; font-weight:bold; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+.tabs li a {display:block; width:138px; text-align:center; padding:13px 0 12px; font-size:17px; line-height:20px; font-weight:bold; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .tabs li a:hover {background:#ddd;} 
 .tabs li.active a, .tabs li.active a:hover {color:#fff; background:#7ac142;} 
 
 .tab_container {width:100%; color:#fff; text-transform:uppercase; overflow:hidden; background:#7ac142;}
-.padding_container {padding:20px 35px 19px 38px;}
+.padding_container {padding:10px 35px 4px 38px;}
 /*********************************content*************************************/
 #content {width:100%; position:relative;}
 #content .row-1 {width:100%; position:relative; background:#fff;}

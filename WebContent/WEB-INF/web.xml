@@ -64,6 +64,16 @@
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.jsf</url-pattern>
  </servlet-mapping>
+ <servlet>
+  <servlet-name>Image Servlet</servlet-name>
+  <servlet-class>com.acminds.acuteauto.ui.servlet.ImageServlet</servlet-class>
+  <load-on-startup>2</load-on-startup>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>Image Servlet</servlet-name>
+  <url-pattern>/img/*</url-pattern>
+ </servlet-mapping>
+ 
  <welcome-file-list>
   <welcome-file>home.xhtml</welcome-file>
  </welcome-file-list>
