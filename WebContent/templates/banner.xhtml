@@ -5,20 +5,128 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<ui:composition>
-		<div class="middle_banner">
-	      <div class="featured_slider">
-	        <div id="featured_border" class="jcarousel-container">
-
-	          <div id="featured_wrapper" class="jcarousel-clip">
-	            <ul id="featured_images" class="jcarousel-list">
-	              <li><img src="images/slider_photo.jpg" width="965" height="280" alt="" /></li>
-	              <li><img src="images/slider_photo2.jpg" width="965" height="280" alt="" /></li>
-	              <li><img src="images/slider_photo3.jpg" width="965" height="280" alt="" /></li>
-	              <li><img src="images/slider_photo2.jpg" width="965" height="280" alt="" /></li>
-	            </ul>
-	          </div>	          	          
-	        </div>	
-	      </div>	
-	    </div>			
+		<banner>
+        <div class="row-3">        	
+            <div class="wrapper">
+                <div class="col-1">
+                	<div class="wrapper">
+                    	<ul class="tabs">
+                        	<li class="active"><a href="#tab1">Used cars </a></li>
+                            <li><a href="#tab2">New cars</a></li>
+                        </ul>
+                        <div class="tab_container">
+	                    	<div style="display: block;" id="tab1" class="tab_content">
+                            <div class="padding_container">
+                            	<form id="form-1" action="" method="post" enctype="multipart/form-data">
+                                	<fieldset>
+                                    	<label>
+                                        	Make<br/>
+                                            <select>
+                                            	<option selected="selected">Any Make</option>
+                                            </select>
+                                        </label>
+                                        <label>
+                                        	Model<br/>
+                                            <select>
+                                            	<option selected="selected">Any Model</option>
+                                            </select>
+                                        </label>
+                                        <div class="wrapper p1">
+                                        	<span class="fright">
+                                            	Max Year<br/>
+        	                                    <select class="select">
+    	                                        	<option selected="selected">2010</option>
+	                                            </select>
+                                            </span>
+                                            Min Year<br/>
+       	                                    <select class="select">
+   	                                        	<option selected="selected">Min</option>
+                                            </select>
+                                        </div>
+                                        <div class="wrapper p1">
+                                        	<span class="fright">
+                                            	Max Price<br/>
+        	                                    <select class="select">
+    	                                        	<option selected="selected">Max</option>
+	                                            </select>
+                                            </span>
+                                            Min Price<br/>
+       	                                    <select class="select">
+   	                                        	<option selected="selected">Min</option>
+                                            </select>
+                                        </div>
+                                        <a class="button" href="#">search</a>
+                                    </fieldset>
+                                </form>                                
+                                </div>
+                            </div>
+                            <div style="display: none;" id="tab2" class="tab_content">
+                            	<div class="padding_container">
+                            	<form id="form-2" action="" method="post" enctype="multipart/form-data">
+                                	<fieldset>
+                                    	<label>
+                                        	Make<br/>
+                                            <select>
+                                            	<option selected="selected">Any Make</option>
+                                            </select>
+                                        </label>
+                                        <label>
+                                        	Model<br/>
+                                            <select>
+                                            	<option selected="selected">Any Model</option>
+                                            </select>
+                                        </label>
+                                        <div class="wrapper p1">
+                                        	<span class="fright">
+                                            	Max Year<br/>
+        	                                    <select class="select">
+    	                                        	<option selected="selected">2010</option>
+	                                            </select>
+                                            </span>
+                                            Min Year<br/>
+       	                                    <select class="select">
+   	                                        	<option selected="selected">Min</option>
+                                            </select>
+                                        </div>
+                                        <div class="wrapper p1">
+                                        	<span class="fright">
+                                            	Max Price<br/>
+        	                                    <select class="select">
+    	                                        	<option selected="selected">Max</option>
+	                                            </select>
+                                            </span>
+                                            Min Price<br/>
+       	                                    <select class="select">
+   	                                        	<option selected="selected">Min</option>
+                                            </select>
+                                        </div>
+                                        <a class="button" href="#">search</a>
+                                    </fieldset>
+                                </form>                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                	<div class="slider-wrapper theme-default">
+                		<div id="slider" class="nivoSlider">
+                			<h:graphicImage value="/images/slide1.jpg" height="325" />
+                			<h:graphicImage value="/images/slide2.jpg" title="#htmlcaption" height="325"/>
+                			<h:graphicImage value="/images/slide3.jpg" title="This is an example of a caption" height="325"/>
+                			<h:graphicImage value="/images/slide4.jpg" height="325"/>
+             				<h:graphicImage value="/images/slide5.jpg" height="325"/>
+						</div>
+						<div id="htmlcaption" class="nivo-html-caption">
+							<strong>Acura MDX</strong><br/>
+							$65000 <br/>
+							Technology Package
+							<a href="#">See Features</a>.
+						</div>
+					</div>					
+                </div>                	  
+            </div>            
+        </div>
+    </banner>		
 	</ui:composition>
 </html>

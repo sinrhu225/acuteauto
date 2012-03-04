@@ -1,89 +1,137 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:rich="http://richfaces.org/rich">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/templates/homeLayout.xhtml">
 	<ui:define name="content">
-		<div class="center_content">	
-	      <div class="home_section_left"> <img src="images/icon1.gif" alt="" class="home_section_icon" border="0" />	
-	        <h2 class="home_title">Featured</h2>	
-	        <div class="home_subtitle">Consectetur adipisicing elit</div>	
-	        <div class="home_section_thumb"> 
-	        	<img src="images/home_section_thumb1.jpg" alt="" border="0" />
-	        </div>	
-	        <p><span>Lorem ipsum dolor sit ame</span><br />	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. <br />	
-	          <br />	
-	          <span>Lorem ipsum dolor sit ame</span><br />	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>	
-	        <a href="#" class="more"><img src="images/more.gif" alt="" border="0" /></a>	
-	        <div class="clear"></div>	
-	      </div>
-	
-	      <div class="home_section_left"> <img src="images/icon2.gif" alt="" class="home_section_icon" border="0" />	
-	        <h2 class="home_title">Overview</h2>	
-	        <div class="home_subtitle">Tempor incididunt ut labore</div>	
-	        <div class="home_section_thumb"> <img src="images/home_section_thumb2.jpg" alt="" border="0" /></div>	
-	        <p><span>Lorem ipsum dolor sit ame</span><br />	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. <br />	
-	          <br />	
-	          <span>Lorem ipsum dolor sit ame</span><br />	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>	
-	        <a href="#" class="more"><img src="images/more.gif" alt="" border="0" /></a>	
-	        <div class="clear"></div>	
-	      </div>
-	
-	      <div class="home_section_left"> <img src="images/icon3.gif" alt="" class="home_section_icon" border="0" />
-	
-	        <h2 class="home_title">Special Services</h2>
-	
-	        <div class="home_subtitle">Sed do eiusmod tempor</div>
-	
-	        <div class="home_section_thumb"> <img src="images/home_section_thumb3.jpg" alt="" border="0" /></div>
-	
-	        <p><span>Lorem ipsum dolor sit ame</span><br />
-	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore. <br />
-	
-	          <br />
-	
-	          <span>Lorem ipsum dolor sit ame</span><br />
-	
-	          Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-	
-	        <a href="#" class="more"><img src="images/more.gif" alt="" border="0" /></a>
-	
-	        <div class="clear"></div>
-	
-	      </div>
-	
-	      <div class="left_block_wide">
-	
-	        <h2>Latest Projects</h2>
-	
-	        <a href="#"><img src="images/p1.jpg" alt="" border="0" class="projects" /></a> <a href="#"><img src="images/p2.jpg" alt="" border="0" class="projects" /></a> <a href="#"><img src="images/p3.jpg" alt="" border="0" class="projects" /></a></div>
-	
-	      <div class="right_block">
-	
-	        <h2>Newsletter Sign up</h2>
-	
-	        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit consequat.</p>
-	
-	        <form id="newsletter" action="#">
-	
-	          <input type="text" class="newsletter_input" />
-	
-	          <input type="submit" class="newsletter_submit" value="Sign up" />
-	
-	        </form>
-	
-	      </div>
-	
-	      <div class="clear"></div>
-	
-	    </div>
+		<section id="content">
+	    	<div class="row-1 p2">
+	        	<h3>latest advertisements</h3>
+	            <div class="wrapper">
+	            	<div class="col-1">
+	                	<div class="box">
+		                	<a href="#"><figure><img src="images/thumbnails/page1-img1.jpg" alt=""/></figure></a>
+	    	            	<div>
+	        	            	<p>Adipiscing elit se <strong>2009</strong></p>
+		        	            <a href="#">More</a>
+	    	        	        <strong>$65800</strong>
+	                    	</div>
+	                    </div>
+	                </div>
+	                <div class="col-2">
+	                	<div class="box">
+		                	<a href="#"><figure><img src="images/thumbnails/page1-img2.jpg" alt=""/></figure></a>
+	    	            	<div>
+	        	            	<p>Ipsum dolor ser <strong>2009</strong></p>
+		        	            <a href="#">More</a>
+	    	        	        <strong>$65800</strong>
+		                    </div>
+	                	</div>
+	                </div>
+	                <div class="col-3">
+	    				<div class="box">
+	    	            	<a href="#"><figure><img src="images/thumbnails/page1-img3.jpg" alt=""/></figure></a>
+	        	        	<div>
+	            	        	<p>Dolor Set IPSUM <strong>2009</strong></p>
+		            	        <a href="#">More</a>
+	    	            	    <strong>$65800</strong>
+		                    </div>
+	                    </div>
+	                </div>
+	                <div class="col-4">
+	                	<div class="box">
+		                	<a href="#"><figure><img src="images/thumbnails/page1-img4.jpg" alt=""/></figure></a>
+	    	            	<div>
+	        	            	<p>Magna IPSUM <strong>2009</strong></p>
+		        	            <a href="#">More</a>
+	    	        	        <strong>$65800</strong>
+	                    	</div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="wrapper">
+	                <div class="col-1">
+	                	<div class="box">
+	                		<a href="#"><figure><img src="images/thumbnails/page1-img5.jpg" alt=""/></figure></a>
+		                	<div>
+	    	                	<p>Lorem SET <strong>2009</strong></p>
+		    	                <a href="#">More</a>
+	    	    	            <strong>$65800</strong>
+	                	    </div>
+	                	</div>
+	                </div>
+	                <div class="col-2">
+		                <div class="box">
+		                	<a href="#"><figure><img src="images/thumbnails/page1-img6.jpg" alt=""/></figure></a>
+	                		<div>
+	                	    	<p>Magna IPSUM <strong>2009</strong></p>
+		        	            <a href="#">More</a>
+	    		                <strong>$65800</strong>
+	    	                </div>
+		                </div>
+	                </div>
+	                <div class="col-3">
+		                <div class="box">
+	    	            	<a href="#"><figure><img src="images/thumbnails/page1-img7.jpg" alt=""/></figure></a>
+	        	        	<div>
+	            	        	<p>Adipiscing ELIT SEL <strong>2009</strong></p>
+		            	        <a href="#">More</a>
+	    	            	    <strong>$65800</strong>
+		                    </div>
+		                </div>
+	                </div>
+	                <div class="col-4">
+		                <div class="box">
+		                	<a href="#"><figure><img src="images/thumbnails/page1-img8.jpg" alt=""/></figure></a>
+	    	            	<div>
+	        	            	<p>Dolor Set IPSUM <strong>2009</strong></p>
+		        	            <a href="#">More</a>
+	    	        	        <strong>$65800</strong>
+	                    	</div>
+		                </div>
+	                </div>
+	            </div>
+	            <a class="link-off" href="#"><strong>See all</strong></a>
+	        </div>
+	        <div class="row-2">
+	      <h3>latest testdrive</h3>
+	            <div class="wrapper">
+	            	<figure class="img-indent"><img src="images/thumbnails/page1-img9.jpg" alt=""/></figure>
+	                <div class="extra-box">
+	                <div class="padding-top">
+	                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
+	                    <p>
+	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
+	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
+	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
+	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
+	adipiscing elit, sed diam nonummy nibh set dolor.
+	                    </p>
+	                    <a class="button1" href="#"><strong>More</strong></a>
+	                </div>
+	                </div>
+	            </div>
+	            <div class="wrapper">
+	            	<figure class="img-indent"><img src="images/thumbnails/page1-img10.jpg" alt=""/></figure>
+	                <div class="extra-box">
+	                <div class="padding-top">
+	                	<h4>Ipsum dolor ser SET DOLOR <span>2011</span></h4>
+	                    <p>
+	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
+	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
+	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
+	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
+	adipiscing elit, sed diam nonummy nibh set dolor.
+	                    </p>
+	                    <a class="button1" href="#"><strong>More</strong></a>
+	                </div>
+	                </div>
+	            </div>
+	            <a class="link-off" href="#"><strong>See all</strong></a>
+	        </div>
+	    </section>
 	</ui:define>
-</ui:composition>      
+</ui:composition>
 </html>

@@ -5,30 +5,44 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition>
-	<div id="header">
-		<div id="logo">
-			<a href="index.html">
-				<img src="images/logo.gif" alt="" border="0" />
-			</a>
-		</div>
-		<div id="menu">
-			<ul>
-				<li><a class="current" href="home.jsf">Home</a>
-				</li>
-				<li><a href="#">Inventory</a>
-				</li>
-				<li><a href="#">Loan Online</a>
-				</li>
-				<li><a href="#">Directions</a>
-				</li>
-				<li><a href="#" title="Looking for a Specific Model">Find a Car</a>
-				</li>
-				<li><a href="#">Talk to Us</a>
-				</li>
-				<li><a href="#">Car Reviews</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+	<header>
+		<div class="row-1">
+
+        	<h1><a class="logo" href="#">Cars</a><strong>Sell &amp; Buy Portal</strong></h1>
+            <div class="extra-box">
+            	<ul class="sub-menu">
+                	<li><a href="#"><strong>New User?</strong> </a></li>
+                    <li><a href="#">Register </a></li>
+                    <li><a href="#"><strong>Sign In</strong> </a></li>
+                    <li><a href="#">Help </a></li>
+                </ul>
+            </div>
+
+            <div class="extra-box">
+            	<ul class="sub-menu">
+                	<li><a href="#">Buying </a></li>
+                    <li><a href="#">Selling </a></li>
+                    <li><a href="#">Finance </a></li>
+                    <li><a href="#">Insurance </a></li>
+                    <li><a href="#">News and Reviews </a></li>
+                    <li><a href="#">Support </a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="row-2">
+        	<nav class="wrapper">
+            	<ul class="menu">
+                	<li><a class="active" href="#">home </a></li>
+                    <li><a href="#">inventory </a></li>
+                    <li><a href="#">apply for loan </a></li>
+                    <li><a href="#">directions </a></li>
+                    <li><a href="#">find a car </a></li>
+                    <li><a href="#">talk to us </a></li>
+                </ul>
+            </nav>
+        </div>
+	</header>
 </ui:composition>
 </html>

@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+<html lang="en"><head>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <title>30724 template preview</title>
+
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="template_files/reset.css" type="text/css" media="screen">
+
+    <link rel="stylesheet" href="template_files/style.css" type="text/css" media="screen">
+
+    <link rel="stylesheet" href="template_files/layout.css" type="text/css" media="screen">    
+
+    <script src="template_files/jquery-1.js" type="text/javascript"></script>
+
+    <script src="template_files/tabs.js" type="text/javascript"></script>
+
+    <script src="template_files/jquery.js" type="text/javascript"></script>
+
+    <script src="template_files/loopedslider.js" type="text/javascript"></script>
+
+    <script type="text/javascript">    
+
+            jQuery(document).ready(function() {			
+
+                jQuery('#third-carousel').jcarousel({
+
+                    vertical: true
+
+                });
+
+            });		
+
+	</script>
+
+    <script type="text/javascript" src="template_files/imagepreloader.js"></script>
+
+	<script type="text/javascript">
+
+        preloadImages([
+
+            '../images/prev-h.gif', 
+
+            '../images/next-h.gif']);
+
+    </script>    
+
+    <!--[if lt IE 7]>
+
+    <link rel="stylesheet" href="css/ie/ie6.css" type="text/css" media="screen">
+
+    <script type="text/javascript" src="js/ie_png.js"></script>
+
+    <script type="text/javascript">
+
+        ie_png.fix('.png');
+
+    </script>
+
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+
+   		<script type="text/javascript" src="js/html5.js"></script>
+
+	<![endif]-->
+
+</head>
+
+<body id="page1">
+
+<div class="bg"></div>
+
+<div class="main">
+
+<!--==============================header=================================-->
+
+   	<header>
+
+		<div class="row-1">
+
+        	<h1><a class="logo" href="#">Cars</a><strong>Sell &amp; Buy Portal</strong></h1>
+
+            <div class="extra-box">
+
+            	<a class="button-top" href="#">Add  advertisement</a>
+
+                <ul class="sub-menu">
+
+                	<li><a href="#"><strong>New User?</strong> </a></li>
+
+                    <li><a href="#">Register </a></li>
+
+                    <li><a href="#"><strong>Sign In</strong> </a></li>
+
+                    <li><a href="#">Help </a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="extra-box">
+
+            	<ul class="sub-menu">
+
+                	<li><a href="#">Buying </a></li>
+
+                    <li><a href="#">Selling </a></li>
+
+                    <li><a href="#">Finance </a></li>
+
+                    <li><a href="#">Insurance </a></li>
+
+                    <li><a href="#">News and Reviews </a></li>
+
+                    <li><a href="#">Support </a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="row-2">
+
+        	<nav class="wrapper">
+
+            	<ul class="menu">
+
+                	<li><a class="active" href="#">find a car </a></li>
+
+                    <li><a href="#">used cars </a></li>
+
+                    <li><a href="#">new cars </a></li>
+
+                    <li><a href="#">cars dealers </a></li>
+
+                    <li><a href="#">parts </a></li>
+
+                    <li><a href="#">contacts </a></li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+        <div class="row-3">        	
+
+            <div class="wrapper">
+
+                <div class="col-1">
+
+                	<div class="wrapper">
+
+                    	<ul class="tabs">
+
+                        	<li class="active"><a href="#tab1">Used cars </a></li>
+
+                            <li><a href="#tab2">New cars</a></li>
+
+                        </ul>
+
+                        <div class="tab_container">
+
+	                    	<div style="display: block;" id="tab1" class="tab_content">
+
+                            <div class="padding_container">
+
+                            	<form id="form-1" action="" method="post" enctype="multipart/form-data">
+
+                                	<fieldset>
+
+                                    	<label>
+
+                                        	Make<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any Make</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <label>
+
+                                        	Model<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any Model</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <label>
+
+                                        	Region<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <div class="wrapper p1">
+
+                                        	<span class="fright">
+
+                                            	Max Year<br>
+
+        	                                    <select class="select">
+
+    	                                        	<option selected="selected">2010</option>
+
+	                                            </select>
+
+                                            </span>
+
+                                            Min Year<br>
+
+       	                                    <select class="select">
+
+   	                                        	<option selected="selected">Min</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="wrapper p1">
+
+                                        	<span class="fright">
+
+                                            	Max Price<br>
+
+        	                                    <select class="select">
+
+    	                                        	<option selected="selected">Max</option>
+
+	                                            </select>
+
+                                            </span>
+
+                                            Min Price<br>
+
+       	                                    <select class="select">
+
+   	                                        	<option selected="selected">Min</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <label class="prev-indent-bot">
+
+                                        	Body type<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <a class="button" href="#">search</a>
+
+                                    </fieldset>
+
+                                </form>
+
+                                <a class="link-top" href="#">Detailed Search</a>
+
+                                </div>
+
+                            </div>
+
+                            <div style="display: none;" id="tab2" class="tab_content">
+
+                            	<div class="padding_container">
+
+                            	<form id="form-2" action="" method="post" enctype="multipart/form-data">
+
+                                	<fieldset>
+
+                                    	<label>
+
+                                        	Make<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any Make</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <label>
+
+                                        	Model<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any Model</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <label>
+
+                                        	Region<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <div class="wrapper p1">
+
+                                        	<span class="fright">
+
+                                            	Max Year<br>
+
+        	                                    <select class="select">
+
+    	                                        	<option selected="selected">2010</option>
+
+	                                            </select>
+
+                                            </span>
+
+                                            Min Year<br>
+
+       	                                    <select class="select">
+
+   	                                        	<option selected="selected">Min</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <div class="wrapper p1">
+
+                                        	<span class="fright">
+
+                                            	Max Price<br>
+
+        	                                    <select class="select">
+
+    	                                        	<option selected="selected">Max</option>
+
+	                                            </select>
+
+                                            </span>
+
+                                            Min Price<br>
+
+       	                                    <select class="select">
+
+   	                                        	<option selected="selected">Min</option>
+
+                                            </select>
+
+                                        </div>
+
+                                        <label class="prev-indent-bot">
+
+                                        	Body type<br>
+
+                                            <select>
+
+                                            	<option selected="selected">Any</option>
+
+                                            </select>
+
+                                        </label>
+
+                                        <a class="button" href="#">search</a>
+
+                                    </fieldset>
+
+                                </form>
+
+                                <a class="link-top" href="#">Detailed Search</a>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-2">
+
+                	<div id="loopedSlider">
+
+                	<div class="jcarousel-skin-tango">
+
+                        <div style="display: block;" class="jcarousel-container jcarousel-container-vertical"><div disabled="true" style="display: block;" class="jcarousel-prev jcarousel-prev-vertical jcarousel-prev-disabled jcarousel-prev-disabled-vertical"></div><div disabled="false" style="display: block;" class="jcarousel-next jcarousel-next-vertical"></div><div class="jcarousel-clip jcarousel-clip-vertical pagination">
+
+                            <ul style="height: 775px; top: 0px;" id="third-carousel" class="jcarousel-list jcarousel-list-vertical">
+
+                                <li jcarouselindex="1" class="jcarousel-item jcarousel-item-vertical jcarousel-item-1 jcarousel-item-1-vertical active"><a rel="1" href="#"><figure><img src="template_files/slide-thumb1.jpg" alt="" height="123" width="170"></figure></a><span class="model-name">Nissan X-TRAIL <span>2009</span></span></li>
+
+                                <li jcarouselindex="2" class="jcarousel-item jcarousel-item-vertical jcarousel-item-2 jcarousel-item-2-vertical"><a rel="2" href="#"><figure><img src="template_files/slide-thumb2.jpg" alt="" height="123" width="170"></figure></a><span class="model-name">Mercedes Benz S550</span></li>
+
+                                <li jcarouselindex="3" class="jcarousel-item jcarousel-item-vertical jcarousel-item-3 jcarousel-item-3-vertical"><a rel="3" href="#"><figure><img src="template_files/slide-thumb3.jpg" alt="" height="123" width="170"></figure></a><span class="model-name">Audi</span></li>
+
+                                <li jcarouselindex="4" class="jcarousel-item jcarousel-item-vertical jcarousel-item-4 jcarousel-item-4-vertical"><a rel="4" href="#"><figure><img src="template_files/slide-thumb4.jpg" alt="" height="123" width="170"></figure></a><span class="model-name">Mercedes</span></li>
+
+                                <li jcarouselindex="5" class="jcarousel-item jcarousel-item-vertical jcarousel-item-5 jcarousel-item-5-vertical"><a rel="5" href="#"><figure><img src="template_files/slide-thumb5.jpg" alt="" height="123" width="170"></figure></a><span class="model-name">BMW</span></li>
+
+                            </ul>
+
+                        </div></div>				
+
+                    </div>              
+
+                	<div class="looped-container">
+
+                        <div style="width: 2875px;" class="slides">
+
+                            <div style="position: absolute; left: 0px; display: block;" class="blocks">
+
+                                <div class="img-big"><a href="#"><img src="template_files/slide1.jpg" alt=""></a></div>
+
+                                <div class="padding">
+
+                                    <div class="text-top">Nissan X-TRAIL <span>2009</span></div>
+
+                                    <strong class="price fright">$65800</strong>
+
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing 
+
+                                </div>
+
+                            </div>
+
+                            <div style="position: absolute; left: 575px; display: block;" class="blocks">
+
+                                <div class="img-big"><a href="#"><img src="template_files/slide2.jpg" alt=""></a></div>
+
+                                <div class="padding">
+
+                                    <div class="text-top">Mercedes Benz S550</div>
+
+                                    <strong class="price fright">$102100</strong>
+
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing 
+
+                                </div>
+
+                            </div>
+
+                            <div style="position: absolute; left: 1150px; display: block;" class="blocks">
+
+                                <div class="img-big"><a href="#"><img src="template_files/slide3.jpg" alt=""></a></div>
+
+                                <div class="padding">
+
+                                    <div class="text-top">Audi</div>
+
+                                    <strong class="price fright">$44800</strong>
+
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing 
+
+                                </div>
+
+                            </div>				
+
+                            <div style="position: absolute; left: 1725px; display: block;" class="blocks">
+
+                                <div class="img-big"><a href="#"><img src="template_files/slide4.jpg" alt=""></a></div>
+
+                                <div class="padding">
+
+                                    <div class="text-top">Mercedes</div>
+
+                                    <strong class="price fright">$45800</strong>
+
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing 
+
+                                </div>
+
+                            </div>
+
+                            <div style="position: absolute; left: -575px; display: block;" class="blocks">
+
+                                <div class="img-big"><a href="#"><img src="template_files/slide5.jpg" alt=""></a></div>
+
+                                <div class="padding">
+
+                                    <div class="text-top">BMW</div>
+
+                                    <strong class="price fright">$95800</strong>
+
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing 
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>                    
+
+                    </div>
+
+                </div>                	  
+
+            </div>            
+
+        </div>
+
+    </header>
+
+<!--==============================content================================-->
+
+    <section id="content">
+
+    	<div class="row-1 p2">
+
+        	<h3>latest advertisements</h3>
+
+            <div class="wrapper">
+
+            	<div class="col-1">
+
+                	<div class="box">
+
+	                	<a href="#"><figure><img src="template_files/page1-img1.jpg" alt=""></figure></a>
+
+    	            	<div>
+
+        	            	<p>Adipiscing elit se <strong>2009</strong></p>
+
+	        	            <a href="#">More</a>
+
+    	        	        <strong>$65800</strong>
+
+                    	</div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-2">
+
+                	<div class="box">
+
+	                	<a href="#"><figure><img src="template_files/page1-img2.jpg" alt=""></figure></a>
+
+    	            	<div>
+
+        	            	<p>Ipsum dolor ser <strong>2009</strong></p>
+
+	        	            <a href="#">More</a>
+
+    	        	        <strong>$65800</strong>
+
+	                    </div>
+
+                	</div>
+
+                </div>
+
+                <div class="col-3">
+
+    				<div class="box">
+
+    	            	<a href="#"><figure><img src="template_files/page1-img3.jpg" alt=""></figure></a>
+
+        	        	<div>
+
+            	        	<p>Dolor Set IPSUM <strong>2009</strong></p>
+
+	            	        <a href="#">More</a>
+
+    	            	    <strong>$65800</strong>
+
+	                    </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-4">
+
+                	<div class="box">
+
+	                	<a href="#"><figure><img src="template_files/page1-img4.jpg" alt=""></figure></a>
+
+    	            	<div>
+
+        	            	<p>Magna IPSUM <strong>2009</strong></p>
+
+	        	            <a href="#">More</a>
+
+    	        	        <strong>$65800</strong>
+
+                    	</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="wrapper">
+
+                <div class="col-1">
+
+                	<div class="box">
+
+                		<a href="#"><figure><img src="template_files/page1-img5.jpg" alt=""></figure></a>
+
+	                	<div>
+
+    	                	<p>Lorem SET <strong>2009</strong></p>
+
+	    	                <a href="#">More</a>
+
+    	    	            <strong>$65800</strong>
+
+                	    </div>
+
+                	</div>
+
+                </div>
+
+                <div class="col-2">
+
+	                <div class="box">
+
+	                	<a href="#"><figure><img src="template_files/page1-img6.jpg" alt=""></figure></a>
+
+                		<div>
+
+                	    	<p>Magna IPSUM <strong>2009</strong></p>
+
+	        	            <a href="#">More</a>
+
+    		                <strong>$65800</strong>
+
+    	                </div>
+
+	                </div>
+
+                </div>
+
+                <div class="col-3">
+
+	                <div class="box">
+
+    	            	<a href="#"><figure><img src="template_files/page1-img7.jpg" alt=""></figure></a>
+
+        	        	<div>
+
+            	        	<p>Adipiscing ELIT SEL <strong>2009</strong></p>
+
+	            	        <a href="#">More</a>
+
+    	            	    <strong>$65800</strong>
+
+	                    </div>
+
+	                </div>
+
+                </div>
+
+                <div class="col-4">
+
+	                <div class="box">
+
+	                	<a href="#"><figure><img src="template_files/page1-img8.jpg" alt=""></figure></a>
+
+    	            	<div>
+
+        	            	<p>Dolor Set IPSUM <strong>2009</strong></p>
+
+	        	            <a href="#">More</a>
+
+    	        	        <strong>$65800</strong>
+
+                    	</div>
+
+	                </div>
+
+                </div>
+
+            </div>
+
+            <a class="link-off" href="#"><strong>See all</strong></a>
+
+        </div>
+
+        <div class="row-2">
+
+      <h3>latest testdrive</h3>
+
+            <div class="wrapper">
+
+            	<figure class="img-indent"><img src="template_files/page1-img9.jpg" alt=""></figure>
+
+                <div class="extra-box">
+
+                <div class="padding-top">
+
+                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
+
+                    <p>
+
+                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
+
+ elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
+
+ amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
+
+euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
+
+adipiscing elit, sed diam nonummy nibh set dolor.
+
+                    </p>
+
+                    <a class="button1" href="#"><strong>More</strong></a>
+
+                </div>
+
+                </div>
+
+            </div>
+
+            <div class="wrapper">
+
+            	<figure class="img-indent"><img src="template_files/page1-img10.jpg" alt=""></figure>
+
+                <div class="extra-box">
+
+                <div class="padding-top">
+
+                	<h4>Ipsum dolor ser SET DOLOR <span>2011</span></h4>
+
+                    <p>
+
+                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
+
+ elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
+
+ amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
+
+euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
+
+adipiscing elit, sed diam nonummy nibh set dolor.
+
+                    </p>
+
+                    <a class="button1" href="#"><strong>More</strong></a>
+
+                </div>
+
+                </div>
+
+            </div>
+
+            <a class="link-off" href="#"><strong>See all</strong></a>
+
+        </div>
+
+    </section>
+
+<!--==============================footer=================================-->
+
+    <footer>
+
+    	<div class="row-1">
+
+        	<nav class="wrapper">
+
+            	<ul class="menu-bot">
+
+                	<li><a href="#">Buying </a></li>
+
+                    <li><a href="#">Selling </a></li>
+
+                    <li><a href="#">Finance </a></li>
+
+                    <li><a href="#">Insurance </a></li>
+
+                    <li><a href="#">News and Reviews </a></li>
+
+                </ul>
+
+                <ul class="menu-bot2">
+
+                	<li><a class="active" href="#">find a car </a></li>
+
+                    <li><a href="#">used car </a></li>
+
+                    <li><a href="#">new car </a></li>
+
+                    <li><a href="#">car dealers </a></li>
+
+                    <li><a href="#">parts </a></li>
+
+                    <li><a href="#">contacts </a></li>
+
+                </ul>                
+
+            </nav>
+
+        </div>
+
+        <span>Cars © 2010</span> <a href="#">Privacy Policy</a><br>
+
+        <!-- {%FOOTER_LINK} -->
+
+    </footer>
+
+</div>
+
+<script type="text/javascript">
+
+	$(function(){
+
+		$('#loopedSlider').loopedSlider();
+
+	});
+
+</script>
+
+<script type="text/javascript">
+
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+</script><script src="template_files/ga.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+try {
+
+var pageTracker = _gat._getTracker("UA-7078796-1");
+
+pageTracker._trackPageview();
+
+} catch(err) {}</script>
+
+
+
+
+
+</body></html>
