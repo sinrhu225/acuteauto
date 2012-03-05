@@ -21,41 +21,30 @@
                                 	<fieldset>
                                     	<label>
                                         	Make<br/>
-                                            <select>
-                                            	<option selected="selected">Any Make</option>
-                                            </select>
+                                        	<h:selectOneListbox value="#{invCtrl.makeId}" size="1" >
+                                        		<f:selectItems value="#{invCtrl.makes}"/>
+                                        		<f:ajax event="change" render="Model" execute="@this"/>
+                                        	</h:selectOneListbox>                                            
                                         </label>
                                         <label>
                                         	Model<br/>
-                                            <select>
-                                            	<option selected="selected">Any Model</option>
-                                            </select>
+                                            <h:selectOneListbox id="Model" value="#{invCtrl.modelId}" size="1" disabled="#{invCtrl.makeId == null}">
+                                        		<f:selectItems value="#{invCtrl.models}"/>
+                                        	</h:selectOneListbox>
                                         </label>
-                                        <div class="wrapper p1">
-                                        	<span class="fright">
-                                            	Max Year<br/>
-        	                                    <select class="select">
-    	                                        	<option selected="selected">2010</option>
-	                                            </select>
-                                            </span>
-                                            Min Year<br/>
-       	                                    <select class="select">
-   	                                        	<option selected="selected">Min</option>
-                                            </select>
-                                        </div>
-                                        <div class="wrapper p1">
-                                        	<span class="fright">
-                                            	Max Price<br/>
-        	                                    <select class="select">
-    	                                        	<option selected="selected">Max</option>
-	                                            </select>
-                                            </span>
-                                            Min Price<br/>
-       	                                    <select class="select">
-   	                                        	<option selected="selected">Min</option>
-                                            </select>
-                                        </div>
-                                        <h:commandLink styleClass="button" value="search" action="#{hmpCtrl.reset}"/>
+                                        <label>
+                                        	Year<br/>
+                                            <h:selectOneListbox value="#{invCtrl.year}" size="1">
+                                        		<f:selectItems value="#{invCtrl.years}"/>
+                                        	</h:selectOneListbox>
+                                        </label>
+                                        <label>
+                                        	Price<br/>
+                                            <h:selectOneListbox value="#{invCtrl.price}" size="1">
+                                        		<f:selectItems value="#{invCtrl.prices}"/>
+                                        	</h:selectOneListbox>
+                                        </label>
+                                        <h:commandLink styleClass="button" value="search" action="#{invCtrl.searchCars}"/>
                                     </fieldset>
                                 </h:form>                                
                                 </div>

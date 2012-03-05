@@ -6,8 +6,10 @@ package com.acminds.acuteauto.ui.listener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
+import javax.servlet.http.HttpServletRequest;
 
 import com.acminds.acuteauto.persistence.PersistenceManager;
 
@@ -30,7 +32,7 @@ public class DefaultRequestListener implements ServletRequestListener {
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
 		log.log(Level.INFO, "Closing Entity Manager on ServletRequest destroyed");
-		PersistenceManager.closeEnityManager();
+		((HttpServletRequest)arg0.getServletRequest()).getSession().setAttribute("EMHolder", PersistenceManager.getEntityManager());		
 	}
 
 	/* (non-Javadoc)
@@ -38,6 +40,8 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestInitialized(ServletRequestEvent arg0) {
+		EntityManager em = (EntityManager)((HttpServletRequest)arg0.getServletRequest()).getSession().getAttribute("EMHolder");
+		if(em!=null) PersistenceManager.setEntityManager(em);
 		log.log(Level.FINE, "Servlet Request Initialized");
 	}
 

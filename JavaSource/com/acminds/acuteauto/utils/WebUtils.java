@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -79,6 +80,20 @@ public class WebUtils {
 	
 	private static ResourceBundle getResourceBundle() {
 		return ResourceBundle.getBundle(DEFAULT_RESOURCE_BUNDLE);
+	}
+	
+	public static SelectItem getDefaultSelectItem(boolean isBlank, String value) {
+		SelectItem si = null;
+		if(isBlank) {
+			si = new SelectItem("");
+		} else {
+			if(Utils.isEmpty(value))
+				si = new SelectItem("Please Select");
+			else
+				si = new SelectItem(value);
+		}
+		si.setNoSelectionOption(true);
+		return si;
 	}
 	
 	public static void main(String[] args) {

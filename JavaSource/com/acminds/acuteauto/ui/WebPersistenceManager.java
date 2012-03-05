@@ -18,7 +18,7 @@ public class WebPersistenceManager extends PersistenceManager{
 
 	@Override
 	public EntityManager getCurrentEntityManager() {
-		if(Utils.isEmpty(em)) {
+		if(Utils.isEmpty(em) || !em.isOpen()) {
 			if(Utils.isEmpty(local.get())) {
 				em = getEntityManagerFactory().createEntityManager();
 				local.set(em);
@@ -28,11 +28,22 @@ public class WebPersistenceManager extends PersistenceManager{
 		}
 		return em;
 	}
+	
+	@Override
+	public void setCurrentEntityManager(EntityManager em) {
+		if(Utils.isEmpty(em)) {
+			if(Utils.isEmpty(local.get())) {
+				local.set(em);
+			}				
+		}
+	}
 
 	@Override
 	public void closeCurrentEntityManager() {
 		if(getCurrentEntityManager().isOpen())
 			getCurrentEntityManager().close();
+		local.remove();
+		em = null;
 	}
 
 }

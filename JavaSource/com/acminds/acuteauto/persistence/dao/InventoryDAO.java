@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Category;
+import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.Utils;
 
@@ -19,7 +20,7 @@ import com.acminds.acuteauto.utils.Utils;
  */
 public class InventoryDAO extends BaseDAO {
 	
-	public List<Vehicle> getCars(String makeId, String modelId, String styleId, String year, String price, String mileage, String bodyType) {
+	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType) {
 		String q = "from Vehicle v where 1=1 ";
 		if(!Utils.isEmpty(makeId)) q= q+" and v.make.id = "+makeId;
 		if(!Utils.isEmpty(modelId)) q= q+" and v.model.id = "+modelId;
@@ -50,6 +51,15 @@ public class InventoryDAO extends BaseDAO {
 		String q = "from Advertisement a where a.effectiveDate<= :today and a.expiryDate>= :today";
 		List<Advertisement> list = createQuery(q, Advertisement.class)
 									.setParameter("today", Utils.today())
+									.getResultList();
+		return list;
+	}
+	
+	public List<Make> getMakes(String year) {
+		String q = "from Make m where 1=1 ";
+		if(!Utils.isEmpty(year))
+			q = q+"and m.yearStart<= "+year+" and m.yearEnd>= "+year;
+		List<Make> list = createQuery(q, Make.class)
 									.getResultList();
 		return list;
 	}

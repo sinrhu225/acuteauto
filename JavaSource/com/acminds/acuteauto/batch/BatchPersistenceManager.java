@@ -36,4 +36,13 @@ public class BatchPersistenceManager extends PersistenceManager {
 			getCurrentEntityManager().close();
 	}
 
+	@Override
+	public void setCurrentEntityManager(EntityManager em) {
+		if(Utils.isEmpty(em)) {
+			if(Utils.isEmpty(local.get())) {
+				local.set(em);
+			}				
+		}		
+	}
+
 }

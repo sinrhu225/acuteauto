@@ -15,6 +15,7 @@ import com.acminds.acuteauto.persistence.dto.Enum;
 import com.acminds.acuteauto.persistence.dto.EnumType;
 import com.acminds.acuteauto.utils.EnumConstants;
 import com.acminds.acuteauto.utils.Utils;
+import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author Mansur
@@ -23,7 +24,6 @@ import com.acminds.acuteauto.utils.Utils;
 @ManagedBean(eager=true, name="uiTypes")
 @ApplicationScoped
 public class UITypes {
-	BaseDAO dao = new BaseDAO();
 	private List<SelectItem> userTypes;
 	private List<SelectItem> userStatuses;
 	private List<SelectItem> locationTypes;
@@ -42,6 +42,7 @@ public class UITypes {
 	private List<SelectItem> financeTypes;
 	private List<SelectItem> accountTypes;
 	private List<SelectItem> inquiryTypes;
+	
 	/**
 	 * @return the userTypes
 	 */
@@ -206,20 +207,15 @@ public class UITypes {
 	}
 	
 	private List<SelectItem> processEnums(int enumType) {
+		BaseDAO dao = new BaseDAO();
 		List<Enum> enums = dao.get(EnumType.class, enumType).getEnums();
 		List<SelectItem> list = new ArrayList<SelectItem>();
-		list.add(getDefaultSelectItem());
+		list.add(WebUtils.getDefaultSelectItem(false, null));
 		for(Enum e: enums) {
 			list.add(new SelectItem(e.getEnumId(), e.getEnumValue()));
 		}
 		return list;
 	}
 	
-	private SelectItem getDefaultSelectItem() {
-		SelectItem si = new SelectItem("Please Select");
-		si.setNoSelectionOption(true);
-		return si;
-	}
-
 	
 }

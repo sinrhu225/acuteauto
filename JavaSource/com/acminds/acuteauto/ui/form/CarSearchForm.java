@@ -3,6 +3,10 @@
  */
 package com.acminds.acuteauto.ui.form;
 
+import java.util.List;
+
+import javax.faces.model.SelectItem;
+
 /**
  * @author Mansur
  *
@@ -14,6 +18,9 @@ public class CarSearchForm {
 	private String year;
 	private String price;
 	private String mileage;
+	private List<SelectItem> makes;
+	private List<SelectItem> models;
+	private List<SelectItem> years;
 	
 	public String getPrice() {
 		return price;
@@ -45,5 +52,14 @@ public class CarSearchForm {
 	public void setMileage(String mileage) {
 		this.mileage = mileage;
 	}
-
+	
+	public List<SelectItem> getMakes() {
+		return makes;
+	}
+	public List<SelectItem> getModels() {
+		return models;
+	}
+	public List<SelectItem> getYears() {
+		return years;
+	}		
 }

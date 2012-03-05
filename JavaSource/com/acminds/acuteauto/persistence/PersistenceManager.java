@@ -46,11 +46,16 @@ public abstract class PersistenceManager {
 		return getInstance().getCurrentEntityManager();
 	}
 	
+	public static void setEntityManager(EntityManager em) {
+		getInstance().setCurrentEntityManager(em);
+	}
+	
 	public static void closeEnityManager() {
 		 getInstance().closeCurrentEntityManager();
 	}
 	
 	public abstract EntityManager getCurrentEntityManager();
+	public abstract void setCurrentEntityManager(EntityManager em);
 	public abstract void closeCurrentEntityManager();
 
 }

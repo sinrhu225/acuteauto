@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.acminds.acuteauto.persistence.dao.InventoryDAO;
 import com.acminds.acuteauto.persistence.dto.Advertisement;
+import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.Utils;
 
@@ -19,7 +20,11 @@ import com.acminds.acuteauto.utils.Utils;
 public class InventoryService {
 	private InventoryDAO dao = new InventoryDAO();
 	
-	public List<Vehicle> getCars(String makeId, String modelId, String styleId, String year, String price, String mileage, String bodyType) {
+	public List<Make> getMakes(String year) {
+		return dao.getMakes(year);
+	}
+	
+	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType) {
 		return dao.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
 	}
 	
