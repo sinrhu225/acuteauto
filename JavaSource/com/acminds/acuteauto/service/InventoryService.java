@@ -17,7 +17,7 @@ import com.acminds.acuteauto.utils.Utils;
  * @author Mansur
  *
  */
-public class InventoryService {
+public class InventoryService extends BaseService {
 	private InventoryDAO dao = new InventoryDAO();
 	public InventoryDAO getDao() {
 		return dao;
