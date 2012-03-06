@@ -22,13 +22,13 @@ public class InventoryDAO extends BaseDAO {
 	
 	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType) {
 		String q = "from Vehicle v where 1=1 ";
-		if(!Utils.isEmpty(makeId)) q= q+" and v.make.id = "+makeId;
-		if(!Utils.isEmpty(modelId)) q= q+" and v.model.id = "+modelId;
-		if(!Utils.isEmpty(styleId)) q= q+" and v.style.id = "+styleId;
-		if(!Utils.isEmpty(year)) q= q+" and v.year = "+year;
-		if(!Utils.isEmpty(bodyType)) q= q+" and v.style.vehicleType= "+bodyType;
-		if(!Utils.isEmpty(price)) q= q+" and v.salePrice <= "+price;
-		if(!Utils.isEmpty(mileage)) q= q+" and v.mileage <= "+mileage;		
+		if(makeId>0) q= q+" and v.make.id = "+makeId;
+		if(modelId>0) q= q+" and v.model.id = "+modelId;
+		if(styleId>0) q= q+" and v.style.id = "+styleId;
+		if(year>0) q= q+" and v.year = "+year;
+		if(bodyType>0) q= q+" and v.style.vehicleType= "+bodyType;
+		if(price>0) q= q+" and v.salePrice <= "+price;
+		if(mileage>0) q= q+" and v.mileage <= "+mileage;		
 		TypedQuery<Vehicle> tq = createQuery(q, Vehicle.class);
 		return tq.getResultList();		
 	}
@@ -55,9 +55,9 @@ public class InventoryDAO extends BaseDAO {
 		return list;
 	}
 	
-	public List<Make> getMakes(String year) {
+	public List<Make> getMakes(int year) {
 		String q = "from Make m where 1=1 ";
-		if(!Utils.isEmpty(year))
+		if(year>0)
 			q = q+"and m.yearStart<= "+year+" and m.yearEnd>= "+year;
 		List<Make> list = createQuery(q, Make.class)
 									.getResultList();

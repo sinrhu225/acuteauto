@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
 import com.acminds.acuteauto.persistence.dto.Make;
@@ -24,9 +25,11 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 @ManagedBean(name="invCtrl")
-@RequestScoped
+@SessionScoped
 public class InventoryController extends BaseController {
 	private InventoryService service = new InventoryService();
+	@ManagedProperty(value="#{param.carId}")
+    private Integer carId;
 	private int makeId;
 	private int modelId;
 	private int styleId;
@@ -42,12 +45,13 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> years = new ArrayList<SelectItem>();
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	
-	public List<Vehicle> getCars() {
-		return cars;
+	public Vehicle getCar() {
+		return service.getDao().get(Vehicle.class, carId);
 	}
-
-	public void setCars(List<Vehicle> cars) {
-		this.cars = cars;
+	
+	public List<Vehicle> getCars() {
+		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+		return cars;
 	}
 
 	public int getStyleId() {
@@ -108,7 +112,7 @@ public class InventoryController extends BaseController {
 	
 	public List<Make> getAllMakes() {
 		if(Utils.isEmpty(allMakes)) {
-			allMakes = service.getMakes(null);			
+			allMakes = service.getMakes(0);			
 		}
 		return allMakes;
 	}
@@ -164,7 +168,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getPrices() {
 		if(Utils.isEmpty(prices)) {
-			prices.add(WebUtils.getDefaultSelectItem(false, "No Max"));	
+			prices.add(new SelectItem(0, "No Max"));	
 			for(int i= 3000; i<=15000; i=i+3000) {
 				prices.add(new SelectItem(i, String.valueOf(i)));
 			}
@@ -180,10 +184,15 @@ public class InventoryController extends BaseController {
 
 	public String searchCars() {
 		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+		return "/pub/inv/invList";
+	}
+	
+	public String addInventory() {
 		return null;
 	}
 	
-	
-	
-	
+	public String submitInventory() {
+		return null;
+	}
+		
 }

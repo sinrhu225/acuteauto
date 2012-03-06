@@ -19,8 +19,11 @@ import com.acminds.acuteauto.utils.Utils;
  */
 public class InventoryService {
 	private InventoryDAO dao = new InventoryDAO();
+	public InventoryDAO getDao() {
+		return dao;
+	}
 	
-	public List<Make> getMakes(String year) {
+	public List<Make> getMakes(int year) {
 		return dao.getMakes(year);
 	}
 	

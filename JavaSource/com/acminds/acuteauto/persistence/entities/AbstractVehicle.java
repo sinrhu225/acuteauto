@@ -54,7 +54,7 @@ public abstract class AbstractVehicle extends
 	private Integer warrantyTerm;
 	private Integer warrantyMiles;
 	private int status;
-	private int condition;
+	private int vehCondition;
 	private String carfaxApprvUrl;
 	private String additionalInfo;
 	private Date dateSold;
@@ -118,7 +118,7 @@ public abstract class AbstractVehicle extends
 		this.userInfo = userInfo;
 	}
 
-	@Column(name = "DESCRIPTION", length = 100)
+	@Column(name = "DESCRIPTION", length = 250)
 	public String getDescription() {
 		return this.description;
 	}
@@ -271,13 +271,13 @@ public abstract class AbstractVehicle extends
 		this.status = status;
 	}
 
-	@Column(name = "CONDITION", nullable = false)
-	public int getCondition() {
-		return this.condition;
+	@Column(name = "VEH_CONDITION", nullable = false)
+	public int getVehCondition() {
+		return this.vehCondition;
 	}
 
-	public void setCondition(int condition) {
-		this.condition = condition;
+	public void setVehCondition(int vehCondition) {
+		this.vehCondition = vehCondition;
 	}
 
 	@Column(name = "CARFAX_APPRV_URL", length = 200)

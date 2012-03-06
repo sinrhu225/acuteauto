@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractVehicle;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 
 @ManagedBean(name = "vehicle")
 @Entity
@@ -22,6 +23,14 @@ public class Vehicle extends AbstractVehicle {
 	public String getBannerLocation() {
 		for(Image im: getImages()) {
 			if(im.getBanner())
+				return im.getImageLocation();
+		}
+		return null;
+	}
+	@Transient
+	public String getDisplayImage() {
+		for(Image im: getImages()) {
+			if(im.getImageType() == ImageType.PRIMARY)
 				return im.getImageLocation();
 		}
 		return null;

@@ -85,12 +85,12 @@ public class WebUtils {
 	public static SelectItem getDefaultSelectItem(boolean isBlank, String value) {
 		SelectItem si = null;
 		if(isBlank) {
-			si = new SelectItem("");
+			si = new SelectItem(0, "");
 		} else {
 			if(Utils.isEmpty(value))
-				si = new SelectItem("Please Select");
+				si = new SelectItem(0, "Please Select");
 			else
-				si = new SelectItem(value);
+				si = new SelectItem(0, value);
 		}
 		si.setNoSelectionOption(true);
 		return si;
