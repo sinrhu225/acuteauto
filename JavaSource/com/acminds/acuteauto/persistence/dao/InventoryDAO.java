@@ -12,6 +12,7 @@ import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
+import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
 import com.acminds.acuteauto.utils.Utils;
 
 /**
@@ -48,9 +49,10 @@ public class InventoryDAO extends BaseDAO {
 	}
 	
 	public List<Advertisement> getAdvertisements() {
-		String q = "from Advertisement a where a.effectiveDate<= :today and a.expiryDate>= :today";
+		String q = "from Advertisement a where a.effectiveDate<= :today and a.status= :stat";
 		List<Advertisement> list = createQuery(q, Advertisement.class)
 									.setParameter("today", Utils.today())
+									.setParameter("stat", AdStatus.ACTIVE)
 									.getResultList();
 		return list;
 	}

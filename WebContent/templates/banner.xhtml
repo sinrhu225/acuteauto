@@ -100,18 +100,18 @@
                 <div class="col-2">
                 	<div class="slider-wrapper theme-default">
                 		<div id="slider" class="nivoSlider">
-                			<h:graphicImage value="/images/slide1.jpg"/>
-                			<h:graphicImage value="/images/slide2.jpg" title="#htmlcaption"/>
-                			<h:graphicImage value="/images/slide3.jpg" title="This is an example of a caption"/>
-                			<h:graphicImage value="/images/slide4.jpg"/>
-             				<h:graphicImage value="/images/slide5.jpg"/>
+                			<ui:repeat var="car" value="#{hmpCtrl.carsForBanner}">
+                				<h:graphicImage value="/img/?imgId=#{car.bannerImage.imageId}" title="##{car.vehicleId}"/>	                			
+             				</ui:repeat>
 						</div>
-						<div id="htmlcaption" class="nivo-html-caption">
-							<strong>Acura MDX</strong><br/>
-							$65000 <br/>
-							Technology Package
-							<a href="#">See Features</a>.
-						</div>
+						<ui:repeat var="car" value="#{hmpCtrl.carsForBanner}">
+							<div id="#{car.vehicleId}" class="nivo-html-caption">
+								<strong>#{car.make.name} #{car.model.name}</strong><br/>
+								Price: $#{car.salePrice}<br/>
+								Mileage: #{car.mileage} <br/>
+								<h:link outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More Features</strong></h:link>	
+							</div>
+						</ui:repeat>
 					</div>					
                 </div>                	  
             </div>            
