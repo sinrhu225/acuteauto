@@ -57,7 +57,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 			<property name="hibernate.connection.username" value="carobar"/>
 			<property name="hibernate.connection.password" value="carobar"/>
-			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.show_sql" value="false"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.max_fetch_depth" value="0"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
