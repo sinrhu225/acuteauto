@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.text.MessageFormat;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
+import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Make;
@@ -15,6 +16,8 @@ import com.acminds.acuteauto.persistence.dto.Role;
 import com.acminds.acuteauto.persistence.dto.Style;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
+import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
+import com.acminds.acuteauto.utils.EnumConstants.AdUnits;
 import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
@@ -42,7 +45,7 @@ public class TestDataCreator {
 			UserInfo ui = cr.createUser("Mansur", "Mohammed", "admin", "admin", r, cl);*/
 			/* ADDING VEHICLES & IMAGES */
 			UserInfo ui = cr.dao.get(UserInfo.class, 3);
-			//1
+			/*//1
 			Vehicle v = cr.createVehicle(cr.getMake(47), cr.getModel(465), cr.getStyle(2165), 2010, "", 9500, 15000, ui);
 			cr.createImage("Image 1", null, ImageType.PRIMARY, "/images/vehicles/"+v.getVehicleId()+"/img1.jpg", false, v);
 			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);
@@ -81,8 +84,11 @@ public class TestDataCreator {
 			//10
 			v = cr.createVehicle(cr.getMake(56), cr.getModel(583), cr.getStyle(2610), 2008, "", 11500, 16000, ui);
 			cr.createImage("Image 1", null, ImageType.PRIMARY, "/images/vehicles/"+v.getVehicleId()+"/img1.jpg", false, v);
-			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);
-			
+			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);*/
+			for(int i=2; i<8; i++) {
+				Vehicle v = cr.dao.get(Vehicle.class, i);
+				cr.createAd(v, ui, 500);
+			}
 			cr.dao.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -153,6 +159,19 @@ public class TestDataCreator {
 		r.setDescription(desc);
 		dao.save(r, false);
 		return r;
+	}
+	
+	public Advertisement createAd(Vehicle v, UserInfo ui, int price) {
+		Advertisement a = new Advertisement();
+		a.setCreateDate(Utils.today());
+		a.setEffectiveDate(Utils.today());
+		a.setStatus(AdStatus.ACTIVE);
+		a.setUnitPrice(new BigDecimal(price));
+		a.setUnits(AdUnits.MONTHLY);
+		a.setVehicle(v);
+		a.setUserInfo(ui);
+		dao.save(a, false);
+		return a;
 	}
 	
 	public Make getMake(int id) {
