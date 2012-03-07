@@ -20,18 +20,18 @@ import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 public class Vehicle extends AbstractVehicle {
 	private static final long serialVersionUID = 1L;
 	@Transient
-	public String getBannerLocation() {
+	public Image getBannerImage() {
 		for(Image im: getImages()) {
 			if(im.getBanner())
-				return im.getImageLocation();
+				return im;
 		}
 		return null;
 	}
 	@Transient
-	public String getDisplayImage() {
+	public Image getDisplayImage() {
 		for(Image im: getImages()) {
 			if(im.getImageType() == ImageType.PRIMARY)
-				return im.getImageLocation();
+				return im;
 		}
 		return null;
 	}

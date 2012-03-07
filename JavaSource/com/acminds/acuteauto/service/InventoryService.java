@@ -39,8 +39,8 @@ public class InventoryService extends BaseService {
 		List<Vehicle> cars = new ArrayList<Vehicle>();
 		List<Vehicle> list = getCarsForAdvertisement();
 		for(Vehicle v: list) {
-			if(!Utils.isEmpty(v.getBannerLocation()))
-				cars.add(v);					
+			if(!Utils.isEmpty(v.getBannerImage()))
+				cars.add(v);
 		}
 		return cars;
 	}

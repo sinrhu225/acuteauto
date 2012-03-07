@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich">
 <ui:composition template="/templates/baseLayout.xhtml">
@@ -12,38 +11,19 @@
 	      		<h3>your search results</h3>
 	      		<ui:repeat var="car" value="#{invCtrl.cars}">
 	      			<div class="wrapper">
-		            	<figure class="img-indent"><h:graphicImage value="#{car.displayImage}" /></figure>
+		            	<figure class="img-indent"><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" /></figure>
 		                <div class="extra-box">
-		                <div class="padding-top">
-		                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name}<span>#{car.year}</span></h4>
-		                    <p>
-		                    	#{car.description}
-		                    </p>
-		                    <h:link class="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More</strong></h:link>		                    
-		                </div>
+			                <div class="padding-top">
+			                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name} <span>#{car.year}</span></h4>
+			                    <p>
+			                    	#{car.description}
+			                    </p>
+			                    <h:link class="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More</strong></h:link>		                    
+			                </div>
 		                </div>
 		            </div>
 	      		</ui:repeat>	            
-	         </div>
-	         <div class="row-2">
-	      		<h3>latest testdrive</h3>
-	      		<div class="wrapper">
-	            	<figure class="img-indent"><h:graphicImage url="/images/thumbnails/page1-img9.jpg"/></figure>
-	                <div class="extra-box">
-	                <div class="padding-top">
-	                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
-	                    <p>
-	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
-	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
-	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
-	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
-	adipiscing elit, sed diam nonummy nibh set dolor.
-	                    </p>
-	                    <h:link class="button1" outcome="/pub/inv/invDisplay"><strong>More</strong></h:link>
-	                </div>
-	                </div>
-	            </div>
-	         </div>   
+	         </div>	            
 	    </section>
 	</ui:define>
 </ui:composition>     

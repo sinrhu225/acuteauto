@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.SelectItem;
 
@@ -28,8 +27,7 @@ import com.acminds.acuteauto.utils.WebUtils;
 @SessionScoped
 public class InventoryController extends BaseController {
 	private InventoryService service = new InventoryService();
-	@ManagedProperty(value="#{param.carId}")
-    private Integer carId;
+	private Integer carId;
 	private int makeId;
 	private int modelId;
 	private int styleId;
@@ -46,18 +44,26 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	
 	public Vehicle getCar() {
-		return service.getDao().get(Vehicle.class, carId);
+		if(carId!=null)
+			return service.getDao().get(Vehicle.class, carId);
+		return null;
 	}
 	
 	public List<Vehicle> getCars() {
 		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
 		return cars;
 	}
+	
+	public Integer getCarId() {
+		return carId;
+	}
+	public void setCarId(Integer carId) {
+		this.carId = carId;
+	}
 
 	public int getStyleId() {
 		return styleId;
 	}
-
 	public void setStyleId(int styleId) {
 		this.styleId = styleId;
 	}
@@ -65,7 +71,6 @@ public class InventoryController extends BaseController {
 	public int getBodyType() {
 		return bodyType;
 	}
-
 	public void setBodyType(int bodyType) {
 		this.bodyType = bodyType;
 	}
@@ -73,7 +78,6 @@ public class InventoryController extends BaseController {
 	public int getMakeId() {
 		return makeId;
 	}
-
 	public void setMakeId(int makeId) {
 		this.makeId = makeId;
 	}
@@ -81,7 +85,6 @@ public class InventoryController extends BaseController {
 	public int getModelId() {
 		return modelId;
 	}
-
 	public void setModelId(int modelId) {
 		this.modelId = modelId;
 	}
@@ -89,7 +92,6 @@ public class InventoryController extends BaseController {
 	public int getYear() {
 		return year;
 	}
-
 	public void setYear(int year) {
 		this.year = year;
 	}
@@ -97,7 +99,6 @@ public class InventoryController extends BaseController {
 	public int getPrice() {
 		return price;
 	}
-
 	public void setPrice(int price) {
 		this.price = price;
 	}
@@ -105,7 +106,6 @@ public class InventoryController extends BaseController {
 	public int getMileage() {
 		return mileage;
 	}
-
 	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
