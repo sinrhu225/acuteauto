@@ -23,28 +23,36 @@
                                         	Make<br/>
                                         	<h:selectOneListbox value="#{invCtrl.makeId}" size="1" >
                                         		<f:selectItems value="#{invCtrl.makes}"/>
-                                        		<f:ajax event="change" render="Model" execute="@this"/>
+                                        		<f:ajax event="change" render="Model searchUsed" execute="@this"/>
                                         	</h:selectOneListbox>                                            
                                         </label>
                                         <label>
                                         	Model<br/>
                                             <h:selectOneListbox id="Model" value="#{invCtrl.modelId}" size="1" disabled="#{invCtrl.makeId == null}">
                                         		<f:selectItems value="#{invCtrl.models}"/>
+                                        		<f:ajax event="change" render="searchUsed"/>
                                         	</h:selectOneListbox>
                                         </label>
                                         <label>
                                         	Year<br/>
                                             <h:selectOneListbox value="#{invCtrl.year}" size="1">
                                         		<f:selectItems value="#{invCtrl.years}"/>
+                                        		<f:ajax event="change" render="searchUsed"/>
                                         	</h:selectOneListbox>
                                         </label>
                                         <label>
                                         	Price<br/>
                                             <h:selectOneListbox value="#{invCtrl.price}" size="1">
                                         		<f:selectItems value="#{invCtrl.prices}"/>
+                                        		<f:ajax event="change" render="searchUsed"/>
                                         	</h:selectOneListbox>
                                         </label>
-                                        <h:link styleClass="button" value="search" outcome="/pub/inv/invList"/>
+                                        <h:link id="searchUsed" styleClass="button" value="search" outcome="/pub/inv/invList">
+                                        	<f:param name="makeId" value="#{invCtrl.makeId}"/>
+                                        	<f:param name="modelId" value="#{invCtrl.modelId}"/>
+                                        	<f:param name="year" value="#{invCtrl.year}"/>
+                                        	<f:param name="price" value="#{invCtrl.price}"/>
+                                        </h:link>
                                     </fieldset>
                                 </h:form>                                
                                 </div>
@@ -108,8 +116,7 @@
 							<div id="#{car.vehicleId}" class="nivo-html-caption">
 								<strong>#{car.make.name} #{car.model.name}</strong><br/>
 								Price: $#{car.salePrice}<br/>
-								Mileage: #{car.mileage} <br/>
-								<h:link outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More Features</strong></h:link>	
+								Mileage: #{car.mileage} <h:link outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More Features</strong></h:link>	
 							</div>
 						</ui:repeat>
 					</div>					
