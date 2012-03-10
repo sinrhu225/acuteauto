@@ -80,6 +80,10 @@ public class InventoryController extends BaseController {
 	}
 	public void setMakeId(int makeId) {
 		this.makeId = makeId;
+		if(makeId==0) {
+			setModelId(makeId);
+			setStyleId(makeId);
+		}
 	}
 
 	public int getModelId() {
@@ -128,28 +132,30 @@ public class InventoryController extends BaseController {
 	}
 	
 	public List<SelectItem> getModels() {
-		if(makeId==0)
-			return models;
-		for(Make m: getAllMakes()) {
-			if(makeId == m.getMakeId()) {
-				models.add(WebUtils.getDefaultSelectItem(false, "All Models"));
-				for(Model md:m.getModels())
-					models.add(new SelectItem(md.getModelId(), md.getName()));
+		models.clear();
+		models.add(WebUtils.getDefaultSelectItem(false, "All Models"));
+		if(makeId > 0) {
+			for(Make m: getAllMakes()) {
+				if(makeId == m.getMakeId()) {
+					for(Model md:m.getModels())
+						models.add(new SelectItem(md.getModelId(), md.getName()));
+				}
 			}
-		}
+		} 
 		return models;
 	}
 	
 	public List<SelectItem> getStyles() {
-		if(modelId==0)
-			return styles;
-		for(Make m: getAllMakes()) {
-			if(makeId==m.getMakeId()) {
-				styles.add(WebUtils.getDefaultSelectItem(false, "All Styles"));
-				for(Model md:m.getModels()) {
-					if(modelId==md.getModelId()) {
-						for(Style st:md.getStyles())
-							styles.add(new SelectItem(st.getStyleId(), st.getName()));
+		styles.clear();
+		styles.add(WebUtils.getDefaultSelectItem(false, "All Styles"));
+		if(modelId > 0) {
+			for(Make m: getAllMakes()) {
+				if(makeId==m.getMakeId()) {
+					for(Model md:m.getModels()) {
+						if(modelId==md.getModelId()) {
+							for(Style st:md.getStyles())
+								styles.add(new SelectItem(st.getStyleId(), st.getName()));
+						}
 					}
 				}
 			}
