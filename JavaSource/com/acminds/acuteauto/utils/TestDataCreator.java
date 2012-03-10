@@ -18,7 +18,6 @@ import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
 import com.acminds.acuteauto.utils.EnumConstants.AdUnits;
-import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
 import com.acminds.acuteauto.utils.EnumConstants.VehicleCondition;

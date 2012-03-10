@@ -28,5 +28,9 @@ public class Utils {
 	public static Date today() {
 		return new Date();
 	}
+	
+	public static String getUserHome() {
+		return System.getProperty("user.home");
+	}
 
 }

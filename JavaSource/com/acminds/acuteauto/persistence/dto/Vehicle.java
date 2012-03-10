@@ -22,7 +22,7 @@ public class Vehicle extends AbstractVehicle {
 	@Transient
 	public Image getBannerImage() {
 		for(Image im: getImages()) {
-			if(im.getBanner())
+			if(im.getBanner()!=null && im.getBanner())
 				return im;
 		}
 		return null;

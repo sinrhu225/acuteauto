@@ -62,11 +62,9 @@ public class ImageServlet extends HttpServlet {
 				response.setContentType("text/plain");
 				return;
 			}
-			response.setContentType(image.getMimeType());
-		//	response.setContentType("image/jpg");
+			response.setContentType(image.getMimeType());		
 			OutputStream out = response.getOutputStream();
-		//	out.write(IOUtils.toByteArray(new FileInputStream(new File("/acuteauto/images/slide1.jpg"))));
-			out.write(IOUtils.toByteArray(new FileInputStream(new File(image.getImageLocation()))));
+			out.write(IOUtils.toByteArray(new FileInputStream(new File(Utils.getUserHome()+image.getImageLocation()))));
 		} catch (NumberFormatException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
