@@ -31,7 +31,7 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
-		log.log(Level.INFO, "Closing Entity Manager on ServletRequest destroyed");
+		log.log(Level.INFO, "ServletRequest destroyed");
 		((HttpServletRequest)arg0.getServletRequest()).getSession().setAttribute("EMHolder", PersistenceManager.getEntityManager());		
 	}
 
