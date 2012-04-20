@@ -16,7 +16,7 @@ import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 
 @ManagedBean(name = "vehicle")
 @Entity
-@Table(name = "VEHICLE", catalog = "carobar")
+@Table(name = "VEHICLE")
 public class Vehicle extends AbstractVehicle {
 	private static final long serialVersionUID = 1L;
 	@Transient

@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractEnumType;
 
 @ManagedBean(name = "enumType")
 @Entity
-@Table(name = "ENUM_TYPE", catalog = "carobar")
+@Table(name = "ENUM_TYPE")
 public class EnumType extends AbstractEnumType {
 	private static final long serialVersionUID = 1L;
 

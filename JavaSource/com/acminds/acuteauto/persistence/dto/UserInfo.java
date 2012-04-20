@@ -15,7 +15,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractUserInfo;
 
 @ManagedBean(name = "userInfo")
 @Entity
-@Table(name = "USER_INFO", catalog = "carobar", uniqueConstraints = @UniqueConstraint(columnNames = "USER_NAME"))
+@Table(name = "USER_INFO", uniqueConstraints = @UniqueConstraint(columnNames = "USER_NAME"))
 public class UserInfo extends AbstractUserInfo {
 	private static final long serialVersionUID = 1L;
 

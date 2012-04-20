@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractFeature;
 
 @ManagedBean(name = "feature")
 @Entity
-@Table(name = "FEATURE", catalog = "carobar")
+@Table(name = "FEATURE")
 public class Feature extends AbstractFeature {
 	private static final long serialVersionUID = 1L;
 

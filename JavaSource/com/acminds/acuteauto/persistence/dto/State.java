@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractState;
 
 @ManagedBean(name = "state")
 @Entity
-@Table(name = "STATE", catalog = "carobar")
+@Table(name = "STATE")
 public class State extends AbstractState {
 	private static final long serialVersionUID = 1L;
 

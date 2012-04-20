@@ -355,7 +355,7 @@ public abstract class AbstractVehicle extends
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RL_VEHICLE_FEATURE", catalog = "carobar", joinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "RL_VEHICLE_FEATURE", joinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
 	public List<Feature> getFeatures() {
 		return this.features;
 	}
@@ -365,7 +365,7 @@ public abstract class AbstractVehicle extends
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RL_VEHICLE_CATEGORY", catalog = "carobar", joinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "CATEGORY_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "RL_VEHICLE_CATEGORY", joinColumns = { @JoinColumn(name = "VEHICLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "CATEGORY_ID", nullable = false, updatable = false) })
 	public List<Category> getCategories() {
 		return this.categories;
 	}

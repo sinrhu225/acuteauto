@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractAdvertisement;
 
 @ManagedBean(name = "advertisement")
 @Entity
-@Table(name = "ADVERTISEMENT", catalog = "carobar")
+@Table(name = "ADVERTISEMENT")
 public class Advertisement extends AbstractAdvertisement {
 	private static final long serialVersionUID = 1L;
 

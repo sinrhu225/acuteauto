@@ -32,7 +32,7 @@ public abstract class AbstractStyle extends
 	private Model model;
 	private String name;
 	private String description;
-	private int vehicleType;
+	private int bodyType;
 	private Integer styleType;
 	private int yearStart;
 	private Integer yearEnd;
@@ -79,13 +79,13 @@ public abstract class AbstractStyle extends
 		this.description = description;
 	}
 
-	@Column(name = "VEHICLE_TYPE", nullable = false)
-	public int getVehicleType() {
-		return this.vehicleType;
+	@Column(name = "BODY_TYPE", nullable = false)
+	public int getBodyType() {
+		return this.bodyType;
 	}
 
-	public void setVehicleType(int vehicleType) {
-		this.vehicleType = vehicleType;
+	public void setBodyType(int bodyType) {
+		this.bodyType = bodyType;
 	}
 
 	@Column(name = "STYLE_TYPE")
@@ -116,7 +116,7 @@ public abstract class AbstractStyle extends
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RL_STYLE_FEATURE", catalog = "carobar", joinColumns = { @JoinColumn(name = "STYLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "RL_STYLE_FEATURE", joinColumns = { @JoinColumn(name = "STYLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
 	public List<Feature> getFeatures() {
 		return this.features;
 	}

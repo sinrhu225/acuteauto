@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractMileage;
 
 @ManagedBean(name = "mileage")
 @Entity
-@Table(name = "MILEAGE", catalog = "carobar")
+@Table(name = "MILEAGE")
 public class Mileage extends AbstractMileage {
 	private static final long serialVersionUID = 1L;
 

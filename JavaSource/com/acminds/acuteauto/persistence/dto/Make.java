@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractMake;
 
 @ManagedBean(name = "make")
 @Entity
-@Table(name = "MAKE", catalog = "carobar")
+@Table(name = "MAKE")
 public class Make extends AbstractMake {
 	private static final long serialVersionUID = 1L;
 

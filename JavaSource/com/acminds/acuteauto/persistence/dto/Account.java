@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractAccount;
 
 @ManagedBean(name = "account")
 @Entity
-@Table(name = "ACCOUNT", catalog = "carobar")
+@Table(name = "ACCOUNT")
 public class Account extends AbstractAccount {
 	private static final long serialVersionUID = 1L;
 

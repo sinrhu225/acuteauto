@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractInquiry;
 
 @ManagedBean(name = "inquiry")
 @Entity
-@Table(name = "INQUIRY", catalog = "carobar")
+@Table(name = "INQUIRY")
 public class Inquiry extends AbstractInquiry {
 	private static final long serialVersionUID = 1L;
 

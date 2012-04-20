@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractModel;
 
 @ManagedBean(name = "model")
 @Entity
-@Table(name = "MODEL", catalog = "carobar")
+@Table(name = "MODEL")
 public class Model extends AbstractModel {
 	private static final long serialVersionUID = 1L;
 

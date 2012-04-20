@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractEmployment;
 
 @ManagedBean(name = "employment")
 @Entity
-@Table(name = "EMPLOYMENT", catalog = "carobar")
+@Table(name = "EMPLOYMENT")
 public class Employment extends AbstractEmployment {
 	private static final long serialVersionUID = 1L;
 

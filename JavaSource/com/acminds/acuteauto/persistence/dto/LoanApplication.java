@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractLoanApplication;
 
 @ManagedBean(name = "loanApplication")
 @Entity
-@Table(name = "LOAN_APPLICATION", catalog = "carobar")
+@Table(name = "LOAN_APPLICATION")
 public class LoanApplication extends AbstractLoanApplication {
 	private static final long serialVersionUID = 1L;
 

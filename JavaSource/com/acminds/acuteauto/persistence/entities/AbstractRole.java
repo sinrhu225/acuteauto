@@ -63,7 +63,7 @@ public abstract class AbstractRole extends
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RL_ROLE_PRIVILEGE", catalog = "carobar", joinColumns = { @JoinColumn(name = "ROLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "PRIVILEGE_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "RL_ROLE_PRIVILEGE", joinColumns = { @JoinColumn(name = "ROLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "PRIVILEGE_ID", nullable = false, updatable = false) })
 	public List<Privilege> getPrivileges() {
 		return this.privileges;
 	}

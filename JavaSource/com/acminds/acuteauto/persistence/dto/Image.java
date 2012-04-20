@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractImage;
 
 @ManagedBean(name = "image")
 @Entity
-@Table(name = "IMAGE", catalog = "carobar")
+@Table(name = "IMAGE")
 public class Image extends AbstractImage {
 	private static final long serialVersionUID = 1L;
 

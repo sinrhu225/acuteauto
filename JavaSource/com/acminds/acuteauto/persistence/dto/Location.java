@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractLocation;
 
 @ManagedBean(name = "location")
 @Entity
-@Table(name = "LOCATION", catalog = "carobar")
+@Table(name = "LOCATION")
 public class Location extends AbstractLocation {
 	private static final long serialVersionUID = 1L;
 

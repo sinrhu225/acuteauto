@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractClient;
 
 @ManagedBean(name = "client")
 @Entity
-@Table(name = "CLIENT", catalog = "carobar")
+@Table(name = "CLIENT")
 public class Client extends AbstractClient {
 	private static final long serialVersionUID = 1L;
 

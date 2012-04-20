@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractCategory;
 
 @ManagedBean(name = "category")
 @Entity
-@Table(name = "CATEGORY", catalog = "carobar")
+@Table(name = "CATEGORY")
 public class Category extends AbstractCategory {
 	private static final long serialVersionUID = 1L;
 

@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractStyle;
 
 @ManagedBean(name = "style")
 @Entity
-@Table(name = "STYLE", catalog = "carobar")
+@Table(name = "STYLE")
 public class Style extends AbstractStyle {
 	private static final long serialVersionUID = 1L;
 

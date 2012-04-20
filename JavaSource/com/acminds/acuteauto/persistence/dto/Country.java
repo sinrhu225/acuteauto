@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractCountry;
 
 @ManagedBean(name = "country")
 @Entity
-@Table(name = "COUNTRY", catalog = "carobar")
+@Table(name = "COUNTRY")
 public class Country extends AbstractCountry {
 	private static final long serialVersionUID = 1L;
 

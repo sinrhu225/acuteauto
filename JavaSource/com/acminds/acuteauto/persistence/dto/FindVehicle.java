@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractFindVehicle;
 
 @ManagedBean(name = "findVehicle")
 @Entity
-@Table(name = "FIND_VEHICLE", catalog = "carobar")
+@Table(name = "FIND_VEHICLE")
 public class FindVehicle extends AbstractFindVehicle {
 	private static final long serialVersionUID = 1L;
 

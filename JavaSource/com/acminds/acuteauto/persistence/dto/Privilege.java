@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractPrivilege;
 
 @ManagedBean(name = "privilege")
 @Entity
-@Table(name = "PRIVILEGE", catalog = "carobar")
+@Table(name = "PRIVILEGE")
 public class Privilege extends AbstractPrivilege {
 	private static final long serialVersionUID = 1L;
 

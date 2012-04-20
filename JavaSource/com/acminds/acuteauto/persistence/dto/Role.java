@@ -14,7 +14,7 @@ import com.acminds.acuteauto.persistence.entities.AbstractRole;
 
 @ManagedBean(name = "role")
 @Entity
-@Table(name = "ROLE", catalog = "carobar")
+@Table(name = "ROLE")
 public class Role extends AbstractRole {
 	private static final long serialVersionUID = 1L;
 
