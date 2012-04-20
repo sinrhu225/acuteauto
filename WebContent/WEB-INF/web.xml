@@ -38,7 +38,15 @@
     <param-name>org.richfaces.enableControlSkinning</param-name>
     <param-value>false</param-value>
  </context-param>
- 
+ <context-param>
+	<param-name>com.sun.faces.numberOfViewsInSession</param-name>
+	<param-value>2</param-value>
+ </context-param>
+ <context-param>
+	<param-name>com.sun.faces.numberOfLogicalViews</param-name>
+	<param-value>2</param-value>
+ </context-param>
+
  <filter>
   <filter-name>Security Filter</filter-name>
   <filter-class>com.acminds.acuteauto.ui.filter.SecurityFilter</filter-class>

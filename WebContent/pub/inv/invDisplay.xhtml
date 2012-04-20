@@ -10,7 +10,46 @@
 			<f:metadata>
 		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />        
 		    </f:metadata>
-		    
+		    <h:panelGrid width="100%">
+		    	<h:panelGrid id="vehicleDescription">
+		    		<div class="padding-top">
+	                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name} <span>#{car.year}</span></h4>
+	                    <p>
+	                    	#{car.description}
+	                    </p>	                    		                    
+	                </div>
+		    	</h:panelGrid>
+		    	<h:panelGrid id="vehicleInfo" columns="4">
+		    		<h:outputText value="Name:" />
+		    		<h:outputText value="#{car.make.name} - #{car.model.name} - #{car.style.name}" />
+		    		<h:outputText value="Body:" />
+		    		<h:outputText value="#{car.style.bodyType}" > <f:converter converterId="enumConverter"/></h:outputText>
+		    		<h:outputText value="Price:" />
+		    		<h:outputText value="#{car.make.name} - #{car.model.name} - #{car.style.name}" />
+		    		<h:outputText value="Mileage:" />
+		    		<h:outputText value="#{car.mileage}" />
+		    		<h:outputText value="Engine:" />
+		    		<h:outputText value="#{car.engine}" />
+		    		<h:outputText value="Transmission:" />
+		    		<h:outputText value="#{car.engine}" />
+		    		<h:outputText value="Drive Train:" />
+		    		<h:outputText value="#{car.engine}" />
+		    		<h:outputText value="Color:" />
+		    		<h:outputText value="#{car.colorExt}" />
+		    		<h:outputText value="Interior:" />
+		    		<h:outputText value="#{car.colorInt}" />
+		    		<h:outputText value="Estimated Mileage:" />
+		    		<h:outputText value="City: #{car.style.mileage.mileageCity} / HWY: #{car.style.mileage.mileageHwy}" />
+		    		<h:outputText value="CarFax:" />
+		    		<h:link value="#{car.carfaxApprvUrl}" />
+		    	</h:panelGrid>
+		    	<h:panelGrid id="vehicleFeatures">
+		    		<h:outputText value="#{car.displayFeatures}" />
+		    	</h:panelGrid>
+		    	<h:panelGrid id="vehiclePhotos">
+		    		
+		    	</h:panelGrid>		    	
+		    </h:panelGrid>
 		</ui:define>
 	</ui:composition>	
 </html>
