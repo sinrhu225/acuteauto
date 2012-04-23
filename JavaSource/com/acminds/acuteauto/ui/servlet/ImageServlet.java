@@ -2,6 +2,7 @@ package com.acminds.acuteauto.ui.servlet;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -68,10 +69,14 @@ public class ImageServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
+		} catch (FileNotFoundException e) {
+			response.getWriter().print("/images/thumbnails/coming-soon.jpg");
+			response.setContentType("text/plain");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
 		}
+		
 	}
 	
 	protected void doPost(HttpServletRequest arg0, HttpServletResponse arg1) 
