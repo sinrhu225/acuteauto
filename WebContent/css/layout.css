@@ -20,3 +20,12 @@
 
 #page3 #content .col-1 {width:700px; margin-right:70px;}
 #page3 #content .col-2 {width:210px;}
+
+
+.leftAlign {
+	text-align: left;
+}
+
+.rightAlign {
+	text-align: right;
+}
