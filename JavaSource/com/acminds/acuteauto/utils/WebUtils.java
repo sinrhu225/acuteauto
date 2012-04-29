@@ -1,5 +1,7 @@
 package com.acminds.acuteauto.utils;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -94,6 +96,10 @@ public class WebUtils {
 		}
 		si.setNoSelectionOption(true);
 		return si;
+	}
+	
+	public static String getHostPath() throws UnknownHostException {
+		return "http://"+InetAddress.getLocalHost().getHostAddress();
 	}
 	
 	public static void main(String[] args) {
