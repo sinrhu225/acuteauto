@@ -10,49 +10,53 @@
 			<f:metadata>
 		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />        
 		    </f:metadata>
-		    <h:dataTable value="#{invCtrl.car}"  var="car" width="100%">
-		    	<h:column>
-				    <h:panelGrid width="100%">
-				    	<h:panelGrid id="vehicleDescription">
-				    		<div class="padding-top">
-			                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name} <span>#{car.year}</span></h4>
-			                    <p>
-			                    	#{car.description}
-			                    </p>	                    		                    
-			                </div>
-				    	</h:panelGrid>
-				    	<h:panelGrid columns="2">
-					    	<h:panelGrid id="vehicleInfo" columns="4" columnClasses="rightAlign, leftAlign, rightAlign, leftAlign">
-					    		<h:outputText value="Name:" />
-					    		<h:outputText value="#{car.make.name} - #{car.model.name} - #{car.style.name}" />
-					    		<h:outputText value="Body:" />
-					    		<h:outputText value="#{car.style.bodyType}" > <f:converter converterId="enumConverter"/></h:outputText>
-					    		<h:outputText value="Price:" />
-					    		<h:outputText value="$#{car.salePrice}" />
-					    		<h:outputText value="Mileage:" />
-					    		<h:outputText value="#{car.mileage}" />
-					    		<h:outputText value="Engine:" />
-					    		<h:outputText value="#{car.engine}" />
-					    		<h:outputText value="Transmission:" />
-					    		<h:outputText value="#{car.engine}" />
-					    		<h:outputText value="Drive Train:" />
-					    		<h:outputText value="#{car.engine}" />
-					    		<h:outputText value="Estimated Mileage:" />
-					    		<h:outputText value="City: #{car.style.mileages[0].mileageCity} / HWY: #{car.style.mileages[0].mileageHwy}" />
-					    		<h:outputText value="Exterior:" />
-					    		<h:outputText value="#{car.colorExt}" />
-					    		<h:outputText value="Interior:" />
-					    		<h:outputText value="#{car.colorInt}" />
-					    		<h:outputText value="CarFax:" />
-					    		<h:link value="#{car.carfaxApprvUrl}" />
-					    	</h:panelGrid>
-					    	<h:panelGrid id="vehiclePhotos">
-						    		PHOTOS
-					    	</h:panelGrid>	
-				    	</h:panelGrid>			    					    			    	
-				    </h:panelGrid>
-			    </h:column>			    
-		    </h:dataTable>
+    	    <h:panelGrid width="100%">
+		    	<h:panelGrid id="vehicleDescription">
+		    		<div class="padding-top">
+	                	<h4>#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name} <span>#{invCtrl.car.year}</span></h4>
+	                    <p>
+	                    	#{invCtrl.car.description}
+	                    </p>	                    		                    
+	                </div>
+		    	</h:panelGrid>
+		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign, rightAlign">
+			    	<h:panelGrid id="vehicleInfo" columns="2" columnClasses="rightAlign, leftAlign">
+			    		<h:outputText value="Name:" />
+			    		<h:outputText value="#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name}" />
+			    		<h:outputText value="Body:" />
+			    		<h:outputText value="#{invCtrl.car.style.bodyType}" > <f:converter converterId="enumConverter"/></h:outputText>
+			    		<h:outputText value="Price:" />
+			    		<h:outputText value="$#{invCtrl.car.salePrice}" />
+			    		<h:outputText value="Mileage:" />
+			    		<h:outputText value="#{invCtrl.car.mileage}" />
+			    		<h:outputText value="Engine:" />
+			    		<h:outputText value="#{invCtrl.car.engine}" />
+			    		<h:outputText value="Transmission:" />
+			    		<h:outputText value="#{invCtrl.car.engine}" />
+			    		<h:outputText value="Drive Train:" />
+			    		<h:outputText value="#{invCtrl.car.engine}" />
+			    		<h:outputText value="Estimated Mileage:" />
+			    		<h:outputText value="City: #{invCtrl.car.style.mileages[0].mileageCity} / HWY: #{invCtrl.car.style.mileages[0].mileageHwy}" />
+			    		<h:outputText value="Exterior:" />
+			    		<h:outputText value="#{invCtrl.car.colorExt}" />
+			    		<h:outputText value="Interior:" />
+			    		<h:outputText value="#{invCtrl.car.colorInt}" />
+			    		<h:outputText value="CarFax:" />
+			    		<h:link value="#{invCtrl.car.carfaxApprvUrl}" />
+			    	</h:panelGrid>
+			    	<h:panelGroup id="galleria" layout="block" style="height:400px; width:700px; float: right;">
+			    		<ui:repeat var="image" value="#{invCtrl.car.images}">
+			    			<h:graphicImage value="/img/?imgId=#{image.imageId}" />
+			    		</ui:repeat>
+			    	</h:panelGroup>					    		
+		    	</h:panelGrid>			    					    			    	
+		    </h:panelGrid>
+			 <script>
+			    // Load the classic theme
+			    Galleria.loadTheme('#{facesContext.externalContext.requestContextPath}/js/galleria.classic.min.js');			
+			    // Initialize Galleria
+			    Galleria.run('#galleria');		
+		    </script>
 		</ui:define>
 	</ui:composition>	
 </html>
