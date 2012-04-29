@@ -15,31 +15,31 @@ import com.acminds.acuteauto.utils.Utils;
 public class BatchPersistenceManager extends PersistenceManager {
 
 	private static ThreadLocal<EntityManager> local = new ThreadLocal<EntityManager>();
-	private EntityManager em;
-
+	
 	@Override
 	public EntityManager getCurrentEntityManager() {
-		if(Utils.isEmpty(em) || !em.isOpen()) {
-			if(Utils.isEmpty(local.get())) {
+		EntityManager em = null;
+		if(Utils.isEmpty(local.get())) {
+			em = getEntityManagerFactory().createEntityManager();
+			local.set(em);
+		} else {
+			em = local.get();
+			if(!em.isOpen()) {
 				em = getEntityManagerFactory().createEntityManager();
 				local.set(em);
-			} else {
-				em = local.get();
-				if(!em.isOpen()) {
-					em = getEntityManagerFactory().createEntityManager();
-					local.set(em);
-				}
-			}				
-		}
+			}
+		}				
 		return em;
 	}
 
 	@Override
 	public void closeCurrentEntityManager() {
-		if(getCurrentEntityManager().isOpen())
-			em.close();
-		local.remove();
-		em = null;
+		EntityManager em = local.get();
+		if(em != null) {
+			if(em.isOpen())
+				em.close();
+			local.remove();
+		}
 	}
 
 	@Override
