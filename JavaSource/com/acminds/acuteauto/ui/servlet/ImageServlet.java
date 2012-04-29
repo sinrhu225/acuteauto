@@ -58,9 +58,7 @@ public class ImageServlet extends HttpServlet {
 			Image image = new BaseDAO().get(Image.class, Integer.valueOf(imageId));
 			if(image == null)
 			{
-				response.getWriter().print("No image [" + imageId + 
-						"] found");
-				response.setContentType("text/plain");
+				writeDefaultImage(request, response);
 				return;
 			}
 			response.setContentType(image.getMimeType());		
@@ -70,8 +68,7 @@ public class ImageServlet extends HttpServlet {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
 		} catch (FileNotFoundException e) {
-			response.getWriter().print("/images/thumbnails/coming-soon.jpg");
-			response.setContentType("text/plain");
+			writeDefaultImage(request, response);
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
@@ -83,5 +80,11 @@ public class ImageServlet extends HttpServlet {
 		throws ServletException, IOException 
 	{
 		doGet(arg0, arg1);
+	}
+	
+	private void writeDefaultImage(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		response.setContentType("image/jpeg");
+		OutputStream out = response.getOutputStream();
+		out.write(IOUtils.toByteArray(new FileInputStream(new File(request.getContextPath()+"/images/thumbnails/coming-soon.jpg"))));
 	}
 }
