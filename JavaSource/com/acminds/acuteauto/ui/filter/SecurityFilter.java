@@ -15,6 +15,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.acminds.acuteauto.persistence.PersistenceManager;
 import com.acminds.acuteauto.persistence.dto.Privilege;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
@@ -25,7 +28,10 @@ import com.acminds.acuteauto.utils.Utils;
  *
  */
 public class SecurityFilter implements Filter {
+	private Log logger = LogFactory.getLog(SecurityFilter.class);
+	
 	private static final String UNAUTH_URL = "/home.jsf";
+	private static final String ERROR_URL = "/error.jsf";
 
 	/* (non-Javadoc)
 	 * @see javax.servlet.Filter#destroy()
@@ -45,27 +51,32 @@ public class SecurityFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse)arg1;
 		UserInfo authorizedUser = null;
 		boolean authorized = false;
-		if(isURISecure(request.getRequestURI())) {
-			authorizedUser = (UserInfo)request.getSession().getAttribute("authorizedUser");
-			if(Utils.isEmpty(authorizedUser)) {
-				response.sendRedirect(request.getContextPath() + UNAUTH_URL);
-				PersistenceManager.closeEnityManager();
-			} else {
-				List<Privilege> privs = authorizedUser.getRole().getPrivileges();
-				for(Privilege priv:privs) {
-					if(request.getRequestURI().contains(priv.getTranUri())) {
-						authorized = true;
-						break;
-					}
-				}
-				if(!authorized) {
+		try {
+			if(isURISecure(request.getRequestURI())) {
+				authorizedUser = (UserInfo)request.getSession().getAttribute("authorizedUser");
+				if(Utils.isEmpty(authorizedUser)) {
 					response.sendRedirect(request.getContextPath() + UNAUTH_URL);
 					PersistenceManager.closeEnityManager();
-				} else
-					arg2.doFilter(arg0, arg1);
+				} else {
+					List<Privilege> privs = authorizedUser.getRole().getPrivileges();
+					for(Privilege priv:privs) {
+						if(request.getRequestURI().contains(priv.getTranUri())) {
+							authorized = true;
+							break;
+						}
+					}
+					if(!authorized) {
+						response.sendRedirect(request.getContextPath() + UNAUTH_URL);
+						PersistenceManager.closeEnityManager();
+					} else
+						arg2.doFilter(arg0, arg1);
+				}
+			} else {
+				arg2.doFilter(arg0, arg1);
 			}
-		} else {
-			arg2.doFilter(arg0, arg1);
+		} catch(Throwable e) {
+			logger.error("Error occured while trying to serve a request", e);
+			response.sendRedirect(request.getContextPath() + ERROR_URL);
 		}
 	}
 

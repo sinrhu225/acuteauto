@@ -100,6 +100,8 @@ INSERT INTO ENUM_TYPE VALUES ('15', 'LOAN_STATUS', 'Status of Loan', null);
 INSERT INTO ENUM_TYPE VALUES ('16', 'FINANCE_TYPE', 'Type of Finance', null);
 INSERT INTO ENUM_TYPE VALUES ('17', 'ACCOUNT_TYPE', 'Type of Account', null);
 INSERT INTO ENUM_TYPE VALUES ('18', 'INQUIRY_TYPE', 'Type of Inquiry', null);
+INSERT INTO ENUM_TYPE VALUES ('19', 'TRANSMISSION_TYPE', 'Type of Transmission', null);
+INSERT INTO ENUM_TYPE VALUES ('20', 'DRIVE_TRAIN_TYPE', 'Type of Drive Train', null);
 
 -- ----------------------------
 -- Records for "ENUM"
@@ -139,6 +141,7 @@ INSERT INTO ENUM VALUES ('72', '7', 'Diesel', null, null);
 -- WARRANTY_TYPE
 INSERT INTO ENUM VALUES ('80', '8', 'Standard', null, null);
 INSERT INTO ENUM VALUES ('81', '8', 'Extended', null, null);
+INSERT INTO ENUM VALUES ('82', '8', 'As Is - No Warranty', null, null);
 -- VEHICLE_STATUS
 INSERT INTO ENUM VALUES ('90', '9', 'Available', null, null);
 INSERT INTO ENUM VALUES ('91', '9', 'Sold', null, null);
@@ -174,3 +177,11 @@ INSERT INTO ENUM VALUES ('170', '17', 'Checking', null, null);
 INSERT INTO ENUM VALUES ('171', '17', 'Savings', null, null);
 -- INQUIRY_TYPE
 INSERT INTO ENUM VALUES ('180', '18', 'Reserved', 'For future use', null);
+-- TRANSMISSION_TYPE
+INSERT INTO ENUM VALUES ('190', '19', 'Automatic', 'Automatic Transmission', null);
+INSERT INTO ENUM VALUES ('191', '19', '5 Speed Manual', '5 Speed Manual Transmission', null);
+-- DRIVE_TRAIN_TYPE
+INSERT INTO ENUM VALUES ('210', '20', 'AWD', 'All Wheel Drive', null);
+INSERT INTO ENUM VALUES ('211', '20', 'FWD', 'Front Wheel Drive', null);
+INSERT INTO ENUM VALUES ('212', '20', 'RWD', 'Rear Wheel Drive', null);
+INSERT INTO ENUM VALUES ('213', '20', '4WD', 'Four Wheel Drive', null);

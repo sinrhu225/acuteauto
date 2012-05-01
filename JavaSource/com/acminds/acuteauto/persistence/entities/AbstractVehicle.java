@@ -40,8 +40,8 @@ public abstract class AbstractVehicle extends
 	private String description;
 	private int year;
 	private String engine;
-	private String transmission;
-	private String driveTrain;
+	private Integer transType;
+	private Integer drvTrnType;
 	private Integer fuelType;
 	private String vin;
 	private Integer mileage;
@@ -145,22 +145,22 @@ public abstract class AbstractVehicle extends
 		this.engine = engine;
 	}
 
-	@Column(name = "TRANSMISSION", length = 60)
-	public String getTransmission() {
-		return this.transmission;
+	@Column(name = "TRANS_TYPE")
+	public Integer getTransType() {
+		return this.transType;
 	}
 
-	public void setTransmission(String transmission) {
-		this.transmission = transmission;
+	public void setTransType(Integer transType) {
+		this.transType = transType;
 	}
 
-	@Column(name = "DRIVE_TRAIN", length = 60)
-	public String getDriveTrain() {
-		return this.driveTrain;
+	@Column(name = "DRV_TRN_TYPE")
+	public Integer getDrvTrnType() {
+		return this.drvTrnType;
 	}
 
-	public void setDriveTrain(String driveTrain) {
-		this.driveTrain = driveTrain;
+	public void setDrvTrnType(Integer drvTrnType) {
+		this.drvTrnType = drvTrnType;
 	}
 
 	@Column(name = "FUEL_TYPE")
