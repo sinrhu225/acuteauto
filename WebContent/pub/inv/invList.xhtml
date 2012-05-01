@@ -52,10 +52,34 @@
 		                <div class="extra-box">
 			                <div class="padding-top">
 			                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name} <span>#{car.year}</span></h4>
-			                    <p>
-			                    	#{car.description}
-			                    </p>
-			                    <h:link class="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More</strong></h:link>		                    
+			                    <h:panelGrid columns="6" columnClasses="rightAlign, leftAlign boldFont, rightAlign, leftAlign boldFont, rightAlign, leftAlign boldFont" 
+			                    	width="75%" cellpadding="10" cellspacing="10">
+			                    	<h:outputText value="Engine:&nbsp;"/>
+			                    	<h:outputText value="#{car.engine}"/>
+			                    	<h:outputText value="Transmission: "/>
+			                    	<h:outputText value="#{car.transType}" converter="enumConverter"/>
+			                    	<h:outputText value="Drive Train: "/>
+			                    	<h:outputText value="#{car.drvTrnType}" converter="enumConverter"/>
+			                    	<h:outputText value="Body: "/>
+			                    	<h:outputText value="#{car.style.bodyType}" converter="enumConverter"/>		
+			                    	<h:outputText value="Exterior: "/>
+			                    	<h:outputText value="#{car.colorExt}"/>
+			                    	<h:outputText value="Interior: "/>
+			                    	<h:outputText value="#{car.colorInt}"/>
+			                    	<h:outputText value="Mileage: "/>
+			                    	<h:outputText value="#{car.mileage}"/>
+			                    	<h:outputText value="Price: "/>
+			                    	<h:outputText value="#{car.salePrice}">
+			                    		<f:convertNumber pattern="$0,000" />
+			                    	</h:outputText>
+			                    	<h:outputText value="VIN#: "/>
+			                    	<h:outputText value="#{car.vin}"/>			                    				                    	
+			                    </h:panelGrid>
+			                    <br/><br/>
+			                    <h:panelGrid columns="2" width="100%">			                    	
+				                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
+				                    <h:link styleClass="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}" style="float: right;"><strong>More</strong></h:link>
+			                    </h:panelGrid>		                    
 			                </div>
 		                </div>
 		            </div>

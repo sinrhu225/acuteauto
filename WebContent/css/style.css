@@ -459,3 +459,9 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 		
 		
 		/********/
+.boldFont {
+	font-weight: bold;	
+}
+.nowrap {
+	white-space: nowrap;
+}

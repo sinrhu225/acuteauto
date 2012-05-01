@@ -11,18 +11,17 @@
 		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />        
 		    </f:metadata>
     	    <h:panelGrid width="100%">
-		    	<h:panelGrid id="vehicleDescription">
-		    		<div class="padding-top">
-	                	<h4>#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name} <span>#{invCtrl.car.year}</span></h4>
-	                    <p>
-	                    	#{invCtrl.car.description}
-	                    </p>	                    		                    
-	                </div>
-		    	</h:panelGrid>
+    	    	<f:facet name="header">
+    	    		<h:panelGrid columns="2" width="100%">
+	    	    		<div class="padding-top">
+		                	<h4>#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name} <span>#{invCtrl.car.year}</span></h4>
+		                </div>	  
+		                <h:link styleClass="padding-top" outcome="/pub/inv/invList" style="float: right;"><strong>&lt;&lt; Back to List</strong></h:link>
+	                </h:panelGrid>  	    		
+    	    	</f:facet>
+    	    	<br/>
 		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign, rightAlign">
 			    	<h:panelGrid id="vehicleInfo" columns="2" columnClasses="rightAlign, leftAlign">
-			    		<h:outputText value="Name:" />
-			    		<h:outputText value="#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name}" />
 			    		<h:outputText value="Body:" />
 			    		<h:outputText value="#{invCtrl.car.style.bodyType}" > <f:converter converterId="enumConverter"/></h:outputText>
 			    		<h:outputText value="Price:" />
@@ -32,17 +31,15 @@
 			    		<h:outputText value="Engine:" />
 			    		<h:outputText value="#{invCtrl.car.engine}" />
 			    		<h:outputText value="Transmission:" />
-			    		<h:outputText value="#{invCtrl.car.engine}" />
+			    		<h:outputText value="#{car.transType}" converter="enumConverter"/>
 			    		<h:outputText value="Drive Train:" />
-			    		<h:outputText value="#{invCtrl.car.engine}" />
+			    		<h:outputText value="#{car.drvTrnType}" converter="enumConverter"/>
 			    		<h:outputText value="Estimated Mileage:" />
 			    		<h:outputText value="City: #{invCtrl.car.style.mileages[0].mileageCity} / HWY: #{invCtrl.car.style.mileages[0].mileageHwy}" />
 			    		<h:outputText value="Exterior:" />
 			    		<h:outputText value="#{invCtrl.car.colorExt}" />
 			    		<h:outputText value="Interior:" />
-			    		<h:outputText value="#{invCtrl.car.colorInt}" />
-			    		<h:outputText value="CarFax:" />
-			    		<h:link value="#{invCtrl.car.carfaxApprvUrl}" />
+			    		<h:outputText value="#{invCtrl.car.colorInt}" />			    		
 			    	</h:panelGrid>
 			    	<h:panelGroup id="galleria" layout="block" style="height:400px; width:700px; float: right;">
 			    		<ui:repeat var="image" value="#{invCtrl.car.images}">
