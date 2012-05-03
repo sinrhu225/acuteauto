@@ -13,34 +13,62 @@
     	    <h:panelGrid width="100%">
     	    	<f:facet name="header">
     	    		<h:panelGrid columns="2" width="100%">
+    	    			<h:link styleClass="padding-top" outcome="/pub/inv/invList" style="float: left;"><strong>&lt;&lt; Back to List</strong></h:link>
 	    	    		<div class="padding-top">
 		                	<h4>#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name} <span>#{invCtrl.car.year}</span></h4>
-		                </div>	  
-		                <h:link styleClass="padding-top" outcome="/pub/inv/invList" style="float: right;"><strong>&lt;&lt; Back to List</strong></h:link>
+		                </div>	  		                
 	                </h:panelGrid>  	    		
     	    	</f:facet>
     	    	<br/>
-		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign, rightAlign">
-			    	<h:panelGrid id="vehicleInfo" columns="2" columnClasses="rightAlign, leftAlign">
-			    		<h:outputText value="Body:" />
-			    		<h:outputText value="#{invCtrl.car.style.bodyType}" > <f:converter converterId="enumConverter"/></h:outputText>
-			    		<h:outputText value="Price:" />
-			    		<h:outputText value="$#{invCtrl.car.salePrice}" />
-			    		<h:outputText value="Mileage:" />
-			    		<h:outputText value="#{invCtrl.car.mileage}" />
-			    		<h:outputText value="Engine:" />
-			    		<h:outputText value="#{invCtrl.car.engine}" />
-			    		<h:outputText value="Transmission:" />
-			    		<h:outputText value="#{car.transType}" converter="enumConverter"/>
-			    		<h:outputText value="Drive Train:" />
-			    		<h:outputText value="#{car.drvTrnType}" converter="enumConverter"/>
-			    		<h:outputText value="Estimated Mileage:" />
-			    		<h:outputText value="City: #{invCtrl.car.style.mileages[0].mileageCity} / HWY: #{invCtrl.car.style.mileages[0].mileageHwy}" />
-			    		<h:outputText value="Exterior:" />
-			    		<h:outputText value="#{invCtrl.car.colorExt}" />
-			    		<h:outputText value="Interior:" />
-			    		<h:outputText value="#{invCtrl.car.colorInt}" />			    		
-			    	</h:panelGrid>
+		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign,rightAlign">
+		    		<rich:accordion switchType="client" width="300px" height="398px" cycledSwitching="true">
+            			<rich:accordionItem header="Overview">
+					    	<h:panelGrid id="overview" cellpadding="10" cellspacing="10" columns="2" columnClasses="rightAlign,leftAlign boldFont" 
+					    		style="font-size:14px; line-height:1.2em; color:#55544c;">
+					    		<h:outputText value="Status:" />
+					    		<h:outputText value="#{invCtrl.car.status}" converter="enumConverter" />
+					    		<h:outputText value="Body:" />
+					    		<h:outputText value="#{invCtrl.car.style.bodyType}" converter="enumConverter" />
+					    		<h:outputText value="Price:" />
+					    		<h:outputText value="#{invCtrl.car.salePrice}">
+		                    		<f:convertNumber pattern="$0,000" />
+		                    	</h:outputText>					    		
+					    		<h:outputText value="Mileage:" />
+					    		<h:outputText value="#{invCtrl.car.mileage}" />
+					    		<h:outputText value="ETA Mileage:" />
+					    		<h:outputText value="City: #{invCtrl.car.style.mileages[0].mileageCity} / HWY: #{invCtrl.car.style.mileages[0].mileageHwy}" />
+					    		<h:outputText value="Exterior:" />
+					    		<h:outputText value="#{invCtrl.car.colorExt}" />
+					    		<h:outputText value="Interior:" />
+					    		<h:outputText value="#{invCtrl.car.colorInt}" />
+					    		<h:outputText value="VIN#: "/>
+			                    <h:outputText value="#{invCtrl.car.vin}"/>			
+			                    <h:outputText value="Warranty: "/>
+			                    <h:outputText value="#{invCtrl.car.warrantyType}" converter="enumConverter"/>    		
+					    	</h:panelGrid>
+					    	<br/><br/>
+					    	<h:panelGrid width="100%" columnClasses="centerAlign">
+					    	<h:outputLink value="#{invCtrl.car.carfaxApprvUrl}" target="_new" rendered="#{invCtrl.car.carfaxApprvUrl!=null}">
+		                    	<h:graphicImage value="/images/carfax_yes.gif"/>
+							</h:outputLink>
+							</h:panelGrid>
+			    		</rich:accordionItem>
+			    		<rich:accordionItem header="PowerTrain">
+					    	<h:panelGrid id="powerTrain" columns="2" columnClasses="rightAlign,leftAlign boldFont" style="font-size:14px; line-height:1.2em; color:#55544c;">
+					    		<h:outputText value="Engine:" />
+					    		<h:outputText value="#{invCtrl.car.engine}" />
+					    		<h:outputText value="Transmission:" />
+					    		<h:outputText value="#{invCtrl.car.transType}" converter="enumConverter"/>
+					    		<h:outputText value="Drive Train:" />
+					    		<h:outputText value="#{invCtrl.car.drvTrnType}" converter="enumConverter"/>
+					    		<h:outputText value="Fuel Type:" />
+					    		<h:outputText value="#{invCtrl.car.fuelType}" converter="enumConverter"/>
+					    	</h:panelGrid>
+			    		</rich:accordionItem>
+			    		<rich:accordionItem header="Features">
+					    	
+			    		</rich:accordionItem>
+			    	</rich:accordion>	
 			    	<h:panelGroup id="galleria" layout="block" style="height:400px; width:700px; float: right;">
 			    		<ui:repeat var="image" value="#{invCtrl.car.images}">
 			    			<h:graphicImage value="/img/?imgId=#{image.imageId}" />
