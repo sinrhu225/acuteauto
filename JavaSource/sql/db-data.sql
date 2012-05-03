@@ -185,3 +185,12 @@ INSERT INTO ENUM VALUES ('210', '20', 'AWD', 'All Wheel Drive', null);
 INSERT INTO ENUM VALUES ('211', '20', 'FWD', 'Front Wheel Drive', null);
 INSERT INTO ENUM VALUES ('212', '20', 'RWD', 'Rear Wheel Drive', null);
 INSERT INTO ENUM VALUES ('213', '20', '4WD', 'Four Wheel Drive', null);
+
+------------------------------------
+------RECORDS FOR FEATURE_GROUP-----
+------------------------------------
+INSERT INTO FEATURE_GROUP VALUES(1, 'OPTIONS', 111, 'Vehicle Options', 0, null);
+
+------------------------------------
+------RECORDS FOR FEATURE-----------
+------------------------------------

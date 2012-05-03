@@ -3,6 +3,7 @@
  */
 package com.acminds.acuteauto.utils;
 
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.Date;
 
@@ -31,6 +32,10 @@ public class Utils {
 	
 	public static String getUserHome() {
 		return System.getProperty("user.home");
+	}
+	
+	public static InputStream getResource(String name) throws ClassNotFoundException {
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
 	}
 
 }

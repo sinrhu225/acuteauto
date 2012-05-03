@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<batches>
+	<batch id="featureLoader">
+		<className>com.acminds.acuteauto.batch.loader.FeatureLoader</className>
+		<filePath>/acuteauto/batches/features.xlsx</filePath>
+	</batch>	
+</batches>

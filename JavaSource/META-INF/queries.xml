@@ -8,4 +8,8 @@
 		<description>Retrieve Enum objects by Type</description>
 		<query>select e from Enum e where e.enumType= :type</query>
 	</named-query>
+	<named-query name="getFeatureGrpByName">
+		<description>Retrieve Feature Groups by Name</description>
+		<query>select fg from FeatureGroup fg where fg.name = :name</query>
+	</named-query>
 </entity-mappings>
