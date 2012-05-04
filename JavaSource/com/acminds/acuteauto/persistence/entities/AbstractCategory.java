@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 4, 2012 3:55:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -32,13 +32,13 @@ public abstract class AbstractCategory extends
 
 	private Integer categoryId;
 	private Category category;
+	private UserInfo userInfo;
 	private String name;
 	private String description;
 	private Integer categoryType;
 	private Date effectiveDate;
 	private Date expiryDate;
 	private Date createDate;
-	private int createdBy;
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
 	private List<Category> categories = new ArrayList<Category>(0);
 
@@ -61,6 +61,16 @@ public abstract class AbstractCategory extends
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CREATED_BY", nullable = false)
+	public UserInfo getUserInfo() {
+		return this.userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 60)
@@ -118,15 +128,6 @@ public abstract class AbstractCategory extends
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
-	}
-
-	@Column(name = "CREATED_BY", nullable = false)
-	public int getCreatedBy() {
-		return this.createdBy;
-	}
-
-	public void setCreatedBy(int createdBy) {
-		this.createdBy = createdBy;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "categories")

@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 4, 2012 3:55:01 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -58,6 +58,7 @@ public abstract class AbstractUserInfo extends
 	private List<Location> locations = new ArrayList<Location>(0);
 	private List<LoanApplication> loanApplicationsForApplicant = new ArrayList<LoanApplication>(
 			0);
+	private List<Category> categories = new ArrayList<Category>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -302,6 +303,15 @@ public abstract class AbstractUserInfo extends
 	public void setLoanApplicationsForApplicant(
 			List<LoanApplication> loanApplicationsForApplicant) {
 		this.loanApplicationsForApplicant = loanApplicationsForApplicant;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
+	public List<Category> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}
 
 }
