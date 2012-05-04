@@ -2,6 +2,9 @@ package com.acminds.acuteauto.persistence.dto;
 
 // Generated Feb 29, 2012 11:25:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -35,4 +38,18 @@ public class Vehicle extends AbstractVehicle {
 		}
 		return null;
 	}
+	private List<FeatureGroup> distinctGroups; 
+	@Transient
+	public List<FeatureGroup> getDistinctGroups() {
+		if(distinctGroups == null) {
+			distinctGroups = new ArrayList<FeatureGroup>();
+			for(Feature f:getFeatures()) {
+				if(!distinctGroups.contains(f.getFeatureGroup()))
+					distinctGroups.add(f.getFeatureGroup());
+			}
+		}
+		return distinctGroups;
+	}
+	
+	
 }
