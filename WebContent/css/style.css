@@ -465,3 +465,37 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 .nowrap {
 	white-space: nowrap;
 }
+.standardHeader {
+	font-size:20px;
+	line-height:1.2em;
+	padding:10px 19px;
+	margin:0px 0 6px;
+	color:#fff;
+	text-transform:uppercase;
+	background:#8e8c7f;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+.highlightedHeader {
+	font-size:20px;
+	line-height:1.2em;
+	padding:10px 19px;
+	margin:0px 0 6px;
+	color:#fff;
+	text-transform:uppercase;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	background:#7ac142;
+}
+
+.subHeader {
+	font-size:19px; 
+	line-height:1.2em; 
+	color:#fff; 
+	margin:0px 0 10px; 
+	font-weight:normal;
+	background:#7ac142;	
+}
+
+.col-padding {
+ 	padding-right: 5px;
+ 	padding-bottom: 5px;	
+}

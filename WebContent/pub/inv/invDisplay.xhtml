@@ -4,13 +4,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 	<ui:composition template="/templates/baseLayout.xhtml">
 		<ui:define name="body">
 			<f:metadata>
 		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />        
 		    </f:metadata>
-    	    <h:panelGrid width="100%">
+		    <h:panelGrid width="100%">
     	    	<f:facet name="header">
     	    		<h:panelGrid columns="2" width="100%">
     	    			<h:link styleClass="padding-top" outcome="/pub/inv/invList" style="float: left;"><strong>&lt;&lt; Back to List</strong></h:link>
@@ -21,18 +22,14 @@
     	    	</f:facet>
     	    	<br/>
 		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign,rightAlign">
-		    		<rich:accordion switchType="client" width="300px" height="398px" cycledSwitching="true">
-            			<rich:accordionItem header="Overview">
-					    	<h:panelGrid id="overview" cellpadding="10" cellspacing="10" columns="2" columnClasses="rightAlign,leftAlign boldFont" 
-					    		style="font-size:14px; line-height:1.2em; color:#55544c;">
+		    		<rich:accordion switchType="client" width="300px" height="390px" cycledSwitching="true">
+            			<rich:accordionItem header="Overview" headerClass="standardHeader">
+					    	<h:panelGrid id="overview" columns="2" columnClasses="rightAlign col-padding,leftAlign boldFont col-padding" 
+					    		styleClass="padding_container table-1 text-1">
 					    		<h:outputText value="Status:" />
 					    		<h:outputText value="#{invCtrl.car.status}" converter="enumConverter" />
 					    		<h:outputText value="Body:" />
 					    		<h:outputText value="#{invCtrl.car.style.bodyType}" converter="enumConverter" />
-					    		<h:outputText value="Price:" />
-					    		<h:outputText value="#{invCtrl.car.salePrice}">
-		                    		<f:convertNumber pattern="$0,000" />
-		                    	</h:outputText>					    		
 					    		<h:outputText value="Mileage:" />
 					    		<h:outputText value="#{invCtrl.car.mileage}" />
 					    		<h:outputText value="ETA Mileage:" />
@@ -44,7 +41,11 @@
 					    		<h:outputText value="VIN#: "/>
 			                    <h:outputText value="#{invCtrl.car.vin}"/>			
 			                    <h:outputText value="Warranty: "/>
-			                    <h:outputText value="#{invCtrl.car.warrantyType}" converter="enumConverter"/>    		
+			                    <h:outputText value="#{invCtrl.car.warrantyType}" converter="enumConverter"/>
+			                    <h:outputText value="Price:" />
+			                    <h:outputText value="#{invCtrl.car.salePrice}">
+		                    		<f:convertNumber pattern="$0,000" />
+		                    	</h:outputText>					    		    		
 					    	</h:panelGrid>
 					    	<br/><br/>
 					    	<h:panelGrid width="100%" columnClasses="centerAlign">
@@ -53,7 +54,7 @@
 							</h:outputLink>
 							</h:panelGrid>
 			    		</rich:accordionItem>
-			    		<rich:accordionItem header="PowerTrain">
+			    		<rich:accordionItem header="(+)PowerTrain" headerClass="standardHeader">
 					    	<h:panelGrid id="powerTrain" columns="2" columnClasses="rightAlign,leftAlign boldFont" style="font-size:14px; line-height:1.2em; color:#55544c;">
 					    		<h:outputText value="Engine:" />
 					    		<h:outputText value="#{invCtrl.car.engine}" />
@@ -64,17 +65,29 @@
 					    		<h:outputText value="Fuel Type:" />
 					    		<h:outputText value="#{invCtrl.car.fuelType}" converter="enumConverter"/>
 					    	</h:panelGrid>
-			    		</rich:accordionItem>
-			    		<rich:accordionItem header="Features">
-					    	
-			    		</rich:accordionItem>
+			    		</rich:accordionItem>			    		
 			    	</rich:accordion>	
 			    	<h:panelGroup id="galleria" layout="block" style="height:400px; width:700px; float: right;">
 			    		<ui:repeat var="image" value="#{invCtrl.car.images}">
 			    			<h:graphicImage value="/img/?imgId=#{image.imageId}" />
 			    		</ui:repeat>
 			    	</h:panelGroup>					    		
-		    	</h:panelGrid>			    					    			    	
+		    	</h:panelGrid>	
+		    	<h:panelGrid width="100%" headerClass="standardHeader">
+		    		<f:facet name="header">
+		                Options
+		            </f:facet>			    		
+    				<rich:dataGrid columns="4" elements="12" value="#{invCtrl.car.distinctGroups}" var="group" style="width: 100%;">
+    					<h:panelGrid width="100%" headerClass="subHeader nowrap">
+			    			<f:facet name="header">
+				                #{group.name}
+				            </f:facet>			    		
+		    				<rich:list value="#{invCtrl.car.features}" var="feat" styleClass="list-2 indent p1">
+		    					<h:outputText value="#{feat.featureValue}" rendered="#{group.name == feat.featureGroup.name}" styleClass="text-1"/>								        
+						    </rich:list>
+						 </h:panelGrid>   		    			
+		    		</rich:dataGrid>		    			    	
+		    	</h:panelGrid>				    			    	
 		    </h:panelGrid>
 			 <script>
 			    // Load the classic theme
