@@ -22,8 +22,8 @@
     	    	</f:facet>
     	    	<br/>
 		    	<h:panelGrid columns="2" width="100%" columnClasses="leftAlign,rightAlign">
-		    		<rich:accordion switchType="client" width="300px" height="390px" cycledSwitching="true">
-            			<rich:accordionItem header="Overview" headerClass="standardHeader">
+		    		<rich:accordion switchType="client" width="300px" height="398px" cycledSwitching="true">
+            			<rich:accordionItem header="Overview">
 					    	<h:panelGrid id="overview" columns="2" columnClasses="rightAlign col-padding,leftAlign boldFont col-padding" 
 					    		styleClass="padding_container table-1 text-1">
 					    		<h:outputText value="Status:" />
@@ -47,15 +47,15 @@
 		                    		<f:convertNumber pattern="$0,000" />
 		                    	</h:outputText>					    		    		
 					    	</h:panelGrid>
-					    	<br/><br/>
+					    	<br/>
 					    	<h:panelGrid width="100%" columnClasses="centerAlign">
 					    	<h:outputLink value="#{invCtrl.car.carfaxApprvUrl}" target="_new" rendered="#{invCtrl.car.carfaxApprvUrl!=null}">
 		                    	<h:graphicImage value="/images/carfax_yes.gif"/>
 							</h:outputLink>
 							</h:panelGrid>
 			    		</rich:accordionItem>
-			    		<rich:accordionItem header="(+)PowerTrain" headerClass="standardHeader">
-					    	<h:panelGrid id="powerTrain" columns="2" columnClasses="rightAlign,leftAlign boldFont" style="font-size:14px; line-height:1.2em; color:#55544c;">
+			    		<rich:accordionItem header="PowerTrain">
+					    	<h:panelGrid id="powerTrain" columns="2" columnClasses="rightAlign col-padding,leftAlign boldFont col-padding" style="font-size:14px; line-height:1.2em; color:#55544c;">
 					    		<h:outputText value="Engine:" />
 					    		<h:outputText value="#{invCtrl.car.engine}" />
 					    		<h:outputText value="Transmission:" />
@@ -82,7 +82,7 @@
 			    			<f:facet name="header">
 				                #{group.name}
 				            </f:facet>			    		
-		    				<rich:list value="#{invCtrl.car.features}" var="feat" styleClass="list-2 indent p1">
+		    				<rich:list value="#{invCtrl.car.features}" var="feat" styleClass="list-1">
 		    					<h:outputText value="#{feat.featureValue}" rendered="#{group.name == feat.featureGroup.name}" styleClass="text-1"/>								        
 						    </rich:list>
 						 </h:panelGrid>   		    			
