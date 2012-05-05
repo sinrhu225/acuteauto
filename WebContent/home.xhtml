@@ -7,96 +7,42 @@
 <ui:composition template="/templates/homeLayout.xhtml">
 	<ui:define name="content">
 		<section id="content">
-	    	<div class="row-1 p2">
-	        	<h3>latest advertisements</h3>
-	            <div class="wrapper">
-	            	<div class="col-1">
-	                	<div class="box">
-		                	<a href="#"><figure><img src="images/thumbnails/page1-img1.jpg" alt=""/></figure></a>
-	    	            	<div>
-	        	            	<p>Adipiscing elit se <strong>2009</strong></p>
-		        	            <a href="#">More</a>
-	    	        	        <strong>$65800</strong>
-	                    	</div>
-	                    </div>
-	                </div>
-	                <div class="col-2">
-	                	<div class="box">
-		                	<a href="#"><figure><img src="images/thumbnails/page1-img2.jpg" alt=""/></figure></a>
-	    	            	<div>
-	        	            	<p>Ipsum dolor ser <strong>2009</strong></p>
-		        	            <a href="#">More</a>
-	    	        	        <strong>$65800</strong>
-		                    </div>
-	                	</div>
-	                </div>
-	                <div class="col-3">
-	    				<div class="box">
-	    	            	<a href="#"><figure><img src="images/thumbnails/page1-img3.jpg" alt=""/></figure></a>
-	        	        	<div>
-	            	        	<p>Dolor Set IPSUM <strong>2009</strong></p>
-		            	        <a href="#">More</a>
-	    	            	    <strong>$65800</strong>
-		                    </div>
-	                    </div>
-	                </div>
-	                <div class="col-4">
-	                	<div class="box">
-		                	<a href="#"><figure><img src="images/thumbnails/page1-img4.jpg" alt=""/></figure></a>
-	    	            	<div>
-	        	            	<p>Magna IPSUM <strong>2009</strong></p>
-		        	            <a href="#">More</a>
-	    	        	        <strong>$65800</strong>
-	                    	</div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="wrapper">
-	                <div class="col-1">
-	                	<div class="box">
-	                		<a href="#"><figure><img src="images/thumbnails/page1-img5.jpg" alt=""/></figure></a>
-		                	<div>
-	    	                	<p>Lorem SET <strong>2009</strong></p>
-		    	                <a href="#">More</a>
-	    	    	            <strong>$65800</strong>
-	                	    </div>
-	                	</div>
-	                </div>
-	                <div class="col-2">
-		                <div class="box">
-		                	<a href="#"><figure><img src="images/thumbnails/page1-img6.jpg" alt=""/></figure></a>
-	                		<div>
-	                	    	<p>Magna IPSUM <strong>2009</strong></p>
-		        	            <a href="#">More</a>
-	    		                <strong>$65800</strong>
-	    	                </div>
-		                </div>
-	                </div>
-	                <div class="col-3">
-		                <div class="box">
-	    	            	<a href="#"><figure><img src="images/thumbnails/page1-img7.jpg" alt=""/></figure></a>
-	        	        	<div>
-	            	        	<p>Adipiscing ELIT SEL <strong>2009</strong></p>
-		            	        <a href="#">More</a>
-	    	            	    <strong>$65800</strong>
-		                    </div>
-		                </div>
-	                </div>
-	                <div class="col-4">
-		                <div class="box">
-		                	<a href="#"><figure><img src="images/thumbnails/page1-img8.jpg" alt=""/></figure></a>
-	    	            	<div>
-	        	            	<p>Dolor Set IPSUM <strong>2009</strong></p>
-		        	            <a href="#">More</a>
-	    	        	        <strong>$65800</strong>
-	                    	</div>
-		                </div>
-	                </div>
-	            </div>
-	            <a class="link-off" href="#"><strong>See all</strong></a>
-	        </div>
+			<ui:repeat var="cat" value="#{hmpCtrl.homeGroup.categories}">
+				<div class="row-1 p2">
+					<h3>#{cat.name}</h3>
+					<div class="wrapper">
+			            <ui:repeat var="car" value="#{cat.vehicles}" varStatus="stat">				        	
+			            	<div class="col-#{stat.index+1}">
+			                	<div class="box">
+				                	<a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}">
+				                		<figure><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}"/></figure>
+				                	</a>
+			    	            	<div>
+			        	            	<p><strong>#{car.year}</strong> - #{car.make.name} #{car.model.name}</p>
+				        	            <a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}">More</a>
+				        	            <del>
+					        	            <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice!=null}">
+					    	        	        <f:convertNumber pattern="$0,000" />
+					    	        	    </h:outputText>
+				    	        	    </del>
+				        	            <strong>				        	            	
+				    	        	        <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice==null}">
+				    	        	        	<f:convertNumber pattern="$0,000" />
+				    	        	        </h:outputText>
+				    	        	        <h:outputText value="#{car.specialPrice}" rendered="#{car.specialPrice!=null}">
+				    	        	        	<f:convertNumber pattern="$0,000" />
+				    	        	        </h:outputText>
+			    	        	        </strong>
+			                    	</div>
+			                    </div>
+			                </div>				            
+			            </ui:repeat>
+		            </div>
+		            <a class="link-off" href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf?makeId=0&amp;modelId=0&amp;year=0&amp;price=0"><strong>See all</strong></a>
+		        </div>
+			</ui:repeat>		    	
 	        <div class="row-2">
-	      <h3>latest testdrive</h3>
+	      		<h3>latest testdrive</h3>
 	            <div class="wrapper">
 	            	<figure class="img-indent"><img src="images/thumbnails/page1-img9.jpg" alt=""/></figure>
 	                <div class="extra-box">
