@@ -5,9 +5,11 @@ package com.acminds.acuteauto.utils;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
+import java.util.Date;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.dto.Advertisement;
+import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Make;
@@ -84,9 +86,42 @@ public class TestDataCreator {
 			v = cr.createVehicle(cr.getMake(56), cr.getModel(583), cr.getStyle(2610), 2008, "", 11500, 16000, ui);
 			cr.createImage("Image 1", null, ImageType.PRIMARY, "/images/vehicles/"+v.getVehicleId()+"/img1.jpg", false, v);
 			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);*/
-			for(int i=2; i<8; i++) {
+			Category cat = new Category();
+			cat.setName("Home Page");
+			cat.setDescription("Category which holds the group of sub-categories which'll be displayed on the home page");
+			cat.setUserInfo(ui);
+			cat.setEffectiveDate(Utils.today());
+			cat.setExpiryDate(Utils.toDate("12/31/2015"));
+			cr.dao.save(cat, false);
+			Category cat1 = new Category();
+			cat1.setName("Featured Cars");
+			cat1.setDescription("Category which'll group a particular segment of Featured cars");
+			cat1.setCategory(cat);
+			cat1.setUserInfo(ui);
+			cat1.setEffectiveDate(Utils.today());
+			cat1.setExpiryDate(Utils.toDate("12/31/2015"));
+			cat1.setDisplaySeq(1);
+			cr.dao.save(cat1, false);
+			Category cat2 = new Category();
+			cat2.setName("Best Sellers");
+			cat2.setDescription("Category which'll group a particular segment of Best Selling cars");
+			cat2.setCategory(cat);
+			cat2.setUserInfo(ui);
+			cat2.setEffectiveDate(Utils.today());
+			cat2.setExpiryDate(Utils.toDate("12/31/2015"));
+			cat2.setDisplaySeq(2);
+			cr.dao.save(cat2, false);
+			for(int i=2; i<6; i++) {
 				Vehicle v = cr.dao.get(Vehicle.class, i);
-				cr.createAd(v, ui, 500);
+				v.getCategories().add(cat1);
+				if(i==5)
+					v.getCategories().add(cat2);
+				cr.dao.save(v, false);
+			}
+			for(int i=6; i<9; i++) {
+				Vehicle v = cr.dao.get(Vehicle.class, i);
+				v.getCategories().add(cat2);
+				cr.dao.save(v, false);
 			}
 			cr.dao.commit();
 		} catch (Exception e) {
