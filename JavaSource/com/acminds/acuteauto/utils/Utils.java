@@ -4,6 +4,8 @@
 package com.acminds.acuteauto.utils;
 
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -28,6 +30,11 @@ public class Utils {
 	
 	public static Date today() {
 		return new Date();
+	}
+	
+	public static Date toDate(String value) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		return sdf.parse(value);
 	}
 	
 	public static String getUserHome() {

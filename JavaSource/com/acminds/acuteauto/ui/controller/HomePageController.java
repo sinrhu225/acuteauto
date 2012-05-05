@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
+import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
@@ -21,6 +22,7 @@ import com.acminds.acuteauto.utils.Utils;
 @ApplicationScoped
 public class HomePageController extends BaseController{
 	private InventoryService service = new InventoryService();
+	private Category homeGroup;
 	private List<Vehicle> carsForBanner;
 	private List<Vehicle> featuredCars;
 	private List<Vehicle> carsForAdvertisement;
@@ -29,6 +31,12 @@ public class HomePageController extends BaseController{
 		if(Utils.isEmpty(carsForBanner))
 			carsForBanner = service.getCarsForBanner();
 		return carsForBanner;
+	}
+	
+	public Category getHomeGroup() {
+		if(Utils.isEmpty(homeGroup))
+			homeGroup = service.getBaseDao().createNamedQuery("getCatByName", Category.class).setParameter("name", "Home Page").getSingleResult();
+		return homeGroup;
 	}
 	
 	public List<Vehicle> getFeaturedCars() {

@@ -37,6 +37,7 @@ public abstract class AbstractVehicle extends
 	private Make make;
 	private Model model;
 	private UserInfo userInfo;
+	private String stockNbr;
 	private String description;
 	private int year;
 	private String engine;
@@ -118,6 +119,15 @@ public abstract class AbstractVehicle extends
 		this.userInfo = userInfo;
 	}
 
+	@Column(name = "STOCK_NBR", length = 60)
+	public String getStockNbr() {
+		return this.stockNbr;
+	}
+
+	public void setStockNbr(String stockNbr) {
+		this.stockNbr = stockNbr;
+	}
+	
 	@Column(name = "DESCRIPTION", length = 250)
 	public String getDescription() {
 		return this.description;

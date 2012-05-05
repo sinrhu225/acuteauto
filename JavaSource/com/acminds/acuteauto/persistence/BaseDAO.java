@@ -113,6 +113,10 @@ public class BaseDAO {
 		return em.createNamedQuery(name);
 	}
 	
+	public <T>TypedQuery<T> createNamedQuery(String query, Class<T> clazz) {
+		return em.createNamedQuery(query, clazz);
+	}
+	
 	public Query createNativeQuery(String query) {
 		return em.createNativeQuery(query);
 	}

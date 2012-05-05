@@ -106,11 +106,10 @@ public class FeatureLoader implements BatchProcessor{
 		dao.commit();
 	}
 	
-	@SuppressWarnings("rawtypes")
 	private FeatureGroup getFGByName(String name) {
-		List l = dao.createNamedQuery("getFeatureGrpByName").setParameter("name", name).getResultList();
+		List<FeatureGroup> l = dao.createNamedQuery("getFeatureGrpByName", FeatureGroup.class).setParameter("name", name).getResultList();
 		if(!Utils.isEmpty(l))
-			return (FeatureGroup)l.get(0);
+			return l.get(0);
 		return null;
 	}
 	

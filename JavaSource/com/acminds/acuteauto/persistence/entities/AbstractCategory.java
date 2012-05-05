@@ -36,6 +36,7 @@ public abstract class AbstractCategory extends
 	private String name;
 	private String description;
 	private Integer categoryType;
+	private Integer seqOrder;
 	private Date effectiveDate;
 	private Date expiryDate;
 	private Date createDate;
@@ -99,6 +100,15 @@ public abstract class AbstractCategory extends
 	public void setCategoryType(Integer categoryType) {
 		this.categoryType = categoryType;
 	}
+	
+	@Column(name = "SEQ_ORDER")
+	public Integer getSeqOrder() {
+		return this.seqOrder;
+	}
+
+	public void setSeqOrder(Integer seqOrder) {
+		this.seqOrder = seqOrder;
+	}
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EFFECTIVE_DATE", nullable = false, length = 10)
@@ -121,7 +131,7 @@ public abstract class AbstractCategory extends
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATE_DATE", nullable = false, length = 19)
+	@Column(name = "CREATE_DATE", insertable=false, nullable=false, updatable=false, length = 19)
 	public Date getCreateDate() {
 		return this.createDate;
 	}

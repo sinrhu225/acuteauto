@@ -68,7 +68,7 @@ public class ImageServlet extends HttpServlet {
 			}
 			response.setContentType(image.getMimeType());		
 			OutputStream out = response.getOutputStream();
-			out.write(IOUtils.toByteArray(new FileInputStream(new File(Utils.getUserHome()+image.getImageLocation()))));
+			out.write(IOUtils.toByteArray(new FileInputStream(new File(image.getRealLocation()))));
 		} catch (NumberFormatException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
