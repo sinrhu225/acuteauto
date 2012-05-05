@@ -5,7 +5,6 @@ package com.acminds.acuteauto.utils;
 
 import java.math.BigDecimal;
 import java.text.MessageFormat;
-import java.util.Date;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.dto.Advertisement;
@@ -100,7 +99,7 @@ public class TestDataCreator {
 			cat1.setUserInfo(ui);
 			cat1.setEffectiveDate(Utils.today());
 			cat1.setExpiryDate(Utils.toDate("12/31/2015"));
-			cat1.setDisplaySeq(1);
+			cat1.setSeqOrder(1);
 			cr.dao.save(cat1, false);
 			Category cat2 = new Category();
 			cat2.setName("Best Sellers");
@@ -109,7 +108,7 @@ public class TestDataCreator {
 			cat2.setUserInfo(ui);
 			cat2.setEffectiveDate(Utils.today());
 			cat2.setExpiryDate(Utils.toDate("12/31/2015"));
-			cat2.setDisplaySeq(2);
+			cat2.setSeqOrder(2);
 			cr.dao.save(cat2, false);
 			for(int i=2; i<6; i++) {
 				Vehicle v = cr.dao.get(Vehicle.class, i);
