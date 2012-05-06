@@ -16,4 +16,8 @@
 		<description>Retrieve Category by Name</description>
 		<query>select cat from Category cat where cat.name = :name</query>
 	</named-query>
+	<named-query name="getDealer">
+		<description>Retrieve the Dealer information</description>
+		<query>select c from Client c</query>
+	</named-query>
 </entity-mappings>

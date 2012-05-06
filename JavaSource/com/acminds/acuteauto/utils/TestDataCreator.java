@@ -11,6 +11,7 @@ import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.Image;
+import com.acminds.acuteauto.persistence.dto.Location;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Model;
 import com.acminds.acuteauto.persistence.dto.Role;
@@ -19,6 +20,7 @@ import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
 import com.acminds.acuteauto.utils.EnumConstants.AdUnits;
+import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
 import com.acminds.acuteauto.utils.EnumConstants.VehicleCondition;
@@ -85,7 +87,7 @@ public class TestDataCreator {
 			v = cr.createVehicle(cr.getMake(56), cr.getModel(583), cr.getStyle(2610), 2008, "", 11500, 16000, ui);
 			cr.createImage("Image 1", null, ImageType.PRIMARY, "/images/vehicles/"+v.getVehicleId()+"/img1.jpg", false, v);
 			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);*/
-			Category cat = new Category();
+			/*Category cat = new Category();
 			cat.setName("Home Page");
 			cat.setDescription("Category which holds the group of sub-categories which'll be displayed on the home page");
 			cat.setUserInfo(ui);
@@ -121,7 +123,21 @@ public class TestDataCreator {
 				Vehicle v = cr.dao.get(Vehicle.class, i);
 				v.getCategories().add(cat2);
 				cr.dao.save(v, false);
-			}
+			}*/
+			Client c = cr.dao.createNamedQuery("getDealer", Client.class).getSingleResult();
+			Location l = new Location();
+			l.setAddress1("500 Ivy Meadow Ln.");
+			l.setAddress2("Apt 3B");
+			l.setCity("Durham");
+			l.setState("NC");
+			l.setZip("27707");
+			l.setCountry("USA");
+			l.setBusNumber("9193990565");
+			l.setEmail("support@acuteauto.com");
+			l.setLocationType(LocationType.PRIMARY);
+			l.setMailing(true);
+			l.setClient(c);
+			cr.dao.save(l, false);
 			cr.dao.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
