@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
+<ui:composition template="/templates/homeLayout.xhtml">
+	<ui:define name="content">		
+		<section id="content">
+			<div class="row-1 p2">
+				<h3>directions</h3>
+				<h:panelGrid width="100%" columns="2">
+					<h:panelGrid width="100%" headerClass="subHeader" styleClass="thinGreenBorder">
+						<f:facet name="header">Address Information</f:facet>	
+						<h:graphicImage value="/images/spacer.gif" height="10"/>
+						<h:panelGrid columns="2" columnClasses="rightAlign col-padding,leftAlign boldFont col-padding" styleClass="table-1 text-1"
+							width="100%">							
+							<h:outputText value="Address 1:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.address1}" />
+							<h:outputText value="Address 2:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.address2}" />
+							<h:outputText value="City:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.city}" />
+							<h:outputText value="State:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.state}" />
+							<h:outputText value="Zip:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.zip}" />
+							<h:outputText value="Phone:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busNumber}" />
+							<h:outputText value="Email:" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.email}" />
+						</h:panelGrid>						
+					</h:panelGrid>	
+					<h:panelGrid styleClass="fright" width="700px">
+						<h:form id="GMapForm">
+							<m:map width="700px" height="500px" locationNotFoundErrorMessage="We are sorry, we could not identify your address"
+									address="#{hmpCtrl.dealer.primaryLocation.addressForMap}" type="G_NORMAL_MAP" zoom="14">
+								<m:marker/>
+								<m:htmlInformationWindow htmlText="#{hmpCtrl.dealer.primaryLocation.addressForMap}"/>
+							</m:map>
+						</h:form>
+					</h:panelGrid>
+				</h:panelGrid>
+			</div>	
+		</section>
+	</ui:define>	
+</ui:composition>
+</html>	
