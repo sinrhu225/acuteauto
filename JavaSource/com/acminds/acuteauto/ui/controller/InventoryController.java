@@ -26,7 +26,7 @@ import com.acminds.acuteauto.utils.WebUtils;
 @ManagedBean(name="invCtrl")
 @SessionScoped
 public class InventoryController extends BaseController {
-	private InventoryService service = new InventoryService();
+	protected InventoryService service = new InventoryService();
 	private Integer carId;
 	private int makeId;
 	private int modelId;
@@ -174,7 +174,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getPrices() {
 		if(Utils.isEmpty(prices)) {
-			prices.add(new SelectItem(0, "No Max"));	
+			prices.add(new SelectItem(0, "No Max Price"));	
 			for(int i= 3000; i<=15000; i=i+3000) {
 				prices.add(new SelectItem(i, String.valueOf(i)));
 			}
