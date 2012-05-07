@@ -15,6 +15,7 @@ import javax.persistence.Transient;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractVehicle;
+import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 
 @ManagedBean(name = "vehicle")
@@ -30,14 +31,19 @@ public class Vehicle extends AbstractVehicle {
 		}
 		return null;
 	}
+	
+	private Image displayImage; 
 	@Transient
 	public Image getDisplayImage() {
-		for(Image im: getImages()) {
-			if(im.getImageType() == ImageType.PRIMARY)
-				return im;
+		if(displayImage == null) {
+			for(Image im: getImages()) {
+				if(!Utils.isEmpty(im.getImageType()) && im.getImageType() == ImageType.PRIMARY)
+					displayImage = im;
+			}
 		}
-		return null;
+		return displayImage;
 	}
+	
 	private List<FeatureGroup> distinctGroups; 
 	@Transient
 	public List<FeatureGroup> getDistinctGroups() {

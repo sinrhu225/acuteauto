@@ -31,8 +31,8 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
-		log.log(Level.INFO, "ServletRequest destroyed");
-		((HttpServletRequest)arg0.getServletRequest()).getSession().setAttribute("EMHolder", PersistenceManager.getEntityManager());		
+	//	log.log(Level.INFO, "ServletRequest destroyed");
+	//	((HttpServletRequest)arg0.getServletRequest()).getSession().setAttribute("EMHolder", PersistenceManager.getEntityManager());		
 	}
 
 	/* (non-Javadoc)
@@ -40,8 +40,8 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestInitialized(ServletRequestEvent arg0) {
-		EntityManager em = (EntityManager)((HttpServletRequest)arg0.getServletRequest()).getSession().getAttribute("EMHolder");
-		if(em!=null) PersistenceManager.setEntityManager(em);
+		EntityManager em = (EntityManager)((HttpServletRequest)arg0.getServletRequest()).getSession().getAttribute(PersistenceManager.EM_HOLDER);
+		if(em!=null) PersistenceManager.setEntityManager(em);		
 		log.log(Level.FINE, "Servlet Request Initialized");
 	}
 

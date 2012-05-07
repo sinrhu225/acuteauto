@@ -127,7 +127,7 @@ public abstract class AbstractInquiry extends
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATE_DATE", nullable = false, length = 19)
+	@Column(name = "CREATE_DATE", nullable = false, insertable=false, updatable=false, length = 19)
 	public Date getCreateDate() {
 		return this.createDate;
 	}

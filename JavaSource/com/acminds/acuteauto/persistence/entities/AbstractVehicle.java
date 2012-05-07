@@ -346,7 +346,7 @@ public abstract class AbstractVehicle extends
 		this.advertisements = advertisements;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle")
 	public List<Image> getImages() {
 		return this.images;
 	}
