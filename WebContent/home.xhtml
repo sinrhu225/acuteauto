@@ -9,7 +9,9 @@
 		<section id="content">
 			<ui:repeat var="cat" value="#{hmpCtrl.homeGroup.categories}">
 				<div class="row-1 p2">
-					<h3>#{cat.name}</h3>
+					<h3>#{cat.name}
+					<a class="fright" href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf?makeId=0&amp;modelId=0&amp;year=0&amp;price=0"><strong>View all</strong></a>
+					</h3>
 					<div class="wrapper">
 			            <ui:repeat var="car" value="#{cat.vehicles}" varStatus="stat">				        	
 			            	<div class="col-#{stat.index+1}">
@@ -37,14 +39,13 @@
 			                    </div>
 			                </div>				            
 			            </ui:repeat>
-		            </div>
-		            <a class="link-off" href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf?makeId=0&amp;modelId=0&amp;year=0&amp;price=0"><strong>See all</strong></a>
+		            </div>		            
 		        </div>
 			</ui:repeat>		    	
 	        <div class="row-2">
 	      		<h3>latest testdrive</h3>
 	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="images/thumbnails/page1-img9.jpg" alt=""/></figure>
+	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img9.jpg" alt=""/></figure>
 	                <div class="extra-box">
 	                <div class="padding-top">
 	                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
@@ -60,7 +61,7 @@
 	                </div>
 	            </div>
 	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="images/thumbnails/page1-img10.jpg" alt=""/></figure>
+	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img10.jpg" alt=""/></figure>
 	                <div class="extra-box">
 	                <div class="padding-top">
 	                	<h4>Ipsum dolor ser SET DOLOR <span>2011</span></h4>

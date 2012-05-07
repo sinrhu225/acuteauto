@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:m="http://code.google.com/p/gmaps4jsf/">
+<ui:composition template="/home.xhtml">
+	<ui:define name="banner">
+	<h:form>
+		<section id="content">
+		<div class="row-2 p2">		
+			<h3>Help Us Find Your Car</h3>
+			<h4>Please help us know your Best Preference and we'll hunt down the Best Car in town for you.</h4>
+			<div class="wrapper aligncenter">
+				<br />
+				<div class="col-1" style="width:100%;">
+					<div class="box" style="width:70%;">
+						<h:panelGrid width="100%" columns="4" styleClass="thinGreenBorder" 
+							columnClasses="rightAlign col-padding, leftAlign boldFont col-padding, rightAlign col-padding, leftAlign boldFont col-padding">
+							First Name: <h:inputText value="#{inqCtrl.inquiry.firstName}" size="25" required="true" label="First Name"/>&nbsp;&nbsp;&nbsp;
+							Preferred Year: 
+							<h:selectOneListbox value="#{inqCtrl.year}" size="1">
+	                       		<f:selectItems value="#{inqCtrl.years}"/>
+	                       		<f:ajax event="change"/>
+	                       	</h:selectOneListbox>
+							Last Name: <h:inputText value="#{inqCtrl.inquiry.lastName}" size="25" required="true" label="Last Name"/>&nbsp;&nbsp;&nbsp;
+							Preferred Make: 
+							<h:selectOneListbox id="Make" value="#{inqCtrl.makeId}" size="1" required="true" label="Preferred Make">
+	                       		<f:selectItems value="#{inqCtrl.makes}"/>
+	                       		<f:ajax event="change" render="Model"/>
+	                       	</h:selectOneListbox>
+	                       	Phone Number: <h:inputText value="#{inqCtrl.inquiry.phoneNumber}" size="25" required="true" maxlength="10" label="Phone Number"/>&nbsp;&nbsp;&nbsp;
+							Preferred Model: 
+	                       	<h:selectOneListbox id="Model" value="#{inqCtrl.modelId}" size="1" disabled="#{inqCtrl.makeId == null}" required="true" label="Preferred Model">
+	                       		<f:selectItems value="#{inqCtrl.models}"/>
+	                       		<f:ajax event="change"/>
+	                       	</h:selectOneListbox>
+	                       	Email: <h:inputText value="#{inqCtrl.inquiry.email}" size="25" required="true" label="Email"/>
+	                       	Preferred Body Type:
+	                       	<h:selectOneListbox id="Body" value="#{inqCtrl.inquiry.findVehicles[0].vehicleType}" size="1" disabled="#{inqCtrl.makeId == null}" 
+	                       		required="true" label="Preferred Body Type">
+	                       		<f:selectItems value="#{uiTypes.bodyTypes}"/>
+	                       	</h:selectOneListbox>
+	                       	<h:outputText value="" />
+	                       	<h:outputText value="" />
+	                       	Preferred Mileage:  
+                       		<h:inputText value="#{inqCtrl.inquiry.findVehicles[0].mileage}" maxlength="7" />
+                       		Additional Notes:
+                       		<h:inputTextarea value="#{inqCtrl.inquiry.notes}" />
+                       		
+						</h:panelGrid>
+						<br /><br />																		
+					</div>					
+				</div>
+				<rich:notifyMessages stayTime="3500" nonblocking="true"></rich:notifyMessages>								
+				<h:commandButton action="#{inqCtrl.submitInquiry}" value="Submit My Preferences" />
+			</div>					
+		</div>
+		</section>
+	</h:form>	
+	</ui:define>
+</ui:composition>	
+</html>
