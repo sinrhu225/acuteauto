@@ -16,7 +16,7 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 public abstract class PersistenceManager {
-	
+	public static final String EM_HOLDER = "EMHolder";
 	private EntityManagerFactory entityManagerFactory;
 	private static PersistenceManager instance;
 	
