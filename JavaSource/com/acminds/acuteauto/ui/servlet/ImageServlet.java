@@ -4,9 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,6 @@ import org.apache.commons.logging.LogFactory;
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.utils.Utils;
-import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * 
@@ -33,7 +32,7 @@ public class ImageServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String DEFAULT_IMG = "/images/thumbnails/coming-soon.jpg";
+	//private static final String DEFAULT_IMG = "/images/thumbnails/coming-soon.jpg";
 	/*
 	 * mime types:
 	 * image/bmp
@@ -60,15 +59,16 @@ public class ImageServlet extends HttpServlet {
 			logger.info("Image Id: "+imageId);
 			if(Utils.isEmpty(imageId))
 				return;
-			Image image = new BaseDAO().get(Image.class, Integer.valueOf(imageId.trim()));
+			Image image = BaseDAO.getInstance().get(Image.class, Integer.valueOf(imageId.trim()));
 			if(image == null)
 			{
 				writeDefaultImage(request, response);
 				return;
 			}
+			InputStream str = new FileInputStream(new File(image.getRealLocation()));
 			response.setContentType(image.getMimeType());		
 			OutputStream out = response.getOutputStream();
-			out.write(IOUtils.toByteArray(new FileInputStream(new File(image.getRealLocation()))));
+			out.write(IOUtils.toByteArray(str));
 		} catch (NumberFormatException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);
@@ -96,10 +96,8 @@ public class ImageServlet extends HttpServlet {
 	}
 	
 	private void writeDefaultImage(HttpServletRequest request, HttpServletResponse response) throws IOException, URISyntaxException{
-		URL url = new URL(WebUtils.getHostPath()+":"+request.getLocalPort()+DEFAULT_IMG);
-		logger.info("URI: "+url.toURI());
-		response.setContentType("image/jpeg");
-		OutputStream out = response.getOutputStream();
-		out.write(IOUtils.toByteArray(url.openStream()));		
+		response.getWriter().print("Image Coming Soon");
+		response.setContentType("text/plain");
+		return;				
 	}
 }

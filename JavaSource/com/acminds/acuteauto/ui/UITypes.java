@@ -212,7 +212,7 @@ public class UITypes {
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		list.add(WebUtils.getDefaultSelectItem(false, null));
 		for(Enum e: enums) {
-			list.add(new SelectItem(e.getEnumId(), e.getEnumValue()));
+			list.add(new SelectItem(e.getEnumId(), e.getShortDesc()));
 		}
 		return list;
 	}

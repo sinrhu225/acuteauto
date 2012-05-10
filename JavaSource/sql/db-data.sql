@@ -107,84 +107,85 @@ INSERT INTO ENUM_TYPE VALUES ('20', 'DRIVE_TRAIN_TYPE', 'Type of Drive Train', n
 -- Records for "ENUM"
 -- ----------------------------
 -- USER_TYPE
-INSERT INTO ENUM VALUES ('1', '1', 'Client', null, null);
-INSERT INTO ENUM VALUES ('2', '1', 'Customer', null, null);
+INSERT INTO ENUM VALUES ('1', '1', 'Client', 'Client', null);
+INSERT INTO ENUM VALUES ('2', '1', 'Customer', 'Customer', null);
 -- USER_STATUS
-INSERT INTO ENUM VALUES ('10', '2', 'Active', null, null);
-INSERT INTO ENUM VALUES ('11', '2', 'InActive', null, null);
-INSERT INTO ENUM VALUES ('12', '2', 'Suspended', null, null);
+INSERT INTO ENUM VALUES ('10', '2', 'Active', 'Active', null);
+INSERT INTO ENUM VALUES ('11', '2', 'In Active', 'In Active', null);
+INSERT INTO ENUM VALUES ('12', '2', 'Suspended', 'Suspended', null);
 -- LOCATION_TYPE
-INSERT INTO ENUM VALUES ('20', '3', 'Primary', null, null);
-INSERT INTO ENUM VALUES ('21', '3', 'Secondary', null, null);
+INSERT INTO ENUM VALUES ('20', '3', 'Primary', 'Primary', null);
+INSERT INTO ENUM VALUES ('21', '3', 'Secondary', 'Secondary', null);
 -- STYLE_TYPE
-INSERT INTO ENUM VALUES ('30', '4', 'Trim', null, null);
-INSERT INTO ENUM VALUES ('31', '4', 'Package', null, null);
+INSERT INTO ENUM VALUES ('30', '4', 'Trim', 'Trim', null);
+INSERT INTO ENUM VALUES ('31', '4', 'Package', 'Package', null);
 -- BODY_TYPE
-INSERT INTO ENUM VALUES ('40', '5', 'Sedan', null, null);
-INSERT INTO ENUM VALUES ('41', '5', 'Wagon', null, null);
-INSERT INTO ENUM VALUES ('42', '5', 'Crossover', null, null);
-INSERT INTO ENUM VALUES ('43', '5', 'Luxury', null, null);
-INSERT INTO ENUM VALUES ('44', '5', 'Coupe', null, null);
-INSERT INTO ENUM VALUES ('45', '5', 'Hatchback', null, null);
-INSERT INTO ENUM VALUES ('46', '5', 'SUV', null, null);
-INSERT INTO ENUM VALUES ('47', '5', 'Hybrid', null, null);
-INSERT INTO ENUM VALUES ('48', '5', 'Convertible', null, null);
-INSERT INTO ENUM VALUES ('49', '5', 'Pickup', null, null);
-INSERT INTO ENUM VALUES ('50', '5', 'Minivan', null, null);
-INSERT INTO ENUM VALUES ('51', '5', 'Truck', null, null);
+INSERT INTO ENUM VALUES ('40', '5', 'Sedan', 'Sedan', null);
+INSERT INTO ENUM VALUES ('41', '5', 'Wagon', 'Wagon', null);
+INSERT INTO ENUM VALUES ('42', '5', 'Crossover', 'Crossover', null);
+INSERT INTO ENUM VALUES ('43', '5', 'Luxury', 'Luxury', null);
+INSERT INTO ENUM VALUES ('44', '5', 'Coupe', 'Coupe', null);
+INSERT INTO ENUM VALUES ('45', '5', 'Hatchback', 'Hatchback', null);
+INSERT INTO ENUM VALUES ('46', '5', 'SUV', 'SUV', null);
+INSERT INTO ENUM VALUES ('47', '5', 'Hybrid', 'Hybrid', null);
+INSERT INTO ENUM VALUES ('48', '5', 'Convertible', 'Convertible', null);
+INSERT INTO ENUM VALUES ('49', '5', 'Pickup', 'Pickup', null);
+INSERT INTO ENUM VALUES ('50', '5', 'Minivan', 'Minivan', null);
+INSERT INTO ENUM VALUES ('51', '5', 'Truck', 'Truck', null);
 -- CATEGORY_TYPE
-INSERT INTO ENUM VALUES ('60', '6', 'RESERVED', 'Reserved for Future Use', null);
+INSERT INTO ENUM VALUES ('60', '6', 'Home Page', 'Home Page', 'Categories displayed on Home Page');
+INSERT INTO ENUM VALUES ('61', '6', 'Main Menu', 'Main Menu', 'Main Menu displayed as part of website header');
 -- FUEL_TYPE
-INSERT INTO ENUM VALUES ('70', '7', 'Gasoline', null, null);
-INSERT INTO ENUM VALUES ('71', '7', 'Premium Gasoline', null, null);
-INSERT INTO ENUM VALUES ('72', '7', 'Diesel', null, null);
+INSERT INTO ENUM VALUES ('70', '7', 'Gasoline', 'Gasoline', null);
+INSERT INTO ENUM VALUES ('71', '7', 'Prem Gas', 'Premium Gasoline', null);
+INSERT INTO ENUM VALUES ('72', '7', 'Diesel', 'Diesel', null);
 -- WARRANTY_TYPE
-INSERT INTO ENUM VALUES ('80', '8', 'Standard', null, null);
-INSERT INTO ENUM VALUES ('81', '8', 'Extended', null, null);
-INSERT INTO ENUM VALUES ('82', '8', 'As Is - No Warranty', null, null);
+INSERT INTO ENUM VALUES ('80', '8', 'Standard', 'Standard', null);
+INSERT INTO ENUM VALUES ('81', '8', 'Extended', 'Extended', null);
+INSERT INTO ENUM VALUES ('82', '8', 'No Warranty', 'As Is - No Warranty', null);
 -- VEHICLE_STATUS
-INSERT INTO ENUM VALUES ('90', '9', 'Available', null, null);
-INSERT INTO ENUM VALUES ('91', '9', 'Sold', null, null);
-INSERT INTO ENUM VALUES ('92', '9', 'OnHold', null, null);
+INSERT INTO ENUM VALUES ('90', '9', 'Available', 'Available', null);
+INSERT INTO ENUM VALUES ('91', '9', 'Sold', 'Sold', null);
+INSERT INTO ENUM VALUES ('92', '9', 'On Hold', 'On Hold', null);
 -- CONDITION
-INSERT INTO ENUM VALUES ('100', '10', 'New', null, null);
-INSERT INTO ENUM VALUES ('101', '10', 'Used', null, null);
-INSERT INTO ENUM VALUES ('102', '10', 'Certified', null, null);
+INSERT INTO ENUM VALUES ('100', '10', 'New', 'New', null);
+INSERT INTO ENUM VALUES ('101', '10', 'Used', 'Pre-Owned', null);
+INSERT INTO ENUM VALUES ('102', '10', 'Certified', 'Certified', null);
 -- DISPLAY_TYPE
-INSERT INTO ENUM VALUES ('110', '11', 'Select One', null, null);
-INSERT INTO ENUM VALUES ('111', '11', 'Select Many', null, null);
+INSERT INTO ENUM VALUES ('110', '11', 'Select One', 'Select One', null);
+INSERT INTO ENUM VALUES ('111', '11', 'Select Many', 'Select Many', null);
 -- IMAGE_TYPE
-INSERT INTO ENUM VALUES ('120', '12', 'Primary', null, null);
+INSERT INTO ENUM VALUES ('120', '12', 'Primary', 'Primary', null);
 -- AD_STATUS
-INSERT INTO ENUM VALUES ('130', '13', 'Active', null, null);
-INSERT INTO ENUM VALUES ('131', '13', 'Suspended', null, null);
-INSERT INTO ENUM VALUES ('132', '13', 'Expired', null, null);
+INSERT INTO ENUM VALUES ('130', '13', 'Active', 'Active', null);
+INSERT INTO ENUM VALUES ('131', '13', 'Suspended', 'Suspended', null);
+INSERT INTO ENUM VALUES ('132', '13', 'Expired', 'Expired', null);
 -- AD_UNITS
-INSERT INTO ENUM VALUES ('140', '14', 'Hourly', null, null);
-INSERT INTO ENUM VALUES ('141', '14', 'Daily', null, null);
-INSERT INTO ENUM VALUES ('142', '14', 'Weekly', null, null);
-INSERT INTO ENUM VALUES ('143', '14', 'Monthly', null, null);
-INSERT INTO ENUM VALUES ('144', '14', 'Yearly', null, null);
+INSERT INTO ENUM VALUES ('140', '14', 'Hourly', 'Hourly', null);
+INSERT INTO ENUM VALUES ('141', '14', 'Daily', 'Daily', null);
+INSERT INTO ENUM VALUES ('142', '14', 'Weekly', 'Weekly', null);
+INSERT INTO ENUM VALUES ('143', '14', 'Monthly', 'Monthly', null);
+INSERT INTO ENUM VALUES ('144', '14', 'Yearly', 'Yearly', null);
 -- LOAN_STATUS
-INSERT INTO ENUM VALUES ('150', '15', 'Submitted', null, null);
-INSERT INTO ENUM VALUES ('151', '15', 'Under Review', null, null);
-INSERT INTO ENUM VALUES ('152', '15', 'Approved', null, null);
+INSERT INTO ENUM VALUES ('150', '15', 'Submitted', 'Submitted', null);
+INSERT INTO ENUM VALUES ('151', '15', 'Under Review', 'Under Review', null);
+INSERT INTO ENUM VALUES ('152', '15', 'Approved', 'Approved', null);
 -- FINANCE_TYPE
-INSERT INTO ENUM VALUES ('160', '16', 'Purchase', null, null);
-INSERT INTO ENUM VALUES ('161', '16', 'Lease', null, null);
+INSERT INTO ENUM VALUES ('160', '16', 'Purchase', 'Purchase', null);
+INSERT INTO ENUM VALUES ('161', '16', 'Lease', 'Lease', null);
 -- ACCOUNT_TYPE
-INSERT INTO ENUM VALUES ('170', '17', 'Checking', null, null);
-INSERT INTO ENUM VALUES ('171', '17', 'Savings', null, null);
+INSERT INTO ENUM VALUES ('170', '17', 'Checking', 'Checking', null);
+INSERT INTO ENUM VALUES ('171', '17', 'Savings', 'Savings', null);
 -- INQUIRY_TYPE
-INSERT INTO ENUM VALUES ('180', '18', 'Reserved', 'For future use', null);
+INSERT INTO ENUM VALUES ('180', '18', 'Reserved', 'Reserved', 'For future use');
 -- TRANSMISSION_TYPE
-INSERT INTO ENUM VALUES ('190', '19', 'Automatic', 'Automatic Transmission', null);
-INSERT INTO ENUM VALUES ('191', '19', '5 Speed Manual', '5 Speed Manual Transmission', null);
+INSERT INTO ENUM VALUES ('190', '19', 'Automatic', 'Automatic', 'Automatic Transmission');
+INSERT INTO ENUM VALUES ('191', '19', 'Manual', '5 Speed Manual', '5 Speed Manual Transmission');
 -- DRIVE_TRAIN_TYPE
-INSERT INTO ENUM VALUES ('210', '20', 'AWD', 'All Wheel Drive', null);
-INSERT INTO ENUM VALUES ('211', '20', 'FWD', 'Front Wheel Drive', null);
-INSERT INTO ENUM VALUES ('212', '20', 'RWD', 'Rear Wheel Drive', null);
-INSERT INTO ENUM VALUES ('213', '20', '4WD', 'Four Wheel Drive', null);
+INSERT INTO ENUM VALUES ('210', '20', 'AWD', 'AWD', 'All Wheel Drive');
+INSERT INTO ENUM VALUES ('211', '20', 'FWD', 'FWD', 'Front Wheel Drive');
+INSERT INTO ENUM VALUES ('212', '20', 'RWD', 'RWD', 'Rear Wheel Drive');
+INSERT INTO ENUM VALUES ('213', '20', 'FIVE WD', '4WD', 'Four Wheel Drive');
 
 ------------------------------------
 ------RECORDS FOR FEATURE_GROUP-----

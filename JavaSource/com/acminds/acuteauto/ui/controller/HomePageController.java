@@ -13,6 +13,7 @@ import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
+import com.acminds.acuteauto.utils.EnumConstants.CategoryType;
 import com.acminds.acuteauto.utils.Utils;
 
 /**
@@ -23,7 +24,8 @@ import com.acminds.acuteauto.utils.Utils;
 @ApplicationScoped
 public class HomePageController extends BaseController{
 	private InventoryService service = new InventoryService();
-	private Category homeGroup;
+	private List<Category> menuGroup;
+	private List<Category> homeGroup;
 	private Client dealer;
 	private List<Vehicle> carsForBanner;
 	private List<Vehicle> featuredCars;
@@ -41,9 +43,15 @@ public class HomePageController extends BaseController{
 		return carsForBanner;
 	}
 	
-	public Category getHomeGroup() {
+	public List<Category> getMenuGroup() {
+		if(Utils.isEmpty(menuGroup))
+			menuGroup = service.getBaseDao().createNamedQuery("getCatsByType", Category.class).setParameter("type", CategoryType.MAIN_MENU).getResultList();
+		return menuGroup;
+	}
+	
+	public List<Category> getHomeGroup() {
 		if(Utils.isEmpty(homeGroup))
-			homeGroup = service.getBaseDao().createNamedQuery("getCatByName", Category.class).setParameter("name", "Home Page").getSingleResult();
+			homeGroup = service.getBaseDao().createNamedQuery("getCatsByType", Category.class).setParameter("type", CategoryType.HOME_PAGE).getResultList();
 		return homeGroup;
 	}
 	

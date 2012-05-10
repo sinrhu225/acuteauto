@@ -20,6 +20,7 @@ import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
 import com.acminds.acuteauto.utils.EnumConstants.AdUnits;
+import com.acminds.acuteauto.utils.EnumConstants.CategoryType;
 import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
@@ -89,30 +90,65 @@ public class TestDataCreator {
 			cr.createImage("Image 2", null, null, "/images/vehicles/"+v.getVehicleId()+"/banner1.jpg", true, v);*/
 			/*Category cat = new Category();
 			cat.setName("Home Page");
-			cat.setDescription("Category which holds the group of sub-categories which'll be displayed on the home page");
+			cat.setDescription("Home Page link for main menu");
+			cat.setMiscData("/home.jsf");
+			cat.setCategoryType(CategoryType.MAIN_MENU);
 			cat.setUserInfo(ui);
 			cat.setEffectiveDate(Utils.today());
-			cat.setExpiryDate(Utils.toDate("12/31/2015"));
+			cat.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat.setSeqOrder(1);
 			cr.dao.save(cat, false);
 			Category cat1 = new Category();
-			cat1.setName("Featured Cars");
-			cat1.setDescription("Category which'll group a particular segment of Featured cars");
-			cat1.setCategory(cat);
+			cat1.setName("Inventory");
+			cat1.setDescription("Inventory link for Main Menu");
+			cat1.setMiscData("/pub/inv/invList.jsf");
+			cat1.setCategoryType(CategoryType.MAIN_MENU);
 			cat1.setUserInfo(ui);
 			cat1.setEffectiveDate(Utils.today());
-			cat1.setExpiryDate(Utils.toDate("12/31/2015"));
-			cat1.setSeqOrder(1);
+			cat1.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat1.setSeqOrder(2);
 			cr.dao.save(cat1, false);
 			Category cat2 = new Category();
-			cat2.setName("Best Sellers");
-			cat2.setDescription("Category which'll group a particular segment of Best Selling cars");
-			cat2.setCategory(cat);
+			cat2.setName("Vehicle Finance");
+			cat2.setDescription("Vehicle Finance for Main Menu");
+			cat2.setMiscData("/pub/loan/loanApp.jsf");
+			cat2.setCategoryType(CategoryType.MAIN_MENU);
 			cat2.setUserInfo(ui);
 			cat2.setEffectiveDate(Utils.today());
-			cat2.setExpiryDate(Utils.toDate("12/31/2015"));
-			cat2.setSeqOrder(2);
+			cat2.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat2.setSeqOrder(3);
 			cr.dao.save(cat2, false);
-			for(int i=2; i<6; i++) {
+			Category cat3 = new Category();
+			cat3.setName("Directions");
+			cat3.setDescription("Directions for Main Menu");
+			cat3.setMiscData("/pub/directions.jsf");
+			cat3.setCategoryType(CategoryType.MAIN_MENU);
+			cat3.setUserInfo(ui);
+			cat3.setEffectiveDate(Utils.today());
+			cat3.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat3.setSeqOrder(4);
+			cr.dao.save(cat3, false);
+			Category cat4 = new Category();
+			cat4.setName("Find a Car");
+			cat4.setDescription("Find a Car for Main Menu");
+			cat4.setMiscData("/pub/findCar.jsf");
+			cat4.setCategoryType(CategoryType.MAIN_MENU);
+			cat4.setUserInfo(ui);
+			cat4.setEffectiveDate(Utils.today());
+			cat4.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat4.setSeqOrder(5);
+			cr.dao.save(cat4, false);*/
+			Category cat5 = new Category();
+			cat5.setName("Talk to Us");
+			cat5.setDescription("Talk to Us for Main Menu");
+			cat5.setMiscData("/pub/contactUs.jsf");
+			cat5.setCategoryType(CategoryType.MAIN_MENU);
+			cat5.setUserInfo(ui);
+			cat5.setEffectiveDate(Utils.today());
+			cat5.setExpiryDate(Utils.toDate("12/31/2030"));
+			cat5.setSeqOrder(5);
+			cr.dao.save(cat5, false);
+			/*for(int i=2; i<6; i++) {
 				Vehicle v = cr.dao.get(Vehicle.class, i);
 				v.getCategories().add(cat1);
 				if(i==5)
@@ -124,7 +160,7 @@ public class TestDataCreator {
 				v.getCategories().add(cat2);
 				cr.dao.save(v, false);
 			}*/
-			Client c = cr.dao.createNamedQuery("getDealer", Client.class).getSingleResult();
+			/*Client c = cr.dao.createNamedQuery("getDealer", Client.class).getSingleResult();
 			Location l = new Location();
 			l.setAddress1("500 Ivy Meadow Ln.");
 			l.setAddress2("Apt 3B");
@@ -137,7 +173,7 @@ public class TestDataCreator {
 			l.setLocationType(LocationType.PRIMARY);
 			l.setMailing(true);
 			l.setClient(c);
-			cr.dao.save(l, false);
+			cr.dao.save(l, false);*/
 			cr.dao.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

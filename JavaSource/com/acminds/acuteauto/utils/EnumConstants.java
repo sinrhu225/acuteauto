@@ -10,7 +10,7 @@ public class EnumConstants {
 	public static final int USER_STATUS = 2;
 	public static class UserStatus{
 		public static final int ACTIVE = 10;
-		public static final int INACTIVE = 11;
+		public static final int IN_ACTIVE = 11;
 		public static final int SUSPENDED = 12;
 	}
 
@@ -44,13 +44,14 @@ public class EnumConstants {
 
 	public static final int CATEGORY_TYPE = 6;
 	public static class CategoryType{
-		public static final int RESERVED = 60;
+		public static final int HOME_PAGE = 60;
+		public static final int MAIN_MENU = 61;
 	}
 
 	public static final int FUEL_TYPE = 7;
 	public static class FuelType{
 		public static final int GASOLINE = 70;
-		public static final int PREMIUM_GASOLINE = 71;
+		public static final int PREM_GAS = 71;
 		public static final int DIESEL = 72;
 	}
 
@@ -58,13 +59,14 @@ public class EnumConstants {
 	public static class WarrantyType{
 		public static final int STANDARD = 80;
 		public static final int EXTENDED = 81;
+		public static final int NO_WARRANTY = 82;
 	}
 
 	public static final int VEHICLE_STATUS = 9;
 	public static class VehicleStatus{
 		public static final int AVAILABLE = 90;
 		public static final int SOLD = 91;
-		public static final int ONHOLD = 92;
+		public static final int ON_HOLD = 92;
 	}
 
 	public static final int VEHICLE_CONDITION = 10;
@@ -123,6 +125,20 @@ public class EnumConstants {
 	public static final int INQUIRY_TYPE = 18;
 	public static class InquiryType{
 		public static final int RESERVED = 180;
+	}
+
+	public static final int TRANSMISSION_TYPE = 19;
+	public static class TransmissionType{
+		public static final int AUTOMATIC = 190;
+		public static final int MANUAL = 191;
+	}
+
+	public static final int DRIVE_TRAIN_TYPE = 20;
+	public static class DriveTrainType{
+		public static final int AWD = 210;
+		public static final int FWD = 211;
+		public static final int RWD = 212;
+		public static final int FIVE_WD = 213;
 	}
 
 }

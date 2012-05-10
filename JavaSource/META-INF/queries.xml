@@ -16,6 +16,10 @@
 		<description>Retrieve Category by Name</description>
 		<query>select cat from Category cat where cat.name = :name</query>
 	</named-query>
+	<named-query name="getCatsByType">
+		<description>Retrieve Categories by Type</description>
+		<query>select cat from Category cat where cat.categoryType = :type order by cat.seqOrder</query>
+	</named-query>
 	<named-query name="getDealer">
 		<description>Retrieve the Dealer information</description>
 		<query>select c from Client c</query>

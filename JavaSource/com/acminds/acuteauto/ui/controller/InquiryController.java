@@ -43,6 +43,7 @@ public class InquiryController extends InventoryController {
 		service.getBaseDao().save(inquiry, false);
 		service.getBaseDao().saveAll(inquiry.getFindVehicles(), true);
 		WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "inqSuccess");
+		init();
 		return null;
 	}
 }

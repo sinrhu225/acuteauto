@@ -6,7 +6,6 @@ package com.acminds.acuteauto.persistence;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -15,15 +14,21 @@ import javax.persistence.TypedQuery;
  *
  */
 public class BaseDAO {
-	private EntityManager em = PersistenceManager.getEntityManager();
+	private static BaseDAO dao;
+	
+	public static synchronized BaseDAO getInstance() {
+		if(dao == null)
+			dao = new BaseDAO();
+		return dao;
+	}
 	
 	public <T>T get(Class<T> clazz, Integer id) {
-		return em.find(clazz, id);
+		return PersistenceManager.getEntityManager().find(clazz, id);
 	}
 	
 	public void save(BaseDTO entity, boolean commit) {
 		beginTxn();
-		em.persist(entity);
+		PersistenceManager.getEntityManager().persist(entity);
 		if(commit) commit();
 	}
 	
@@ -31,25 +36,25 @@ public class BaseDAO {
 	public void saveAll(Collection entities, boolean commit) {
 		beginTxn();
 		for(Object entity:entities)
-			em.persist(entity);
+			PersistenceManager.getEntityManager().persist(entity);
 		if(commit) commit();
 	}
 	
 	public void delete(BaseDTO entity, boolean commit) {
 		beginTxn();
-		em.remove(entity);
+		PersistenceManager.getEntityManager().remove(entity);
 		if(commit) commit();
 	}
 	
 	public void deleteAll(List<BaseDTO> entities, boolean commit) {
 		beginTxn();
 		for(BaseDTO entity:entities)
-			em.remove(entity);
+			PersistenceManager.getEntityManager().remove(entity);
 		if(commit) commit();
 	}
 	
 	public void detach(BaseDTO entity) {
-		em.detach(entity);
+		PersistenceManager.getEntityManager().detach(entity);
 	}
 	
 	
@@ -65,30 +70,30 @@ public class BaseDAO {
 	
 	
 	public void commit() {
-		if(em.getTransaction().isActive())
-			em.getTransaction().commit();
+		if(PersistenceManager.getEntityManager().getTransaction().isActive())
+			PersistenceManager.getEntityManager().getTransaction().commit();
 	}
 	
 	public void beginTxn() {
-		if(!em.getTransaction().isActive())
-			em.getTransaction().begin();
+		if(!PersistenceManager.getEntityManager().getTransaction().isActive())
+			PersistenceManager.getEntityManager().getTransaction().begin();
 	}
 	
 	public final void rollback()
 	{
 		clearEntityManager();
-		if(em.getTransaction().isActive())
-			em.getTransaction().rollback();
+		if(PersistenceManager.getEntityManager().getTransaction().isActive())
+			PersistenceManager.getEntityManager().getTransaction().rollback();
 	}
 	
 	public final void flush()
 	{
-		em.flush();
+		PersistenceManager.getEntityManager().flush();
 	}
 	
 	public final void clearEntityManager()
 	{
-		em.clear();
+		PersistenceManager.getEntityManager().clear();
 	}
 	
 	/*
@@ -102,23 +107,23 @@ public class BaseDAO {
 	 */
 
 	public Query createQuery(String query) {
-		return em.createQuery(query);
+		return PersistenceManager.getEntityManager().createQuery(query);
 	}
 	
 	public <T>TypedQuery<T> createQuery(String query, Class<T> clazz) {
-		return em.createQuery(query, clazz);
+		return PersistenceManager.getEntityManager().createQuery(query, clazz);
 	}
 	
 	public Query createNamedQuery(String name) {
-		return em.createNamedQuery(name);
+		return PersistenceManager.getEntityManager().createNamedQuery(name);
 	}
 	
 	public <T>TypedQuery<T> createNamedQuery(String query, Class<T> clazz) {
-		return em.createNamedQuery(query, clazz);
+		return PersistenceManager.getEntityManager().createNamedQuery(query, clazz);
 	}
 	
 	public Query createNativeQuery(String query) {
-		return em.createNativeQuery(query);
+		return PersistenceManager.getEntityManager().createNativeQuery(query);
 	}
 	
 }

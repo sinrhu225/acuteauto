@@ -35,6 +35,7 @@ public abstract class AbstractCategory extends
 	private UserInfo userInfo;
 	private String name;
 	private String description;
+	private String miscData;
 	private Integer categoryType;
 	private Integer seqOrder;
 	private Date effectiveDate;
@@ -90,6 +91,15 @@ public abstract class AbstractCategory extends
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Column(name = "MISC_DATA", length = 250)
+	public String getMiscData() {
+		return this.miscData;
+	}
+
+	public void setMiscData(String miscData) {
+		this.miscData = miscData;
 	}
 
 	@Column(name = "CATEGORY_TYPE")

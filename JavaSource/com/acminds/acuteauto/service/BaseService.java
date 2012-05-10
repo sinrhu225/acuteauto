@@ -10,7 +10,7 @@ import com.acminds.acuteauto.persistence.BaseDAO;
  *
  */
 public class BaseService {
-	private BaseDAO baseDao = new BaseDAO();
+	private BaseDAO baseDao = BaseDAO.getInstance();
 	public BaseDAO getBaseDao() {
 		return baseDao;
 	}
