@@ -5,62 +5,72 @@
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich">
      
-    <div style="position:relative;height:140px">
-    <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign, leftAlign, rightAlign, leftAlign, rightAlign, leftAlign">
-        <h:outputText value="First Name:" />
-        <h:inputText id="fn" value="#{lnCtrl.loanApp.userInfoByApplicant.firstName}" label="First Name" required="true" />
-        <h:outputText value="Middle Initial:" />
-        <h:inputText  id="mi" value="#{lnCtrl.loanApp.userInfoByApplicant.middleName}"  label="Middle Initial"/> 
-        <h:outputText value="Last Name:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.lastName}"  label="Last Name"  required="true" />
-        
-        <h:outputText value="Social Security:" />
-        <h:inputText id="ssn" value="#{lnCtrl.loanApp.userInfoByApplicant.ssn}" label="Social Security" required="true" />
-        <h:outputText value="Date of Birth:" />
-        <h:inputText  id="dob" value="#{lnCtrl.loanApp.userInfoByApplicant.dateOfBirth}"  label="Date of Birth"/> 
-        <h:outputText value="" />
-        <h:outputText value="" />
-        
-        <h:outputText value="License Number:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.dmvLicenseNum}"  label="License Number"  required="true" />
-        <h:outputText value="License State:" />
-        <h:inputText  id="ls" value="#{lnCtrl.loanApp.userInfoByApplicant.licenseState}"  label="License State"  required="true" />
-        <h:outputText value="Expiry Date:" />
-        <h:inputText  id="lexp" value="#{lnCtrl.loanApp.userInfoByApplicant.licenseExpiry}"  label="Expiry Date"  required="true" />
-        
-        <h:outputText value="Address1:" />
-        <h:inputText id="add1" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address1}" label="Address1" required="true" />
-        <h:outputText value="Address2:" />
-        <h:inputText  id="add2" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address2}"  label="Address2"/> 
-        <h:outputText value="City:" />
-        <h:inputText  id="cty" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].city}"  label="City"  required="true" />
-         
-        <h:outputText value="State:" />
-        <h:inputText id="st" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="State" required="true" />
-        <h:outputText value="ZipCode:" />
-        <h:inputText  id="zc" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Zip Code" required="true"/> 
-        <h:outputText value="Country:" />
-        <h:inputText  id="cn" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Country"  required="true" />
-        
-        <h:outputText value="Home Phone:" />
-        <h:inputText id="st" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Home Phone" required="true" />
-        <h:outputText value="Cell Phone:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Cell Phone"/> 
-        <h:outputText value="Email:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Email"  required="true" />
-        
-        <h:outputText value="Residence Type:" />
-        <h:inputText id="st" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Residence Type" required="true" />
-        <h:outputText value="Residence Tenure:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Residence Tenure"/> 
-        <h:outputText value="Mortgage/Rent:" />
-        <h:inputText  id="ln" value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Mortgage/Rent"  required="true" />
-        
-    </h:panelGrid>
-    <div class="navPanel" style="width:100%;">
-        <a4j:commandButton style="float:right" value="Next &gt;&gt;">
-            <rich:toggleControl targetItem="@next" event="click"/>
-        </a4j:commandButton>
-    </div>
+    <div style="position:relative;height:300px; width:100%">
+	    <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
+	    	<f:facet name="header">Applicant Info</f:facet>
+	        <h:outputText value="First Name:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.firstName}" label="First Name"  />
+	        <h:outputText value="Middle Initial:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.middleName}"  label="Middle Initial"/> 
+	        <h:outputText value="Last Name:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.lastName}"  label="Last Name"   />
+	        
+	        <h:outputText value="Social Security:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.ssn}" label="Social Security"  />
+	        <h:outputText value="Date of Birth:" />
+	        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.dateOfBirth}"
+                popup="true" datePattern="MM/dd/yyyy" label="Date of Birth"
+                cellWidth="24px" cellHeight="22px" style="width:200px"
+                disabled="false">
+            </rich:calendar>	       
+	        <h:outputText value="" />
+	        <h:outputText value="" />
+	        
+	        <h:outputText value="License Number:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.dmvLicenseNum}"  label="License Number"   />
+	        <h:outputText value="License State:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.licenseState}"  label="License State"   />
+	        <h:outputText value="Expiry Date:" />
+	        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.licenseExpiry}"
+                popup="true" datePattern="MM/dd/yyyy" label="Expiry Date"
+                cellWidth="24px" cellHeight="22px" style="width:200px"
+                disabled="false">
+            </rich:calendar>
+	        
+	        <h:outputText value="Address1:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address1}" label="Address1"  />
+	        <h:outputText value="Address2:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address2}"  label="Address2"/> 
+	        <h:outputText value="City:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].city}"  label="City"   />
+	         
+	        <h:outputText value="State:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="State"  />
+	        <h:outputText value="ZipCode:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Zip Code" /> 
+	        <h:outputText value="Country:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Country"   />
+	        
+	        <h:outputText value="Home Phone:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Home Phone"  />
+	        <h:outputText value="Cell Phone:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Cell Phone"/> 
+	        <h:outputText value="Email:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Email"   />
+	        
+	        <h:outputText value="Residence Type:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Residence Type"  />
+	        <h:outputText value="Residence Tenure:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Residence Tenure"/> 
+	        <h:outputText value="Mortgage/Rent:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Mortgage/Rent"   />
+	        
+	    </h:panelGrid>
+	    <div class="navPanel" style="width:600px;">
+	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
+	            <rich:toggleControl targetItem="@next" event="click"/>
+	        </a4j:commandButton>
+	    </div>
     </div>
 </ui:composition>

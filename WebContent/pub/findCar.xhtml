@@ -42,18 +42,17 @@
 	                       		required="true" label="Preferred Body Type">
 	                       		<f:selectItems value="#{uiTypes.bodyTypes}"/>
 	                       	</h:selectOneListbox>
-	                       	<h:outputText value="" />
-	                       	<h:outputText value="" />
+	                       	Additional Notes:
+                       		<h:inputTextarea value="#{inqCtrl.inquiry.notes}" />
 	                       	Preferred Mileage:  
                        		<h:inputText value="#{inqCtrl.inquiry.findVehicles[0].mileage}" maxlength="7" />
-                       		Additional Notes:
-                       		<h:inputTextarea value="#{inqCtrl.inquiry.notes}" />
+                       		
                        		
 						</h:panelGrid>
 						<br /><br />																		
 					</div>					
 				</div>
-				<rich:notifyMessages stayTime="3500" nonblocking="true"></rich:notifyMessages>								
+				<rich:notifyMessages stayTime="4000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>								
 				<h:commandButton action="#{inqCtrl.submitInquiry}" value="Submit My Preferences" />
 			</div>					
 		</div>

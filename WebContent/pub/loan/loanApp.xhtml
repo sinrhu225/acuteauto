@@ -6,12 +6,12 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j">
-<ui:composition template="/templates/baseLayout.xhtml">
-	<ui:define name="body">
+<ui:composition template="/home.xhtml">
+	<ui:define name="banner">
 		<h:outputStylesheet>
 	        .col1 { vertical-align:top; }
 	        .col2 { vertical-align:top; width:450px; }
-	        .wizard { width:400px; }
+	        .wizard { width:100%; }
 	        .wform td { vertical-align:top; }
 	        .wfcol1 { text-align: right; white-space:nowrap;}
 	        .wfcol2 { }
@@ -28,35 +28,43 @@
 	        }	 
 	    </h:outputStylesheet>
 	    <br/>
-	    <h:panelGrid width="100%" columns="2" columnClasses="col1,col2">
-	        <rich:panel styleClass="wizard">
-	            <f:facet name="header">
-	            <h:outputText value="Using rich:togglePanel for Wizard-like behaviour" />
-	            </f:facet>
-	            <h:form>
-	                <rich:togglePanel switchType="ajax">
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/appInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/empInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/vehInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/bnkInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/finInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                    <rich:togglePanelItem>
-	                        <ui:include src="/pub/loan/addInfo.xhtml" />
-	                    </rich:togglePanelItem>
-	                </rich:togglePanel>
-	            </h:form>
-	        </rich:panel>	     
-	    </h:panelGrid>
+	    <section id="content">
+		<div class="row-1 p2">	
+			<h3>Loan Application Form</h3>	
+			<div class="wrapper aligncenter">
+				<br />
+				<div class="col-1" style="width:100%;">
+					<div class="box" style="width:100%;">
+						<h:messages/>
+					    <h:panelGrid width="100%" columns="2" columnClasses="col1,col2">
+					            <h:form>
+					                <rich:togglePanel switchType="ajax">
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/appInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/empInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/vehInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/bnkInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/finInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                    <rich:togglePanelItem>
+					                        <ui:include src="/pub/loan/addInfo.xhtml" />
+					                    </rich:togglePanelItem>
+					                </rich:togglePanel>
+					            </h:form>					        	    
+					    </h:panelGrid>
+				    </div>
+			    </div>
+		    </div>
+	    </div>
+	    </section>
 	    <br/>
 	</ui:define>
 </ui:composition>	

@@ -7,7 +7,7 @@
 <ui:composition template="/templates/homeLayout.xhtml">
 	<ui:define name="content">
 		<section id="content">
-			<ui:repeat var="cat" value="#{hmpCtrl.homeGroup.categories}">
+			<ui:repeat var="cat" value="#{hmpCtrl.homeGroup}">
 				<div class="row-1 p2">
 					<h3>#{cat.name}
 					<a class="fright" href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf?makeId=0&amp;modelId=0&amp;year=0&amp;price=0"><strong>View all</strong></a>
@@ -76,7 +76,6 @@
 	                </div>
 	                </div>
 	            </div>
-	            <a class="link-off" href="#"><strong>See all</strong></a>
 	        </div>
 	    </section>
 	</ui:define>
