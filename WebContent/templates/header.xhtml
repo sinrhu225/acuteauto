@@ -35,7 +35,7 @@
         	<nav class="wrapper">
             	<ul class="menu">
             		<ui:repeat var="cat" value="#{hmpCtrl.menuGroup}">
-            			<li><a href="#{facesContext.externalContext.requestContextPath}#{cat.miscData}">#{cat.name}</a></li>            		                	
+            			<li><a class="#{hmpCtrl.activeMenu == cat.name ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}#{cat.miscData}">#{cat.name}</a></li>            		                	
                     </ui:repeat>
                 </ul>
             </nav>

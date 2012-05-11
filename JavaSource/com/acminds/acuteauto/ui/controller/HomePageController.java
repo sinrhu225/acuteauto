@@ -15,6 +15,7 @@ import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
 import com.acminds.acuteauto.utils.EnumConstants.CategoryType;
 import com.acminds.acuteauto.utils.Utils;
+import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author Mansur
@@ -30,6 +31,20 @@ public class HomePageController extends BaseController{
 	private List<Vehicle> carsForBanner;
 	private List<Vehicle> featuredCars;
 	private List<Vehicle> carsForAdvertisement;
+	
+	public String getActiveMenu() {
+		String viewId = WebUtils.getFacesContext().getViewRoot().getViewId().replace("xhtml", "jsf");
+		for(Category cat:getMenuGroup()) {
+			if(!Utils.isEmpty(cat.getMiscData()) && viewId.indexOf(cat.getMiscData())!=-1)
+				return cat.getName();
+		}
+		viewId = viewId.substring(viewId.indexOf("/"), viewId.lastIndexOf("/"));
+		for(Category cat:getMenuGroup()) {
+			if(!Utils.isEmpty(cat.getMiscData()) && cat.getMiscData().indexOf(viewId)!=-1)
+				return cat.getName();
+		}
+		return null;
+	}
 	
 	public Client getDealer() {
 		if(Utils.isEmpty(dealer))
