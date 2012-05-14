@@ -84,15 +84,12 @@ public class WebUtils {
 		return ResourceBundle.getBundle(DEFAULT_RESOURCE_BUNDLE);
 	}
 	
-	public static SelectItem getDefaultSelectItem(boolean isBlank, String value) {
+	public static SelectItem getDefaultSelectItem(String defaultValue) {
 		SelectItem si = null;
-		if(isBlank) {
+		if(Utils.isEmpty(defaultValue)) {
 			si = new SelectItem(0, "");
 		} else {
-			if(Utils.isEmpty(value))
-				si = new SelectItem(0, "Please Select");
-			else
-				si = new SelectItem(0, value);
+			si = new SelectItem(0, defaultValue);
 		}
 		si.setNoSelectionOption(true);
 		return si;

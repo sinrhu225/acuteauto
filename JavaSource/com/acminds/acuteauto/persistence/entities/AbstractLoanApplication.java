@@ -39,6 +39,7 @@ public abstract class AbstractLoanApplication extends
 	private Integer loanTerm;
 	private BigDecimal loanAmount;
 	private BigDecimal downpayment;
+	private String additionalInfo;
 	private Date createDate;
 	private Date updateDate;
 	private List<Applicant> applicants = new ArrayList<Applicant>(0);
@@ -128,6 +129,15 @@ public abstract class AbstractLoanApplication extends
 
 	public void setDownpayment(BigDecimal downpayment) {
 		this.downpayment = downpayment;
+	}
+	
+	@Column(name = "ADDITIONAL_INFO", length = 1000)
+	public String getAdditionalInfo() {
+		return this.additionalInfo;
+	}
+
+	public void setAdditionalInfo(String additionalInfo) {
+		this.additionalInfo = additionalInfo;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

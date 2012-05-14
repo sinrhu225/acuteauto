@@ -23,16 +23,23 @@ import com.acminds.acuteauto.utils.Utils;
  */
 @ManagedBean(name="lnCtrl")
 @ViewScoped
-public class LoanAppController extends BaseController {
+public class LoanAppController extends InventoryController {
 	
 	private LoanApplication loanApp;
+	private boolean acceptTerms;
 	public LoanApplication getLoanApp() {
 		return loanApp;
 	}
 	public void setLoanApp(LoanApplication loanApp) {
 		this.loanApp = loanApp;
 	}
-
+	public boolean isAcceptTerms() {
+		return acceptTerms;
+	}
+	public void setAcceptTerms(boolean acceptTerms) {
+		this.acceptTerms = acceptTerms;
+	}
+	
 	@PostConstruct
 	public void init() {
 		loanApp = new LoanApplication();
@@ -54,6 +61,11 @@ public class LoanAppController extends BaseController {
 	}
 	
 	public String submitLoan() {
+		service.getBaseDao().save(loanApp, false);
+		service.getBaseDao().saveAll(loanApp.getApplicants(), false);
+		service.getBaseDao().saveAll(loanApp.getTradeinInfos(), false);
+		service.getBaseDao().save(loanApp, false);
+		service.getBaseDao().save(loanApp, false);
 		return null;
 	}
 }

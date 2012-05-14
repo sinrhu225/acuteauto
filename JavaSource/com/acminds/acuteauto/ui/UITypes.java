@@ -227,7 +227,7 @@ public class UITypes {
 	public List<SelectItem> getStates() {
 		if(Utils.isEmpty(states)) {
 			states = new ArrayList<SelectItem>();
-			states.add(WebUtils.getDefaultSelectItem(false, null));
+			states.add(WebUtils.getDefaultSelectItem("Please Select"));
 			List<State> list = BaseDAO.getInstance().createNamedQuery("getStates", State.class).getResultList();
 			for(State s:list)
 				states.add(new SelectItem(s.getSymbol(), s.getSymbol()));
@@ -251,7 +251,7 @@ public class UITypes {
 	private List<SelectItem> processEnums(int enumType) {
 		List<Enum> enums = BaseDAO.getInstance().get(EnumType.class, enumType).getEnums();
 		List<SelectItem> list = new ArrayList<SelectItem>();
-		list.add(WebUtils.getDefaultSelectItem(false, null));
+		list.add(WebUtils.getDefaultSelectItem("Please Select"));
 		for(Enum e: enums) {
 			list.add(new SelectItem(e.getEnumId(), e.getShortDesc()));
 		}

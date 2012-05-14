@@ -123,7 +123,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getMakes() {
 		if(Utils.isEmpty(makes)) {
-			makes.add(WebUtils.getDefaultSelectItem(false, "All Makes"));
+			makes.add(WebUtils.getDefaultSelectItem("All Makes"));
 			for(Make m: getAllMakes()) {
 				makes.add(new SelectItem(m.getMakeId(), m.getName()));
 			}
@@ -133,7 +133,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getModels() {
 		models.clear();
-		models.add(WebUtils.getDefaultSelectItem(false, "All Models"));
+		models.add(WebUtils.getDefaultSelectItem("All Models"));
 		if(makeId > 0) {
 			for(Make m: getAllMakes()) {
 				if(makeId == m.getMakeId()) {
@@ -147,7 +147,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getStyles() {
 		styles.clear();
-		styles.add(WebUtils.getDefaultSelectItem(false, "All Styles"));
+		styles.add(WebUtils.getDefaultSelectItem("All Styles"));
 		if(modelId > 0) {
 			for(Make m: getAllMakes()) {
 				if(makeId==m.getMakeId()) {
@@ -165,7 +165,7 @@ public class InventoryController extends BaseController {
 	
 	public List<SelectItem> getYears() {
 		if(Utils.isEmpty(years)) {
-			years.add(WebUtils.getDefaultSelectItem(false, "All Years"));
+			years.add(WebUtils.getDefaultSelectItem("All Years"));
 			for(int i= 2012; i>1991; i--)
 				years.add(new SelectItem(i, String.valueOf(i)));
 		}

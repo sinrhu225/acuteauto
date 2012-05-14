@@ -34,6 +34,7 @@ public abstract class AbstractTradeinInfo extends
 	private Model model;
 	private String color;
 	private Integer mileage;
+	private Integer year;
 	private String vin;
 	private BigDecimal payoffAmount;
 	private Date payoffThruDate;
@@ -106,6 +107,15 @@ public abstract class AbstractTradeinInfo extends
 	@Column(name = "MILEAGE")
 	public Integer getMileage() {
 		return this.mileage;
+	}
+
+	@Column(name = "YEAR")
+	public Integer getYear() {
+		return this.year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 	public void setMileage(Integer mileage) {
