@@ -9,14 +9,15 @@
 	<ui:define name="banner">
 	<h:form>
 		<section id="content">
-		<div class="row-2 p2">		
+		<div class="row-2 p1">		
 			<h3>Help Us Find Your Car</h3>
 			<h4>Please help us know your Best Preference and we'll hunt down the Best Car in town for you.</h4>
 			<div class="wrapper aligncenter">
 				<br />
 				<div class="col-1" style="width:100%;">
-					<div class="box" style="width:70%;">
-						<h:panelGrid width="100%" columns="4" styleClass="thinGreenBorder" 
+					<div class="loanbox" style="width:100%; height:200px;">
+						<div>
+						<h:panelGrid columns="4" styleClass="thinGreenBorder" 
 							columnClasses="rightAlign col-padding, leftAlign boldFont col-padding, rightAlign col-padding, leftAlign boldFont col-padding">
 							First Name: <h:inputText value="#{inqCtrl.inquiry.firstName}" size="25" required="true" label="First Name"/>&nbsp;&nbsp;&nbsp;
 							Preferred Year: 
@@ -49,11 +50,14 @@
                        		
                        		
 						</h:panelGrid>
+						<div class="navPanel">							
+							<h:commandButton styleClass="button1" action="#{inqCtrl.submitInquiry}" value="Submit My Preferences" />
+						</div>
+						</div>
 						<br /><br />																		
 					</div>					
 				</div>
-				<rich:notifyMessages stayTime="4000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>								
-				<h:commandButton styleClass="button1" action="#{inqCtrl.submitInquiry}" value="Submit My Preferences" />
+				<rich:notifyMessages stayTime="4000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>					
 			</div>					
 		</div>
 		</section>

@@ -4,72 +4,27 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich">
-     
-        <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
-	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
-	    	<h:outputText value="First Name:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.firstName}" label="First Name"  />
-	        <h:outputText value="Middle Initial:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.middleName}"  label="Middle Initial"/> 
-	        <h:outputText value="Last Name:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.lastName}"  label="Last Name"   />
-	        
-	        <h:outputText value="Social Security:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.ssn}" label="Social Security"  />
-	        <h:outputText value="Date of Birth:" />
-	        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.dateOfBirth}"
-                popup="true" datePattern="MM/dd/yyyy" label="Date of Birth"
-                cellWidth="24px" cellHeight="22px" style="width:200px"
-                disabled="false">
-            </rich:calendar>	       
+     <div>
+        <h:panelGrid columns="1" columnClasses="leftAlign col-padding" width="100%">
+	    	
+	    	<h:outputText value="Additional Information:" />
+	        <h:inputTextarea value="#{lnCtrl.loanApp.additionalInfo}" label="Additional Information"  rows="5" cols="100"/>
 	        <h:outputText value="" />
-	        <h:outputText value="" />
-	        
-	        <h:outputText value="License Number:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.dmvLicenseNum}"  label="License Number"   />
-	        <h:outputText value="License State:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.licenseState}"  label="License State"   />
-	        <h:outputText value="Expiry Date:" />
-	        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.licenseExpiry}"
-                popup="true" datePattern="MM/dd/yyyy" label="Expiry Date"
-                cellWidth="24px" cellHeight="22px" style="width:200px"
-                disabled="false">
-            </rich:calendar>
-	        
-	        <h:outputText value="Address1:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address1}" label="Address1"  />
-	        <h:outputText value="Address2:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address2}"  label="Address2"/> 
-	        <h:outputText value="City:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].city}"  label="City"   />
-	         
-	        <h:outputText value="State:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="State"  />
-	        <h:outputText value="ZipCode:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Zip Code" /> 
-	        <h:outputText value="Country:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Country"   />
-	        
-	        <h:outputText value="Home Phone:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Home Phone"  />
-	        <h:outputText value="Cell Phone:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Cell Phone"/> 
-	        <h:outputText value="Email:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Email"   />
-	        
-	        <h:outputText value="Residence Type:" />
-	        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Residence Type"  />
-	        <h:outputText value="Residence Tenure:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Residence Tenure"/> 
-	        <h:outputText value="Mortgage/Rent:" />
-	        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Mortgage/Rent"   />	        
+	        <h:panelGroup>
+	        	<h:selectBooleanCheckbox value="#{lnCtrl.acceptTerms}" required="true"/>
+	        	<h:graphicImage value="/images/spacer.gif" width="5"/>
+	        	<h:outputText value="ACKNOWLEDGMENT AND CONSENT:" />
+	        </h:panelGroup>
+	        <h:outputText value="#{msg.loanTerms}"/>
+	        	        
 	    </h:panelGrid>
-	    <h:panelGrid width="80%" columns="2" columnClasses="padding-top, padding-top">
+	    <div class="navPanel">
 	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>
 	        <a4j:commandButton value="Submit  " styleClass="fright button1" action="#{lnCtrl.submitLoan}">
 	            
 	        </a4j:commandButton>
-	    </h:panelGrid>
+	    </div>
+	</div>    
 </ui:composition>

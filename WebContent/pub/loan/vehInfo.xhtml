@@ -4,19 +4,19 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich">
-     
+     <div>
         <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
 	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
 	    	<h:outputText value="First Name:" />
 	        
-	        
 	    </h:panelGrid>
-	    <h:panelGrid width="80%" columns="2" columnClasses="padding-top, padding-top">
+	    <div class="navPanel">
 	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>
 	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
 	            <rich:toggleControl targetItem="@next" event="click"/>
 	        </a4j:commandButton>
-	    </h:panelGrid>
+	    </div>
+	 </div>
 </ui:composition>

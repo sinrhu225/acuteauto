@@ -4,9 +4,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich">
-     
+     <div>
         <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
-	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
+	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding" width="100%">
 	    	
 	    	<h:outputText value="Bank Name:" />
 	        <h:inputText value="#{lnCtrl.loanApp.applicants[0].accounts[0].bankName}" label="Bank Name"  />
@@ -48,12 +48,39 @@
 	        <h:inputText  value="#{lnCtrl.loanApp.applicants[0].accounts[0].location.busPhone}" label="Phone"  />
 	        
 	    </h:panelGrid>
-	    <h:panelGrid width="80%" columns="2" columnClasses="padding-top, padding-top">
+	    <h:graphicImage value="/images/spacer.gif" height="30"/>
+	    <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding" width="100%">
+	    	
+	    	<h:outputText value="Finance Type:" />
+	        <h:selectOneListbox value="#{lnCtrl.loanApp.financeType}" label="Finance Type" size="1">
+	        	<f:selectItems value="#{uiTypes.financeTypes}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Loan Amount:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.loanAmount}"  label="Loan Amount"   />
+	        
+	        <h:outputText value="Down Payment:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.downpayment}"  label="Down Payment"   />
+	        
+	        <h:outputText value="Loan Term (Months):" />
+	        <h:selectOneListbox value="#{lnCtrl.loanApp.loanTerm}" label="Loan Term" size="1">
+	        	<f:selectItem itemValue="12" itemLabel="12"/>
+	        	<f:selectItem itemValue="24" itemLabel="24"/>
+	        	<f:selectItem itemValue="36" itemLabel="36"/>
+	        	<f:selectItem itemValue="48" itemLabel="48"/>
+	        	<f:selectItem itemValue="60" itemLabel="60"/>
+	        </h:selectOneListbox> 
+	        
+	        	        
+	    </h:panelGrid>
+	    <div class="navPanel">
 	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>
 	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
 	            <rich:toggleControl targetItem="@next" event="click"/>
 	        </a4j:commandButton>
-	    </h:panelGrid>
+	    </div>
+	</div>    
 </ui:composition>

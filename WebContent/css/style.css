@@ -516,3 +516,14 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 .loanbox p {margin-bottom:0;}
 .loanbox p strong {font-size:12px;}
 .loanbox strong {font-size:17px; color:#7ac142;}
+
+.navPanel {
+    position:absolute;
+    bottom:0;
+    height:23px;
+    margin:0;
+    padding:2px;
+    width: 60%;
+}
+
+.s1row td { height:25px; }
