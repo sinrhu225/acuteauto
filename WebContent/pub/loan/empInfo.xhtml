@@ -5,73 +5,82 @@
       xmlns:a4j="http://richfaces.org/a4j"
       xmlns:rich="http://richfaces.org/rich">
      
-    <div style="position:relative;height:300px">
-    <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign, leftAlign, rightAlign, leftAlign, rightAlign, leftAlign">
-        <h:outputText value="First Name:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.firstName}" label="First Name"  />
-        <h:outputText value="Middle Initial:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.middleName}"  label="Middle Initial"/> 
-        <h:outputText value="Last Name:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.lastName}"  label="Last Name"   />
-        
-        <h:outputText value="Social Security:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.ssn}" label="Social Security"  />
-        <h:outputText value="Date of Birth:" />
-        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.dateOfBirth}"
-            popup="true" datePattern="MM/dd/yyyy" label="Date of Birth"
-            cellWidth="24px" cellHeight="22px" style="width:200px"
-            disabled="false">
-        </rich:calendar>	 
-        <h:outputText value="" />
-        <h:outputText value="" />
-        
-        <h:outputText value="License Number:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.dmvLicenseNum}"  label="License Number"   />
-        <h:outputText value="License State:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.licenseState}"  label="License State"   />
-        <h:outputText value="Expiry Date:" />
-        <rich:calendar value="#{lnCtrl.loanApp.userInfoByApplicant.licenseExpiry}"
-                popup="true" datePattern="MM/dd/yyyy" label="Expiry Date"
-                cellWidth="24px" cellHeight="22px" style="width:200px"
-                disabled="false">
-            </rich:calendar>
-        
-        <h:outputText value="Address1:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address1}" label="Address1"  />
-        <h:outputText value="Address2:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].address2}"  label="Address2"/> 
-        <h:outputText value="City:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].city}"  label="City"   />
-         
-        <h:outputText value="State:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="State"  />
-        <h:outputText value="ZipCode:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Zip Code" /> 
-        <h:outputText value="Country:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Country"   />
-        
-        <h:outputText value="Home Phone:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Home Phone"  />
-        <h:outputText value="Cell Phone:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Cell Phone"/> 
-        <h:outputText value="Email:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Email"   />
-        
-        <h:outputText value="Residence Type:" />
-        <h:inputText  value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].state}" label="Residence Type"  />
-        <h:outputText value="Residence Tenure:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].zip}"  label="Residence Tenure"/> 
-        <h:outputText value="Mortgage/Rent:" />
-        <h:inputText   value="#{lnCtrl.loanApp.userInfoByApplicant.locations[0].country}"  label="Mortgage/Rent"   />
-        
-    </h:panelGrid>
-    <div class="navPanel" style="width:600px;">
-        <a4j:commandButton value="&lt;&lt;Previous" styleClass="fleft" immediate="true" >
-            <rich:toggleControl targetItem="@prev" event="click" />
-        </a4j:commandButton>
-        <a4j:commandButton value="Next &gt;&gt;" styleClass="fright">
-            <rich:toggleControl targetItem="@next" event="click" />
-        </a4j:commandButton>
-    </div>
-    </div>
+        <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
+	    	
+	    	<h:outputText value="Employer:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.applicants[0].employments[0].employerName}" label="Employer"  />
+	        
+	        <h:outputText value="Monthly Income:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.applicants[0].employments[0].incomeMonthly}"  label="Monthly Income" converter="zeroToBlankConverter"/> 
+	        
+	        <h:outputText value="Occupation:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.applicants[0].employments[0].occupation}"  label="Occupation"   />
+	        
+	        <h:outputText value="Address1:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.applicants[0].employments[0].location.address1}" label="Address1"  />
+	        
+	        <h:outputText value="Address2:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.applicants[0].employments[0].location.address2}"  label="Address2"/> 
+	        
+	        <h:outputText value="City:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.applicants[0].employments[0].location.city}"  label="City"   />
+	         
+	        <h:outputText value="State:" />
+	        <h:selectOneListbox value="#{lnCtrl.loanApp.applicants[0].employments[0].location.state}" label="State" size="1">
+	        	<f:selectItems value="#{uiTypes.states}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Country:" />
+	        <h:selectOneListbox value="#{lnCtrl.loanApp.applicants[0].employments[0].location.country}"  label="Country" size="1">
+	        	<f:selectItems value="#{uiTypes.countries}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="ZipCode:" />
+	        <h:inputText   value="#{lnCtrl.loanApp.applicants[0].employments[0].location.zip}"  label="Zip Code" /> 
+	        
+	        <h:outputText value="Work Phone:" />
+	        <h:inputText  value="#{lnCtrl.loanApp.applicants[0].employments[0].location.busPhone}" label="Work Phone"  />
+	        
+	        <h:outputText value="" />
+	        <h:outputText value="" />
+	        
+	        <h:outputText value="Employment Tenure:" />
+	        <h:panelGroup>
+		        <h:selectOneListbox value="#{lnCtrl.loanApp.applicants[0].employments[0].totalYears}"  label="Employment Tenure" size="1">
+		        	<f:selectItem itemLabel="Years" itemValue=""/>
+		        	<f:selectItem itemLabel="0 Years" itemValue="0"/>
+		        	<f:selectItem itemLabel="1 Years" itemValue="1"/>
+		        	<f:selectItem itemLabel="2 Years" itemValue="2"/>
+		        	<f:selectItem itemLabel="3 Years" itemValue="3"/>
+		        	<f:selectItem itemLabel="4 Years" itemValue="4"/>
+		        	<f:selectItem itemLabel="5+ Years" itemValue="5"/>
+		        </h:selectOneListbox>
+		        <h:graphicImage value="/images/spacer.gif" width="5"/>
+		        <h:selectOneListbox value="#{lnCtrl.loanApp.applicants[0].employments[0].totalMonths}"  label="Employment Tenure" size="1">
+		        	<f:selectItem itemLabel="Months" itemValue=""/>
+		        	<f:selectItem itemLabel="0 Months" itemValue="0"/>
+		        	<f:selectItem itemLabel="1 Months" itemValue="1"/>
+		        	<f:selectItem itemLabel="2 Months" itemValue="2"/>
+		        	<f:selectItem itemLabel="3 Months" itemValue="3"/>
+		        	<f:selectItem itemLabel="4 Months" itemValue="4"/>
+		        	<f:selectItem itemLabel="5 Months" itemValue="5"/>
+		        	<f:selectItem itemLabel="6 Months" itemValue="6"/>
+		        	<f:selectItem itemLabel="7 Months" itemValue="7"/>
+		        	<f:selectItem itemLabel="8 Months" itemValue="8"/>
+		        	<f:selectItem itemLabel="9 Months" itemValue="9"/>
+		        	<f:selectItem itemLabel="10 Months" itemValue="10"/>
+		        	<f:selectItem itemLabel="11 Months" itemValue="11"/>
+		        	<f:selectItem itemLabel="12 Months" itemValue="12"/>
+		        </h:selectOneListbox>
+	        </h:panelGroup> 	        
+	    </h:panelGrid>
+	    <h:panelGrid width="80%" columns="2" columnClasses="padding-top, padding-top">
+	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
+	            <rich:toggleControl targetItem="@prev" event="click" />
+	        </a4j:commandButton>
+	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
+	            <rich:toggleControl targetItem="@next" event="click"/>
+	        </a4j:commandButton>
+	    </h:panelGrid>
 </ui:composition>

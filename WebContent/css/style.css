@@ -133,7 +133,7 @@ banner .row-3 .col-1 {width:276px; margin-right:13px;}
 banner .row-3 .col-2 {width:721px; color:#55544c; position:relative; background:#fff;}
 banner .row-3 .col-2 .padding {padding:15px 20px 0;}
 
-h1 {float:left; padding:32px 0 0 0; position:relative; font-size:18px; line-height:1.2em; color:#4c4c4c; text-transform:uppercase; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
+h1 {float:left; padding:22px 0 0 0; position:relative; font-size:18px; line-height:1.2em; color:#4c4c4c; text-transform:uppercase; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;}
 .logo {float:left; font-size:70px; line-height:1.2em; color:#7ac142;}
 .logo:hover {color:#4c4c4c;} 
 h1 strong {font-weight:normal; float:left; padding-top:48px;}
@@ -200,8 +200,8 @@ h4 span {color:#7ac142;}
 .button strong strong {padding:0px 19px 0px; background:url(../images/button-right.gif) right 0 no-repeat;}
 .button:hover {color:#fff;}
 
-.button1 {display:inline-block; font-size:11px; padding:4px 10px 4px 10px; color:#fff; background:#8e8c7f;}
-.button1 strong {display:inline-block; padding-right:12px; cursor:pointer; background:url(../images/marker-2.gif) right 7px no-repeat;}
+.button1 {display:inline-block; font-size:11px; padding:4px 10px 4px 10px; color:#fff; background:#8e8c7f; cursor:pointer; }
+.button1 strong {display:inline-block; padding-right:12px; background:url(../images/marker-2.gif) right 7px no-repeat;}
 .button1:hover {background:#7ac142;}
 
 .list-1 li {line-height:19px; padding-left:10px; background:url(../images/marker-3.gif) 0 8px no-repeat;}
@@ -507,4 +507,12 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 .thinGreenBorder {
 	border: thin;
 	border-color: #7ac142;
-}	
+}
+
+.loanbox {float:left; font-size:12px; line-height:20px; color:#55544c; font-weight:bold; overflow:hidden;}
+.loanbox a {color:#55544c;} 
+.loanbox div {padding:5px 20px 18px; overflow:hidden;}
+.loanbox div a {float:right; font-size:11px; padding-right:12px; background:url(../images/marker-1.gif) right 8px no-repeat;}
+.loanbox p {margin-bottom:0;}
+.loanbox p strong {font-size:12px;}
+.loanbox strong {font-size:17px; color:#7ac142;}
