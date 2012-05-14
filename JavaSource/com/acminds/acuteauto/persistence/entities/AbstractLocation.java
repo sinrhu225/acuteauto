@@ -1,8 +1,9 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
-import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import com.acminds.acuteauto.persistence.dto.*;
 
@@ -26,9 +28,7 @@ public abstract class AbstractLocation extends
 
 	private Integer locationId;
 	private Client client;
-	private Employment employment;
 	private UserInfo userInfo;
-	private Account account;
 	private int locationType;
 	private String locationDesc;
 	private String address1;
@@ -38,14 +38,14 @@ public abstract class AbstractLocation extends
 	private String state;
 	private String homePhone;
 	private String cellPhone;
-	private String busNumber;
+	private String busPhone;
 	private String email;
 	private String country;
 	private Boolean mailing;
-	private Boolean rented;
-	private BigDecimal rentAmount;
-	private Integer periodOfStay;
 	private String notes;
+	private List<Residence> residences = new ArrayList<Residence>(0);
+	private List<Account> accounts = new ArrayList<Account>(0);
+	private List<Employment> employments = new ArrayList<Employment>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -69,16 +69,6 @@ public abstract class AbstractLocation extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "EMPLOYER_ID")
-	public Employment getEmployment() {
-		return this.employment;
-	}
-
-	public void setEmployment(Employment employment) {
-		this.employment = employment;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_INFO_ID")
 	public UserInfo getUserInfo() {
 		return this.userInfo;
@@ -86,16 +76,6 @@ public abstract class AbstractLocation extends
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ACCOUNT_ID")
-	public Account getAccount() {
-		return this.account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
 	}
 
 	@Column(name = "LOCATION_TYPE", nullable = false)
@@ -179,13 +159,13 @@ public abstract class AbstractLocation extends
 		this.cellPhone = cellPhone;
 	}
 
-	@Column(name = "BUS_NUMBER", length = 10)
-	public String getBusNumber() {
-		return this.busNumber;
+	@Column(name = "BUS_PHONE", length = 15)
+	public String getBusPhone() {
+		return this.busPhone;
 	}
 
-	public void setBusNumber(String busNumber) {
-		this.busNumber = busNumber;
+	public void setBusPhone(String busPhone) {
+		this.busPhone = busPhone;
 	}
 
 	@Column(name = "EMAIL", nullable = false, length = 100)
@@ -215,33 +195,6 @@ public abstract class AbstractLocation extends
 		this.mailing = mailing;
 	}
 
-	@Column(name = "RENTED")
-	public Boolean getRented() {
-		return this.rented;
-	}
-
-	public void setRented(Boolean rented) {
-		this.rented = rented;
-	}
-
-	@Column(name = "RENT_AMOUNT", precision = 8)
-	public BigDecimal getRentAmount() {
-		return this.rentAmount;
-	}
-
-	public void setRentAmount(BigDecimal rentAmount) {
-		this.rentAmount = rentAmount;
-	}
-
-	@Column(name = "PERIOD_OF_STAY")
-	public Integer getPeriodOfStay() {
-		return this.periodOfStay;
-	}
-
-	public void setPeriodOfStay(Integer periodOfStay) {
-		this.periodOfStay = periodOfStay;
-	}
-
 	@Column(name = "NOTES", length = 200)
 	public String getNotes() {
 		return this.notes;
@@ -249,6 +202,33 @@ public abstract class AbstractLocation extends
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
+	public List<Residence> getResidences() {
+		return this.residences;
+	}
+
+	public void setResidences(List<Residence> residences) {
+		this.residences = residences;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
+	public List<Account> getAccounts() {
+		return this.accounts;
+	}
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "location")
+	public List<Employment> getEmployments() {
+		return this.employments;
+	}
+
+	public void setEmployments(List<Employment> employments) {
+		this.employments = employments;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated May 4, 2012 3:55:01 PM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -35,11 +35,6 @@ public abstract class AbstractUserInfo extends
 	private String firstName;
 	private String middleName;
 	private String lastName;
-	private Date dateOfBirth;
-	private Integer ssn;
-	private Integer dmvLicenseNum;
-	private String licenseState;
-	private Date licenseExpiry;
 	private String userName;
 	private String password;
 	private int userType;
@@ -47,17 +42,13 @@ public abstract class AbstractUserInfo extends
 	private Date lastLoginDate;
 	private Date createDate;
 	private List<Inquiry> inquiries = new ArrayList<Inquiry>(0);
-	private List<Employment> employments = new ArrayList<Employment>(0);
 	private List<Advertisement> advertisements = new ArrayList<Advertisement>(0);
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
 	private List<LoanApplication> loanApplicationsForCreatedBy = new ArrayList<LoanApplication>(
 			0);
-	private List<Account> accounts = new ArrayList<Account>(0);
 	private List<LoanApplication> loanApplicationsForUpdatedBy = new ArrayList<LoanApplication>(
 			0);
 	private List<Location> locations = new ArrayList<Location>(0);
-	private List<LoanApplication> loanApplicationsForApplicant = new ArrayList<LoanApplication>(
-			0);
 	private List<Category> categories = new ArrayList<Category>(0);
 
 	@Id
@@ -116,53 +107,6 @@ public abstract class AbstractUserInfo extends
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATE_OF_BIRTH", length = 10)
-	public Date getDateOfBirth() {
-		return this.dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	@Column(name = "SSN")
-	public Integer getSsn() {
-		return this.ssn;
-	}
-
-	public void setSsn(Integer ssn) {
-		this.ssn = ssn;
-	}
-
-	@Column(name = "DMV_LICENSE_NUM")
-	public Integer getDmvLicenseNum() {
-		return this.dmvLicenseNum;
-	}
-
-	public void setDmvLicenseNum(Integer dmvLicenseNum) {
-		this.dmvLicenseNum = dmvLicenseNum;
-	}
-
-	@Column(name = "LICENSE_STATE", length = 2)
-	public String getLicenseState() {
-		return this.licenseState;
-	}
-
-	public void setLicenseState(String licenseState) {
-		this.licenseState = licenseState;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "LICENSE_EXPIRY", length = 10)
-	public Date getLicenseExpiry() {
-		return this.licenseExpiry;
-	}
-
-	public void setLicenseExpiry(Date licenseExpiry) {
-		this.licenseExpiry = licenseExpiry;
 	}
 
 	@Column(name = "USER_NAME", unique = true, nullable = false, length = 40)
@@ -231,15 +175,6 @@ public abstract class AbstractUserInfo extends
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
-	public List<Employment> getEmployments() {
-		return this.employments;
-	}
-
-	public void setEmployments(List<Employment> employments) {
-		this.employments = employments;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
 	public List<Advertisement> getAdvertisements() {
 		return this.advertisements;
 	}
@@ -267,15 +202,6 @@ public abstract class AbstractUserInfo extends
 		this.loanApplicationsForCreatedBy = loanApplicationsForCreatedBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
-	public List<Account> getAccounts() {
-		return this.accounts;
-	}
-
-	public void setAccounts(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfoByUpdatedBy")
 	public List<LoanApplication> getLoanApplicationsForUpdatedBy() {
 		return this.loanApplicationsForUpdatedBy;
@@ -293,16 +219,6 @@ public abstract class AbstractUserInfo extends
 
 	public void setLocations(List<Location> locations) {
 		this.locations = locations;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfoByApplicant")
-	public List<LoanApplication> getLoanApplicationsForApplicant() {
-		return this.loanApplicationsForApplicant;
-	}
-
-	public void setLoanApplicationsForApplicant(
-			List<LoanApplication> loanApplicationsForApplicant) {
-		this.loanApplicationsForApplicant = loanApplicationsForApplicant;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")

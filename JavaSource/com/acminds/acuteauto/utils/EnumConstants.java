@@ -141,4 +141,10 @@ public class EnumConstants {
 		public static final int FIVE_WD = 213;
 	}
 
+	public static final int RESIDENCE_TYPE = 21;
+	public static class ResidenceType{
+		public static final int OWNED = 220;
+		public static final int RENTED = 221;
+	}
+
 }

@@ -34,7 +34,7 @@ public class WebUtils {
 			getSession().setAttribute(name, value);
 	}
 	
-	private static FacesContext getFacesContext() {
+	public static FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
 	

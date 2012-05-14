@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.FetchType;
@@ -26,6 +26,7 @@ public abstract class AbstractFindVehicle extends
 	private Integer findVehicleId;
 	private Inquiry inquiry;
 	private Model model;
+	private Style style;
 	private Integer vehicleType;
 	private Integer mileage;
 
@@ -58,6 +59,16 @@ public abstract class AbstractFindVehicle extends
 
 	public void setModel(Model model) {
 		this.model = model;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "STYLE_ID")
+	public Style getStyle() {
+		return this.style;
+	}
+
+	public void setStyle(Style style) {
+		this.style = style;
 	}
 
 	@Column(name = "VEHICLE_TYPE")

@@ -11,8 +11,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.model.SelectItem;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
+import com.acminds.acuteauto.persistence.dto.Country;
 import com.acminds.acuteauto.persistence.dto.Enum;
 import com.acminds.acuteauto.persistence.dto.EnumType;
+import com.acminds.acuteauto.persistence.dto.State;
 import com.acminds.acuteauto.utils.EnumConstants;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
@@ -42,6 +44,9 @@ public class UITypes {
 	private List<SelectItem> financeTypes;
 	private List<SelectItem> accountTypes;
 	private List<SelectItem> inquiryTypes;
+	private List<SelectItem> residenceTypes;
+	private List<SelectItem> states;
+	private List<SelectItem> countries;
 	
 	/**
 	 * @return the userTypes
@@ -206,9 +211,45 @@ public class UITypes {
 		return inquiryTypes;
 	}
 	
+	/**
+	 * @return the residenceTypes
+	 */
+	public List<SelectItem> getResidenceTypes() {
+		if(Utils.isEmpty(residenceTypes)) {
+			residenceTypes = processEnums(EnumConstants.RESIDENCE_TYPE);			
+		}
+		return residenceTypes;
+	}
+	
+	/**
+	 * @return the states
+	 */
+	public List<SelectItem> getStates() {
+		if(Utils.isEmpty(states)) {
+			states = new ArrayList<SelectItem>();
+			states.add(WebUtils.getDefaultSelectItem(false, null));
+			List<State> list = BaseDAO.getInstance().createNamedQuery("getStates", State.class).getResultList();
+			for(State s:list)
+				states.add(new SelectItem(s.getSymbol(), s.getSymbol()));
+		}
+		return states;
+	}
+	
+	/**
+	 * @return the countries
+	 */
+	public List<SelectItem> getCountries() {
+		if(Utils.isEmpty(countries)) {
+			countries = new ArrayList<SelectItem>();
+			List<Country> list = BaseDAO.getInstance().createNamedQuery("getCountries", Country.class).getResultList();
+			for(Country s:list)
+				countries.add(new SelectItem(s.getSymbol(), s.getSymbol()));
+		}
+		return countries;
+	}
+	
 	private List<SelectItem> processEnums(int enumType) {
-		BaseDAO dao = new BaseDAO();
-		List<Enum> enums = dao.get(EnumType.class, enumType).getEnums();
+		List<Enum> enums = BaseDAO.getInstance().get(EnumType.class, enumType).getEnums();
 		List<SelectItem> list = new ArrayList<SelectItem>();
 		list.add(WebUtils.getDefaultSelectItem(false, null));
 		for(Enum e: enums) {
@@ -216,6 +257,5 @@ public class UITypes {
 		}
 		return list;
 	}
-	
-	
+		
 }

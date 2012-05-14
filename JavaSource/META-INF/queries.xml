@@ -24,4 +24,12 @@
 		<description>Retrieve the Dealer information</description>
 		<query>select c from Client c</query>
 	</named-query>
+	<named-query name="getStates">
+		<description>Retrieve all the States</description>
+		<query>from State</query>
+	</named-query>
+	<named-query name="getCountries">
+		<description>Retrieve all the Countries</description>
+		<query>from Country</query>
+	</named-query>
 </entity-mappings>

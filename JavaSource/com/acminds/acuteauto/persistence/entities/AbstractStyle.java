@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +39,7 @@ public abstract class AbstractStyle extends
 	private List<Feature> features = new ArrayList<Feature>(0);
 	private List<Mileage> mileages = new ArrayList<Mileage>(0);
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
+	private List<TradeinInfo> tradeinInfos = new ArrayList<TradeinInfo>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -116,7 +117,7 @@ public abstract class AbstractStyle extends
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "RL_STYLE_FEATURE", joinColumns = { @JoinColumn(name = "STYLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
+	@JoinTable(name = "RL_STYLE_FEATURE", catalog = "javaweb_test", joinColumns = { @JoinColumn(name = "STYLE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "FEATURE_ID", nullable = false, updatable = false) })
 	public List<Feature> getFeatures() {
 		return this.features;
 	}
@@ -141,6 +142,15 @@ public abstract class AbstractStyle extends
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "style")
+	public List<TradeinInfo> getTradeinInfos() {
+		return this.tradeinInfos;
+	}
+
+	public void setTradeinInfos(List<TradeinInfo> tradeinInfos) {
+		this.tradeinInfos = tradeinInfos;
 	}
 
 }

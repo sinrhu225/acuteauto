@@ -14,7 +14,9 @@
 		<class>com.acminds.acuteauto.persistence.entities.AbstractMake</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractLocation</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractLoanApplication</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractInquiry</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractImage</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractFindVehicle</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractFeatureGroup</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractFeature</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractEnumType</class>
@@ -36,7 +38,9 @@
 		<class>com.acminds.acuteauto.persistence.dto.Make</class>
 		<class>com.acminds.acuteauto.persistence.dto.Location</class>
 		<class>com.acminds.acuteauto.persistence.dto.LoanApplication</class>
+		<class>com.acminds.acuteauto.persistence.dto.Inquiry</class>
 		<class>com.acminds.acuteauto.persistence.dto.Image</class>
+		<class>com.acminds.acuteauto.persistence.dto.FindVehicle</class>
 		<class>com.acminds.acuteauto.persistence.dto.FeatureGroup</class>
 		<class>com.acminds.acuteauto.persistence.dto.Feature</class>
 		<class>com.acminds.acuteauto.persistence.dto.EnumType</class>
@@ -47,10 +51,12 @@
 		<class>com.acminds.acuteauto.persistence.dto.Category</class>
 		<class>com.acminds.acuteauto.persistence.dto.Advertisement</class>
 		<class>com.acminds.acuteauto.persistence.dto.Account</class>
-		<class>com.acminds.acuteauto.persistence.entities.AbstractFindVehicle</class>
-		<class>com.acminds.acuteauto.persistence.entities.AbstractInquiry</class>
-		<class>com.acminds.acuteauto.persistence.dto.FindVehicle</class>
-		<class>com.acminds.acuteauto.persistence.dto.Inquiry</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractApplicant</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractResidence</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractTradeinInfo</class>
+		<class>com.acminds.acuteauto.persistence.dto.Applicant</class>
+		<class>com.acminds.acuteauto.persistence.dto.Residence</class>
+		<class>com.acminds.acuteauto.persistence.dto.TradeinInfo</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>

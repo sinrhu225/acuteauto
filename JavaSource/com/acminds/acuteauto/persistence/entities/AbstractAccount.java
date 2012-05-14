@@ -1,10 +1,7 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,9 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.acminds.acuteauto.persistence.dto.*;
 
@@ -30,13 +24,12 @@ public abstract class AbstractAccount extends
 	private static final long serialVersionUID = 1L;
 
 	private Integer accountId;
-	private UserInfo userInfo;
+	private Applicant applicant;
+	private Location location;
 	private String bankName;
 	private int accountType;
-	private int accountNumber;
-	private Integer routingNumber;
-	private Date createDate;
-	private List<Location> locations = new ArrayList<Location>(0);
+	private String accountNumber;
+	private String routingNumber;
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -50,13 +43,23 @@ public abstract class AbstractAccount extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_INFO_ID", nullable = false)
-	public UserInfo getUserInfo() {
-		return this.userInfo;
+	@JoinColumn(name = "APPLICANT_ID", nullable = false)
+	public Applicant getApplicant() {
+		return this.applicant;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
-		this.userInfo = userInfo;
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "LOCATION_ID", nullable = false)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	@Column(name = "BANK_NAME", nullable = false, length = 100)
@@ -77,41 +80,22 @@ public abstract class AbstractAccount extends
 		this.accountType = accountType;
 	}
 
-	@Column(name = "ACCOUNT_NUMBER", nullable = false)
-	public int getAccountNumber() {
+	@Column(name = "ACCOUNT_NUMBER", nullable = false, length = 20)
+	public String getAccountNumber() {
 		return this.accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 
-	@Column(name = "ROUTING_NUMBER")
-	public Integer getRoutingNumber() {
+	@Column(name = "ROUTING_NUMBER", length = 9)
+	public String getRoutingNumber() {
 		return this.routingNumber;
 	}
 
-	public void setRoutingNumber(Integer routingNumber) {
+	public void setRoutingNumber(String routingNumber) {
 		this.routingNumber = routingNumber;
-	}
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATE_DATE", nullable = false, length = 19)
-	public Date getCreateDate() {
-		return this.createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "account")
-	public List<Location> getLocations() {
-		return this.locations;
-	}
-
-	public void setLocations(List<Location> locations) {
-		this.locations = locations;
 	}
 
 }

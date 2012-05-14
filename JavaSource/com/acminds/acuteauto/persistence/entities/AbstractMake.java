@@ -1,6 +1,6 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +32,7 @@ public abstract class AbstractMake extends
 	private List<Feature> features = new ArrayList<Feature>(0);
 	private List<Model> models = new ArrayList<Model>(0);
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
+	private List<TradeinInfo> tradeinInfos = new ArrayList<TradeinInfo>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -105,6 +106,15 @@ public abstract class AbstractMake extends
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "make")
+	public List<TradeinInfo> getTradeinInfos() {
+		return this.tradeinInfos;
+	}
+
+	public void setTradeinInfos(List<TradeinInfo> tradeinInfos) {
+		this.tradeinInfos = tradeinInfos;
 	}
 
 }

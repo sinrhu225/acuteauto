@@ -1,9 +1,11 @@
 package com.acminds.acuteauto.persistence.entities;
 
-// Generated Mar 3, 2012 9:48:22 AM by Hibernate Tools 3.4.0.CR1
+// Generated May 13, 2012 8:21:43 PM by Hibernate Tools 3.4.0.CR1
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,7 +31,6 @@ public abstract class AbstractLoanApplication extends
 	private static final long serialVersionUID = 1L;
 
 	private Integer loanApplicationId;
-	private UserInfo userInfoByApplicant;
 	private Vehicle vehicle;
 	private UserInfo userInfoByUpdatedBy;
 	private UserInfo userInfoByCreatedBy;
@@ -39,6 +41,8 @@ public abstract class AbstractLoanApplication extends
 	private BigDecimal downpayment;
 	private Date createDate;
 	private Date updateDate;
+	private List<Applicant> applicants = new ArrayList<Applicant>(0);
+	private List<TradeinInfo> tradeinInfos = new ArrayList<TradeinInfo>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -52,16 +56,6 @@ public abstract class AbstractLoanApplication extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "APPLICANT", nullable = false)
-	public UserInfo getUserInfoByApplicant() {
-		return this.userInfoByApplicant;
-	}
-
-	public void setUserInfoByApplicant(UserInfo userInfoByApplicant) {
-		this.userInfoByApplicant = userInfoByApplicant;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "VEHICLE_ID", nullable = false)
 	public Vehicle getVehicle() {
 		return this.vehicle;
@@ -72,7 +66,7 @@ public abstract class AbstractLoanApplication extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "UPDATED_BY", nullable = false)
+	@JoinColumn(name = "UPDATED_BY")
 	public UserInfo getUserInfoByUpdatedBy() {
 		return this.userInfoByUpdatedBy;
 	}
@@ -82,7 +76,7 @@ public abstract class AbstractLoanApplication extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CREATED_BY", nullable = false)
+	@JoinColumn(name = "CREATED_BY")
 	public UserInfo getUserInfoByCreatedBy() {
 		return this.userInfoByCreatedBy;
 	}
@@ -154,6 +148,24 @@ public abstract class AbstractLoanApplication extends
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loanApplication")
+	public List<Applicant> getApplicants() {
+		return this.applicants;
+	}
+
+	public void setApplicants(List<Applicant> applicants) {
+		this.applicants = applicants;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "loanApplication")
+	public List<TradeinInfo> getTradeinInfos() {
+		return this.tradeinInfos;
+	}
+
+	public void setTradeinInfos(List<TradeinInfo> tradeinInfos) {
+		this.tradeinInfos = tradeinInfos;
 	}
 
 }

@@ -102,6 +102,7 @@ INSERT INTO ENUM_TYPE VALUES ('17', 'ACCOUNT_TYPE', 'Type of Account', null);
 INSERT INTO ENUM_TYPE VALUES ('18', 'INQUIRY_TYPE', 'Type of Inquiry', null);
 INSERT INTO ENUM_TYPE VALUES ('19', 'TRANSMISSION_TYPE', 'Type of Transmission', null);
 INSERT INTO ENUM_TYPE VALUES ('20', 'DRIVE_TRAIN_TYPE', 'Type of Drive Train', null);
+INSERT INTO ENUM_TYPE VALUES ('21', 'RESIDENCE_TYPE', 'Type of Residence', null);
 
 -- ----------------------------
 -- Records for "ENUM"
@@ -186,6 +187,9 @@ INSERT INTO ENUM VALUES ('210', '20', 'AWD', 'AWD', 'All Wheel Drive');
 INSERT INTO ENUM VALUES ('211', '20', 'FWD', 'FWD', 'Front Wheel Drive');
 INSERT INTO ENUM VALUES ('212', '20', 'RWD', 'RWD', 'Rear Wheel Drive');
 INSERT INTO ENUM VALUES ('213', '20', 'FIVE WD', '4WD', 'Four Wheel Drive');
+-- RESIDENCE_TYPE
+INSERT INTO ENUM VALUES ('220', '21', 'OWNED', 'Owned', 'Owned Property');
+INSERT INTO ENUM VALUES ('221', '21', 'RENTED', 'Rented', 'Rented Property');
 
 ------------------------------------
 ------RECORDS FOR FEATURE_GROUP-----
