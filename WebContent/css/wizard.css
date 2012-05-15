@@ -11,6 +11,7 @@
 .wizard-steps div {
     position:relative;
     float: left;
+    padding: 0px 0px 18px;
 }
 /* = STEP NUMBERS
 ----------------------------*/
