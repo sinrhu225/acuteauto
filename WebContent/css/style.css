@@ -511,8 +511,8 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 
 .loanbox {float:left; font-size:12px; line-height:20px; color:#55544c; font-weight:bold; overflow:hidden;}
 .loanbox a {color:#55544c;} 
-.loanbox div {padding:5px 20px 18px; overflow:hidden;}
-.loanbox div a {float:right; font-size:11px; padding-right:12px; background:url(../images/marker-1.gif) right 8px no-repeat;}
+.loanbox div {padding:0px 0px 18px;}
+
 .loanbox p {margin-bottom:0;}
 .loanbox p strong {font-size:12px;}
 .loanbox strong {font-size:17px; color:#7ac142;}
@@ -523,7 +523,10 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
     height:23px;
     margin:0;
     padding:2px;
-    width: 60%;
+    width: 70%;
 }
 
 .s1row td { height:25px; }
+
+/*  WIZARD STYLES  */
+
