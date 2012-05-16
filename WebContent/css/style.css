@@ -490,7 +490,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 }
 
 .subHeader {
-	font-size:18px; 
+	font-size:14px; 
 	padding:5px 5px;
 	line-height:1.2em; 
 	color:#fff; 
@@ -505,7 +505,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 }
 
 .thinGreenBorder {
-	border: thin;
+	border: thin 1px;
 	border-color: #7ac142;
 }
 

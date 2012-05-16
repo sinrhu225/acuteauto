@@ -13,10 +13,41 @@
 			<div><a href="#"><span>5</span> TradeIn Info</a></div>
 			<div><a href="#"><span>6</span> Confirmation</a></div>
 		</div>
-        <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
-	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding">
-	    	<h:outputText value="First Name:" />
-	        
+		<h:panelGroup styleClass="fleft container" style="padding-bottom: 16px;">
+			<h:outputText value="Find and Select your Car " styleClass="text-top"/>
+			<h:commandButton image="/images/search.png">
+		        <rich:componentControl target="CarsPopup" operation="show" />		        
+		    </h:commandButton>
+		</h:panelGroup>
+	 	<h:panelGrid id="VehicleGrid" width="70%" columnClasses="centerAlign">
+			<h:panelGrid rowClasses="s1row" columns="4" styleClass="fright" 
+				columnClasses="rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding" 
+	        	rendered="#{lnCtrl.car != null}">
+		    	<f:facet name="header">
+		    		<h:outputText value="#{lnCtrl.car.make.name} - #{lnCtrl.car.model.name} - #{lnCtrl.car.style.name}" style="font-size:17px; color:#7ac142;"/>
+		    	</f:facet>
+		    	<h:outputText value="Year:" />
+		    	<h:inputText value="#{lnCtrl.car.year}" disabled="true"/>
+		    	<h:outputText value="Status:" />
+	    		<h:inputText value="#{lnCtrl.car.status}" converter="enumConverter" disabled="true"/>
+	    		<h:outputText value="Mileage:" />
+	    		<h:inputText value="#{lnCtrl.car.mileage}" disabled="true"/>
+	    		<h:outputText value="Exterior:" />
+	    		<h:inputText value="#{lnCtrl.car.colorExt}" disabled="true"/>
+	    		<h:outputText value="Interior:" />
+	    		<h:inputText value="#{lnCtrl.car.colorInt}" disabled="true"/>
+	    		<h:outputText value="VIN#: "/>
+	            <h:inputText value="#{lnCtrl.car.vin}" size="20" disabled="true"/>			
+	            <h:outputText value="Warranty: "/>
+	            <h:inputText value="#{lnCtrl.car.warrantyType}" converter="enumConverter" disabled="true"/>
+	            <h:outputText value="Price:" />
+	            <h:inputText value="#{lnCtrl.car.salePrice}" rendered="#{lnCtrl.car.specialPrice==null}" disabled="true">
+	           		<f:convertNumber pattern="$0,000" />
+	           	</h:inputText>
+	           	<h:inputText value="#{lnCtrl.car.specialPrice}" rendered="#{lnCtrl.car.specialPrice!=null}" disabled="true">
+	           		<f:convertNumber pattern="$0,000" />
+	           	</h:inputText>	    		        
+		    </h:panelGrid>		    
 	    </h:panelGrid>
 	    <div class="navPanel">
 	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
@@ -26,5 +57,42 @@
 	            <rich:toggleControl targetItem="@next" event="click"/>
 	        </a4j:commandButton>
 	    </div>
+	    <rich:popupPanel id="CarsPopup" modal="true" autosized="true">
+	    	<rich:dataGrid columns="4" elements="8" value="#{lnCtrl.cars}" var="car" >
+	    		<f:facet name="header">
+                    <rich:dataScroller />
+                </f:facet>
+	    		<rich:panel style="width:270px; height:290px; border:none;" styleClass="centerAlign">
+	    			<h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="250"/>
+	    			<p>
+		    			#{car.year} - #{car.make.name} #{car.model.name} #{car.style.name}
+		    			<br/><br/>
+		    			<del>
+	        	            <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice!=null}">
+	    	        	        <f:convertNumber pattern="$0,000" />
+	    	        	    </h:outputText>
+	   	        	    </del>
+	       	            <strong>				        	            	
+	   	        	        <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice==null}">
+	   	        	        	<f:convertNumber pattern="$0,000" />
+	   	        	        </h:outputText>
+	   	        	        <h:outputText value="#{car.specialPrice}" rendered="#{car.specialPrice!=null}">
+	   	        	        	<f:convertNumber pattern="$0,000" />
+	   	        	        </h:outputText>
+	        	        </strong>
+	        	        <br/><br/>
+		    			<a4j:commandButton styleClass="button1" value="Select and Close" oncomplete="#{rich:component('CarsPopup')}.hide();">
+				            <f:setPropertyActionListener value="#{car.vehicleId}" target="#{lnCtrl.carId}" />				            
+				        </a4j:commandButton>
+			        </p>
+	    		</rich:panel>
+	    		<f:facet name="footer">
+                    <h:outputLink styleClass="button1" value="#" onclick="#{rich:component('CarsPopup')}.hide(); return false;">
+		                Close
+		            </h:outputLink>
+                </f:facet>
+	    	</rich:dataGrid>
+	    	<f:ajax event="hide" render="VehicleGrid"/>
+	    </rich:popupPanel>
 	 </div>
 </ui:composition>
