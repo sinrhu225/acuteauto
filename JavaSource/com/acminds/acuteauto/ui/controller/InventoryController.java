@@ -28,6 +28,7 @@ import com.acminds.acuteauto.utils.WebUtils;
 public class InventoryController extends BaseController {
 	protected InventoryService service = new InventoryService();
 	private Integer carId;
+	private Vehicle car;
 	private int makeId;
 	private int modelId;
 	private int styleId;
@@ -44,8 +45,12 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	
 	public Vehicle getCar() {
-		if(carId!=null)
-			return service.getDao().get(Vehicle.class, carId);
+		if(carId!=null) {
+			if(car!=null && car.getVehicleId()==carId)
+				return car;
+			car = service.getDao().get(Vehicle.class, carId);
+			return car;
+		}
 		return null;
 	}
 	

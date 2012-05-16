@@ -4,6 +4,7 @@
 package com.acminds.acuteauto.ui.controller;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -14,8 +15,8 @@ import com.acminds.acuteauto.persistence.dto.LoanApplication;
 import com.acminds.acuteauto.persistence.dto.Location;
 import com.acminds.acuteauto.persistence.dto.Residence;
 import com.acminds.acuteauto.persistence.dto.TradeinInfo;
-import com.acminds.acuteauto.ui.BaseController;
 import com.acminds.acuteauto.utils.Utils;
+import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author Mansur
@@ -50,22 +51,29 @@ public class LoanAppController extends InventoryController {
 		Employment emp = new Employment();
 		emp.setCurrentEmployer(true);
 		emp.setLocation(new Location());
-		TradeinInfo tdInfo = new TradeinInfo();
 		Account acc = new Account();
 		acc.setLocation(new Location());
 		app.getResidences().add(res);
 		app.getEmployments().add(emp);
 		app.getAccounts().add(acc);
 		loanApp.getApplicants().add(app);
-		loanApp.getTradeinInfos().add(tdInfo);
+		loanApp.getTradeinInfos().add(new TradeinInfo());
 	}
 	
 	public String submitLoan() {
+		loanApp.setVehicle(getCar());
 		service.getBaseDao().save(loanApp, false);
-		service.getBaseDao().saveAll(loanApp.getApplicants(), false);
+		for(Applicant app:loanApp.getApplicants()) {
+			service.getBaseDao().save(app, false);
+			for(Residence r:app.getResidences()) {
+				service.getBaseDao().save(r, false);
+				service.getBaseDao().save(r.getLocation(), false);
+			}
+		}
 		service.getBaseDao().saveAll(loanApp.getTradeinInfos(), false);
-		service.getBaseDao().save(loanApp, false);
-		service.getBaseDao().save(loanApp, false);
+		service.getBaseDao().commit();
+		init();
+		WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "loanAppSuccess");
 		return null;
 	}
 }
