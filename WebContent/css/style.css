@@ -505,7 +505,8 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 }
 
 .thinGreenBorder {
-	border: thin 1px;
+	border-width: thin;
+	border-style: solid;
 	border-color: #7ac142;
 }
 
