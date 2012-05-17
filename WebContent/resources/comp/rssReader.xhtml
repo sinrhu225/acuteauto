@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:rss4jsf="http://hexiao.cn/rss4jsf">
+    
+  <!-- INTERFACE -->
+  <composite:interface>
+    <composite:attribute name="rssUrl"/>            
+  </composite:interface>
+
+  <!-- IMPLEMENTATION -->          
+    <composite:implementation>
+    	<div class="row-2">	
+			<rss4jsf:simpleRssOutput
+	             url="#{cc.attrs.rssUrl}"
+	             count="3"
+	             channelVar="channel"
+	             itemVar="item">
+	             <f:facet name="header">
+	             	<h3>Car Reviews</h3>
+	             </f:facet>
+	             <f:facet name="item">
+	                 <div class="wrapper">
+	                 	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img9.jpg" alt=""/></figure>
+		                <div class="extra-box">
+			                <div class="padding-top">
+			                	<h4><a href="#{item.url}" target="_new">#{item.title}</a></h4>
+			                	<p>
+		                    		#{item.body }
+			                    </p>
+			                    <a class="button1" href="#{item.url}" target="_new"><strong>More</strong></a>
+			                </div>
+		                </div>	                	                     
+	                 </div>
+	             </f:facet>
+	         </rss4jsf:simpleRssOutput>
+	    </div>
+  </composite:implementation>
+</html>  

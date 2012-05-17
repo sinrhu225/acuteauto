@@ -72,7 +72,7 @@
 	        <h:inputText  value="#{lnCtrl.loanApp.tradeinInfos[0].lienHolderZip}" label="Zip"  />
 	    </h:panelGrid>
 	    <div class="navPanel">
-	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright">
+	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>
 	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
