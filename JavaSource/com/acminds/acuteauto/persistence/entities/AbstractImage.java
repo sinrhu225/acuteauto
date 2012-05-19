@@ -28,6 +28,7 @@ public abstract class AbstractImage extends
 
 	private Integer imageId;
 	private Vehicle vehicle;
+	private UserInfo userInfo;
 	private String name;
 	private String description;
 	private String imageExtension;
@@ -49,13 +50,23 @@ public abstract class AbstractImage extends
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "VEHICLE_ID", nullable = false)
+	@JoinColumn(name = "VEHICLE_ID")
 	public Vehicle getVehicle() {
 		return this.vehicle;
 	}
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_INFO_ID")
+	public UserInfo getUserInfo() {
+		return this.userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 60)

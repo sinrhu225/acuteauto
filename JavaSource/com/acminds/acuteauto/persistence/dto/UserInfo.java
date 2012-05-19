@@ -4,6 +4,7 @@ package com.acminds.acuteauto.persistence.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 /**
@@ -12,11 +13,25 @@ import javax.persistence.UniqueConstraint;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractUserInfo;
+import com.acminds.acuteauto.utils.Utils;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 
 @ManagedBean(name = "userInfo")
 @Entity
 @Table(name = "USER_INFO", uniqueConstraints = @UniqueConstraint(columnNames = "USER_NAME"))
 public class UserInfo extends AbstractUserInfo {
 	private static final long serialVersionUID = 1L;
+	
+	private Image displayImage; 
+	@Transient
+	public Image getDisplayImage() {
+		if(displayImage == null) {
+			for(Image im: getImages()) {
+				if(!Utils.isEmpty(im.getImageType()) && im.getImageType() == ImageType.PRIMARY)
+					displayImage = im;
+			}
+		}
+		return displayImage;
+	}
 
 }

@@ -21,6 +21,7 @@ import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.EnumConstants.AdStatus;
 import com.acminds.acuteauto.utils.EnumConstants.AdUnits;
 import com.acminds.acuteauto.utils.EnumConstants.CategoryType;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
@@ -138,7 +139,7 @@ public class TestDataCreator {
 			cat4.setExpiryDate(Utils.toDate("12/31/2030"));
 			cat4.setSeqOrder(5);
 			cr.dao.save(cat4, false);*/
-			Category cat5 = new Category();
+			/*Category cat5 = new Category();
 			cat5.setName("Talk to Us");
 			cat5.setDescription("Talk to Us for Main Menu");
 			cat5.setMiscData("/pub/contactUs.jsf");
@@ -147,7 +148,7 @@ public class TestDataCreator {
 			cat5.setEffectiveDate(Utils.today());
 			cat5.setExpiryDate(Utils.toDate("12/31/2030"));
 			cat5.setSeqOrder(5);
-			cr.dao.save(cat5, false);
+			cr.dao.save(cat5, false);*/
 			/*for(int i=2; i<6; i++) {
 				Vehicle v = cr.dao.get(Vehicle.class, i);
 				v.getCategories().add(cat1);
@@ -174,6 +175,7 @@ public class TestDataCreator {
 			l.setMailing(true);
 			l.setClient(c);
 			cr.dao.save(l, false);*/
+			cr.createImage("Image 1", null, ImageType.PRIMARY, "/acuteauto/images/users/"+ui.getUserInfoId()+"/img1.jpg", true, null, ui);
 			cr.dao.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,7 +183,7 @@ public class TestDataCreator {
 		}
 	}
 	
-	public Image createImage(String name, String desc, Integer type, String loc, boolean banner, Vehicle v) {
+	public Image createImage(String name, String desc, Integer type, String loc, boolean banner, Vehicle v, UserInfo ui) {
 		Image i = new Image();
 		i.setName(name);
 		i.setDescription(desc);
@@ -192,6 +194,7 @@ public class TestDataCreator {
 		i.setBanner(banner);
 		i.setCreateDate(Utils.today());
 		i.setVehicle(v);
+		i.setUserInfo(ui);
 		dao.save(i, false);
 		return i;
 	}

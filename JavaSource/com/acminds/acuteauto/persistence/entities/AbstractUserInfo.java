@@ -35,6 +35,7 @@ public abstract class AbstractUserInfo extends
 	private String firstName;
 	private String middleName;
 	private String lastName;
+	private String designation;
 	private String userName;
 	private String password;
 	private int userType;
@@ -44,6 +45,7 @@ public abstract class AbstractUserInfo extends
 	private List<Inquiry> inquiries = new ArrayList<Inquiry>(0);
 	private List<Advertisement> advertisements = new ArrayList<Advertisement>(0);
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
+	private List<Image> images = new ArrayList<Image>(0);
 	private List<LoanApplication> loanApplicationsForCreatedBy = new ArrayList<LoanApplication>(
 			0);
 	private List<LoanApplication> loanApplicationsForUpdatedBy = new ArrayList<LoanApplication>(
@@ -107,6 +109,15 @@ public abstract class AbstractUserInfo extends
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	@Column(name = "DESIGNATION", length = 60)
+	public String getDesignation() {
+		return this.designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
 	}
 
 	@Column(name = "USER_NAME", unique = true, nullable = false, length = 40)
@@ -190,6 +201,15 @@ public abstract class AbstractUserInfo extends
 
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
+	public List<Image> getImages() {
+		return this.images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfoByCreatedBy")
