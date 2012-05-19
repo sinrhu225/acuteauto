@@ -17,7 +17,7 @@
 							<div align="center">
 								<h:outputText style="font-size: 28px; color:#7ac142;" value="#{hmpCtrl.dealer.clientName}" />
 								<br/>
-								<h:outputText style="font-size: 18px;" value="#{hmpCtrl.dealer.clientDesc}"/>
+								<h:outputText style="font-size: 16px;" value="#{hmpCtrl.dealer.clientDesc}"/>
 								<br/>
 								<br/>
 								<p>
@@ -38,36 +38,23 @@
 			</div>
 			<div class="row-2">
 	      		<h3>our staff</h3>
-	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img9.jpg" alt=""/></figure>
-	                <div class="extra-box">
-	                <div class="padding-top">
-	                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
-	                    <p>
-	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
-	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
-	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
-	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
-	adipiscing elit, sed diam nonummy nibh set dolor.
-	                    </p>	                    
-	                </div>
-	                </div>
-	            </div>
-	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img10.jpg" alt=""/></figure>
-	                <div class="extra-box">
-	                <div class="padding-top">
-	                	<h4>Ipsum dolor ser SET DOLOR <span>2011</span></h4>
-	                    <p>
-	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
-	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
-	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
-	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
-	adipiscing elit, sed diam nonummy nibh set dolor.
-	                    </p>	                    
-	                </div>
-	                </div>
-	            </div>
+	      		<ui:repeat var="user" value="#{hmpCtrl.dealer.userInfos}">
+	      			<div class="wrapper">
+		            	<figure class="img-indent"><h:graphicImage value="/img/?imgId=#{user.displayImage.imageId}" width="150" height="150"/></figure>
+		                <div class="extra-box">
+		                <div class="padding-top">
+		                	<h4>#{user.firstName} #{user.lastName} <br/> <span> #{user.designation} </span></h4>
+		                	<p>
+		                		#{user.locations[0].busPhone}
+		                		<br/>
+		                		#{user.locations[0].email}
+		                		<br/>
+		                    	With state of the art technology at our disposal, we provide you with best of our services.
+		                    </p>	                    
+		                </div>
+		                </div>
+		            </div>	            
+	      		</ui:repeat>	            
 	        </div>				
 		</section>
 	</ui:define>	
