@@ -82,7 +82,7 @@ public class LoanAppController extends InventoryController {
 		} catch (Exception e) {
 			logger.error("Loan Application Submit failed due to an internal error.", e);
 			service.getBaseDao().rollback();
-			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "submitFailed");
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
 		return null;
 	}
