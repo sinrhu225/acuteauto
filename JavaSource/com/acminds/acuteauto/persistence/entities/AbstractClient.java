@@ -26,6 +26,7 @@ public abstract class AbstractClient extends
 
 	private Integer clientId;
 	private String clientName;
+	private String caption;
 	private String clientDesc;
 	private Integer yearEstd;
 	private String registeredName;
@@ -50,6 +51,15 @@ public abstract class AbstractClient extends
 
 	public void setClientName(String clientName) {
 		this.clientName = clientName;
+	}
+
+	@Column(name = "CAPTION", length = 100)
+	public String getCaption() {
+		return this.caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
 	}
 
 	@Column(name = "CLIENT_DESC", length = 200)
