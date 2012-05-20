@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
 <ui:composition template="/templates/baseLayout.xhtml">
 	<ui:define name="body">
 		<section id="content">
@@ -17,7 +18,7 @@
 				                <h:graphicImage value="/images/loader.gif" alt="ai" style="width:24px; height:24px;"/>
 				            </f:facet>
 				            <f:facet name="stop">
-				                <h:graphicImage value="/images/spacer.gif" alt="ai" style="width:24px; height:24px;"/>
+				                <acm:spacer width="24px" height="24px"/>
 				            </f:facet>
 				        </a4j:status> 
 	      				<h:selectOneListbox value="#{invCtrl.makeId}" size="1">
@@ -76,9 +77,13 @@
 			                    	<h:outputText value="#{car.vin}"/>			                    				                    	
 			                    </h:panelGrid>
 			                    <br/>
-			                    <h:panelGrid columns="2" width="100%">			                    	
-				                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
-				                    <h:link styleClass="button1 fright" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}"><strong>More</strong></h:link>
+			                    <h:panelGrid columns="2" width="100%">
+			                    	<h:panelGroup>			                    	
+					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
+					                    <acm:spacer width="10px"/>
+					                    <h:link styleClass="button1" outcome="/pub/inq/inquire?carId=#{car.vehicleId}"><strong>Inquire</strong></h:link>
+				                    </h:panelGroup>
+				                    <h:link styleClass="button1 fright" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}&amp;backTo=Inventory"><strong>More</strong></h:link>
 			                    </h:panelGrid>		                    
 			                </div>
 		                </div>
@@ -97,7 +102,8 @@
 			                </div>
 		                </div>
 		            </div>
-	      		</c:if>	            
+	      		</c:if>
+	      		<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>				            
 	         </div>	            
 	    </section>
 	</ui:define>

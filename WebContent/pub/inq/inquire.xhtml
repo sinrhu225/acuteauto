@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+<ui:composition template="/home.xhtml">
+	<ui:define name="banner">
+		<f:metadata>
+	        <f:viewParam id="carId" name="carId" value="#{inqCtrl.carId}" />        
+	    </f:metadata>
+	<h:form>
+		<section id="content">
+		<div class="row-2 p1">		
+			<h3>Vehicle Inquiry</h3>
+			<h4 style="padding-left: 10px">Please help us answer your questions.</h4>
+			<div class="wrapper aligncenter">
+				<br />
+				<div class="col-1" style="width:100%;">
+					<div class="loanbox" style="width:100%; height:275px;">
+						<div align="center">
+							<h4>
+					    		<h:link outcome="/pub/inv/invDisplay?carId=#{inqCtrl.car.vehicleId}&amp;backTo=Inquiry"><strong><h:outputText value="#{inqCtrl.car.make.name} - #{inqCtrl.car.model.name} - #{inqCtrl.car.style.name}" style="font-size:17px; color:#7ac142;"/></strong></h:link>
+					    	</h4>
+							<h:panelGrid columns="4" rowClasses="s1row"
+								columnClasses="rightAlign col-padding, leftAlign boldFont col-padding, 
+								rightAlign col-padding, leftAlign boldFont col-padding">
+								First Name: <h:inputText value="#{inqCtrl.inquiry.firstName}" size="25" required="true" label="First Name"/>&nbsp;&nbsp;&nbsp;
+								Year: <h:inputText value="#{inqCtrl.car.year}" disabled="true"/>
+								Last Name: <h:inputText value="#{inqCtrl.inquiry.lastName}" size="25" required="true" label="Last Name"/>&nbsp;&nbsp;&nbsp;
+								Status: <h:inputText value="#{inqCtrl.car.status}" converter="enumConverter" disabled="true"/>
+		                       	Phone Number: <h:inputText value="#{inqCtrl.inquiry.phoneNumber}" size="25" required="true" maxlength="10" label="Phone Number"/>&nbsp;&nbsp;&nbsp;
+								Mileage: <h:inputText value="#{inqCtrl.car.mileage}" disabled="true"/>
+		                       	Email: <h:inputText value="#{inqCtrl.inquiry.email}" size="25" required="true" label="Email"/>
+		                       	Price:
+					            <h:inputText value="#{inqCtrl.car.salePrice}" rendered="#{inqCtrl.car.specialPrice==null}" disabled="true">
+					           		<f:convertNumber pattern="$0,000" />
+					           	</h:inputText>
+					           	<h:inputText value="#{inqCtrl.car.specialPrice}" rendered="#{inqCtrl.car.specialPrice!=null}" disabled="true">
+					           		<f:convertNumber pattern="$0,000" />
+					           	</h:inputText>
+					           	<acm:spacer width="5px"/>
+					           	<acm:spacer width="5px"/>
+	                       		VIN#: <h:inputText value="#{inqCtrl.car.vin}" size="20" disabled="true"/>
+		                       	Additional Questions: <h:inputTextarea value="#{inqCtrl.inquiry.notes}" />
+		                       	Exterior: <h:inputText value="#{inqCtrl.car.colorExt}" disabled="true"/>
+					    		
+							</h:panelGrid>
+							<div style="padding-top: 18px;">							
+								<h:commandButton styleClass="button1" action="#{inqCtrl.submitInquiry}" value="Submit Inquiry" />
+							</div>
+						</div>
+						<br /><br />																		
+					</div>					
+				</div>
+				<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>					
+			</div>					
+		</div>
+		</section>
+	</h:form>	
+	</ui:define>
+</ui:composition>	
+</html>

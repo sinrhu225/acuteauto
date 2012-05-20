@@ -9,13 +9,14 @@
 	<ui:composition template="/templates/baseLayout.xhtml">
 		<ui:define name="body">
 			<f:metadata>
-		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />        
+		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />
+		        <f:viewParam id="backTo" name="backTo" value="#{invCtrl.backTo}" />
 		    </f:metadata>
 		    <h:panelGrid width="100%">
     	    	<f:facet name="header">
-    	    		<h:panelGrid columns="2" width="100%">
-    	    			<h:link styleClass="padding-top" outcome="/pub/inv/invList" style="float: left;"><strong>&lt;&lt; Back to List</strong></h:link>
-	    	    		<div class="padding-top">
+    	    		<h:panelGrid columns="2" width="100%" columnClasses="padding-top, padding-top">
+    	    			<a4j:commandButton styleClass="button1" onclick="window.history.go(-1);" style="float: left;" value="&lt;&lt; Back to #{invCtrl.backTo}"></a4j:commandButton>
+	    	    		<div>
 		                	<h4>#{invCtrl.car.make.name} - #{invCtrl.car.model.name} - #{invCtrl.car.style.name} <span>#{invCtrl.car.year}</span></h4>
 		                </div>	  		                
 	                </h:panelGrid>  	    		
