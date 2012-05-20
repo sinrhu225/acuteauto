@@ -41,13 +41,13 @@ public class InquiryController extends InventoryController {
 		inquiry.getFindVehicles().add(fv);
 	}
 	
-	public String submitInquiry() {
+	public String findVehicle() {
 		try {
 			FindVehicle fv = inquiry.getFindVehicles().get(0);
 			fv.setModel(service.getBaseDao().get(Model.class, getModelId()));
 			service.getBaseDao().save(inquiry, false);
 			service.getBaseDao().saveAll(inquiry.getFindVehicles(), true);
-			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "inqSuccess");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "findVehSuccess");
 			init();
 			logger.info("Find Vehicle Inquiry submitted successfully.");
 		} catch (Exception e) {
@@ -56,5 +56,21 @@ public class InquiryController extends InventoryController {
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "submitFailed");
 		}
 		return null;
+	}
+	
+	public String submitInquiry() {
+		try {
+			inquiry.getFindVehicles().clear();
+			inquiry.setVehicle(getCar());
+			service.getBaseDao().save(inquiry, true);
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "inqSuccess");
+			init();
+			logger.info("Inquiry submitted successfully.");
+		} catch (Exception e) {
+			logger.error("Inquiry failed due to an internal error.", e);
+			service.getBaseDao().rollback();
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "submitFailed");
+		}
+		return "/pub/inv/invList";
 	}
 }

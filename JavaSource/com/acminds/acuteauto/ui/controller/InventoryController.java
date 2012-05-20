@@ -28,6 +28,7 @@ import com.acminds.acuteauto.utils.WebUtils;
 public class InventoryController extends BaseController {
 	protected InventoryService service = new InventoryService();
 	private Integer carId;
+	private String backTo;
 	private Vehicle car;
 	private int makeId;
 	private int modelId;
@@ -59,6 +60,12 @@ public class InventoryController extends BaseController {
 		return cars;
 	}
 	
+	public String getBackTo() {
+		return backTo;
+	}
+	public void setBackTo(String backTo) {
+		this.backTo = backTo;
+	}
 	public Integer getCarId() {
 		return carId;
 	}
