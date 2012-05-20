@@ -27,7 +27,7 @@
 							<h:outputText value="Zip:" />
 							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.zip}" />
 							<h:outputText value="Phone:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busPhone}" />
+							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busPhone}" converter="phoneConverter"/>
 							<h:outputText value="Email:" />
 							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.email}" />
 						</h:panelGrid>						

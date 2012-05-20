@@ -27,7 +27,7 @@
 									#{hmpCtrl.dealer.primaryLocation.state},&nbsp;&nbsp;
 									#{hmpCtrl.dealer.primaryLocation.zip}
 									<br/>
-									#{hmpCtrl.dealer.primaryLocation.busPhone}
+									<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busPhone}" converter="phoneConverter" />
 									<br/>
 									#{hmpCtrl.dealer.primaryLocation.email}
 								</p>
