@@ -5,44 +5,37 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:m="http://code.google.com/p/gmaps4jsf/">
-<ui:composition template="/templates/homeLayout.xhtml">
-	<ui:define name="content">		
+<ui:composition template="/home.xhtml">
+	<ui:define name="banner">		
 		<section id="content">
-			<div class="row-1 p2">
-				<h3>directions</h3>
-				<h:panelGrid width="100%" columns="2">
-					<h:panelGrid width="100%" headerClass="subHeader" styleClass="thinGreenBorder">
-						<f:facet name="header">Address Information</f:facet>	
-						<h:graphicImage value="/images/spacer.gif" height="10"/>
-						<h:panelGrid columns="2" columnClasses="rightAlign col-padding,leftAlign boldFont col-padding" styleClass="table-1 text-1"
-							width="100%">							
-							<h:outputText value="Address 1:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.address1}" />
-							<h:outputText value="Address 2:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.address2}" />
-							<h:outputText value="City:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.city}" />
-							<h:outputText value="State:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.state}" />
-							<h:outputText value="Zip:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.zip}" />
-							<h:outputText value="Phone:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busPhone}" converter="phoneConverter"/>
-							<h:outputText value="Email:" />
-							<h:outputText value="#{hmpCtrl.dealer.primaryLocation.email}" />
-						</h:panelGrid>						
-					</h:panelGrid>	
-					<h:panelGrid styleClass="fright" width="700px">
-						<h:form id="GMapForm">
-							<m:map width="700px" height="500px" locationNotFoundErrorMessage="We are sorry, we could not identify your address"
-									address="#{hmpCtrl.dealer.primaryLocation.addressForMap}" type="G_NORMAL_MAP" zoom="14">
-								<m:marker/>
-								<m:htmlInformationWindow htmlText="#{hmpCtrl.dealer.primaryLocation.addressForMap}"/>
-							</m:map>
-						</h:form>
-					</h:panelGrid>
-				</h:panelGrid>
-			</div>	
+			<div class="wrapper" style="width=100%;">
+				<div class="fleft row-2" style="width:300px; height:350px;">
+					<h3>Address Information</h3>	
+					<h:graphicImage value="/images/spacer.gif" height="10"/>
+					<div class="boldFont indent2">
+						<p>							
+						<h:outputText value="#{hmpCtrl.dealer.primaryLocation.address1}, #{hmpCtrl.dealer.primaryLocation.address2}" />
+						<br/>
+						<h:outputText value="#{hmpCtrl.dealer.primaryLocation.city}, #{hmpCtrl.dealer.primaryLocation.state}, #{hmpCtrl.dealer.primaryLocation.zip}" />
+						<br/>
+						<h:outputText value="#{hmpCtrl.dealer.primaryLocation.busPhone}" converter="phoneConverter"/>
+						<br/>
+						<h:outputText value="#{hmpCtrl.dealer.primaryLocation.email}" />
+						</p>
+					</div>						
+				</div>	
+				<div class="fright row-2" style="width:700px;height:350px;">
+					<h3>directions</h3>
+					<h:form id="GMapForm">
+						<m:map width="700px" height="350px" locationNotFoundErrorMessage="We are sorry, we could not identify your address"
+								address="#{hmpCtrl.dealer.primaryLocation.addressForMap}" type="G_NORMAL_MAP" zoom="14" 
+								showLocationNotFoundMessage="true" addStreetOverlay="true" autoReshape="true" enableScrollWheelZoom="true">
+							<m:marker/>
+							<m:htmlInformationWindow htmlText="#{hmpCtrl.dealer.primaryLocation.address1} &lt;br/&gt; #{hmpCtrl.dealer.primaryLocation.address2} &lt;br/&gt; #{hmpCtrl.dealer.primaryLocation.city} #{hmpCtrl.dealer.primaryLocation.state} #{hmpCtrl.dealer.primaryLocation.zip}"/>							
+						</m:map>
+					</h:form>
+				</div>
+			</div>				
 		</section>
 	</ui:define>	
 </ui:composition>
