@@ -8,7 +8,8 @@
     
   <!-- INTERFACE -->
   <composite:interface>
-    <composite:attribute name="rssUrl"/>            
+    <composite:attribute name="rssUrl"/>
+    <composite:attribute name="header"/>
   </composite:interface>
 
   <!-- IMPLEMENTATION -->          
@@ -20,18 +21,16 @@
 	             channelVar="channel"
 	             itemVar="item">
 	             <f:facet name="header">
-	             	<h3>Car Reviews</h3>
+	             	<h3>#{cc.attrs.header}</h3>
 	             </f:facet>
 	             <f:facet name="item">
 	                 <div class="wrapper">
-	                 	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img9.jpg" alt=""/></figure>
-		                <div class="extra-box">
-			                <div class="padding-top">
+	                 	<div class="extra-box">
+			                <div class="padding-top indent10">
 			                	<h4><a href="#{item.url}" target="_new">#{item.title}</a></h4>
 			                	<p>
-		                    		#{item.body }
-			                    </p>
-			                    <a class="button1" href="#{item.url}" target="_new"><strong>More</strong></a>
+		                    		<h:outputText value="#{item.body }" escape="false"/>
+			                    </p>			                    
 			                </div>
 		                </div>	                	                     
 	                 </div>

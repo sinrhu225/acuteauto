@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:rich="http://richfaces.org/rich">
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp" >
 <ui:composition template="/templates/homeLayout.xhtml">
 	<ui:define name="content">
 		<section id="content">
@@ -16,12 +17,12 @@
 			            <ui:repeat var="car" value="#{cat.vehicles}" varStatus="stat">				        	
 			            	<div class="col-#{stat.index+1}">
 			                	<div class="box">
-				                	<a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}">
+				                	<a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}&amp;backTo=Home Page">
 				                		<figure><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}"/></figure>
 				                	</a>
 			    	            	<div>
 			        	            	<p><strong>#{car.year}</strong> - #{car.make.name} #{car.model.name}</p>
-				        	            <a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}">More</a>
+				        	            <a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}&amp;backTo=Home Page">More</a>
 				        	            <del>
 					        	            <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice!=null}">
 					    	        	        <f:convertNumber pattern="$0,000" />
@@ -41,42 +42,15 @@
 			            </ui:repeat>
 		            </div>		            
 		        </div>
-			</ui:repeat>		    	
-	        <div class="row-2">
-	      		<h3>latest testdrive</h3>
-	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img9.jpg" alt=""/></figure>
-	                <div class="extra-box">
-	                <div class="padding-top">
-	                	<h4>Magnaorem ipsum dolor ser ADIPISCING ELIT <span>2011</span></h4>
-	                    <p>
-	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
-	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
-	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
-	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
-	adipiscing elit, sed diam nonummy nibh set dolor.
-	                    </p>
-	                    <a class="button1" href="#"><strong>More</strong></a>
-	                </div>
-	                </div>
-	            </div>
-	            <div class="wrapper">
-	            	<figure class="img-indent"><img src="#{facesContext.externalContext.requestContextPath}/images/thumbnails/page1-img10.jpg" alt=""/></figure>
-	                <div class="extra-box">
-	                <div class="padding-top">
-	                	<h4>Ipsum dolor ser SET DOLOR <span>2011</span></h4>
-	                    <p>
-	                    	Laoreet dolore magnaorem ipsum dolor ser adipiscing
-	 elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore set.sit
-	 amet consectetuer Aadipiscing elit, sed diam nonummy. nonummy nibh 
-	euismod tincidunt ut laoreet dolore magna.orem ipsum dolor ser 
-	adipiscing elit, sed diam nonummy nibh set dolor.
-	                    </p>
-	                    <a class="button1" href="#"><strong>More</strong></a>
-	                </div>
-	                </div>
-	            </div>
-	        </div>
+			</ui:repeat>	
+			<div style="width:100%">
+				<div class="fleft" style="width: 504px;">
+					<acm:rssReader rssUrl="http://rss.kbb.com/kbb-car-news" header="Car News"/>
+				</div>
+				<div class="fright" style="width: 504px;">
+					<acm:rssReader rssUrl="http://rss.kbb.com/kbb-car-reviews" header="Car Reviews"/>
+				</div>
+			</div>			
 	    </section>
 	</ui:define>
 </ui:composition>

@@ -90,6 +90,7 @@ p {margin-bottom:17px;}
 
 .indent {padding:0 0 0px 30px;}
 .indent2 {padding-left:50px;}
+.indent10 {padding-left:10px;}
 .indent-bot {margin-bottom:20px;}
 .indent-bot2 {margin-bottom:30px;}
 .indent-bot3 {margin-bottom:45px;}
@@ -510,6 +511,12 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	border-color: #7ac142;
 }
 
+.thinGrayBorder {
+	border-width: thin;
+	border-style: solid;
+	border-color: #939393;
+}
+
 .loanbox {float:left; font-size:12px; line-height:20px; color:#55544c; font-weight:bold; overflow:hidden;}
 .loanbox a {color:#55544c;} 
 .loanbox div {padding:0px 10px 18px;}
@@ -531,3 +538,12 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 
 /*  WIZARD STYLES  */
 
+.consoleBlock {
+	width:335px; 
+	height:200px	
+}
+
+.consoleBlock1 {
+	width:505px; 
+	height:200px	
+}
