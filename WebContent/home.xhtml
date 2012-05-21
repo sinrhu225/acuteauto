@@ -43,14 +43,14 @@
 		            </div>		            
 		        </div>
 			</ui:repeat>	
-			<div style="width:100%">
-				<div class="fleft" style="width: 504px;">
+			<h:panelGrid width="100%" columns="2">
+				<h:panelGroup layout="block" styleClass="fleft row-2" style="width: 504px; height: 420px;">
 					<acm:rssReader rssUrl="http://rss.kbb.com/kbb-car-news" header="Car News"/>
-				</div>
-				<div class="fright" style="width: 504px;">
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="fleft row-2" style="width: 504px; height: 420px;">
 					<acm:rssReader rssUrl="http://rss.kbb.com/kbb-car-reviews" header="Car Reviews"/>
-				</div>
-			</div>			
+				</h:panelGroup>
+			</h:panelGrid>						
 	    </section>
 	</ui:define>
 </ui:composition>
