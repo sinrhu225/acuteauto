@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition>
 	<header>
@@ -35,8 +36,13 @@
         	<nav class="wrapper">
             	<ul class="menu">
             		<ui:repeat var="cat" value="#{hmpCtrl.menuGroup}">
-            			<li><a class="#{hmpCtrl.activeMenu == cat.name ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}#{cat.miscData}">#{cat.name}</a></li>            		                	
-                    </ui:repeat>
+            			<h:panelGroup rendered="#{!cat.authRequired}">
+            				<li><a class="#{hmpCtrl.activeMenu == cat.name ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}#{cat.miscData}">#{cat.name}</a></li>
+            			</h:panelGroup>
+            			<h:panelGroup rendered="#{cat.authRequired and authorizedUser!=null}">
+            				<li><a class="#{hmpCtrl.activeMenu == cat.name ? 'active' : ''}" href="#{facesContext.externalContext.requestContextPath}#{cat.miscData}">#{cat.name}</a></li>
+            			</h:panelGroup>            		                	       		                	
+                    </ui:repeat>                    
                 </ul>
             </nav>
         </div>
