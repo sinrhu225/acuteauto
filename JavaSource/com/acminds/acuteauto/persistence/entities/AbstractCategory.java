@@ -38,6 +38,7 @@ public abstract class AbstractCategory extends
 	private String miscData;
 	private Integer categoryType;
 	private Integer seqOrder;
+	private boolean authRequired;
 	private Date effectiveDate;
 	private Date expiryDate;
 	private Date createDate;
@@ -120,6 +121,15 @@ public abstract class AbstractCategory extends
 		this.seqOrder = seqOrder;
 	}
 
+	@Column(name = "AUTH_REQUIRED", nullable = false)
+	public boolean isAuthRequired() {
+		return this.authRequired;
+	}
+
+	public void setAuthRequired(boolean authRequired) {
+		this.authRequired = authRequired;
+	}
+	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "EFFECTIVE_DATE", nullable = false, length = 10)
 	public Date getEffectiveDate() {
