@@ -284,185 +284,6 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 .menu-bot2 li a:hover, .menu-bot2 li .active {color:#7ac142;}
 
 
-
-
-/****************************js***************************/
-
-.jcarousel-clip {
-    z-index: 2;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-}
-
-.jcarousel-list {
-    z-index: 1;
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-}
-
-
-.jcarousel-list {
-    z-index: 1;
-    overflow: hidden;
-    position: relative;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-}
-
-
-/**
- * The buttons are added dynamically by jCarousel before
- * the <ul> list (inside the <div> described above) and
- * have the classnames "jcarousel-next" and "jcarousel-prev".
- */
-.jcarousel-next {
-    z-index: 3;
-    display: none;
-}
-
-.jcarousel-prev {
-    z-index: 3;
-    display: none;
-}
-/* gallery */
-
-#loopedSlider {
-	position:relative;
-	width:100%;
-	overflow:hidden;
-	height:484px;
-}
-	
-		
-		/***********************
-		
-		**********************
-		
-		**************************/
-
-/****************************js***************************/
-
-#loopedSlider2 {
-	position:relative;
-	width:100%;
-	overflow:hidden;
-	height:370px;
-}
-	#loopedSlider2 .looped-container {
-		width:575px;
-		height:281px;
-		overflow:hidden;
-		position:absolute;
-		top:0;
-		left:0;
-		cursor:pointer;
-		float:left;
-		}
-		#loopedSlider2 .slides {
-			width:575px; 
-			height:281px; 
-			position:relative;
-			top:0;
-			left:0;
-			z-index:1;
-		}
-			#loopedSlider2 .slides .blocks {
-				position:absolute;
-				top:0;
-				left:0; 
-				z-index:1;
-				width:575px; 
-				height:281px; 
-				display:none; 
-			}
-			
-				#loopedSlider2 .slides div img {
-					height:auto;
-					overflow:inherit;
-					border:1px solid #e5e5e5;
-				}
-			
-				#loopedSlider2 .img-big {
-					height:281px;
-				}
-			
-			
-			/************/		
-			
-			/*----------------*/
-			#loopedSlider2 .jcarousel-skin-tango {
-				position:relative;
-				width:316px; 
-				height:80px;
-				padding:0 0 0 44px;
-				margin:0;
-				left:0px;
-				top:290px;
-				z-index:999 !important; 
-			}
-						
-			#loopedSlider2 .jcarousel-skin-tango .jcarousel-container-horizontal {
-				width: 316px;
-				height: 80px; 
-				margin:0px 0px 0px 0px;
-				padding:0;
-			}
-			
-			#loopedSlider2 .jcarousel-skin-tango .jcarousel-clip-horizontal {
-				width: 316px;
-				height: 80px; 
-				padding:0px 0px 0px 0px; 
-				margin:0px 0px 0px 0px;
-			}
-			
-			#loopedSlider2 .jcarousel-skin-tango #third-carousel2 { 
-				margin:0px 0px 0px 0px; 
-				padding:0px 0px 0px 0px;
-			}
-			
-			#loopedSlider2 .jcarousel-skin-tango li.jcarousel-item {
-				width: 100px;
-				float:left;
-				background: none !important; 
-				height: 80px; 
-				padding:0px 0px 0px 0px;
-				margin-right:8px;
-				}
-				
-			#loopedSlider2 .jcarousel-skin-tango li.jcarousel-item img {}
-			
-			.model-name {padding:0 0 0 8px; line-height:2.5em;}
-			.model-name span {color:#c3c3c2;}
-			
-			/***  Vertical Buttons ***/
-			#loopedSlider2 .jcarousel-skin-tango .jcarousel-prev-horizontal {
-				position: absolute;
-				top:22px; left:0;
-				width:35px; height:35px; text-align:center;
-				background:url(../images/button-prev.gif) no-repeat 0 0px;
-				cursor:pointer;
-				}
-			
-			#loopedSlider2 .jcarousel-skin-tango .jcarousel-next-horizontal {
-				position: absolute;
-				top:22px; right:-44px;
-				width:35px; height:35px; text-align:center;
-				background:url(../images/button-next.gif) no-repeat 0 0px;
-				cursor:pointer;
-				}
-		 	.jcarousel-skin-tango .jcarousel-prev-vertical:hover {background:url(../images/prev-h.gif) no-repeat center 12px #8e8c7f;}
-			.jcarousel-skin-tango .jcarousel-next-vertical:hover {background:url(../images/next-h.gif) no-repeat center 12px #8e8c7f;}
-		
-		
-		/********/
 .boldFont {
 	font-weight: bold;	
 }
@@ -536,14 +357,45 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 
 .s1row td { height:25px; }
 
-/*  WIZARD STYLES  */
-
-.consoleBlock {
-	width:335px; 
+.threeColBlock {
+	width:305px; 
 	height:200px	
 }
 
-.consoleBlock1 {
+.twoColBlock {
 	width:505px; 
 	height:200px	
 }
+
+#adminConsole {width:100%; position:relative;}
+#adminConsole .row-1 {width:100%; position:relative; background:#fff;}
+#adminConsole .row-2 {width:100%; position:relative; background:#f7f6f3;}
+#adminConsole .row-1 .padding {padding:16px 20px 32px;}
+
+#adminConsole p strong {color:#55544c;}
+
+#adminConsole ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0px 0 0 20px;
+	line-height: 1.3em;
+}
+#adminConsole ul a {
+	display: block;
+	margin: 0;
+	padding: 0 0 0 0px;
+	line-height: 1.8em; 
+	border-bottom: 1px dotted #dfdfdf; 	
+	text-decoration: none;
+	font-size:19px;
+}
+
+#adminConsole a:hover {
+	background-color: #def4fd;
+	text-decoration: none;
+}
+
+#adminConsole h4 {font-size:19px; line-height:1.2em; color:#55544c; margin:0px 0 10px; font-weight:normal;}
+#adminConsole h4 span {color:#7ac142;}
+
+
