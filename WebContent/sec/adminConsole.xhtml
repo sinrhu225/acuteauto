@@ -8,14 +8,17 @@
 	<ui:composition template="/templates/baseLayout.xhtml">
 		<ui:define name="body">
 			<section id="content">
-				<h:form>
+				<h:form id="AdminConsoleForm">
 					<h:panelGrid width="100%">
 						<h:panelGrid styleClass="wrapper p1" columns="3" width="100%" columnClasses="threeColBlock,threeColBlock,threeColBlock">
 							<h:panelGroup styleClass="row-1 thinGrayBorder threeColBlock" layout="block">
 								<h3>Home Page Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
-										<li><a href="#">Manage Menu</a></li>
+										<li>
+											<a4j:commandLink value="Manage Menu" onclick="#{rich:component('MenuMaintPopup')}.show();">
+											</a4j:commandLink>
+										</li>
 										<li><a href="#">Manage Groups</a></li>
 										<li><a href="#">Manage RSS Feeds</a></li>
 										<li><h:commandLink action="#{hmpCtrl.reset}" value="Reset Home Page" /></li>
@@ -91,8 +94,9 @@
 							</h:panelGroup>						
 						</h:panelGrid>
 						<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>
-					</h:panelGrid>
-				</h:form>						
+					</h:panelGrid>					
+				</h:form>			
+				<ui:include src="/sec/hmp/menuMaint.xhtml"></ui:include>						
 			</section>			
 		</ui:define>
 	</ui:composition>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition>		
+		<rich:popupPanel id="MenuMaintPopup" modal="true" autosized="true">
+			<h:form>
+				<h:panelGrid width="100%" styleClass="centerAlign">
+					<rich:dataTable value="#{hmpCtrl.menuGroup}" var="menu">
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							<h:inputText value="#{menu.name}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Description</f:facet>
+							<h:inputTextarea value="#{menu.description}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Sequence Order</f:facet>
+							<h:inputText value="#{menu.seqOrder}" size="5"/>
+						</h:column>
+					</rich:dataTable>
+					<br/>
+					<h:panelGroup>
+						<a4j:commandButton styleClass="button1" value="Submit &amp; Close" action="#{hmpCtrl.saveMenuGroup}" oncomplete="#{rich:component('MenuMaintPopup')}.hide();">
+				        </a4j:commandButton>
+				        <acm:spacer width="10px;"/>
+				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('MenuMaintPopup')}.hide();">				            
+				        </a4j:commandButton>
+			        </h:panelGroup>			        				
+				</h:panelGrid>
+			</h:form>
+		</rich:popupPanel>
+	</ui:composition>
+</html>	

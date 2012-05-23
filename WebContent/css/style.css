@@ -367,19 +367,13 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	height:200px	
 }
 
-#adminConsole {width:100%; position:relative;}
-#adminConsole .row-1 {width:100%; position:relative; background:#fff;}
-#adminConsole .row-2 {width:100%; position:relative; background:#f7f6f3;}
-#adminConsole .row-1 .padding {padding:16px 20px 32px;}
-
-#adminConsole p strong {color:#55544c;}
-
 #adminConsole ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0px 0 0 20px;
 	line-height: 1.3em;
 }
+
 #adminConsole ul a {
 	display: block;
 	margin: 0;
