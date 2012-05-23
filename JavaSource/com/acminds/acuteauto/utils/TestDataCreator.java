@@ -195,7 +195,7 @@ public class TestDataCreator {
 		i.setCreateDate(Utils.today());
 		i.setVehicle(v);
 		i.setUserInfo(ui);
-		dao.save(i, false);
+		dao.saveOrUpdate(i, false);
 		return i;
 	}
 	public Vehicle createVehicle(Make mk, Model md, Style st, int year, String dsc, int dp, int sp, UserInfo ui) {
@@ -212,7 +212,7 @@ public class TestDataCreator {
 		v.setMileage(40000);
 		v.setCreateDate(Utils.today());
 		v.setUserInfo(ui);
-		dao.save(v, true);
+		dao.saveOrUpdate(v, true);
 		return v;
 	}
 	
@@ -222,7 +222,7 @@ public class TestDataCreator {
 		cl.setClientDesc(description);
 		cl.setYearEstd(2010);
 		cl.setRegisteredName(regName);
-		dao.save(cl, false);
+		dao.saveOrUpdate(cl, false);
 		return cl;
 	}
 	
@@ -237,7 +237,7 @@ public class TestDataCreator {
 		ui.setRole(r);
 		ui.setClient(cl);
 		ui.setCreateDate(Utils.today());
-		dao.save(ui, true);
+		dao.saveOrUpdate(ui, true);
 		return ui;
 	}
 	
@@ -245,7 +245,7 @@ public class TestDataCreator {
 		Role r = new Role();
 		r.setRoleName(nm);
 		r.setDescription(desc);
-		dao.save(r, false);
+		dao.saveOrUpdate(r, false);
 		return r;
 	}
 	
@@ -258,7 +258,7 @@ public class TestDataCreator {
 		a.setUnits(AdUnits.MONTHLY);
 		a.setVehicle(v);
 		a.setUserInfo(ui);
-		dao.save(a, false);
+		dao.saveOrUpdate(a, false);
 		return a;
 	}
 	

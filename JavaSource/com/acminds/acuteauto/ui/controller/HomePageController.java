@@ -5,8 +5,12 @@ package com.acminds.acuteauto.ui.controller;
 
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Client;
@@ -21,9 +25,11 @@ import com.acminds.acuteauto.utils.WebUtils;
  * @author Mansur
  *
  */
-@ManagedBean(name="hmpCtrl", eager=true)
-@ApplicationScoped
-public class HomePageController extends BaseController{
+@ManagedBean(name="hmpCtrl")
+@SessionScoped
+public class HomePageController extends BaseController{	
+	private Log logger = LogFactory.getLog(this.getClass());
+	
 	private InventoryService service = new InventoryService();
 	private List<Category> menuGroup;
 	private List<Category> homeGroup;
@@ -84,10 +90,27 @@ public class HomePageController extends BaseController{
 	
 	public String reset() {
 		this.dealer = null;
+		this.menuGroup = null;
 		this.homeGroup = null;
 		this.carsForBanner = null;
 		this.featuredCars = null;
 		this.carsForAdvertisement = null;
 		return null;
+	}
+	
+	public String saveMenuGroup() {
+		try {
+			service.saveOrUpdateAll(menuGroup, false);
+			service.flush();
+			service.commit();
+			this.menuGroup = null;
+			logger.info("Menu saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "menuSaved");
+		} catch(Exception e) {
+			service.rollback();
+			logger.error("Menu could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return "/sec/adminConsole";
 	}
 }

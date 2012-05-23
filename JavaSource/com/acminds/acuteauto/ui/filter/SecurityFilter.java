@@ -52,7 +52,7 @@ public class SecurityFilter implements Filter {
 		UserInfo authorizedUser = null;
 		boolean authorized = false;
 		try {
-			if(isURISecure(request.getRequestURI())) {
+			/*if(isURISecure(request.getRequestURI())) {
 				authorizedUser = (UserInfo)request.getSession().getAttribute("authorizedUser");
 				if(Utils.isEmpty(authorizedUser)) {
 					response.sendRedirect(request.getContextPath() + UNAUTH_URL);
@@ -71,9 +71,9 @@ public class SecurityFilter implements Filter {
 					} else
 						arg2.doFilter(arg0, arg1);
 				}
-			} else {
+			} else {*/
 				arg2.doFilter(arg0, arg1);
-			}
+			//}
 		} catch(Throwable e) {
 			logger.error("Error occured while trying to serve a request", e);
 			response.sendRedirect(request.getContextPath() + ERROR_URL);

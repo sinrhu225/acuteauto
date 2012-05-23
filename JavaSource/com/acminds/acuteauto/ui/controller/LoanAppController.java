@@ -66,15 +66,15 @@ public class LoanAppController extends InventoryController {
 	public String submitLoan() {		
 		try {
 			loanApp.setVehicle(getCar());
-			service.getBaseDao().save(loanApp, false);
+			service.getBaseDao().saveOrUpdate(loanApp, false);
 			for(Applicant app:loanApp.getApplicants()) {
-				service.getBaseDao().save(app, false);
+				service.getBaseDao().saveOrUpdate(app, false);
 				for(Residence r:app.getResidences()) {
-					service.getBaseDao().save(r, false);
-					service.getBaseDao().save(r.getLocation(), false);
+					service.getBaseDao().saveOrUpdate(r, false);
+					service.getBaseDao().saveOrUpdate(r.getLocation(), false);
 				}
 			}
-			service.getBaseDao().saveAll(loanApp.getTradeinInfos(), false);
+			service.getBaseDao().saveOrUpdateAll(loanApp.getTradeinInfos(), false);
 			service.getBaseDao().commit();
 			init();
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "loanAppSuccess");

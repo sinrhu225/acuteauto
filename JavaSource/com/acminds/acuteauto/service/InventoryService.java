@@ -52,5 +52,17 @@ public class InventoryService extends BaseService {
 			cars.add(a.getVehicle());
 		return cars;
 	}
+	
+	public void saveOrUpdateCar() {
+		
+	}
+	
+	public void saveOrUpdateCarImages() {
+		
+	}
+	
+	public void deleteCar() {
+		
+	}
 
 }

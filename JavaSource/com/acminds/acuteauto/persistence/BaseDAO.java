@@ -4,7 +4,6 @@
 package com.acminds.acuteauto.persistence;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -26,17 +25,20 @@ public class BaseDAO {
 		return PersistenceManager.getEntityManager().find(clazz, id);
 	}
 	
-	public void save(BaseDTO entity, boolean commit) {
+	public void saveOrUpdate(BaseDTO entity, boolean commit) {
 		beginTxn();
+		if(!PersistenceManager.getEntityManager().contains(entity)) {
+			entity = PersistenceManager.getEntityManager().merge(entity);
+		}
 		PersistenceManager.getEntityManager().persist(entity);
 		if(commit) commit();
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public void saveAll(Collection entities, boolean commit) {
+	public void saveOrUpdateAll(Collection entities, boolean commit) {
 		beginTxn();
 		for(Object entity:entities)
-			PersistenceManager.getEntityManager().persist(entity);
+			saveOrUpdate((BaseDTO)entity, false);
 		if(commit) commit();
 	}
 	
@@ -46,15 +48,20 @@ public class BaseDAO {
 		if(commit) commit();
 	}
 	
-	public void deleteAll(List<BaseDTO> entities, boolean commit) {
+	@SuppressWarnings("rawtypes")
+	public void deleteAll(Collection entities, boolean commit) {
 		beginTxn();
-		for(BaseDTO entity:entities)
+		for(Object entity:entities)
 			PersistenceManager.getEntityManager().remove(entity);
 		if(commit) commit();
 	}
 	
 	public void detach(BaseDTO entity) {
 		PersistenceManager.getEntityManager().detach(entity);
+	}
+	
+	public boolean isPersistent(BaseDTO entity) {
+		return PersistenceManager.getEntityManager().contains(entity);
 	}
 	
 	

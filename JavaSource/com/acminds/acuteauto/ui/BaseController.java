@@ -6,8 +6,11 @@ package com.acminds.acuteauto.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 
+import com.acminds.acuteauto.persistence.dto.UserInfo;
+import com.acminds.acuteauto.service.BaseService;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
 
@@ -16,7 +19,17 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 public class BaseController {
+	protected BaseService baseService = new BaseService();
 	
+	@ManagedProperty(value="#{authorizedUser}")
+	protected UserInfo authorizedUser;
+	public UserInfo getAuthorizedUser() {
+		return authorizedUser;
+	}
+	public void setAuthorizedUser(UserInfo authorizedUser) {
+		this.authorizedUser = authorizedUser;
+	}
+
 	private List<SelectItem> years = new ArrayList<SelectItem>();
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	
@@ -40,6 +53,17 @@ public class BaseController {
 			}
 		}
 		return prices;
+	}
+	
+	public String beginTxn() {
+		baseService.beginTxn();
+		return null;
+	}
+	
+	public String flush() {
+		baseService.flush();
+		baseService.commit();
+		return null;
 	}
 
 }
