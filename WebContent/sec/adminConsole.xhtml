@@ -19,8 +19,10 @@
 											<a4j:commandLink value="Manage Menu" onclick="#{rich:component('MenuMaintPopup')}.show();">
 											</a4j:commandLink>
 										</li>
-										<li><a href="#">Manage Groups</a></li>
-										<li><a href="#">Manage RSS Feeds</a></li>
+										<li>
+											<h:link outcome="/sec/hmp/groupMaint">Manage Groups</h:link>											
+										</li>
+										<li><h:link outcome="/sec/hmp/groupMaint" rendered="false">Manage RSS Feeds</h:link></li>
 										<li><h:commandLink action="#{hmpCtrl.reset}" value="Reset Home Page" /></li>
 									</ul>
 								</div>

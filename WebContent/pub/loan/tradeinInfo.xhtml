@@ -18,19 +18,19 @@
 	    	
 	    	<h:outputText value="Trade Make:" />
 	        <h:selectOneListbox value="#{lnCtrl.loanApp.tradeinInfos[0].make}" label="Trade Make"  size="1" converter="entityConverter">
-	        	<f:selectItems value="#{uiTypes.accountTypes}"/>
+	        	<f:selectItems value="#{invCtrl.makes}"/>
 	        	<f:param name="entityName" value="Make"/>
 	        </h:selectOneListbox>
 	        
 	        <h:outputText value="Trade Model:" />
 	        <h:selectOneListbox value="#{lnCtrl.loanApp.tradeinInfos[0].model}" label="Trade Model"  size="1" converter="entityConverter">
-	        	<f:selectItems value="#{uiTypes.accountTypes}"/>
+	        	<f:selectItems value="#{invCtrl.models}"/>
 	        	<f:param name="entityName" value="Model"/>
 	        </h:selectOneListbox>
 	        
 	        <h:outputText value="Trade Style:" />
 	        <h:selectOneListbox value="#{lnCtrl.loanApp.tradeinInfos[0].style}" label="Trade Style"  size="1" converter="entityConverter">
-	        	<f:selectItems value="#{uiTypes.accountTypes}"/>
+	        	<f:selectItems value="#{invCtrl.styles}"/>
 	        	<f:param name="entityName" value="Style"/>
 	        </h:selectOneListbox>
 	        

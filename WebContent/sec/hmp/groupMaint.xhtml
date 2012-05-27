@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition template="/templates/baseLayout.xhtml">
+		<ui:define name="body">
+			<section id="content">
+				<h:form id="GroupMaintForm">
+					<h:panelGrid width="100%" styleClass="centerAlign">
+			    		<rich:tabPanel switchType="client" styleClass="leftAlign">
+        					<rich:tab header="Group 1">
+        						<h:panelGrid columns="4" columnClasses="col-padding boldFont, col-padding boldFont, col-padding boldFont, col-padding boldFont">
+		            				<h:outputText value="Group Name :"/> <h:inputText value="#{hmpCtrl.homeGroup[0].name}" />
+		            				<h:outputText value="Group Description :"/> <h:inputTextarea value="#{hmpCtrl.homeGroup[0].description}" cols="50" rows="3"/>
+		            			</h:panelGrid>
+	            				<br/>
+	            				<h4>Please select any 4 cars of your choice from below to be displayed on the Home Page. </h4>
+	            				<rich:pickList value="#{hmpCtrl.homeGroup[0].selectedVehicles}" var="car" listHeight="250px" listWidth="450px"
+            						sourceCaption="Available Cars" targetCaption="Selected Cars"
+            						columnClasses="leftAlign">
+					                <f:selectItems value="#{invCtrl.cars}" />
+					                <f:converter converterId="entityConverter" />
+									<f:param name="entityName" value="Vehicle"/>					                
+					                <rich:column>
+					                    <f:facet name="header">Photo</f:facet>
+					                    <h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="50px" height="50px"/>
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Car</f:facet>
+					                    #{car.make.name} - #{car.model.name}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Style</f:facet>
+					                    #{car.style.name}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Year</f:facet>
+					                    #{car.year}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Price</f:facet>
+					                    <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice==null}">
+			    	        	        	<f:convertNumber pattern="$0,000" />
+			    	        	        </h:outputText>
+			    	        	        <h:outputText value="#{car.specialPrice}" rendered="#{car.specialPrice!=null}">
+			    	        	        	<f:convertNumber pattern="$0,000" />
+			    	        	        </h:outputText>
+					                </rich:column>					                					                
+					            </rich:pickList>
+        					</rich:tab>
+        					<rich:tab header="Group 2">
+        						<h:panelGrid columns="4" columnClasses="col-padding, col-padding">
+		            				<h:outputText value="Group Name :"/> <h:inputText value="#{hmpCtrl.homeGroup[1].name}" />
+		            				<h:outputText value="Group Description :"/> <h:inputTextarea value="#{hmpCtrl.homeGroup[1].description}" cols="50" rows="3"/>
+		            			</h:panelGrid>	
+	            				<br/>
+	            				<h4>Please select any 4 cars of your choice from below to be displayed on the Home Page. </h4>
+	            				<br/>
+            					<rich:pickList value="#{hmpCtrl.homeGroup[1].selectedVehicles}" var="car" listHeight="250px" listWidth="450px"
+            						sourceCaption="Available Cars" targetCaption="Selected Cars"
+            						columnClasses="leftAlign" style="vertical-align: middle;" >
+					                <f:selectItems value="#{invCtrl.cars}" />
+					                <f:converter converterId="entityConverter" />
+									<f:param name="entityName" value="Vehicle"/>
+					                <rich:column>
+					                    <f:facet name="header">Photo</f:facet>
+					                    <h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="50px" height="50px"/>
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Car</f:facet>
+					                    #{car.make.name} - #{car.model.name}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Style</f:facet>
+					                    #{car.style.name}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Year</f:facet>
+					                    #{car.year}
+					                </rich:column>
+					                <rich:column>
+					                    <f:facet name="header">Price</f:facet>
+					                    <h:outputText value="#{car.salePrice}" rendered="#{car.specialPrice==null}">
+			    	        	        	<f:convertNumber pattern="$0,000" />
+			    	        	        </h:outputText>
+			    	        	        <h:outputText value="#{car.specialPrice}" rendered="#{car.specialPrice!=null}">
+			    	        	        	<f:convertNumber pattern="$0,000" />
+			    	        	        </h:outputText>
+					                </rich:column>					                						                
+					            </rich:pickList>
+        					</rich:tab>
+        				</rich:tabPanel>	
+	            		<h:panelGroup>
+	            			<h:commandButton styleClass="button1" value="Submit " action="#{hmpCtrl.saveHomeGroup}">
+					        </h:commandButton>
+					        <acm:spacer width="10px;"/>
+					        <h:commandButton styleClass="button1" value="Cancel" action="/sec/adminConsole" immediate="true">				            
+					        </h:commandButton>
+	            		</h:panelGroup>
+	            	</h:panelGrid>		
+				</h:form>
+				<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>
+			</section>
+		</ui:define>
+	</ui:composition>
+</html>				
