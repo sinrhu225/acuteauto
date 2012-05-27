@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 
+import com.acminds.acuteauto.persistence.BaseDTO;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.service.BaseService;
 import com.acminds.acuteauto.utils.Utils;
@@ -55,14 +56,20 @@ public class BaseController {
 		return prices;
 	}
 	
-	public String beginTxn() {
-		baseService.beginTxn();
-		return null;
-	}
-	
-	public String flush() {
-		baseService.flush();
-		baseService.commit();
+	protected <T> T manageManyToMany(List<T> masterCopy, List<T> workingCopy, Class<T> clazz) {
+		List<T> rem = new ArrayList<T>();
+		for(T t:masterCopy) {
+			if(!workingCopy.contains(t)) {
+				rem.add(t);						
+			}					
+		}
+		masterCopy.removeAll(rem);
+		for(T t:workingCopy) {
+			if(!masterCopy.contains(t)) {
+				masterCopy.add(t);				
+			}
+			baseService.saveOrUpdate((BaseDTO)t, false);
+		}
 		return null;
 	}
 

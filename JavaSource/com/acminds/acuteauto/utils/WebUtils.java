@@ -75,7 +75,7 @@ public class WebUtils {
 		try {
 			val = getResourceBundle().getString(key);
 		} catch (MissingResourceException e) {
-			val = "MISSING: " + key + " :MISSING";
+			val = key;
 		}
 		return val;
 	}

@@ -84,6 +84,15 @@ public class BaseService {
 		baseDao.flush();
 	}
 	
+	public void refresh(BaseDTO entity) {
+		baseDao.refresh(entity);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public void refreshAll(Collection entities) {
+		baseDao.refreshAll(entities);
+	}
+	
 	public final void clearEntityManager()
 	{
 		baseDao.clearEntityManager();

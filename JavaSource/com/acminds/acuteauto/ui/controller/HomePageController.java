@@ -3,6 +3,7 @@
  */
 package com.acminds.acuteauto.ui.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -101,9 +102,8 @@ public class HomePageController extends BaseController{
 	public String saveMenuGroup() {
 		try {
 			service.saveOrUpdateAll(menuGroup, false);
-			service.flush();
 			service.commit();
-			this.menuGroup = null;
+			service.refreshAll(menuGroup);
 			logger.info("Menu saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "menuSaved");
 		} catch(Exception e) {
@@ -113,4 +113,39 @@ public class HomePageController extends BaseController{
 		}
 		return "/sec/adminConsole";
 	}
+	
+	public String saveHomeGroup() {
+		try {
+			logger.info("Saving Home Group.");
+			List<Vehicle> rem = new ArrayList<Vehicle>();
+			for(Category cat:homeGroup) {
+				for(Vehicle v:cat.getVehicles()) {
+					if(!cat.getSelectedVehicles().contains(v)) {
+						v.getCategories().remove(cat);
+						rem.add(v);						
+					}					
+				}
+				cat.getVehicles().removeAll(rem);
+				for(Vehicle v:cat.getSelectedVehicles()) {
+					if(!cat.getVehicles().contains(v)) {
+						cat.getVehicles().add(v);
+						v.getCategories().add(cat);
+					}
+					service.saveOrUpdate(v, false);
+				}
+				service.saveOrUpdate(cat, false);
+				rem.clear();
+			}
+			service.commit();
+			service.refreshAll(homeGroup);
+			logger.info("Groups saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "groupSaved");
+		} catch(Exception e) {
+			service.rollback();
+			logger.error("Groups could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return "/sec/adminConsole";
+	}
+	
 }

@@ -98,6 +98,16 @@ public class BaseDAO {
 		PersistenceManager.getEntityManager().flush();
 	}
 	
+	public void refresh(BaseDTO entity) {
+		PersistenceManager.getEntityManager().refresh(entity);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public void refreshAll(Collection entities) {
+		for(Object entity:entities)
+			refresh((BaseDTO)entity);
+	}
+	
 	public final void clearEntityManager()
 	{
 		PersistenceManager.getEntityManager().clear();

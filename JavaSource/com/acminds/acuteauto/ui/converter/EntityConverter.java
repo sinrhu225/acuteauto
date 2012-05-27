@@ -3,14 +3,21 @@
  */
 package com.acminds.acuteauto.ui.converter;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.acminds.acuteauto.persistence.BaseDAO;
+import com.acminds.acuteauto.persistence.BaseDTO;
 import com.acminds.acuteauto.utils.Utils;
+import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author Mansur
@@ -18,6 +25,8 @@ import com.acminds.acuteauto.utils.Utils;
  */
 @FacesConverter(value="entityConverter")
 public class EntityConverter implements Converter {
+	private Log logger = LogFactory.getLog(this.getClass());
+	
 	private String PARAM_NAME = "entityName";
 	private String PARAM_VAL_PREFIX = "com.acminds.acuteauto.persistence.dto.";
 
@@ -33,8 +42,12 @@ public class EntityConverter implements Converter {
 		try {
 			id = Integer.parseInt(arg2);
 			return BaseDAO.getInstance().get(getEntityName(arg1), id);
+		} catch (ConverterException e) {
+			logger.error("Exception while converting to an Entity: "+arg2, e);
+			throw e;
 		} catch (Exception e) {
-			return null;
+			logger.error("Exception while converting to an Entity: "+arg2, e);
+			throw new ConverterException(WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed"));
 		}		
 	}
 
@@ -43,8 +56,8 @@ public class EntityConverter implements Converter {
 	 */
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		if(!Utils.isEmpty(arg2))
-			return arg2.toString();
+		if(!Utils.isEmpty(arg2) && arg2 instanceof BaseDTO)
+			return String.valueOf(((BaseDTO)arg2).getId());
 		return null;
 	}
 	
@@ -60,7 +73,7 @@ public class EntityConverter implements Converter {
 				}
 			}
 		}
-		return null;
+		throw new ConverterException(WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "Please add a param with name 'entityName' to the converter's parent component"));
 	}
 
 }
