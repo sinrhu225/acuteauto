@@ -5,17 +5,16 @@ package com.acminds.acuteauto.ui.controller;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import com.acminds.acuteauto.exceptions.AcuteAutoApplicationException;
 import com.acminds.acuteauto.persistence.dto.Location;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.service.UserInfoService;
 import com.acminds.acuteauto.ui.BaseController;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
+import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
 
 /**
@@ -31,6 +30,8 @@ public class UserInfoController extends BaseController {
 	private UserInfoService service = new UserInfoService();
 	
 	public List<UserInfo> getUsers() {
+		if(Utils.isEmpty(users))
+			users = service.createNamedQuery("getUsers", UserInfo.class).getResultList();
 		return users;
 	}
 	public UserInfo getUser() {
@@ -40,36 +41,35 @@ public class UserInfoController extends BaseController {
 		this.user = user;
 	}
 	
-	@PostConstruct
-	public void init() {
+	public String addNewUser() {
 		user = new UserInfo();
 		user.getLocations().add(new Location());
 		user.setClient(authorizedUser.getClient());
 		user.setUserType(UserType.CLIENT);
-	}
-	
-	public String addNewUser() {
-		init();
-		return null;
+		return "/sec/usm/userEdit";
 	}
 	
 	public String saveUser() {
 		try {
+			logger.info("Saving User.");
 			service.saveOrUpdateUser(user);
+			logger.info("User saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveUserSuccessful");
-		} catch (AcuteAutoApplicationException e) {
+		} catch (Exception e) {
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "saveUserFailed");
 		}
-		return null;
+		return "/sec/usm/userList";
 	}
 	
 	public String deleteUser() {
 		try {
+			logger.info("Deleting User.");
 			service.deleteUser(user);
+			logger.info("User deleted successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delUserSuccessful");
-		} catch (AcuteAutoApplicationException e) {
+		} catch (Exception e) {
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "delUserFailed");
 		}
-		return null;
+		return "/sec/usm/userList";
 	}
 }

@@ -14,7 +14,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.Category;
-import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
@@ -34,7 +33,6 @@ public class HomePageController extends BaseController{
 	private InventoryService service = new InventoryService();
 	private List<Category> menuGroup;
 	private List<Category> homeGroup;
-	private Client dealer;
 	private List<Vehicle> carsForBanner;
 	private List<Vehicle> featuredCars;
 	private List<Vehicle> carsForAdvertisement;
@@ -51,12 +49,6 @@ public class HomePageController extends BaseController{
 				return cat.getName();
 		}
 		return null;
-	}
-	
-	public Client getDealer() {
-		if(Utils.isEmpty(dealer))
-			dealer = service.getBaseDao().createNamedQuery("getDealer", Client.class).getSingleResult();
-		return dealer;
 	}
 	
 	public List<Vehicle> getCarsForBanner() {
@@ -90,7 +82,6 @@ public class HomePageController extends BaseController{
 	}
 	
 	public String reset() {
-		this.dealer = null;
 		this.menuGroup = null;
 		this.homeGroup = null;
 		this.carsForBanner = null;
@@ -101,6 +92,7 @@ public class HomePageController extends BaseController{
 	
 	public String saveMenuGroup() {
 		try {
+			logger.info("Saving Menu Group.");
 			service.saveOrUpdateAll(menuGroup, false);
 			service.commit();
 			service.refreshAll(menuGroup);
@@ -136,6 +128,10 @@ public class HomePageController extends BaseController{
 				service.saveOrUpdate(cat, false);
 				rem.clear();
 			}
+			/*for(Category cat:homeGroup) {
+				manageManyToMany(cat, cat.getVehicles(), cat.getSelectedVehicles(), "categories");
+				service.saveOrUpdate(cat, false);				
+			}*/
 			service.commit();
 			service.refreshAll(homeGroup);
 			logger.info("Groups saved successfully.");

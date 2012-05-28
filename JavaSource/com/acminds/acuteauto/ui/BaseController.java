@@ -9,7 +9,10 @@ import java.util.List;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
 
-import com.acminds.acuteauto.persistence.BaseDTO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.service.BaseService;
 import com.acminds.acuteauto.utils.Utils;
@@ -20,7 +23,10 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 public class BaseController {
+	protected Log logger = LogFactory.getLog(this.getClass());
+	
 	protected BaseService baseService = new BaseService();
+	private Client dealer;
 	
 	@ManagedProperty(value="#{authorizedUser}")
 	protected UserInfo authorizedUser;
@@ -56,21 +62,32 @@ public class BaseController {
 		return prices;
 	}
 	
-	protected <T> T manageManyToMany(List<T> masterCopy, List<T> workingCopy, Class<T> clazz) {
+	public Client getDealer() {
+		if(Utils.isEmpty(dealer))
+			dealer = baseService.createNamedQuery("getDealer", Client.class).getSingleResult();
+		return dealer;
+	}
+	
+	
+	
+	/*@SuppressWarnings({ "rawtypes", "unchecked" })
+	protected <T> T manageManyToMany(BaseDTO parent, List<T> masterCopy, List<T> workingCopy, String propName) throws Exception {
 		List<T> rem = new ArrayList<T>();
 		for(T t:masterCopy) {
 			if(!workingCopy.contains(t)) {
-				rem.add(t);						
+				rem.add(t);
+				((List)PropertyUtils.getProperty(t, propName)).remove(parent);
 			}					
 		}
 		masterCopy.removeAll(rem);
 		for(T t:workingCopy) {
 			if(!masterCopy.contains(t)) {
-				masterCopy.add(t);				
+				masterCopy.add(t);
+				((List)PropertyUtils.getProperty(t, propName)).add(parent);
 			}
 			baseService.saveOrUpdate((BaseDTO)t, false);
 		}
 		return null;
-	}
+	}*/
 
 }

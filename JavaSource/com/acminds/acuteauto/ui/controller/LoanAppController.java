@@ -8,9 +8,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.acminds.acuteauto.persistence.dto.Account;
 import com.acminds.acuteauto.persistence.dto.Applicant;
 import com.acminds.acuteauto.persistence.dto.Employment;
@@ -28,7 +25,7 @@ import com.acminds.acuteauto.utils.WebUtils;
 @ManagedBean(name="lnCtrl")
 @ViewScoped
 public class LoanAppController extends InventoryController {
-	private Log logger = LogFactory.getLog(LoanAppController.class);
+	
 	private LoanApplication loanApp;
 	private boolean acceptTerms;
 	public LoanApplication getLoanApp() {

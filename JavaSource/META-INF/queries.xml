@@ -24,6 +24,18 @@
 		<description>Retrieve the Dealer information</description>
 		<query>select c from Client c</query>
 	</named-query>
+	<named-query name="getUsers">
+		<description>Retrieve all the Users</description>
+		<query>from UserInfo</query>
+	</named-query>
+	<named-query name="getRoles">
+		<description>Retrieve all the Roles</description>
+		<query>from Role</query>
+	</named-query>
+	<named-query name="getPrivileges">
+		<description>Retrieve all the Privileges</description>
+		<query>from Privilege</query>
+	</named-query>
 	<named-query name="getStates">
 		<description>Retrieve all the States</description>
 		<query>from State</query>
