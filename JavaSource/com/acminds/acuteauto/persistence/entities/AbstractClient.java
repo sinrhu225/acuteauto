@@ -32,6 +32,7 @@ public abstract class AbstractClient extends
 	private String registeredName;
 	private List<Location> locations = new ArrayList<Location>(0);
 	private List<UserInfo> userInfos = new ArrayList<UserInfo>(0);
+	private List<Image> images = new ArrayList<Image>(0);
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -105,6 +106,15 @@ public abstract class AbstractClient extends
 
 	public void setUserInfos(List<UserInfo> userInfos) {
 		this.userInfos = userInfos;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	public List<Image> getImages() {
+		return this.images;
+	}
+
+	public void setImages(List<Image> images) {
+		this.images = images;
 	}
 
 }

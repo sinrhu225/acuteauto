@@ -29,6 +29,7 @@ public abstract class AbstractImage extends
 	private Integer imageId;
 	private Vehicle vehicle;
 	private UserInfo userInfo;
+	private Client client;
 	private String name;
 	private String description;
 	private String imageExtension;
@@ -67,6 +68,16 @@ public abstract class AbstractImage extends
 
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CLIENT_ID")
+	public Client getClient() {
+		return this.client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 60)
