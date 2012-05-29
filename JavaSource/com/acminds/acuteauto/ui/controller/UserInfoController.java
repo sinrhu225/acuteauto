@@ -49,6 +49,11 @@ public class UserInfoController extends BaseController {
 		return "/sec/usm/userEdit";
 	}
 	
+	public String viewPersonalProfile() {
+		user = getAuthorizedUser();
+		return "/sec/usm/userEdit";
+	}
+	
 	public String saveUser() {
 		try {
 			logger.info("Saving User.");
