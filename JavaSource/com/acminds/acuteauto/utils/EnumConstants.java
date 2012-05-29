@@ -85,6 +85,7 @@ public class EnumConstants {
 	public static final int IMAGE_TYPE = 12;
 	public static class ImageType{
 		public static final int PRIMARY = 120;
+		public static final int LOGO = 121;
 	}
 
 	public static final int AD_STATUS = 13;

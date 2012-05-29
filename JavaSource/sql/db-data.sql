@@ -157,6 +157,7 @@ INSERT INTO ENUM VALUES ('110', '11', 'Select One', 'Select One', null);
 INSERT INTO ENUM VALUES ('111', '11', 'Select Many', 'Select Many', null);
 -- IMAGE_TYPE
 INSERT INTO ENUM VALUES ('120', '12', 'Primary', 'Primary', null);
+INSERT INTO ENUM VALUES ('121', '12', 'Logo', 'Logo', null);
 -- AD_STATUS
 INSERT INTO ENUM VALUES ('130', '13', 'Active', 'Active', null);
 INSERT INTO ENUM VALUES ('131', '13', 'Suspended', 'Suspended', null);
