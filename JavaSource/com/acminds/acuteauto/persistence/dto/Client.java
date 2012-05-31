@@ -12,7 +12,9 @@ import javax.persistence.Transient;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractClient;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.LocationType;
+import com.acminds.acuteauto.utils.Utils;
 
 @ManagedBean(name = "client")
 @Entity
@@ -25,6 +27,15 @@ public class Client extends AbstractClient {
 		for(Location l:getLocations()) {
 			if(LocationType.PRIMARY == l.getLocationType())
 				return l;
+		}
+		return null;
+	}
+	
+	@Transient
+	public Image getLogo() {
+		for(Image i:getImages()) {
+			if(!Utils.isEmpty(i.getImageType()) && ImageType.LOGO == i.getImageType())
+				return i;
 		}
 		return null;
 	}

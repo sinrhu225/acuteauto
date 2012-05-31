@@ -15,6 +15,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.Category;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
+import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
 import com.acminds.acuteauto.utils.EnumConstants.CategoryType;
 import com.acminds.acuteauto.utils.Utils;
@@ -28,9 +29,10 @@ import com.acminds.acuteauto.utils.WebUtils;
 @SessionScoped
 public class HomePageController extends BaseController{	
 	private Log logger = LogFactory.getLog(this.getClass());
-	
+	private InventoryService service = new InventoryService();
 	private List<Category> menuGroup;
 	private List<Category> homeGroup;
+	private List<Vehicle> carsForBanner;
 	
 	public String getActiveMenu() {
 		String viewId = WebUtils.getFacesContext().getViewRoot().getViewId().replace("xhtml", "jsf");
@@ -44,6 +46,12 @@ public class HomePageController extends BaseController{
 				return cat.getName();
 		}
 		return null;
+	}
+	
+	public List<Vehicle> getCarsForBanner() {
+		if(Utils.isEmpty(carsForBanner))
+			carsForBanner = service.getCarsForBanner();
+		return carsForBanner;
 	}
 	
 	public List<Category> getMenuGroup() {
@@ -61,6 +69,7 @@ public class HomePageController extends BaseController{
 	public String reset() {
 		this.menuGroup = null;
 		this.homeGroup = null;
+		this.carsForBanner = null;
 		return null;
 	}
 	
