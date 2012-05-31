@@ -3,22 +3,57 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
 
 <ui:composition>
+	<script type="text/javascript">  
+	     jQuery.noConflict();  
+ 	</script>
 	<header>
 		<div class="row-1">
 
-        	<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">Acute Auto</a></h1>
-            <div class="extra-box">
+        	<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">
+					<h:graphicImage value="/img/?imgId=#{hmpCtrl.dealer.logo.imageId}"/>
+				</a>
+			</h1>
+        	<div class="extra-box">
             	<ul class="sub-menu">
                 	<li><a href="#"><strong>New User?</strong> </a></li>
                     <li><a href="#">Register </a></li>
-                    <li><a href="#"><strong>Sign In</strong> </a></li>
+                    <li>
+	                    <h:outputLink value="#" id="ll" rendered="#{authorizedUser==null}">
+	                    	<rich:componentControl event="click" operation="show" target="lp" />
+				            <strong>Sign In</strong>
+	                    </h:outputLink>
+	                    <h:form rendered="#{authorizedUser!=null}">
+	                    	<h:commandLink action="#{loginCtrl.logout}" immediate="true">
+	                    		<strong>Sign Out</strong>
+	                    	</h:commandLink>
+	                    </h:form>                    
+                    </li>
                     <li><a href="#">Help </a></li>
                 </ul>
             </div>
-
+			<rich:popupPanel id="lp" autosized="true" modal="true" width="300" height="150" header="Login">
+				<h:form id="LoginForm" styleClass="centerAlign">
+			        <h:panelGrid columns="2" width="100%" columnClasses="rightAlign boldFont col-padding, leftAlign col-padding">
+			            <h:outputText value="User Name" />
+			            <h:inputText value="#{loginCtrl.userName}" required="true" label="User Name"/>
+			            <h:outputText value="Password" />
+			            <h:inputSecret value="#{loginCtrl.password}" />
+			        </h:panelGrid>
+			        <acm:spacer height="10"/>
+			        <h:panelGrid columns="2" width="100%" columnClasses="rightAlign col-padding, leftAlign col-padding">
+				        <a4j:commandButton styleClass="button1" value="Sign In" action="#{loginCtrl.login}" oncomplete="#{rich:component('lp')}.hide(event); return false;">
+				        </a4j:commandButton>
+				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('lp')}.hide(event); return false;">
+				        </a4j:commandButton>
+        			</h:panelGrid>
+		        </h:form>		        
+		    </rich:popupPanel>
             <div class="extra-box">
             	<ul class="sub-menu">
                 	<li><a href="#">Buying </a></li>
