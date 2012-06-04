@@ -76,8 +76,8 @@ public class Utils {
 		FileUtils.writeByteArrayToFile(new File(location), imageData);		
 	}
 	
-	public static boolean deleteImage(String location) {
-		return new File(location).delete();		
+	public static void deleteFile(String location) throws IOException {
+		FileUtils.forceDelete(new File(location));		
 	}
 
 }

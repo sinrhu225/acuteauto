@@ -48,10 +48,15 @@ public class UserInfoService extends BaseService {
 	
 	public void deleteUser(UserInfo user) throws AcuteAutoApplicationException {
 		try {
-		deleteAll(user.getLocations(), false);
-		deleteAll(user.getImages(), false);		
-		delete(user, false);
-		commit();
+			Image img = user.getDisplayImage();
+			deleteAll(user.getLocations(), false);
+			deleteAll(user.getImages(), false);		
+			delete(user, false);
+			if(img!=null && !Utils.isEmpty(img.getImageLocation())) {
+				Utils.deleteFile(img.getRealLocation());
+				Utils.deleteFile(Utils.getUserHome()+Constants.USER_IMG_LOC+user.getUserInfoId());
+			}
+			commit();			
 		} catch (Exception e) {
 			rollback();
 			logger.error("Exception occured while trying to delete UserInfo", e);
