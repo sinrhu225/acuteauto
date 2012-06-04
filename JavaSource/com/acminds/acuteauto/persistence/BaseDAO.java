@@ -27,9 +27,6 @@ public class BaseDAO {
 	
 	public void saveOrUpdate(BaseDTO entity, boolean commit) {
 		beginTxn();
-		if(!PersistenceManager.getEntityManager().contains(entity)) {
-			entity = PersistenceManager.getEntityManager().merge(entity);
-		}
 		PersistenceManager.getEntityManager().persist(entity);
 		if(commit) commit();
 	}

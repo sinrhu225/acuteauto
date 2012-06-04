@@ -36,6 +36,7 @@ public abstract class AbstractImage extends
 	private String mimeType;
 	private String imageLocation;
 	private Integer imageType;
+	private Integer imageSize;
 	private Boolean banner;
 	private Date createDate;
 
@@ -132,6 +133,15 @@ public abstract class AbstractImage extends
 
 	public void setImageType(Integer imageType) {
 		this.imageType = imageType;
+	}
+	
+	@Column(name = "IMAGE_SIZE")
+	public Integer getImageSize() {
+		return this.imageSize;
+	}
+
+	public void setImageSize(Integer imageSize) {
+		this.imageSize = imageSize;
 	}
 
 	@Column(name = "BANNER")

@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.dto.Image;
+import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.Utils;
 
 /**
@@ -55,20 +56,32 @@ public class ImageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
 		try {
+			Image image = null;
 			String imageId = request.getParameter("imgId");
 			logger.info("Image Id: "+imageId);
-			if(Utils.isEmpty(imageId))
-				return;
-			Image image = BaseDAO.getInstance().get(Image.class, Integer.valueOf(imageId.trim()));
-			if(image == null)
-			{
-				writeDefaultImage(request, response);
-				return;
+			if(Utils.isEmpty(imageId)) {
+				String isImgHolder = request.getParameter(Constants.IMG_HOLDER);
+				if(Utils.isEmpty(isImgHolder))
+					return;
+				image = (Image)request.getSession().getAttribute(Constants.IMG_HOLDER);
+				if(image == null)
+					return;
+				response.setContentType(image.getMimeType());		
+				OutputStream out = response.getOutputStream();
+				out.write(image.getImageData());
+			} else {
+				image = BaseDAO.getInstance().get(Image.class, Integer.valueOf(imageId.trim()));
+				if(image == null)
+				{
+					writeDefaultImage(request, response);
+					return;
+				}
+				InputStream str = new FileInputStream(new File(image.getRealLocation()));
+				response.setContentType(image.getMimeType());		
+				OutputStream out = response.getOutputStream();
+				out.write(IOUtils.toByteArray(str));
 			}
-			InputStream str = new FileInputStream(new File(image.getRealLocation()));
-			response.setContentType(image.getMimeType());		
-			OutputStream out = response.getOutputStream();
-			out.write(IOUtils.toByteArray(str));
+			
 		} catch (NumberFormatException e) {
 			logger.error(e.getMessage(), e);
 			throw new ServletException(e);

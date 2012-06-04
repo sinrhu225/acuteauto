@@ -41,6 +41,8 @@ public class EntityConverter implements Converter {
 			return null;
 		try {
 			id = Integer.parseInt(arg2);
+			if(id == 0)
+				return null;
 			return BaseDAO.getInstance().get(getEntityName(arg1), id);
 		} catch (ConverterException e) {
 			logger.error("Exception while converting to an Entity: "+arg2, e);
@@ -56,8 +58,12 @@ public class EntityConverter implements Converter {
 	 */
 	@Override
 	public String getAsString(FacesContext arg0, UIComponent arg1, Object arg2) {
-		if(!Utils.isEmpty(arg2) && arg2 instanceof BaseDTO)
-			return String.valueOf(((BaseDTO)arg2).getId());
+		if(!Utils.isEmpty(arg2)) {
+			if(arg2 instanceof BaseDTO)
+				return String.valueOf(((BaseDTO)arg2).getId());
+			else
+				return String.valueOf(arg2);
+		}
 		return null;
 	}
 	

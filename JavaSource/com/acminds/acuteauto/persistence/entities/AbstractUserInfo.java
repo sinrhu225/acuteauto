@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -203,7 +205,7 @@ public abstract class AbstractUserInfo extends
 		this.vehicles = vehicles;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo", cascade = {CascadeType.ALL})
 	public List<Image> getImages() {
 		return this.images;
 	}
@@ -232,7 +234,7 @@ public abstract class AbstractUserInfo extends
 		this.loanApplicationsForUpdatedBy = loanApplicationsForUpdatedBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userInfo", cascade = {CascadeType.ALL})
 	public List<Location> getLocations() {
 		return this.locations;
 	}

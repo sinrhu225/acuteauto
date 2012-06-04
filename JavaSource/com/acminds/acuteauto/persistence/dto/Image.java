@@ -19,9 +19,19 @@ import com.acminds.acuteauto.utils.Utils;
 @Table(name = "IMAGE")
 public class Image extends AbstractImage {
 	private static final long serialVersionUID = 1L;
+	private byte[] imageData;
+	@Transient
+	public byte[] getImageData() {
+		return imageData;
+	}
+	public void setImageData(byte[] imageData) {
+		this.imageData = imageData;
+	}
+
 	@Transient
 	public String getRealLocation() {
 		return Utils.getUserHome()+getImageLocation();
 	}
+	
 
 }

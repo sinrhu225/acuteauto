@@ -34,6 +34,13 @@ public class WebUtils {
 			getSession().setAttribute(name, value);
 	}
 	
+	public static <T>T getBeanFromScope(String name, Class<T> clazz, boolean isSession) {
+		if(!isSession)
+			return clazz.cast(getRequest().getAttribute(name));
+		else
+			return clazz.cast(getSession().getAttribute(name));
+	}
+	
 	public static FacesContext getFacesContext() {
 		return FacesContext.getCurrentInstance();
 	}
@@ -75,7 +82,7 @@ public class WebUtils {
 		try {
 			val = getResourceBundle().getString(key);
 		} catch (MissingResourceException e) {
-			val = key;
+			val = "MISSING: " + key + " :MISSING";
 		}
 		return val;
 	}

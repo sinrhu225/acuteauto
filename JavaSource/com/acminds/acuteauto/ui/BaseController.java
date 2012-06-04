@@ -67,9 +67,7 @@ public class BaseController {
 			dealer = baseService.createNamedQuery("getDealer", Client.class).getSingleResult();
 		return dealer;
 	}
-	
-	
-	
+		
 	/*@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected <T> T manageManyToMany(BaseDTO parent, List<T> masterCopy, List<T> workingCopy, String propName) throws Exception {
 		List<T> rem = new ArrayList<T>();
@@ -89,5 +87,5 @@ public class BaseController {
 		}
 		return null;
 	}*/
-
+	
 }

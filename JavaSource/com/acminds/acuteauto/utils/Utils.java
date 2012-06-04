@@ -3,11 +3,15 @@
  */
 package com.acminds.acuteauto.utils;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
 
 import com.acminds.acuteauto.exceptions.AcuteAutoRuntimeException;
 
@@ -22,7 +26,7 @@ public class Utils {
 		if (value == null)
 			return true;
 		if (value instanceof String) {
-			return (((String) value).trim().length() == 0);
+			return (((String) value).trim().length() == 0) || (((String) value).trim().equalsIgnoreCase("null"));
 		}
 		if (value instanceof Collection) {
 			return (((Collection) value).size() == 0);
@@ -66,6 +70,14 @@ public class Utils {
 			s[3] = phoneNumber.substring(10);
 		}
 		return s;
+	}
+	
+	public static void writeImage(String location, byte[] imageData) throws IOException {
+		FileUtils.writeByteArrayToFile(new File(location), imageData);		
+	}
+	
+	public static boolean deleteImage(String location) {
+		return new File(location).delete();		
 	}
 
 }

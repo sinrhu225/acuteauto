@@ -25,5 +25,9 @@ public class BaseDTO {
 		}
 		return null;
 	}
+	
+	public boolean isPersistent() {
+		return (getId()!=null && getId()>0);
+	}
 
 }
