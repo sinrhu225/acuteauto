@@ -45,7 +45,7 @@
 				                            			<h:outputLabel value="Status:" />
 				                            			<acm:uiTypes value="#{uiCtrl.user.status}" typeName="userStatuses" label="User Status" required="true"/>
 				                            			<h:outputLabel value="Designation:" />
-				                            			<h:inputText value="#{uiCtrl.user.designation}" label="Designation" size="30"/>
+				                            			<h:inputText value="#{uiCtrl.user.designation}" label="Designation" size="30" required="true"/>
 				                            			<h:outputLabel value="User Name:" />
 				                            			<h:inputText value="#{uiCtrl.user.userName}" label="User Name" required="true"/>
 				                            			<h:outputLabel value="Password:" />
@@ -58,6 +58,7 @@
 				                            		</h:panelGrid>
 				                            		<acm:spacer height="40"/>
 				                            		<div class="navPanel" style="width:60%;">
+				                            			<h:commandButton styleClass="button1" action="#{uiCtrl.saveUser}" value="Submit  " rendered="#{uiCtrl.user.persistent}"/>
 												        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
 												            <rich:toggleControl targetItem="@next" event="click"/>
 												        </a4j:commandButton>
@@ -101,6 +102,8 @@
 				                            		</h:panelGrid>
 				                            		<acm:spacer height="40"/>
 				                            		<div class="navPanel" style="width:60%">
+				                            			<h:commandButton styleClass="button1" action="#{uiCtrl.saveUser}" value="Submit  " rendered="#{uiCtrl.user.persistent}"/>
+				                            			<acm:spacer width="10"/>
 												    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
 												            <rich:toggleControl targetItem="@prev" event="click" />
 												        </a4j:commandButton>

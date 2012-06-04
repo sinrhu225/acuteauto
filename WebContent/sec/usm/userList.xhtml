@@ -4,14 +4,68 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:acm="http://java.sun.com/jsf/composite/comp">
-	<ui:composition template="/templates/baseLayout.xhtml">
-		<ui:define name="body">
-			<section id="content">
-				<h:form id="UserList">
-				</h:form>
-			</section>
-		</ui:define>
-	</ui:composition>
-</html>				
+<ui:composition template="/templates/baseLayout.xhtml">
+	<ui:define name="body">
+		<section id="content">
+			<h:form id="UserListForm">
+		    	<div class="row-2">
+		      		<ui:repeat var="user" value="#{uiCtrl.users}">
+		      			<div class="wrapper">
+			            	<figure class="img-indent" style="vertical-align: middle;"><h:graphicImage value="/img/?imgId=#{user.displayImage.imageId}" height="200" width="200"/></figure>
+			                <div class="extra-box">
+				                <div class="padding-top">
+				                	<h4>#{user.firstName} #{user.middleName} #{user.lastName} - <span>#{user.designation}</span></h4>
+				                    <h:panelGrid columns="6" columnClasses="rightAlign nowrap col-padding, leftAlign boldFont col-padding nowrap, rightAlign nowrap col-padding, leftAlign boldFont col-padding nowrap, rightAlign nowrap col-padding, leftAlign boldFont col-padding nowrap" 
+				                    	width="75%" styleClass="table-1">
+				                    	<h:outputText value="Status: "/>
+				                    	<h:outputText value="#{user.status}" converter="enumConverter"/>
+				                    	<h:outputText value="User Type: "/>
+				                    	<h:outputText value="#{user.userType}" converter="enumConverter"/>		
+				                    	<h:outputText value="User Name: "/>
+				                    	<h:outputText value="#{user.userName}"/>
+				                    	<h:outputText value="Role: "/>
+				                    	<h:outputText value="#{user.role.roleName}"/>
+				                    	<h:outputText value="Address 1: "/>
+				                    	<h:outputText value="#{user.locations[0].address1}"/>
+				                    	<h:outputText value="Address 2: "/>
+				                    	<h:outputText value="#{user.locations[0].address2}"/>
+				                    	<h:outputText value="City / State / Zip: "/>
+				                    	<h:outputText value="#{user.locations[0].city} / #{user.locations[0].state} / #{user.locations[0].zip}"/>
+				                    	<h:outputText value="Cell Phone: "/>
+				                    	<h:outputText value="#{user.locations[0].cellPhone}" />
+				                    	<h:outputText value="Email: "/>
+				                    	<h:outputText value="#{user.locations[0].email}"/>			                    				                    	
+				                    </h:panelGrid>
+				                    <br/>			                    
+				                    <h:panelGrid columns="2" width="100%">
+				                    	<h:link styleClass="button1" outcome="/sec/usm/userEdit.jsf?userId=#{user.userInfoId}"><strong>Update User</strong></h:link>					                    
+						                <h:commandLink styleClass="button1 fright" value="Delete User" action="#{uiCtrl.deleteUser}" rendered="#{user.userInfoId != authorizedUser.userInfoId}">
+					                    	<f:setPropertyActionListener value="#{user}" target="#{uiCtrl.user}" />
+					                    </h:commandLink>
+				                    </h:panelGrid>			                    		                    
+				                </div>
+			                </div>
+			            </div>
+			            <hr/>
+		      		</ui:repeat>
+		      		<c:if test="#{empty uiCtrl.users}">
+		      			<div class="wrapper">
+			            	<div class="extra-box">
+				                <div class="padding-top">
+				                	<h4>We are Sorry. No Users are found to be created</h4>
+				                    <p>
+				                    	Please use the <strong>Add New user</strong> link on the Admin Console.
+				                    </p>			                                       
+				                </div>
+			                </div>
+			            </div>
+		      		</c:if>	      					            
+		         </div>
+			</h:form>         	            
+	    </section>
+	</ui:define>
+</ui:composition>     
+</html>   	
