@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition template="/templates/baseLayout.xhtml">
+		<ui:define name="body">
+			<f:metadata>
+		        <f:viewParam id="userId" name="userId" value="#{uiCtrl.user}" converter="entityConverter">
+		        	<f:param name="entityName" value="UserInfo"/>		        
+		        </f:viewParam>
+		        <f:event listener="#{uiCtrl.preRenderUserEdit}" type="preRenderView"/>
+		    </f:metadata>
+			 <section id="content">
+				<h:form id="UserEditForm" prependId="false">
+					<div class="row-2 p1">	
+						<h:outputText value="&lt;h3&gt;Add User Form&lt;/h3&gt;" escape="false" rendered="#{uiCtrl.user.userInfoId==0}"/>
+						<h:outputText value="&lt;h3&gt;Update Personal Profile&lt;/h3&gt;" escape="false" rendered="#{uiCtrl.user.userInfoId>0}"/>	
+						<div class="wrapper aligncenter">
+							<div class="col-1" style="width:100%;">
+								<div class="loanbox" style="width:100%;">
+									<h:panelGrid width="100%">							            
+						                <rich:togglePanel switchType="ajax">
+						                    <rich:togglePanelItem>
+						                    	<h:panelGroup layout="block">
+						                    		<div class="wizard-steps">
+														<div class="active-step"><a href="#"><span>1</span> Personal Info</a></div>
+														<div><a href="#"><span>2</span> Contact Info</a></div>
+														<div><a href="#"><span>3</span> Image Upload</a></div>															
+													</div>
+							                        <h:panelGrid width="100%" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+    													rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding"
+    													rowClasses="s1row">
+				                            			<h:outputLabel value="First Name:" />
+				                            			<h:inputText value="#{uiCtrl.user.firstName}" label="First Name" required="true"/>
+				                            			<h:outputLabel value="Middle Name:" />
+				                            			<h:inputText value="#{uiCtrl.user.middleName}" />
+				                            			<h:outputLabel value="Last Name:" />
+				                            			<h:inputText value="#{uiCtrl.user.lastName}" label="Last Name" required="true"/>
+				                            			<h:outputLabel value="User Type:" />
+				                            			<acm:uiTypes value="#{uiCtrl.user.userType}" typeName="userTypes" label="User Type" required="true"/>
+				                            			<h:outputLabel value="Status:" />
+				                            			<acm:uiTypes value="#{uiCtrl.user.status}" typeName="userStatuses" label="User Status" required="true"/>
+				                            			<h:outputLabel value="Designation:" />
+				                            			<h:inputText value="#{uiCtrl.user.designation}" label="Designation" size="30"/>
+				                            			<h:outputLabel value="User Name:" />
+				                            			<h:inputText value="#{uiCtrl.user.userName}" label="User Name" required="true"/>
+				                            			<h:outputLabel value="Password:" />
+				                            			<h:inputText value="#{uiCtrl.user.password}" label="Password" required="true"/>
+				                            			<h:outputLabel value="Role:" />
+				                            			<h:selectOneMenu value="#{uiCtrl.user.role}" converter="entityConverter" label="Role" required="true">
+				                            				<f:param name="entityName" value="Role"/>
+				                            				<f:selectItems value="#{uiCtrl.roles}"/>
+				                            			</h:selectOneMenu>					                            				                            		
+				                            		</h:panelGrid>
+				                            		<acm:spacer height="40"/>
+				                            		<div class="navPanel" style="width:60%;">
+												        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
+												            <rich:toggleControl targetItem="@next" event="click"/>
+												        </a4j:commandButton>
+												    </div>
+			                            		</h:panelGroup>
+						                    </rich:togglePanelItem>
+						                    <rich:togglePanelItem>
+						                    	<h:panelGroup layout="block">
+						                    		<div class="wizard-steps">
+														<div class="completed-step"><a href="#"><span>1</span> Personal Info</a></div>
+														<div class="active-step"><a href="#"><span>2</span> Contact Info</a></div>
+														<div><a href="#"><span>3</span> Image Upload</a></div>															
+													</div>
+							                        <h:panelGrid width="100%" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+    													rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding"
+    													rowClasses="s1row">
+				                            			<h:outputLabel value="Address Type:" />
+				                            			<acm:uiTypes value="#{uiCtrl.user.locations[0].locationType}" typeName="locationTypes" label="Address Type" required="true"/>
+				                            			<h:outputLabel value="Description" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].locationDesc}" label="Description" size="25"/>
+				                            			<h:outputLabel value="Email" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].email}" label="Email" size="25" required="true"/>
+				                            			<h:outputLabel value="Address 1:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].address1}" label="Address 1" required="true"/>
+				                            			<h:outputLabel value="Address 2:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].address2}" label="Address 2"/>
+				                            			<h:outputLabel value="City:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].city}" label="City" required="true"/>
+				                            			<h:outputLabel value="State:" />
+				                            			<acm:uiTypes value="#{uiCtrl.user.locations[0].state}" typeName="states" label="State" required="true"/>
+				                            			<h:outputLabel value="Country:" />
+				                            			<acm:uiTypes value="#{uiCtrl.user.locations[0].country}" typeName="countries" label="Country"/>
+				                            			<h:outputLabel value="Zip:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].zip}" label="Zip" required="true"/>
+				                            			<h:outputLabel value="Home Phone:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].homePhone}" label="Home Phone"/>
+				                            			<h:outputLabel value="Cell Phone:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].cellPhone}" label="Cell Phone" required="true"/>
+				                            			<h:outputLabel value="Business Phone:" />
+				                            			<h:inputText value="#{uiCtrl.user.locations[0].busPhone}" label="Business Phone"/>					                            				                            			
+				                            		</h:panelGrid>
+				                            		<acm:spacer height="40"/>
+				                            		<div class="navPanel" style="width:60%">
+												    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
+												            <rich:toggleControl targetItem="@prev" event="click" />
+												        </a4j:commandButton>
+												        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
+												            <rich:toggleControl targetItem="@next" event="click"/>
+												        </a4j:commandButton>
+												    </div>
+				                            	</h:panelGroup>	
+						                    </rich:togglePanelItem>
+						                    <rich:togglePanelItem>
+						                    	<h:panelGroup layout="block">
+						                    		<div class="wizard-steps">
+														<div class="completed-step"><a href="#"><span>1</span> Personal Info</a></div>
+														<div class="completed-step"><a href="#"><span>2</span> Contact Info</a></div>
+														<div class="active-step"><a href="#"><span>3</span> Image Upload</a></div>															
+													</div>
+													<h:panelGrid width="100%" styleClass="centerAlign">
+														<h:panelGrid columns="2" columnClasses="col-padding, col-padding">
+															<acm:fileUpload listener="#{uiCtrl.uploadPhoto}" render="NewImage"/>
+															<h:panelGrid columns="2" columnClasses="col-padding, col-padding">
+																<h:panelGrid columnClasses="col-padding">
+																	<h:outputText value="Current Photo" styleClass="boldFont"/>
+																	<h:graphicImage value="/img/?imgId=#{uiCtrl.user.displayImage.imageId}" width="200" height="200"/>
+																</h:panelGrid>
+																<h:panelGroup id="NewImage">
+																	<h:panelGrid rendered="#{uiCtrl.user.displayImage.imageData!=null}" columnClasses="col-padding">
+																		<h:outputText value="Uploaded Photo" styleClass="boldFont"/>
+																		<h:graphicImage value="/img/?imgHolder=true" width="200" height="200"/>
+																		<a4j:commandButton styleClass="button1" value="Discard" action="#{uiCtrl.discardNewImage}" render="NewImage"/>
+																	</h:panelGrid>
+																</h:panelGroup>																	
+															</h:panelGrid>
+														</h:panelGrid>
+													</h:panelGrid>
+						                        	<acm:spacer height="40"/>
+						                        	<div class="navPanel" style="width:60%">
+												    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
+												            <rich:toggleControl targetItem="@prev" event="click" />
+												        </a4j:commandButton>
+												        <h:commandButton styleClass="fright button1" action="#{uiCtrl.saveUser}" value="Submit  " />	        	        
+												    </div>	
+												 </h:panelGroup>   
+						                    </rich:togglePanelItem>							                    
+						                </rich:togglePanel>							            					        	    
+								    </h:panelGrid>
+							    </div>
+						    </div>
+					    </div>
+				    </div>												
+				</h:form>
+			</section>
+		</ui:define>
+	</ui:composition>
+</html>				

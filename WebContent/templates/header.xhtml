@@ -46,8 +46,8 @@
 			        </h:panelGrid>
 			        <acm:spacer height="10"/>
 			        <h:panelGrid columns="2" width="100%" columnClasses="rightAlign col-padding, leftAlign col-padding">
-				        <a4j:commandButton styleClass="button1" value="Sign In" action="#{loginCtrl.login}" oncomplete="#{rich:component('lp')}.hide(event); return false;">
-				        </a4j:commandButton>
+				        <h:commandButton styleClass="button1" value="Sign In" action="#{loginCtrl.login}">
+				        </h:commandButton>
 				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('lp')}.hide(event); return false;">
 				        </a4j:commandButton>
         			</h:panelGrid>
