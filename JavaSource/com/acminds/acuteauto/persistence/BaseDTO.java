@@ -29,5 +29,15 @@ public class BaseDTO {
 	public boolean isPersistent() {
 		return (getId()!=null && getId()>0);
 	}
+	
+	/**
+	 * To overcome the JSF Validation Error (Value is not valid).
+	 */
+	public boolean equals(Object obj) {
+		if (!(obj instanceof BaseDTO)) {
+			return false;
+		}
+		return (this.getId() == ((BaseDTO)obj).getId());
+	}
 
 }
