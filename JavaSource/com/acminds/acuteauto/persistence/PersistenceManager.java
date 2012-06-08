@@ -43,7 +43,7 @@ public abstract class PersistenceManager {
 	}
 	
 	public static EntityManager getEntityManager() {
-		return getInstance().getCurrentEntityManager();
+		return getInstance().getCurrentEntityManager(true);
 	}
 	
 	public static void setEntityManager(EntityManager em) {
@@ -54,7 +54,7 @@ public abstract class PersistenceManager {
 		 getInstance().closeCurrentEntityManager();
 	}
 	
-	public abstract EntityManager getCurrentEntityManager();
+	public abstract EntityManager getCurrentEntityManager(boolean createIfEmpty);
 	public abstract void setCurrentEntityManager(EntityManager em);
 	public abstract void closeCurrentEntityManager();
 

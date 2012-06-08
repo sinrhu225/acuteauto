@@ -17,7 +17,9 @@ public class BatchPersistenceManager extends PersistenceManager {
 	private static ThreadLocal<EntityManager> local = new ThreadLocal<EntityManager>();
 	
 	@Override
-	public EntityManager getCurrentEntityManager() {
+	public EntityManager getCurrentEntityManager(boolean createIfEmpty) {
+		if(!createIfEmpty)
+			return local.get();
 		EntityManager em = null;
 		if(Utils.isEmpty(local.get())) {
 			em = getEntityManagerFactory().createEntityManager();

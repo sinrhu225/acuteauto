@@ -23,7 +23,7 @@ import com.acminds.acuteauto.utils.WebUtils;
  * @author Mansur
  *
  */
-@ManagedBean(eager=true, name="uiTypes")
+@ManagedBean(name="uiTypes")
 @ApplicationScoped
 public class UITypes {
 	private List<SelectItem> userTypes;

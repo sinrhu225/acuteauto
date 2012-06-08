@@ -20,8 +20,7 @@ public class DefaultSessionListener implements HttpSessionListener {
 
 	@Override
 	public void sessionCreated(HttpSessionEvent arg0) {
-		logger.info("Session created with SessionId: "+arg0.getSession().getId());
-		arg0.getSession().setAttribute(PersistenceManager.EM_HOLDER, PersistenceManager.getEntityManager());
+		logger.info("Session created with SessionId: "+arg0.getSession().getId());		
 	}
 
 	@Override
