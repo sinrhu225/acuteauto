@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+<ui:composition template="/templates/baseLayout.xhtml">
+	<ui:define name="body">
+		<section id="content">
+			<h:form id="PrivListForm">
+		    	<div class="row-2" style="width:100%">
+		    		<div align="center" style="min-height: 250px;">
+			    		<h:dataTable width="80%" value="#{rlCtrl.privs}" var="priv" headerClass="standardHeader" rowClasses="s1row"
+			    			columnClasses="indent2, indent2, centerAlign, centerAlign" styleClass="table-1 thinGrayBorder">
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Name"/></f:facet>
+			    				<h:outputText value="#{priv.privName}" />
+			    			</h:column>
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Code"/></f:facet>
+			    				<h:outputText value="#{priv.privCode}" />
+			    			</h:column>
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Description"/></f:facet>
+			    				<h:outputText value="#{priv.privDesc}" />
+			    			</h:column>
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Update/Delete"/></f:facet>
+			    				<h:panelGroup>
+				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('PrivPopup')}.show();" render="PrivPopup">
+				    					<f:param name="privId" value="#{priv.privilegeId}"/>
+									</a4j:commandLink>	
+									<acm:spacer width="10"/>				                    
+					                <h:commandLink value="Delete" action="#{rlCtrl.deletePriv}">
+				                    	<f:setPropertyActionListener value="#{priv}" target="#{rlCtrl.priv}" />
+				                    </h:commandLink>
+			                    </h:panelGroup>		    				
+			    			</h:column>
+			    		</h:dataTable>		      		
+			      		<c:if test="#{empty rlCtrl.privs}">
+			      			<div class="wrapper">
+				            	<div class="extra-box">
+					                <div class="padding-top">
+					                	<h4>We are Sorry. No Privileges are found to be created</h4>
+					                    <p>
+					                    	Please use the <strong>Add New priv</strong> link on the Admin Console to add a Privilege.
+					                    </p>			                                       
+					                </div>
+				                </div>
+				            </div>
+			      		</c:if>		
+		      		</div>      		    					            
+		         </div>
+			</h:form>  
+			<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>       	            
+	    </section>
+	</ui:define>
+</ui:composition>     
+</html>   	

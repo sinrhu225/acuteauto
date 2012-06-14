@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition>	
+		<rich:popupPanel id="PrivPopup" modal="true" autosized="true" header="Privilege Panel">
+			<f:metadata>
+				<f:viewParam id="privId" name="privId" value="#{rlCtrl.priv}" converter="entityConverter">
+		        	<f:param name="entityName" value="Privilege"/>		        
+		        </f:viewParam>
+		        <f:event listener="#{rlCtrl.loadPrivilege}" type="preRenderView"/>
+		    </f:metadata>	
+			<h:form>
+				<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding, col-padding">
+					<h:panelGrid columns="2" columnClasses="rightAlign col-padding, leftAlign col-padding">
+						<h:outputLabel value="Privilege Name: " />
+						<h:inputText value="#{rlCtrl.priv.privName}" required="true" maxlength="25"/>
+						<h:outputLabel value="Privilege Code: " />
+						<h:inputText value="#{rlCtrl.priv.privCode}" required="true" maxlength="20"/>
+						<h:outputLabel value="Description: " />
+						<h:inputTextarea value="#{rlCtrl.priv.privDesc}" rows="3" cols="40"/>
+						<h:outputLabel value="Restricted Url: " />
+						<h:inputText value="#{rlCtrl.priv.tranUri}" size="50" maxlength="100"/>
+					</h:panelGrid>
+					<br/>
+					<h:panelGroup>
+						<h:commandButton styleClass="button1" value="Submit" action="#{rlCtrl.submitPrivilege}">
+				        </h:commandButton>
+				        <acm:spacer width="10px;"/>
+				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('PrivPopup')}.hide();" immediate="true">				            
+				        </a4j:commandButton>
+			        </h:panelGroup>			        				
+				</h:panelGrid>
+			</h:form>
+		</rich:popupPanel>
+	</ui:composition>
+</html>	
