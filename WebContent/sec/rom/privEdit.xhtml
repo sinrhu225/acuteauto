@@ -6,15 +6,15 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:acm="http://java.sun.com/jsf/composite/comp">
-	<ui:composition>	
-		<rich:popupPanel id="PrivPopup" modal="true" autosized="true" header="Privilege Panel">
-			<f:metadata>
-				<f:viewParam id="privId" name="privId" value="#{rlCtrl.priv}" converter="entityConverter">
-		        	<f:param name="entityName" value="Privilege"/>		        
-		        </f:viewParam>
-		        <f:event listener="#{rlCtrl.loadPrivilege}" type="preRenderView"/>
-		    </f:metadata>	
-			<h:form>
+	<ui:composition>
+		<h:form id="PrivEditForm">	
+			<rich:popupPanel id="PrivPopup" modal="true" autosized="true" header="Privilege Panel" domElementAttachment="parent">
+				<f:metadata>
+					<f:viewParam id="privId" name="privId" value="#{rlCtrl.priv}" converter="entityConverter">
+			        	<f:param name="entityName" value="Privilege"/>		        
+			        </f:viewParam>
+			        <f:event listener="#{rlCtrl.loadPrivilege}" type="preRenderView"/>
+			    </f:metadata>	
 				<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding, col-padding">
 					<h:panelGrid columns="2" columnClasses="rightAlign col-padding, leftAlign col-padding">
 						<h:outputLabel value="Privilege Name: " />
@@ -28,14 +28,15 @@
 					</h:panelGrid>
 					<br/>
 					<h:panelGroup>
-						<h:commandButton styleClass="button1" value="Submit" action="#{rlCtrl.submitPrivilege}">
-				        </h:commandButton>
+						<a4j:commandButton styleClass="button1" value="Submit" action="#{rlCtrl.submitPrivilege}" 
+							oncomplete="#{rich:component('PrivPopup')}.hide();" render="@all">
+				        </a4j:commandButton>
 				        <acm:spacer width="10px;"/>
 				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('PrivPopup')}.hide();" immediate="true">				            
 				        </a4j:commandButton>
 			        </h:panelGroup>			        				
 				</h:panelGrid>
-			</h:form>
-		</rich:popupPanel>
+			</rich:popupPanel>
+		</h:form>
 	</ui:composition>
 </html>	

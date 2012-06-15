@@ -9,10 +9,10 @@
 	xmlns:acm="http://java.sun.com/jsf/composite/comp">
 <ui:composition template="/templates/baseLayout.xhtml">
 	<ui:define name="body">
-		<section id="content">
-			<h:form id="PrivListForm">
-		    	<div class="row-2" style="width:100%">
-		    		<div align="center" style="min-height: 250px;">
+		<section id="content">			
+	    	<h:panelGroup layout="block" styleClass="row-2" style="width:100%">
+	    		<div align="center" style="min-height: 250px;" class="padding-top">
+	    			<h:form id="PrivListForm">
 			    		<h:dataTable width="80%" value="#{rlCtrl.privs}" var="priv" headerClass="standardHeader" rowClasses="s1row"
 			    			columnClasses="indent2, indent2, centerAlign, centerAlign" styleClass="table-1 thinGrayBorder">
 			    			<h:column>
@@ -30,8 +30,8 @@
 			    			<h:column>
 			    				<f:facet name="header"><h:outputText value="Update/Delete"/></f:facet>
 			    				<h:panelGroup>
-				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('PrivPopup')}.show();" render="PrivPopup">
-				    					<f:param name="privId" value="#{priv.privilegeId}"/>
+				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('PrivPopup')}.show();" execute="@this" render="PrivEditForm">
+				    					<f:param name="privId" value="#{priv.privilegeId}"/>				    					
 									</a4j:commandLink>	
 									<acm:spacer width="10"/>				                    
 					                <h:commandLink value="Delete" action="#{rlCtrl.deletePriv}">
@@ -39,23 +39,29 @@
 				                    </h:commandLink>
 			                    </h:panelGroup>		    				
 			    			</h:column>
-			    		</h:dataTable>		      		
-			      		<c:if test="#{empty rlCtrl.privs}">
-			      			<div class="wrapper">
-				            	<div class="extra-box">
-					                <div class="padding-top">
-					                	<h4>We are Sorry. No Privileges are found to be created</h4>
-					                    <p>
-					                    	Please use the <strong>Add New priv</strong> link on the Admin Console to add a Privilege.
-					                    </p>			                                       
-					                </div>
+			    		</h:dataTable>	
+			    		<acm:spacer height="20"/>
+			    		<h:panelGroup layout="block" styleClass="padding-top">
+				    		<a4j:commandLink styleClass="button1" value="Add New Privilege" oncomplete="#{rich:component('PrivPopup')}.show();" render="PrivEditForm">
+								 <f:param name="privId" value="0"/>
+							</a4j:commandLink>
+						</h:panelGroup>	
+		    		</h:form>      		
+		      		<c:if test="#{empty rlCtrl.privs}">
+		      			<div class="wrapper">
+			            	<div class="extra-box">
+				                <div class="padding-top">
+				                	<h4>We are Sorry. No Privileges are found to be created</h4>
+				                    <p>
+				                    	Please use the <strong>Add New priv</strong> link on the Admin Console to add a Privilege.
+				                    </p>			                                       
 				                </div>
-				            </div>
-			      		</c:if>		
-		      		</div>      		    					            
-		         </div>
-			</h:form>  
-			<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>       	            
+			                </div>
+			            </div>
+		      		</c:if>		
+	      		</div>      		    					            
+	         </h:panelGroup>		         
+			<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>	    	            
 	    </section>
 	</ui:define>
 </ui:composition>     
