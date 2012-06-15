@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ComponentSystemEvent;
 
 import com.acminds.acuteauto.persistence.dto.Privilege;
 import com.acminds.acuteauto.persistence.dto.Role;
@@ -43,37 +44,47 @@ public class RoleController extends BaseController {
 		return role;
 	}
 	public void setRole(Role role) {
-		this.role = role;
+		if(role == null && (this.role!=null && this.role.getRoleId()==null))
+			;// do nothing.		
+		else
+			this.role = role;
 	}
 	public Privilege getPriv() {
 		return priv;
 	}
 	public void setPriv(Privilege priv) {
-		this.priv = priv;
+		if(priv == null && (this.priv!=null && this.priv.getPrivilegeId()==null))
+			;// do nothing.		
+		else
+			this.priv = priv;
 	}
 	
-	public String newPrivilege() {
-		priv = new Privilege();
-		return "sec/rom/privEdit";
+	public void loadPrivilege(ComponentSystemEvent event) {
+		if(priv == null) {
+			priv = new Privilege();
+		}
 	}
 	
 	public String submitPrivilege() {
 		try {
 			logger.info("Saving Privilege.");
 			baseService.saveOrUpdate(priv, true);
+			if(!getPrivs().contains(priv))
+				getPrivs().add(priv);
 			logger.info("Privilege saved successfully.");
-			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "Privilege saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "savePrivSuccessful");
 		} catch(Exception e) {
 			baseService.rollback();
 			logger.error("Privilege could not be saved due to an internal error.", e);
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
-		return "sec/rom/privList";
+		return "/sec/rom/privList?faces-redirect=true";
 	}
 	
-	public String newRole() {
-		role = new Role();
-		return "sec/rom/roleEdit";
+	public void loadRole(ComponentSystemEvent event) {
+		if(role == null) {
+			role = new Role();
+		}
 	}
 	
 	public String submitRole() {
@@ -97,15 +108,50 @@ public class RoleController extends BaseController {
 			}
 			baseService.saveOrUpdate(role, false);
 			baseService.commit();
-			baseService.refresh(role);
+			if(!getRoles().contains(role))
+				getRoles().add(role);
 			logger.info("Role saved successfully.");
-			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "Role saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveRoleSuccessful");
 		} catch(Exception e) {
 			baseService.rollback();
 			logger.error("Role could not be saved due to an internal error.", e);
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
-		return "sec/rom/roleList";
+		return "/sec/rom/roleList?faces-redirect=true";
+	}
+	
+	public String deletePriv() {
+		try {
+			logger.info("Deleting a Privilege: "+priv.getPrivCode());
+			baseService.delete(priv, true);
+			getPrivs().remove(priv);
+			logger.info("Privilege: "+priv.getPrivCode()+" deleted successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delPrivSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Privilege could not be deleted due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "deleteFailed");
+		}
+		return "/sec/rom/privList";
+	}
+	
+	public String deleteRole() {
+		try {
+			logger.info("Deleting a Role: "+role.getRoleName());
+			if(!Utils.isEmpty(role.getUserInfos())) {
+				WebUtils.addMessage(FacesMessage.SEVERITY_WARN, "activeRoleUsers");
+				return "sec/rom/roleList";
+			}
+			baseService.delete(role, true);
+			getRoles().remove(role);
+			logger.info("Role: "+role.getRoleName()+" deleted successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delRoleSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Role could not be deleted due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "deleteFailed");
+		}
+		return "/sec/rom/roleList";
 	}
 
 }

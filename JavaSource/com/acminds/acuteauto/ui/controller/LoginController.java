@@ -48,7 +48,7 @@ public class LoginController extends BaseController {
 			return null;
 		}
 		WebUtils.setBeanToScope("authorizedUser", list.get(0), true);
-		return "/sec/adminConsole";
+		return "/sec/adminConsole?faces-redirect=true";
 	}
 	
 	public String logout() {
