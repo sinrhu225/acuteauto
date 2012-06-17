@@ -291,7 +291,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	white-space: nowrap;
 }
 .standardHeader {
-	font-size:20px;
+	font-size:16px;
 	line-height:1.2em;
 	padding:10px 19px;
 	margin:0px 0 6px;
@@ -355,7 +355,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
     width: 70%;
 }
 
-.s1row td { height:25px; }
+.s1row td { height:25px; vertical-align: middle;}
 
 .threeColBlock {
 	width:305px; 
@@ -393,3 +393,4 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 #adminConsole h4 span {color:#7ac142;}
 
 
+.selectItem table td {padding:0 0 0 10px;}
