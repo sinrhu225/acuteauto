@@ -10,6 +10,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ComponentSystemEvent;
+import javax.faces.model.SelectItem;
 
 import com.acminds.acuteauto.persistence.dto.Privilege;
 import com.acminds.acuteauto.persistence.dto.Role;
@@ -27,6 +28,7 @@ public class RoleController extends BaseController {
 	
 	private List<Role> roles;
 	private List<Privilege> privs;
+	private List<SelectItem> uiPrivs;
 	private Role role;
 	private Privilege priv;
 	
@@ -57,6 +59,15 @@ public class RoleController extends BaseController {
 			;// do nothing.		
 		else
 			this.priv = priv;
+	}
+	
+	public List<SelectItem> getUiPrivs() {
+		if(Utils.isEmpty(uiPrivs)) {
+			uiPrivs = new ArrayList<SelectItem>();
+			for(Privilege p:getPrivs())
+				uiPrivs.add(new SelectItem(p, p.getPrivName()));
+		}
+		return uiPrivs;
 	}
 	
 	public void loadPrivilege(ComponentSystemEvent event) {
