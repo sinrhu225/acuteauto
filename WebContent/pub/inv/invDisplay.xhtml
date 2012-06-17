@@ -9,7 +9,9 @@
 	<ui:composition template="/templates/baseLayout.xhtml">
 		<ui:define name="body">
 			<f:metadata>
-		        <f:viewParam id="carId" name="carId" value="#{invCtrl.carId}" />
+		        <f:viewParam id="carId" name="carId" value="#{invCtrl.car}" converter="entityConverter">
+		        	<f:param name="entityName" value="Vehicle"/>
+		        </f:viewParam>
 		        <f:viewParam id="backTo" name="backTo" value="#{invCtrl.backTo}" />
 		    </f:metadata>
 		    <h:panelGrid width="100%">
@@ -74,9 +76,9 @@
 			    		</ui:repeat>
 			    	</h:panelGroup>					    		
 		    	</h:panelGrid>	
-		    	<h:panelGrid width="100%" headerClass="standardHeader">
+		    	<h:panelGrid width="100%">
 		    		<f:facet name="header">
-		                Options
+		               <h3>Options</h3> 
 		            </f:facet>			    		
     				<rich:dataGrid columns="4" elements="12" value="#{invCtrl.car.distinctGroups}" var="group" style="width: 100%;">
     					<h:panelGrid width="100%" headerClass="subHeader nowrap">

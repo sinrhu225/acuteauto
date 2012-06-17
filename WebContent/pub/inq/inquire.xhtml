@@ -8,7 +8,9 @@
 <ui:composition template="/home.xhtml">
 	<ui:define name="banner">
 		<f:metadata>
-	        <f:viewParam id="carId" name="carId" value="#{inqCtrl.carId}" />        
+	        <f:viewParam id="carId" name="carId" value="#{inqCtrl.car}" converter="entityConverter">
+		    	<f:param name="entityName" value="Vehicle"/>
+	        </f:viewParam>    
 	    </f:metadata>
 	<h:form>
 		<section id="content">
