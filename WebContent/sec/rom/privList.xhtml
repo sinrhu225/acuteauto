@@ -30,7 +30,7 @@
 			    			<h:column>
 			    				<f:facet name="header"><h:outputText value="Update/Delete"/></f:facet>
 			    				<h:panelGroup>
-				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('PrivPopup')}.show();" execute="@this" render="PrivEditForm">
+				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('PrivPopup')}.show();" execute="@this" render="PrivDataGrid">
 				    					<f:param name="privId" value="#{priv.privilegeId}"/>				    					
 									</a4j:commandLink>	
 									<acm:spacer width="10"/>				                    
@@ -42,23 +42,11 @@
 			    		</h:dataTable>	
 			    		<acm:spacer height="20"/>
 			    		<h:panelGroup layout="block" styleClass="padding-top">
-				    		<a4j:commandLink styleClass="button1" value="Add New Privilege" oncomplete="#{rich:component('PrivPopup')}.show();" render="PrivEditForm">
+				    		<a4j:commandLink styleClass="button1" value="Add New Privilege" oncomplete="#{rich:component('PrivPopup')}.show();" render="PrivDataGrid">
 								 <f:param name="privId" value="0"/>
 							</a4j:commandLink>
 						</h:panelGroup>	
-		    		</h:form>      		
-		      		<c:if test="#{empty rlCtrl.privs}">
-		      			<div class="wrapper">
-			            	<div class="extra-box">
-				                <div class="padding-top">
-				                	<h4>We are Sorry. No Privileges are found to be created</h4>
-				                    <p>
-				                    	Please use the <strong>Add New priv</strong> link on the Admin Console to add a Privilege.
-				                    </p>			                                       
-				                </div>
-			                </div>
-			            </div>
-		      		</c:if>		
+		    		</h:form>		      			
 	      		</div>      		    					            
 	         </h:panelGroup>		         
 			<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>	    	            

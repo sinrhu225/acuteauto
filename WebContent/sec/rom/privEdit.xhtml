@@ -7,7 +7,7 @@
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:acm="http://java.sun.com/jsf/composite/comp">
 	<ui:composition>
-		<h:form id="PrivEditForm">	
+		<h:form id="PrivEditForm" prependId="false">	
 			<rich:popupPanel id="PrivPopup" modal="true" autosized="true" header="Privilege Panel" domElementAttachment="parent">
 				<f:metadata>
 					<f:viewParam id="privId" name="privId" value="#{rlCtrl.priv}" converter="entityConverter">
@@ -16,7 +16,7 @@
 			        <f:event listener="#{rlCtrl.loadPrivilege}" type="preRenderView"/>
 			    </f:metadata>	
 				<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding, col-padding">
-					<h:panelGrid columns="2" columnClasses="rightAlign col-padding, leftAlign col-padding">
+					<h:panelGrid id="PrivDataGrid" columns="2" columnClasses="rightAlign col-padding, leftAlign col-padding">
 						<h:outputLabel value="Privilege Name: " />
 						<h:inputText value="#{rlCtrl.priv.privName}" required="true" maxlength="25"/>
 						<h:outputLabel value="Privilege Code: " />

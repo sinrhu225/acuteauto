@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+<ui:composition template="/templates/baseLayout.xhtml">
+	<ui:define name="body">
+		<section id="content">			
+	    	<h:panelGroup layout="block" styleClass="row-2" style="width:100%">
+	    		<div align="center" style="min-height: 250px;" class="padding-top">
+	    			<h:form id="RoleListForm">
+			    		<h:dataTable width="80%" value="#{rlCtrl.roles}" var="role" headerClass="standardHeader" rowClasses="s1row"
+			    			columnClasses="indent2, indent2, centerAlign, centerAlign" styleClass="table-1 thinGrayBorder">
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Name"/></f:facet>
+			    				<h:outputText value="#{role.roleName}" />
+			    			</h:column>
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Description"/></f:facet>
+			    				<h:outputText value="#{role.description}" />
+			    			</h:column>
+			    			<h:column>
+			    				<f:facet name="header"><h:outputText value="Update/Delete"/></f:facet>
+			    				<h:panelGroup>
+				    				<a4j:commandLink value="Update" oncomplete="#{rich:component('RolePopup')}.show();" execute="@this" render="RoleDataGrid,RolePrivGrid">
+				    					<f:param name="roleId" value="#{role.roleId}"/>				    					
+									</a4j:commandLink>	
+									<acm:spacer width="10"/>				                    
+					                <h:commandLink value="Delete" action="#{rlCtrl.deleteRole}">
+				                    	<f:setPropertyActionListener value="#{role}" target="#{rlCtrl.role}" />
+				                    </h:commandLink>
+			                    </h:panelGroup>		    				
+			    			</h:column>
+			    		</h:dataTable>	
+			    		<acm:spacer height="20"/>
+			    		<h:panelGroup layout="block" styleClass="padding-top">
+				    		<a4j:commandLink styleClass="button1" value="Add New Role" oncomplete="#{rich:component('RolePopup')}.show();" render="RoleDataGrid,RolePrivGrid">
+								 <f:param name="roleId" value="0"/>
+							</a4j:commandLink>
+						</h:panelGroup>	
+		    		</h:form>		      			
+	      		</div>      		    					            
+	         </h:panelGroup>		         
+			<ui:include src="/sec/rom/roleEdit.xhtml"></ui:include>	    	            
+	    </section>
+	</ui:define>
+</ui:composition>     
+</html>   	
