@@ -23,6 +23,7 @@
 											<h:link outcome="/sec/hmp/groupMaint">Manage Groups</h:link>											
 										</li>
 										<li><h:link outcome="/sec/hmp/groupMaint" rendered="false">Manage RSS Feeds</h:link></li>
+										<li><a href="#">Customize Theme</a></li>
 										<li><h:commandLink action="#{hmpCtrl.reset}" value="Reset Home Page" /></li>
 									</ul>
 								</div>
@@ -49,7 +50,7 @@
 										<li>
 											<a href="#{facesContext.externalContext.requestContextPath}/sec/usm/userEdit.jsf">Add New User</a>
 										</li>
-										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/usm/userList.jsf">Search / Manage Users</a></li>																		
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/usm/userList.jsf">Manage Users</a></li>																		
 									</ul>
 								</div>
 							</h:panelGroup>
@@ -75,9 +76,18 @@
 								<h3>Role Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
-										<li><a href="#">Add New Role</a></li>
-										<li><a href="#">Add New Privilege</a></li>
-										<li><a href="#">Search / Manage Roles</a></li>																		
+										<li>
+											<a4j:commandLink value="Add New Role" oncomplete="#{rich:component('RolePopup')}.show();">
+												 <f:param name="roleId" value="0"/>
+											</a4j:commandLink>
+										</li>
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/rom/roleList.jsf">Manage Roles</a></li>
+										<li>
+											<a4j:commandLink value="Add New Privilege" oncomplete="#{rich:component('PrivPopup')}.show();">
+												 <f:param name="privId" value="0"/>
+											</a4j:commandLink>
+										</li>
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/rom/privList.jsf">Manage Privileges</a></li>																		
 									</ul>
 								</div>
 							</h:panelGroup>
@@ -103,11 +113,12 @@
 									</ul>
 								</div>
 							</h:panelGroup>						
-						</h:panelGrid>
-						<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>
+						</h:panelGrid>						
 					</h:panelGrid>					
 				</h:form>			
-				<ui:include src="/sec/hmp/menuMaint.xhtml"></ui:include>						
+				<ui:include src="/sec/hmp/menuMaint.xhtml"></ui:include>
+				<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>
+				<ui:include src="/sec/rom/roleEdit.xhtml"></ui:include>						
 			</section>			
 		</ui:define>
 	</ui:composition>
