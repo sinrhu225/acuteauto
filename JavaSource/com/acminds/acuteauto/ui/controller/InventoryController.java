@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.SelectItem;
 
 import com.acminds.acuteauto.persistence.dto.Make;
@@ -46,15 +47,14 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	
 	public Vehicle getCar() {
-		if(carId!=null) {
-			if(car!=null && car.getVehicleId()==carId)
-				return car;
-			car = service.getDao().get(Vehicle.class, carId);
-			return car;
-		}
-		return null;
+		return car;
+	}	
+	public void setCar(Vehicle car) {
+		if(car == null && (this.car!=null && this.car.getVehicleId()==null))
+			;
+		else
+			this.car = car;
 	}
-	
 	public List<Vehicle> getCars() {
 		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
 		return cars;
@@ -205,8 +205,8 @@ public class InventoryController extends BaseController {
 		return "/pub/inv/invList";
 	}
 	
-	public String addInventory() {
-		return null;
+	public void addInventory(ComponentSystemEvent event) {
+		
 	}
 	
 	public String submitInventory() {
