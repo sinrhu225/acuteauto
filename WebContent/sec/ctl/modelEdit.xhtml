@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition>
+		<h:form id="ModelEditForm" prependId="false">	
+			<rich:popupPanel id="ModelPopup" modal="true" autosized="true" header="Add/Update Model" domElementAttachment="parent">
+				<f:metadata>
+					<f:viewParam id="makeId" name="makeId" value="#{ctlCtrl.make}" converter="entityConverter">
+			        	<f:param name="entityName" value="Make"/>
+			        </f:viewParam>
+					<f:viewParam id="modelId" name="modelId" value="#{ctlCtrl.model}" converter="entityConverter">
+			        	<f:param name="entityName" value="Model"/>
+			        </f:viewParam>
+			        <f:event listener="#{ctlCtrl.loadModel}" type="preRenderView"/>
+			    </f:metadata>	
+				<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding, col-padding">
+					<h:panelGrid id="ModelDataGrid" columns="2" columnClasses="rightAlign col-padding, leftAlign col-padding">
+						<h:outputText value="Make:" />
+				        <h:selectOneListbox value="#{ctlCtrl.make}" size="1" converter="entityConverter" required="true" label="Make">
+				        	<f:selectItem itemLabel="Please Select" itemValue="0"/>
+			           		<f:selectItems value="#{invCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
+			           		<f:param name="entityName" value="Make"/>
+			           	</h:selectOneListbox>
+						<h:outputLabel value="Model Name: " />
+						<h:inputText value="#{ctlCtrl.model.name}" required="true" maxlength="25"/>
+						<h:outputLabel value="Description: " />
+						<h:inputTextarea value="#{ctlCtrl.model.description}" rows="3" cols="40"/>
+						<h:outputLabel value="Start Year: " />
+						<h:inputText value="#{ctlCtrl.model.yearStart}"/>
+						<h:outputLabel value="End Year: " />
+						<h:inputText value="#{ctlCtrl.model.yearEnd}"/>						
+					</h:panelGrid>
+					<h:panelGroup>
+						<a4j:commandButton styleClass="button1" value="Submit" action="#{ctlCtrl.submitModel}" 
+							oncomplete="#{rich:component('ModelPopup')}.hide();" render="@all">
+				        </a4j:commandButton>
+				        <acm:spacer width="10px;"/>
+				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('ModelPopup')}.hide();" immediate="true">				            
+				        </a4j:commandButton>
+			        </h:panelGroup>			        				
+				</h:panelGrid>
+			</rich:popupPanel>
+		</h:form>
+	</ui:composition>
+</html>	
