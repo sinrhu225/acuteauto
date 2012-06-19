@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+      
+   	<div>
+   		<div class="wizard-steps">
+			<div class="active-step"><a href="#"><span>1</span> Vehicle Info</a></div>
+			<div><a href="#"><span>2</span> Vehicle Options</a></div>
+			<h:panelGroup layout="block" rendered="#{invCtrl.car.persistent}"><a href="#"><span>3</span> Upload Images</a></h:panelGroup>			
+		</div>
+        <h:panelGrid rowClasses="s1row" columns="6" columnClasses="rightAlign col-padding, leftAlign col-padding, 
+	    	rightAlign col-padding, leftAlign col-padding, rightAlign col-padding, leftAlign col-padding" width="100%">
+	    	<h:outputText value="Year:" />
+	        <h:selectOneListbox value="#{invCtrl.car.year}" size="1" required="true" label="Year">
+	        	<f:selectItem itemLabel="Please Select"/>
+          		<f:selectItems value="#{uiTypes.years}"/>
+          	</h:selectOneListbox>
+	        <h:outputText value="Make:" />
+	        <h:selectOneListbox value="#{invCtrl.car.make}" size="1" converter="entityConverter" required="true" label="Make">
+	        	<f:selectItem itemLabel="Please Select" itemValue="0"/>
+           		<f:selectItems value="#{invCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
+           		<f:ajax event="change" render="Model"/>
+           		<f:param name="entityName" value="Make"/>
+           	</h:selectOneListbox>
+	        <h:outputText value="Model:" />
+	        <h:selectOneListbox id="Model" value="#{invCtrl.car.model}" size="1" disabled="#{invCtrl.car.make == null}" converter="entityConverter" required="true" label="Model">
+	        	<f:selectItem itemLabel="Please Select" itemValue="0"/>
+           		<f:selectItems value="#{invCtrl.car.make.models}" var="model" itemLabel="#{model.name}" itemValue="#{model}"/>
+           		<f:ajax event="change" render="Style"/>
+           		<f:param name="entityName" value="Model"/>
+           	</h:selectOneListbox>
+           	<h:outputText value="Style:" />
+	        <h:selectOneListbox id="Style" value="#{invCtrl.car.style}" size="1" disabled="#{invCtrl.car.model == null}" converter="entityConverter" required="true" label="Style">
+          		<f:selectItem itemLabel="Please Select" itemValue="0"/>
+          		<f:selectItems value="#{invCtrl.car.model.styles}" var="style" itemLabel="#{style.name}" itemValue="#{style}"/>
+          		<f:param name="entityName" value="Style"/>
+          	</h:selectOneListbox>
+	        
+	        <h:outputText value="Stock Number:" />
+	        <h:inputText  value="#{invCtrl.car.stockNbr}" label="Stock Number" required="true"/>
+	        
+	        <h:outputText value="Engine:" />
+	        <h:inputText  value="#{invCtrl.car.engine}" label="Engine" required="true"/>	       
+	        
+	        <h:outputText value="Transmission:" />
+	        <h:selectOneListbox value="#{invCtrl.car.transType}"  label="Transmission" size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.transmissionTypes}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Drive Train:" />
+	        <h:selectOneListbox value="#{invCtrl.car.drvTrnType}"  label="Drive Train" size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.driveTrainTypes}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Fuel Type:" />
+	        <h:selectOneListbox value="#{invCtrl.car.fuelType}"  label="Fuel Type" size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.fuelTypes}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="VIN:" />
+	        <h:inputText  value="#{invCtrl.car.vin}" label="VIN"  />
+	        
+	        <h:outputText value="Mileage:" />
+	        <h:inputText   value="#{invCtrl.car.mileage}"  label="Mileage" required="true"/> 
+	        
+	        <h:outputText value="Dealer Price:" />
+	        <h:inputText   value="#{invCtrl.car.dealerPrice}"  label="Dealer Price"   />
+	         
+	        <h:outputText value="Sale Price:" />
+	        <h:inputText   value="#{invCtrl.car.salePrice}"  label="Sale Price"  required="true" />
+	        
+	        <h:outputText value="Special Price:" />
+	        <h:inputText   value="#{invCtrl.car.specialPrice}"  label="Special Price"   />
+	        
+	        <h:outputText value="External:" />
+	        <h:inputText   value="#{invCtrl.car.colorExt}"  label="External" /> 
+	        
+	        <h:outputText value="Internal:" />
+	        <h:inputText  value="#{invCtrl.car.colorInt}" label="Internal"  />
+	        
+	        <h:outputText value="Warranty:" />
+	        <h:selectOneListbox value="#{invCtrl.car.warrantyType}"  label="Warranty Type" size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.warrantyTypes}"/>
+	        </h:selectOneListbox> 
+	        
+	        <h:outputText value="Status:" />
+	        <h:selectOneListbox value="#{invCtrl.car.status}"  label="Status" size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.vehicleStatus}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Condition:" />
+	        <h:selectOneListbox  value="#{invCtrl.car.vehCondition}" label="Condition"  size="1" required="true">
+	        	<f:selectItems value="#{uiTypes.vehicleConditions}"/>
+	        </h:selectOneListbox>
+	        
+	        <h:outputText value="Carfax URL:" />
+	        <h:inputText   value="#{invCtrl.car.carfaxApprvUrl}"  label="Carfax URL"/>	        
+	        
+	        <h:outputText value="Short Description:" />
+	        <h:inputText   value="#{invCtrl.car.description}"  label="Short Description"/>	        	        
+	        
+	    </h:panelGrid>
+	    <br/>
+	    <hr/>	    
+	    <br/>
+	    <h:panelGrid columnClasses="centerAlign" width="100%">
+	    	<h:outputText value="Additional Info" />
+	        <h:inputTextarea   value="#{invCtrl.car.additionalInfo}"  label="Additional Info" cols="110" rows="5"/>
+	    </h:panelGrid>
+	    <div class="navPanel">
+	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
+	            <rich:toggleControl targetItem="@next" event="click"/>
+	        </a4j:commandButton>
+	    </div>
+    </div>
+</ui:composition>
