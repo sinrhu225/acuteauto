@@ -6,10 +6,13 @@ package com.acminds.acuteauto.ui.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.SelectItem;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Model;
@@ -17,6 +20,10 @@ import com.acminds.acuteauto.persistence.dto.Style;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
+import com.acminds.acuteauto.utils.EnumConstants.TransmissionType;
+import com.acminds.acuteauto.utils.EnumConstants.VehicleCondition;
+import com.acminds.acuteauto.utils.EnumConstants.VehicleStatus;
+import com.acminds.acuteauto.utils.EnumConstants.WarrantyType;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
 
@@ -25,7 +32,7 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 @ManagedBean(name="invCtrl")
-@SessionScoped
+@ViewScoped
 public class InventoryController extends BaseController {
 	protected InventoryService service = new InventoryService();
 	private Integer carId;
@@ -205,11 +212,34 @@ public class InventoryController extends BaseController {
 		return "/pub/inv/invList";
 	}
 	
-	public void addInventory(ComponentSystemEvent event) {
-		
+	public void addVehicle(ComponentSystemEvent event) {
+		if(car == null) {
+			car = new Vehicle();
+			car.setStockNbr(RandomStringUtils.randomAlphanumeric(7));
+			car.setStatus(VehicleStatus.AVAILABLE);
+			car.setVehCondition(VehicleCondition.USED);
+			car.setWarrantyType(WarrantyType.NO_WARRANTY);
+			car.setTransType(TransmissionType.AUTOMATIC);
+		}
 	}
 	
-	public String submitInventory() {
+	public String submitVehicleInfo() {
+		try {
+			logger.info("Saving Vehicle.");
+			service.saveOrUpdateCar(car);
+			logger.info("Vehicle Saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveCarSuccessful");
+		} catch(Exception e) {
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return null;
+	}
+	
+	public String saveImages() {
+		return null;
+	}
+	
+	public String deleteVehicle() {
 		return null;
 	}
 		
