@@ -2,6 +2,7 @@ package com.acminds.acuteauto.persistence.dto;
 
 // Generated Feb 29, 2012 11:25:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -24,6 +25,8 @@ public class Role extends AbstractRole {
 	private List<Privilege> selectedPrivs;
 	@Transient
 	public List<Privilege> getSelectedPrivs() {
+		if(selectedPrivs == null)
+			selectedPrivs = new ArrayList<Privilege>(getPrivileges());
 		return selectedPrivs;
 	}
 	public void setSelectedPrivs(List<Privilege> selectedPrivs) {
