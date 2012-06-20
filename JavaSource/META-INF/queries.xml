@@ -16,6 +16,10 @@
 		<description>Retrieve Feature Groups by Name</description>
 		<query>select fg from FeatureGroup fg where fg.name = :name</query>
 	</named-query>
+	<named-query name="getDefaultFeatures">
+		<description>Retrieve default Features </description>
+		<query>select f from Feature f where f.addDefault = true</query>
+	</named-query>
 	<named-query name="getCatByName">
 		<description>Retrieve Category by Name</description>
 		<query>select cat from Category cat where cat.name = :name</query>

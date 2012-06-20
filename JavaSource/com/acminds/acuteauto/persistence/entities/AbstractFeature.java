@@ -30,6 +30,7 @@ public abstract class AbstractFeature extends
 	private Make make;
 	private FeatureGroup featureGroup;
 	private String featureValue;
+	private boolean addDefault;
 	private Integer yearStart;
 	private Integer yearEnd;
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>(0);
@@ -54,6 +55,15 @@ public abstract class AbstractFeature extends
 
 	public void setMake(Make make) {
 		this.make = make;
+	}
+	
+	@Column(name = "ADD_DEFAULT")
+	public boolean isAddDefault() {
+		return this.addDefault;
+	}
+
+	public void setAddDefault(Boolean addDefault) {
+		this.addDefault = addDefault;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

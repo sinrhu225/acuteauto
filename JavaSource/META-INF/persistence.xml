@@ -66,6 +66,7 @@
 			<property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.max_fetch_depth" value="0"/>
+            <property name="hibernate.query.substitutions" value="true 1, false 0"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="1800"/>

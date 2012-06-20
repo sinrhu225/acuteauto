@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.acminds.acuteauto.persistence.dto.Feature;
 import com.acminds.acuteauto.persistence.dto.FeatureGroup;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Model;
@@ -215,7 +216,10 @@ public class InventoryController extends BaseController {
 			car.setStatus(VehicleStatus.AVAILABLE);
 			car.setVehCondition(VehicleCondition.USED);
 			car.setWarrantyType(WarrantyType.NO_WARRANTY);
-			car.setTransType(TransmissionType.AUTOMATIC);
+			car.setTransType(TransmissionType.AUTOMATIC);						
+			List<Feature> defaultFeatures = service.createNamedQuery("getDefaultFeatures", Feature.class).getResultList();
+			if(!Utils.isEmpty(defaultFeatures))
+				car.getSelectedFeatures().addAll(defaultFeatures);
 		}
 	}
 	
