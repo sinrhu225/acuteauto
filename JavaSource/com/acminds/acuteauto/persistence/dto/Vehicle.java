@@ -54,12 +54,26 @@ public class Vehicle extends AbstractVehicle {
 	}
 	
 	private List<Feature> selectedFeatures;
+	private List<Feature> tempFeatures = new ArrayList<Feature>(0);
 	@Transient
 	public List<Feature> getSelectedFeatures() {
+		if(selectedFeatures == null)
+			selectedFeatures = new ArrayList<Feature>(getFeatures());
+		if(!Utils.isEmpty(tempFeatures)) {
+			selectedFeatures.retainAll(tempFeatures);
+			tempFeatures.clear();
+		}			
 		return selectedFeatures;
 	}
 	public void setSelectedFeatures(List<Feature> selectedFeatures) {
-		this.selectedFeatures = selectedFeatures;
+		if(!Utils.isEmpty(selectedFeatures)) {
+			for(Feature f:selectedFeatures) {
+				if(!this.selectedFeatures.contains(f))
+					this.selectedFeatures.add(f);
+				if(!this.tempFeatures.contains(f))
+					this.tempFeatures.add(f);
+			}
+		}
 	}	
 	
 }

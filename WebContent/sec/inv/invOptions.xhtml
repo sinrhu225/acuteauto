@@ -12,14 +12,20 @@
 			<h:panelGroup layout="block" rendered="#{invCtrl.car.persistent}"><a href="#"><span>3</span> Upload Images</a></h:panelGroup>			
 		</div>
         <h:panelGrid width="100%">
-   			<rich:dataGrid columns="4" elements="12" value="#{invCtrl.car.distinctGroups}" var="group" style="width: 100%;">
- 				<h:panelGrid width="100%" headerClass="subHeader nowrap">
+   			<rich:dataGrid columns="4" elements="12" value="#{invCtrl.allFeatureGroups}" var="group" style="width: 100%;">
+ 				<h:panelGrid id="OptionsGrid" width="100%" headerClass="subHeader nowrap" columnClasses="leftAlign padding-top">
 	    			<f:facet name="header">
-		                #{group.name}
-		            </f:facet>			    		
-	   				<rich:list value="#{invCtrl.car.features}" var="feat" styleClass="list-1">
-	   					<h:outputText value="#{feat.featureValue}" rendered="#{group.name == feat.featureGroup.name}" styleClass="text-1"/>								        
-				    </rich:list>
+		                <h:panelGroup> 
+		                	<h:selectBooleanCheckbox value="#{group.selected}" styleClass="fleft">
+		                		<f:ajax event="change" listener="#{invCtrl.selectGroup(group.featureGroupId)}" render="OptionsGrid"/>
+		                	</h:selectBooleanCheckbox> 
+		                	<h:outputText value="#{group.name}"/> 
+		                </h:panelGroup>
+		            </f:facet>	
+		            <h:selectManyCheckbox value="#{invCtrl.car.selectedFeatures}" converter="entityConverter" layout="pageDirection">
+		            	<f:selectItems value="#{group.features}" var="feat" itemLabel="#{feat.featureValue}" itemValue="#{feat}" />
+		            	<f:param name="entityName" value="Feature"/>
+		            </h:selectManyCheckbox>	   				
 			 	</h:panelGrid>   		    			
     		</rich:dataGrid>		    			    	
     	</h:panelGrid>

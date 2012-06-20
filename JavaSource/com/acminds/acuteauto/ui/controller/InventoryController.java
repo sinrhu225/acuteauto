@@ -14,6 +14,7 @@ import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.acminds.acuteauto.persistence.dto.FeatureGroup;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Model;
 import com.acminds.acuteauto.persistence.dto.Style;
@@ -35,7 +36,6 @@ import com.acminds.acuteauto.utils.WebUtils;
 @ViewScoped
 public class InventoryController extends BaseController {
 	protected InventoryService service = new InventoryService();
-	private Integer carId;
 	private String backTo;
 	private Vehicle car;
 	private int makeId;
@@ -52,6 +52,7 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> styles = new ArrayList<SelectItem>();
 	private List<SelectItem> years = new ArrayList<SelectItem>();
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
+	private List<FeatureGroup> allFeatureGroups;
 	
 	public Vehicle getCar() {
 		return car;
@@ -73,13 +74,6 @@ public class InventoryController extends BaseController {
 	public void setBackTo(String backTo) {
 		this.backTo = backTo;
 	}
-	public Integer getCarId() {
-		return carId;
-	}
-	public void setCarId(Integer carId) {
-		this.carId = carId;
-	}
-
 	public int getStyleId() {
 		return styleId;
 	}
@@ -203,15 +197,17 @@ public class InventoryController extends BaseController {
 		}
 		return prices;
 	}
-	/***************************
-	 ********PUB METHODS******** 
-	 ***************************/
-
-	public String searchCars() {
-		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
-		return "/pub/inv/invList";
+	
+	public List<FeatureGroup> getAllFeatureGroups() {
+		if(Utils.isEmpty(allFeatureGroups)) {
+			allFeatureGroups = service.createNamedQuery("getFeatureGrpByName", FeatureGroup.class).setParameter("name", "OPTIONS").getSingleResult().getFeatureGroups();
+		}
+		return allFeatureGroups;
 	}
 	
+	/***************************
+	 ********PUB LISTENER METHODS******** 
+	 ***************************/
 	public void addVehicle(ComponentSystemEvent event) {
 		if(car == null) {
 			car = new Vehicle();
@@ -221,6 +217,25 @@ public class InventoryController extends BaseController {
 			car.setWarrantyType(WarrantyType.NO_WARRANTY);
 			car.setTransType(TransmissionType.AUTOMATIC);
 		}
+	}
+	
+	public void selectGroup(Integer groupId) {
+		for(FeatureGroup fg:getAllFeatureGroups()) {
+			if(fg.getFeatureGroupId() == groupId) {
+				if(fg.isSelected())
+					car.setSelectedFeatures(fg.getFeatures());
+				else
+					car.getSelectedFeatures().removeAll(fg.getFeatures());
+			}
+		}
+	}
+	/***************************
+	 ********PUB ACTION METHODS******** 
+	 ***************************/
+
+	public String searchCars() {
+		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+		return "/pub/inv/invList";
 	}
 	
 	public String submitVehicleInfo() {
