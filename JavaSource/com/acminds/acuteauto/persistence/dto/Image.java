@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractImage;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.Utils;
 
 @ManagedBean(name = "image")
@@ -32,6 +33,20 @@ public class Image extends AbstractImage {
 	public String getRealLocation() {
 		return Utils.getUserHome()+getImageLocation();
 	}
+	
+	private boolean selectForDisplay;
+	@Transient
+	public boolean isSelectForDisplay() {
+		return selectForDisplay;
+	}
+	public void setSelectForDisplay(boolean selectForDisplay) {
+		this.selectForDisplay = selectForDisplay;
+		if(selectForDisplay)
+			setImageType(ImageType.PRIMARY);
+		else
+			setImageType(null);
+	}
+	
 	
 
 }

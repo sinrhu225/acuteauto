@@ -7,12 +7,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -58,7 +64,17 @@ public class ImageServlet extends HttpServlet {
 		try {
 			Image image = null;
 			String imageId = request.getParameter("imgId");
+			String isUploaded = request.getParameter("isUploaded");
 			logger.info("Image Id: "+imageId);
+			if(!Utils.isEmpty(isUploaded)) {
+				List<Image> list = getUploadedImages(request);
+				image = list.get(Integer.valueOf(imageId.trim()));
+				if(image == null)
+					return;
+				response.setContentType(image.getMimeType());		
+				OutputStream out = response.getOutputStream();
+				out.write(image.getImageData());
+			}
 			if(Utils.isEmpty(imageId)) {
 				String isImgHolder = request.getParameter(Constants.IMG_HOLDER);
 				if(Utils.isEmpty(isImgHolder))
@@ -102,10 +118,41 @@ public class ImageServlet extends HttpServlet {
 		
 	}
 	
-	protected void doPost(HttpServletRequest arg0, HttpServletResponse arg1) 
+	@SuppressWarnings("unchecked")
+	protected void doPost(HttpServletRequest request, HttpServletResponse arg1) 
 		throws ServletException, IOException 
 	{
-		doGet(arg0, arg1);
+		String fileName = null;
+        List<FileItem> multipartItems = null;
+        try {
+            // Parse the multipart request items.
+            multipartItems = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);            
+        } catch (FileUploadException e) {
+            throw new ServletException("Cannot parse multipart request: " + e.getMessage());
+        }
+        // Loop through multipart request items.
+        List<Image> uploadedImages = getUploadedImages(request);
+        for (FileItem fi : multipartItems) {
+        	if(!Utils.isEmpty(fi.getFieldName()) && fi.getFieldName().equals("fileName"))
+        		fileName = fi.getString();
+        	if (!fi.isFormField()) {
+        		Image img = new Image();
+	        	img.setName(fileName);
+	        	img.setMimeType(fi.getContentType());
+	        	img.setImageSize((int)fi.getSize());
+	        	img.setImageData(fi.get());
+	            uploadedImages.add(img);
+	            System.out.println(img.getName()+"@@@@"+img.getImageSize());
+        	}
+        }			
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<Image> getUploadedImages(HttpServletRequest request) {
+		Object obj = request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
+		if(obj == null)
+			request.getSession(false).setAttribute(Constants.UPLOADED_IMAGES, new ArrayList<Image>());
+		return (List<Image>) request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
 	}
 	
 	private void writeDefaultImage(HttpServletRequest request, HttpServletResponse response) throws IOException, URISyntaxException{

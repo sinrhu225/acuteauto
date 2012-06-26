@@ -8,6 +8,14 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 <ui:composition template="/templates/baseLayout.xhtml">
 	<ui:define name="body">
+		<script>
+		function uploaderStatusChanged( uploader ) {
+		    if(uploader.getStatus()=='0') {
+		    	document.jumpLoaderApplet.showFrame(false);
+				renderImages();
+			}
+		}	
+		</script>
 		<f:metadata>
 	        <f:viewParam id="carId" name="carId" value="#{invCtrl.car}" converter="entityConverter">
 	        	<f:param name="entityName" value="Vehicle"/>
@@ -21,7 +29,7 @@
 				<div class="col-1" style="width:100%;">
 					<div class="loanbox" style="width:100%; min-height:320px;">
 						<h:panelGrid width="100%">
-				            <h:form>
+				            <h:form prependId="false">
 				                <rich:togglePanel switchType="ajax">
 				                    <rich:togglePanelItem>
 				                        <ui:include src="/sec/inv/invInfo.xhtml" />
@@ -39,7 +47,7 @@
 			    </div>
 		    </div>
 	    </div>
-	    </section>	    
+	    </section>	      
 	</ui:define>
 </ui:composition>	
 </html>

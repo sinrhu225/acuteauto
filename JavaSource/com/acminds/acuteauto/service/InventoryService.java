@@ -6,15 +6,14 @@ package com.acminds.acuteauto.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-
 import com.acminds.acuteauto.persistence.dao.InventoryDAO;
 import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Feature;
+import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
+import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.Utils;
-import com.acminds.acuteauto.utils.WebUtils;
 
 
 /**
@@ -77,15 +76,31 @@ public class InventoryService extends BaseService {
 			}
 			saveOrUpdate(car, false);
 			commit();
+			refresh(car);
 			logger.info("Vehicle saved successfully.");			
 		} catch(Exception e) {
 			rollback();
-			logger.error("Role could not be saved due to an internal error.", e);			
+			logger.error("Vehicle could not be saved due to an internal error.", e);	
+			throw e;
 		}
 	}
 	
-	public void saveOrUpdateCarImages() {
-		
+	public void saveOrUpdateCarImages(Vehicle car, List<Image> images) throws Exception{
+		String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId()+"/";
+		try {
+			for(Image img:images) {
+				img.setVehicle(car);
+				img.setImageLocation(Constants.CAR_IMG_LOC+car.getVehicleId()+"/"+img.getName());
+				Utils.writeImage(location+img.getName(), img.getImageData());
+				saveOrUpdate(img, false);
+			}
+			commit();
+			refresh(car);
+		} catch(Exception e) {
+			rollback();
+			logger.error("Images could not be saved due to an internal error.", e);	
+			throw e;
+		}		
 	}
 	
 	public void deleteCar() {

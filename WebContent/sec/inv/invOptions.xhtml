@@ -36,7 +36,7 @@
 	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;" rendered="#{invCtrl.car.persistent}">
 	            <rich:toggleControl targetItem="@next" event="click"/>
 	        </a4j:commandButton>
-	        <a4j:commandButton styleClass="fright button1" value="Submit" action="#{invCtrl.submitInventory}" render="@all">
+	        <a4j:commandButton styleClass="fright button1" value="Submit" action="#{invCtrl.submitInventory}" render="@all" rendered="#{!invCtrl.car.persistent}">
 	        </a4j:commandButton>
 	    </div>
     </div>
