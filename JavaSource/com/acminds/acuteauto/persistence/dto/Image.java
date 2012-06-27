@@ -37,6 +37,8 @@ public class Image extends AbstractImage {
 	private boolean selectForDisplay;
 	@Transient
 	public boolean isSelectForDisplay() {
+		if(getImageType()!=null && getImageType()==ImageType.PRIMARY)
+			selectForDisplay = true;
 		return selectForDisplay;
 	}
 	public void setSelectForDisplay(boolean selectForDisplay) {

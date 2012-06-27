@@ -74,33 +74,26 @@ public class InventoryService extends BaseService {
 				}
 				saveOrUpdate(p, false);
 			}
-			saveOrUpdate(car, false);
-			commit();
+			for(Image img:car.getImages())
+				img.setVehicle(car);
+			saveOrUpdate(car, true);
 			refresh(car);
+			for(Image img:car.getImages()) {
+				if(!Utils.isEmpty(img.getImageData())) {
+					String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId()+"/"+img.getName();
+					Utils.writeImage(location, img.getImageData());
+					logger.info("Image "+img.getName()+" written to the following location: "+location);		
+					img.setImageLocation(Constants.CAR_IMG_LOC+car.getVehicleId()+"/"+img.getName());
+				}
+				saveOrUpdate(img, false);
+			}
+			commit();
 			logger.info("Vehicle saved successfully.");			
 		} catch(Exception e) {
 			rollback();
 			logger.error("Vehicle could not be saved due to an internal error.", e);	
 			throw e;
 		}
-	}
-	
-	public void saveOrUpdateCarImages(Vehicle car, List<Image> images) throws Exception{
-		String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId()+"/";
-		try {
-			for(Image img:images) {
-				img.setVehicle(car);
-				img.setImageLocation(Constants.CAR_IMG_LOC+car.getVehicleId()+"/"+img.getName());
-				Utils.writeImage(location+img.getName(), img.getImageData());
-				saveOrUpdate(img, false);
-			}
-			commit();
-			refresh(car);
-		} catch(Exception e) {
-			rollback();
-			logger.error("Images could not be saved due to an internal error.", e);	
-			throw e;
-		}		
 	}
 	
 	public void deleteCar() {

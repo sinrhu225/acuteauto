@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -337,7 +339,7 @@ public abstract class AbstractVehicle extends
 		this.loanApplications = loanApplications;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vehicle", cascade = {CascadeType.ALL})
 	public List<Advertisement> getAdvertisements() {
 		return this.advertisements;
 	}
@@ -346,7 +348,7 @@ public abstract class AbstractVehicle extends
 		this.advertisements = advertisements;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "vehicle", cascade = {CascadeType.ALL})
 	public List<Image> getImages() {
 		return this.images;
 	}

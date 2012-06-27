@@ -9,19 +9,23 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.acminds.acuteauto.persistence.dto.Feature;
 import com.acminds.acuteauto.persistence.dto.FeatureGroup;
+import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Make;
 import com.acminds.acuteauto.persistence.dto.Model;
 import com.acminds.acuteauto.persistence.dto.Style;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.service.InventoryService;
 import com.acminds.acuteauto.ui.BaseController;
+import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.EnumConstants.TransmissionType;
 import com.acminds.acuteauto.utils.EnumConstants.VehicleCondition;
 import com.acminds.acuteauto.utils.EnumConstants.VehicleStatus;
@@ -221,6 +225,18 @@ public class InventoryController extends BaseController {
 			if(!Utils.isEmpty(defaultFeatures))
 				car.getSelectedFeatures().addAll(defaultFeatures);
 		}
+		List<Image> list = getUploadedImages(WebUtils.getRequest());
+		if(car.isPersistent() && !listLoadedAlready(list))
+			list.addAll(car.getImages());
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	private List<Image> getUploadedImages(HttpServletRequest request) {
+		Object obj = request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
+		if(obj == null)
+			request.getSession(false).setAttribute(Constants.UPLOADED_IMAGES, new ArrayList<Image>());
+		return (List<Image>) request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
 	}
 	
 	public void selectGroup(Integer groupId) {
@@ -233,6 +249,17 @@ public class InventoryController extends BaseController {
 			}
 		}
 	}
+	
+	public void resetUploadedImages(ActionEvent e) {
+		WebUtils.getSession().removeAttribute(Constants.UPLOADED_IMAGES);		
+	}
+	
+	private boolean listLoadedAlready(List<Image> list) {
+		for(Image i:list)
+			if(i.isPersistent()) return true;
+		return false;
+	}
+	
 	/***************************
 	 ********PUB ACTION METHODS******** 
 	 ***************************/
@@ -245,6 +272,8 @@ public class InventoryController extends BaseController {
 	public String submitVehicleInfo() {
 		try {
 			logger.info("Saving Vehicle.");
+			car.getImages().clear();
+			car.getImages().addAll(getUploadedImages(WebUtils.getRequest()));
 			service.saveOrUpdateCar(car);
 			logger.info("Vehicle Saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveCarSuccessful");
@@ -254,11 +283,16 @@ public class InventoryController extends BaseController {
 		return null;
 	}
 	
-	public String saveImages() {
+	public String deleteVehicle() {
 		return null;
 	}
 	
-	public String deleteVehicle() {
+	public String removeImage(int index) {
+		List<Image> list = getUploadedImages(WebUtils.getRequest());
+		Image im = list.get(index);
+		if(im.isPersistent())
+			service.delete(im, false);
+		list.remove(im);
 		return null;
 	}
 		

@@ -49,7 +49,7 @@
                 </h3>
 	      		<ui:repeat var="car" value="#{invCtrl.cars}">
 	      			<div class="wrapper">
-		            	<figure class="img-indent"><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" /></figure>
+		            	<figure class="img-indent"><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="253" height="177"/></figure>
 		                <div class="extra-box">
 			                <div class="padding-top">
 			                	<h4>#{car.make.name} - #{car.model.name} - #{car.style.name} <span>#{car.year}</span></h4>

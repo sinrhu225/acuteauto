@@ -141,8 +141,9 @@ public class ImageServlet extends HttpServlet {
 	        	img.setMimeType(fi.getContentType());
 	        	img.setImageSize((int)fi.getSize());
 	        	img.setImageData(fi.get());
+	        	img.setImageLocation("temp");
 	            uploadedImages.add(img);
-	            System.out.println(img.getName()+"@@@@"+img.getImageSize());
+	            logger.info("Image uploaded: "+img.getName()+"@@@@"+img.getImageSize());
         	}
         }			
 	}
