@@ -161,8 +161,10 @@ public class ImageServlet extends HttpServlet {
 	}
 	
 	private void writeDefaultImage(HttpServletRequest request, HttpServletResponse response) throws IOException, URISyntaxException{
-		response.getWriter().print("Image Coming Soon");
-		response.setContentType("text/plain");
-		return;				
+		String path = getServletContext().getRealPath(Constants.DEFAULT_IMG_LOC);
+		InputStream str = new FileInputStream(new File(path));
+		response.setContentType("image/jpeg");
+		OutputStream out = response.getOutputStream();
+		out.write(IOUtils.toByteArray(str));
 	}
 }
