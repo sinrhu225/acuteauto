@@ -224,7 +224,8 @@ public class InventoryController extends BaseController {
 			car.setStatus(VehicleStatus.AVAILABLE);
 			car.setVehCondition(VehicleCondition.USED);
 			car.setWarrantyType(WarrantyType.NO_WARRANTY);
-			car.setTransType(TransmissionType.AUTOMATIC);						
+			car.setTransType(TransmissionType.AUTOMATIC);		
+			car.setUserInfo(getAuthorizedUser());
 			List<Feature> defaultFeatures = service.createNamedQuery("getDefaultFeatures", Feature.class).getResultList();
 			if(!Utils.isEmpty(defaultFeatures))
 				car.getSelectedFeatures().addAll(defaultFeatures);
@@ -288,15 +289,24 @@ public class InventoryController extends BaseController {
 	}
 	
 	public String deleteVehicle() {
+		try {
+			service.deleteCar(car);
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delCarSuccessful");
+		} catch(Exception e) {
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}		
 		return null;
 	}
 	
 	public String removeImage(int index) {
+		logger.info("Removing Image at index: "+index);
 		List<Image> list = getUploadedImages(WebUtils.getRequest());
 		Image im = list.get(index);
-		if(im.isPersistent())
-			service.delete(im, false);
-		list.remove(im);
+		if(im.isPersistent()) {
+			car.getImages().remove(im);
+			service.delete(im, true);
+		}
+		list.remove(index);
 		return null;
 	}
 		
