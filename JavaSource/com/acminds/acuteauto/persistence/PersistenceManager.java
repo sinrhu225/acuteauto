@@ -7,6 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.acminds.acuteauto.batch.BatchPersistenceManager;
 import com.acminds.acuteauto.ui.WebPersistenceManager;
 import com.acminds.acuteauto.utils.WebUtils;
@@ -16,6 +19,8 @@ import com.acminds.acuteauto.utils.WebUtils;
  *
  */
 public abstract class PersistenceManager {
+	protected Log logger = LogFactory.getLog(this.getClass());
+	
 	public static final String EM_HOLDER = "EMHolder";
 	private EntityManagerFactory entityManagerFactory;
 	private static PersistenceManager instance;
@@ -23,10 +28,13 @@ public abstract class PersistenceManager {
 	
 	public static PersistenceManager getInstance() {
 		if(instance == null) {
-			if(WebUtils.isWebRequest())
+			if(WebUtils.isWebRequest()) {
 				instance = new WebPersistenceManager();
-			else 
+				instance.logger.info("WebPersistenceManager Instantiated.");
+			} else { 
 				instance = new BatchPersistenceManager();
+				instance.logger.info("BatchPersistenceManager Instantiated.");
+			}
 		}
 		return instance;
 	}
@@ -40,6 +48,7 @@ public abstract class PersistenceManager {
 
 	protected PersistenceManager() {
 		entityManagerFactory = Persistence.createEntityManagerFactory("acuteauto");
+		logger.info("EntityManagerFactory Created: "+entityManagerFactory.hashCode());
 	}
 	
 	public static EntityManager getEntityManager() {
