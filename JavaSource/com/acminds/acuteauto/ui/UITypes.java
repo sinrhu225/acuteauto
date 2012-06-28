@@ -45,8 +45,11 @@ public class UITypes {
 	private List<SelectItem> accountTypes;
 	private List<SelectItem> inquiryTypes;
 	private List<SelectItem> residenceTypes;
+	private List<SelectItem> transmissionTypes;
+	private List<SelectItem> driveTrainTypes;
 	private List<SelectItem> states;
 	private List<SelectItem> countries;
+	private List<SelectItem> years;
 	
 	/**
 	 * @return the userTypes
@@ -220,6 +223,26 @@ public class UITypes {
 		}
 		return residenceTypes;
 	}
+			
+	/**
+	 * @return the transmissionTypes
+	 */
+	public List<SelectItem> getTransmissionTypes() {
+		if(Utils.isEmpty(transmissionTypes)) {
+			transmissionTypes = processEnums(EnumConstants.TRANSMISSION_TYPE);			
+		}
+		return transmissionTypes;
+	}
+	
+	/**
+	 * @return the driveTrainTypes
+	 */
+	public List<SelectItem> getDriveTrainTypes() {
+		if(Utils.isEmpty(driveTrainTypes)) {
+			driveTrainTypes = processEnums(EnumConstants.DRIVE_TRAIN_TYPE);			
+		}
+		return driveTrainTypes;
+	}
 	
 	/**
 	 * @return the states
@@ -246,6 +269,18 @@ public class UITypes {
 				countries.add(new SelectItem(s.getSymbol(), s.getSymbol()));
 		}
 		return countries;
+	}
+	
+	/**
+	 * @return the years
+	 */
+	public List<SelectItem> getYears() {
+		if(Utils.isEmpty(years)) {
+			years = new ArrayList<SelectItem>();
+			for(int i= 2012; i>1991; i--)
+				years.add(new SelectItem(i, String.valueOf(i)));
+		}		
+		return years;
 	}
 	
 	private List<SelectItem> processEnums(int enumType) {
