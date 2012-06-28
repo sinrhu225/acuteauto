@@ -10,9 +10,7 @@ import javax.persistence.Persistence;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.acminds.acuteauto.batch.BatchPersistenceManager;
 import com.acminds.acuteauto.ui.WebPersistenceManager;
-import com.acminds.acuteauto.utils.WebUtils;
 
 /**
  * @author MANSUR
@@ -28,13 +26,13 @@ public abstract class PersistenceManager {
 	
 	public static PersistenceManager getInstance() {
 		if(instance == null) {
-			if(WebUtils.isWebRequest()) {
+			//if(WebUtils.isWebRequest()) {
 				instance = new WebPersistenceManager();
 				instance.logger.info("WebPersistenceManager Instantiated.");
-			} else { 
+			/*} else { 
 				instance = new BatchPersistenceManager();
 				instance.logger.info("BatchPersistenceManager Instantiated.");
-			}
+			}*/
 		}
 		return instance;
 	}
