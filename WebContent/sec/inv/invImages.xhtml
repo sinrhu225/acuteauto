@@ -43,7 +43,7 @@
     	<rich:panel id="images">
     		<h:outputLabel value="No Images Uploaded" rendered="#{empty uploadedImages}"/>
     		<rich:dataGrid columns="4" elements="12" value="#{uploadedImages}" var="image" iterationStatusVar="stat" 
-    			rendered="#{not empty uploadedImages}" style="width:100%; align:center;">
+    			rendered="#{not empty uploadedImages}" style="align:center;">
 	    		<f:facet name="header">
                     <rich:dataScroller />
                 </f:facet>
