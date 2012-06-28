@@ -22,11 +22,13 @@ public class WebPersistenceManager extends PersistenceManager{
 		EntityManager em = null;
 		if(Utils.isEmpty(local.get())) {
 			em = getEntityManagerFactory().createEntityManager();
+			logger.info("Creating EntityManager: "+em.hashCode()+" from Factory: "+getEntityManagerFactory().hashCode());
 			local.set(em);
 		} else {
 			em = local.get();
 			if(!em.isOpen()) {
 				em = getEntityManagerFactory().createEntityManager();
+				logger.info("Creating EntityManager: "+em.hashCode()+" from Factory: "+getEntityManagerFactory().hashCode());
 				local.set(em);				
 			}
 		}				
