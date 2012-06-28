@@ -88,4 +88,7 @@ public class BaseController {
 		return null;
 	}*/
 	
+	public String getMaxMemory() {
+		return String.valueOf(java.lang.Runtime.getRuntime().maxMemory()/1024/1024)+" MB";
+	}
 }
