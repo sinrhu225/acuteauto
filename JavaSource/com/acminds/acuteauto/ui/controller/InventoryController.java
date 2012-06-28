@@ -59,6 +59,10 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> prices = new ArrayList<SelectItem>();
 	private List<FeatureGroup> allFeatureGroups;
 	
+	public InventoryController() {
+		WebUtils.getSession().removeAttribute(Constants.UPLOADED_IMAGES);
+	}
+	
 	public Vehicle getCar() {
 		return car;
 	}	

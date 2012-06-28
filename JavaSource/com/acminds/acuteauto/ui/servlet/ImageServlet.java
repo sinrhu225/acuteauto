@@ -71,9 +71,14 @@ public class ImageServlet extends HttpServlet {
 				image = list.get(Integer.valueOf(imageId.trim()));
 				if(image == null)
 					return;
-				response.setContentType(image.getMimeType());		
 				OutputStream out = response.getOutputStream();
-				out.write(image.getImageData());
+				response.setContentType(image.getMimeType());		
+				if(!image.isPersistent())
+					out.write(image.getImageData());
+				else {
+					InputStream str = new FileInputStream(new File(image.getRealLocation()));
+					out.write(IOUtils.toByteArray(str));
+				}
 			}
 			if(Utils.isEmpty(imageId)) {
 				String isImgHolder = request.getParameter(Constants.IMG_HOLDER);

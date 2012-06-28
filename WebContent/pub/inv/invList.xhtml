@@ -83,7 +83,13 @@
 					                    <acm:spacer width="10px"/>
 					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
 				                    </h:panelGroup>
-				                    <h:link styleClass="button1 fright" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}&amp;backTo=Inventory"><strong>More</strong></h:link>
+				                    <h:panelGroup styleClass="fright">
+				                    	<h:link styleClass="button1" outcome="/sec/inv/invEdit?carId=#{car.vehicleId}" rendered="#{authorizedUser!=null}"><strong>Delete</strong></h:link>
+				                    	<acm:spacer width="10px"/>
+				                    	<h:link styleClass="button1" outcome="/sec/inv/invEdit?carId=#{car.vehicleId}" rendered="#{authorizedUser!=null}"><strong>Update</strong></h:link>
+				                    	<acm:spacer width="10px"/>
+				                    	<h:link styleClass="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}&amp;backTo=Inventory"><strong>More</strong></h:link>
+				                    </h:panelGroup>
 			                    </h:panelGrid>		                    
 			                </div>
 		                </div>
