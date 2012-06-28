@@ -5,12 +5,12 @@ package com.acminds.acuteauto.persistence;
 
 import java.util.Collection;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.PersistentObjectException;
 
 /**
  * @author MANSUR
@@ -33,8 +33,8 @@ public class BaseDAO {
 	public void saveOrUpdate(BaseDTO entity, boolean commit) {
 		beginTxn();
 		try {
-		PersistenceManager.getEntityManager().persist(entity);
-		} catch(PersistentObjectException e) {
+			PersistenceManager.getEntityManager().persist(entity);
+		} catch(PersistenceException e) {
 			dao.logger.info("Detached object passed. Merging entity.");
 			PersistenceManager.getEntityManager().merge(entity);
 		}
