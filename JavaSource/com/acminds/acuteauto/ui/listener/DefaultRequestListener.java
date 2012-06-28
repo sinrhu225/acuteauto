@@ -33,9 +33,9 @@ public class DefaultRequestListener implements ServletRequestListener {
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
 		log.log(Level.FINE, "ServletRequest destroyed");
-		HttpSession session = ((HttpServletRequest)arg0.getServletRequest()).getSession();
 		EntityManager em = PersistenceManager.getInstance().getCurrentEntityManager(false);
 		if(em!=null) {
+			HttpSession session = ((HttpServletRequest)arg0.getServletRequest()).getSession();
 			session.setAttribute(PersistenceManager.EM_HOLDER, em);
 			log.log(Level.FINE, "Entity Manager: "+em.hashCode()+" saved for session: "+session.getId());
 		}
@@ -46,10 +46,15 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestInitialized(ServletRequestEvent arg0) {
-		HttpServletRequest req = (HttpServletRequest)arg0.getServletRequest();
-		EntityManager em = (EntityManager)req.getSession().getAttribute(PersistenceManager.EM_HOLDER);
+		EntityManager em = getEntityManager((HttpServletRequest)arg0.getServletRequest());
 		if(em!=null) PersistenceManager.setEntityManager(em);
 		log.log(Level.FINE, "Servlet Request Initialized");
+	}
+	
+	private EntityManager getEntityManager(HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		if(session!=null) return (EntityManager)session.getAttribute(PersistenceManager.EM_HOLDER);
+		return null;			
 	}
 
 }
