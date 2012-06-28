@@ -102,9 +102,11 @@ public class InventoryService extends BaseService {
 		try {
 			logger.info("Deleting location: "+location);
 			Utils.deleteFile(location);
+			logger.info("Location deleted successfully, now deleting Vehicle: "+car.getVehicleId());
 			delete(car, true);
+			logger.info("Vehicle Deleted successfully.");			
 		} catch(IOException e) {
-			logger.error("Error deleting the images directory", e);
+			logger.error("Error deleting the images directory. Hence, Vehicle could not be deleted.", e);
 			throw e;
 		} catch(Exception e) {
 			rollback();
