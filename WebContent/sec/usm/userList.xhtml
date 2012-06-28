@@ -42,7 +42,8 @@
 				                    <br/>			                    
 				                    <h:panelGrid columns="2" width="100%">
 				                    	<h:link styleClass="button1" outcome="/sec/usm/userEdit.jsf?userId=#{user.userInfoId}"><strong>Update User</strong></h:link>					                    
-						                <h:commandLink styleClass="button1 fright" value="Delete User" action="#{uiCtrl.deleteUser}" rendered="#{user.userInfoId != authorizedUser.userInfoId}">
+						                <h:commandLink styleClass="button1 fright" action="#{uiCtrl.deleteUser}" rendered="#{user.userInfoId != authorizedUser.userInfoId}">
+						                	<strong>Delete User</strong>
 					                    	<f:setPropertyActionListener value="#{user}" target="#{uiCtrl.user}" />
 					                    </h:commandLink>
 				                    </h:panelGrid>			                    		                    
