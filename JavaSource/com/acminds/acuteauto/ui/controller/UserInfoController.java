@@ -23,6 +23,7 @@ import com.acminds.acuteauto.service.UserInfoService;
 import com.acminds.acuteauto.ui.BaseController;
 import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.EnumConstants.ImageType;
+import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.EnumConstants.UserStatus;
 import com.acminds.acuteauto.utils.EnumConstants.UserType;
 import com.acminds.acuteauto.utils.ImageUtils;
@@ -71,7 +72,9 @@ public class UserInfoController extends BaseController {
 	public void preRenderUserEdit(ComponentSystemEvent event) {
 		if(user == null) {
 			user = new UserInfo();
-			user.getLocations().add(new Location());
+			Location l = new Location();
+			l.setLocationType(LocationType.PRIMARY);
+			user.getLocations().add(l);
 			user.setClient(authorizedUser.getClient());
 			user.setUserType(UserType.CLIENT);
 			user.setStatus(UserStatus.ACTIVE);
@@ -85,10 +88,12 @@ public class UserInfoController extends BaseController {
 			discardNewImage();
 			logger.info("User saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveUserSuccessful");
+			return "/sec/usm/userList";
 		} catch (Exception e) {
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+			return null;
 		}
-		return "/sec/usm/userList";
+		
 	}
 	
 	public String deleteUser() {
