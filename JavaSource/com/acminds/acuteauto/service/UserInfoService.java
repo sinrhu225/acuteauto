@@ -3,6 +3,7 @@
  */
 package com.acminds.acuteauto.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.acminds.acuteauto.exceptions.AcuteAutoApplicationException;
@@ -49,15 +50,15 @@ public class UserInfoService extends BaseService {
 	public void deleteUser(UserInfo user) throws AcuteAutoApplicationException {
 		try {
 			Image img = user.getDisplayImage();
-			deleteAll(user.getLocations(), false);
-			deleteAll(user.getImages(), false);		
-			delete(user, false);
 			if(img!=null && !Utils.isEmpty(img.getImageLocation())) {
-				Utils.deleteFile(img.getRealLocation());
 				Utils.deleteFile(Utils.getUserHome()+Constants.USER_IMG_LOC+user.getUserInfoId());
+				logger.info("Image deleted successfully");
 			}
-			commit();			
-		} catch (Exception e) {
+			delete(user, true);
+		} catch (IOException e) {
+			logger.error("Exception occured while trying to delete Images", e);
+			throw new AcuteAutoApplicationException(e);
+		}catch (Exception e) {
 			rollback();
 			logger.error("Exception occured while trying to delete UserInfo", e);
 			throw new AcuteAutoApplicationException(e);

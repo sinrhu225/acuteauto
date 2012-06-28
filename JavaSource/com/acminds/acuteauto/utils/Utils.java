@@ -77,7 +77,11 @@ public class Utils {
 	}
 	
 	public static void deleteFile(String location) throws IOException {
-		FileUtils.forceDelete(new File(location));		
+		File f = new File(location);
+		if(f.isDirectory())
+			FileUtils.deleteDirectory(f);
+		if(f.isFile())
+			FileUtils.forceDelete(f);
 	}
 
 }

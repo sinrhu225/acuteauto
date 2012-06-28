@@ -3,6 +3,7 @@
  */
 package com.acminds.acuteauto.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,8 +97,20 @@ public class InventoryService extends BaseService {
 		}
 	}
 	
-	public void deleteCar() {
-		
+	public void deleteCar(Vehicle car) throws Exception {
+		String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId();
+		try {
+			logger.info("Deleting location: "+location);
+			Utils.deleteFile(location);
+			delete(car, true);
+		} catch(IOException e) {
+			logger.error("Error deleting the images directory", e);
+			throw e;
+		} catch(Exception e) {
+			rollback();
+			logger.error("Error deleting Vehicle", e);
+			throw e;
+		}
 	}
 
 }
