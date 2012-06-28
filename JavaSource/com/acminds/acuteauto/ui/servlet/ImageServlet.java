@@ -79,8 +79,7 @@ public class ImageServlet extends HttpServlet {
 					InputStream str = new FileInputStream(new File(image.getRealLocation()));
 					out.write(IOUtils.toByteArray(str));
 				}
-			}
-			if(Utils.isEmpty(imageId)) {
+			} else if(Utils.isEmpty(imageId)) {
 				String isImgHolder = request.getParameter(Constants.IMG_HOLDER);
 				if(Utils.isEmpty(isImgHolder))
 					return;
