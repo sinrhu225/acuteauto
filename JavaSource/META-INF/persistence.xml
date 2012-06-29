@@ -5,9 +5,11 @@
 		<mapping-file>META-INF/queries.xml</mapping-file>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractVehicle</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractUserInfo</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractTradeinInfo</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractStyle</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractState</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractRole</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractResidence</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractPrivilege</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractModel</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractMileage</class>
@@ -25,13 +27,18 @@
 		<class>com.acminds.acuteauto.persistence.entities.AbstractCountry</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractClient</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractCategory</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractApplicant</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractAdvertisement</class>
 		<class>com.acminds.acuteauto.persistence.entities.AbstractAccount</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractAuditLog</class>
+		<class>com.acminds.acuteauto.persistence.entities.AbstractTrashCan</class>
 		<class>com.acminds.acuteauto.persistence.dto.Vehicle</class>
 		<class>com.acminds.acuteauto.persistence.dto.UserInfo</class>
+		<class>com.acminds.acuteauto.persistence.dto.TradeinInfo</class>
 		<class>com.acminds.acuteauto.persistence.dto.Style</class>
 		<class>com.acminds.acuteauto.persistence.dto.State</class>
 		<class>com.acminds.acuteauto.persistence.dto.Role</class>
+		<class>com.acminds.acuteauto.persistence.dto.Residence</class>
 		<class>com.acminds.acuteauto.persistence.dto.Privilege</class>
 		<class>com.acminds.acuteauto.persistence.dto.Model</class>
 		<class>com.acminds.acuteauto.persistence.dto.Mileage</class>
@@ -49,14 +56,11 @@
 		<class>com.acminds.acuteauto.persistence.dto.Country</class>
 		<class>com.acminds.acuteauto.persistence.dto.Client</class>
 		<class>com.acminds.acuteauto.persistence.dto.Category</class>
+		<class>com.acminds.acuteauto.persistence.dto.Applicant</class>
 		<class>com.acminds.acuteauto.persistence.dto.Advertisement</class>
 		<class>com.acminds.acuteauto.persistence.dto.Account</class>
-		<class>com.acminds.acuteauto.persistence.entities.AbstractApplicant</class>
-		<class>com.acminds.acuteauto.persistence.entities.AbstractResidence</class>
-		<class>com.acminds.acuteauto.persistence.entities.AbstractTradeinInfo</class>
-		<class>com.acminds.acuteauto.persistence.dto.Applicant</class>
-		<class>com.acminds.acuteauto.persistence.dto.Residence</class>
-		<class>com.acminds.acuteauto.persistence.dto.TradeinInfo</class>
+		<class>com.acminds.acuteauto.persistence.dto.AuditLog</class>
+		<class>com.acminds.acuteauto.persistence.dto.TrashCan</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
@@ -67,6 +71,7 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.max_fetch_depth" value="0"/>
             <property name="hibernate.query.substitutions" value="true 1, false 0"/>
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="1800"/>

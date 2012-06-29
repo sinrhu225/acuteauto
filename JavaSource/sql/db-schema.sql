@@ -304,6 +304,16 @@ CREATE TABLE FIND_VEHICLE (
 );
 
 -- ----------------------------
+-- Table structure for "TRASH_CAN"
+-- ----------------------------
+DROP TABLE TRASH_CAN;
+CREATE TABLE TRASH_CAN (
+	TRASH_CAN_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	LOCATION VARCHAR(100) NOT NULL, -- LOCATION TO BE TRASHED	
+	TRASHED_BY INT NOT NULL
+);
+
+-- ----------------------------
 -- MANY TO MANY RELATIONSHIP --
 -- ----------------------------
 

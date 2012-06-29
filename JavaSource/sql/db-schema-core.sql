@@ -82,6 +82,19 @@ TRAN_URI VARCHAR(100) -- URI WITHOUT CONTEXTPATH
 );
 
 -- ----------------------------
+-- Table structure for "AUDIT_LOG"
+-- ----------------------------
+DROP TABLE AUDIT_LOG;
+CREATE TABLE AUDIT_LOG (
+	AUDIT_LOG_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	AUDIT_TYPE INT(3) NOT NULL,  --CREATE, READ, UPDATE, DELETE
+	ENTITY_NAME VARCHAR(100) NOT NULL,
+	ENTITY_ID INT NOT NULL,
+	AUDIT_DATA VARCHAR(1000),
+	CREATED_BY INT NOT NULL
+);
+
+-- ----------------------------
 -- Table structure for "RL_ROLE_PRIVILEGE"
 -- ----------------------------
 DROP TABLE RL_ROLE_PRIVILEGE;
