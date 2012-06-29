@@ -99,7 +99,7 @@ public class UserInfoController extends BaseController {
 	public String deleteUser() {
 		try {
 			logger.info("Deleting User.");
-			service.deleteUser(user);
+			service.deleteUser(user, getAuthorizedUser());
 			logger.info("User deleted successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delUserSuccessful");
 		} catch (Exception e) {

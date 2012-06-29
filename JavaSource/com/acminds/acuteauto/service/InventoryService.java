@@ -3,7 +3,6 @@
  */
 package com.acminds.acuteauto.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import com.acminds.acuteauto.persistence.dto.Advertisement;
 import com.acminds.acuteauto.persistence.dto.Feature;
 import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Make;
+import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.persistence.dto.Vehicle;
 import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.Utils;
@@ -97,22 +97,29 @@ public class InventoryService extends BaseService {
 		}
 	}
 	
-	public void deleteCar(Vehicle car) throws Exception {
+	public void deleteCar(Vehicle car, UserInfo deletedBy) throws Exception {
 		String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId();
 		try {
-			logger.info("Deleting location: "+location);
-			Utils.deleteFile(location);
-			logger.info("Location deleted successfully, now deleting Vehicle: "+car.getVehicleId());
+			trashFile(location, deletedBy, false);
 			delete(car, true);
 			logger.info("Vehicle Deleted successfully.");			
-		} catch(IOException e) {
-			logger.error("Error deleting the images directory. Hence, Vehicle could not be deleted.", e);
-			throw e;
 		} catch(Exception e) {
 			rollback();
 			logger.error("Error deleting Vehicle", e);
 			throw e;
 		}
 	}
-
+	
+	public void deleteCarImage(Image image, Vehicle car, UserInfo deletedBy) throws Exception {
+		String location = Utils.getUserHome()+Constants.CAR_IMG_LOC+car.getVehicleId()+"/"+image.getName();
+		try {
+			trashFile(location, deletedBy, false);
+			car.getImages().remove(image);
+			delete(image, true);
+		} catch(Exception e) {
+			rollback();
+			logger.error("Error deleting Vehicle", e);
+			throw e;
+		}
+	}	
 }

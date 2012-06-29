@@ -13,6 +13,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.BaseDAO;
 import com.acminds.acuteauto.persistence.BaseDTO;
+import com.acminds.acuteauto.persistence.dto.TrashCan;
+import com.acminds.acuteauto.persistence.dto.UserInfo;
 
 /**
  * @author Mansur
@@ -26,6 +28,13 @@ public class BaseService {
 		return baseDao;
 	}
 
+	protected void trashFile(String location, UserInfo trashedBy, boolean commit) {
+		TrashCan can = new TrashCan();
+		can.setLocation(location);
+		can.setTrashedBy(trashedBy);
+		saveOrUpdate(can, commit);
+	}
+	
 	public <T>T get(Class<T> clazz, Integer id) {
 		return baseDao.get(clazz, id);
 	}

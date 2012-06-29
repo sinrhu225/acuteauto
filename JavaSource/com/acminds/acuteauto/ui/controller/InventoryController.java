@@ -290,7 +290,7 @@ public class InventoryController extends BaseController {
 	
 	public String deleteVehicle() {
 		try {
-			service.deleteCar(car);
+			service.deleteCar(car, getAuthorizedUser());
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delCarSuccessful");
 		} catch(Exception e) {
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
@@ -301,12 +301,15 @@ public class InventoryController extends BaseController {
 	public String removeImage(int index) {
 		logger.info("Removing Image at index: "+index);
 		List<Image> list = getUploadedImages(WebUtils.getRequest());
-		Image im = list.get(index);
-		if(im.isPersistent()) {
-			car.getImages().remove(im);
-			service.delete(im, true);
-		}
-		list.remove(index);
+		try {
+			Image im = list.get(index);
+			if(im.isPersistent()) {
+				service.deleteCarImage(im, car, getAuthorizedUser());
+			}
+			list.remove(index);
+		} catch(Exception e) {
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}		
 		return null;
 	}
 		
