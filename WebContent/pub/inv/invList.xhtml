@@ -84,11 +84,14 @@
 					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
 				                    </h:panelGroup>
 				                    <h:panelGroup styleClass="fright">
-				                    	<h:link styleClass="button1" outcome="/sec/inv/invEdit?carId=#{car.vehicleId}" rendered="#{authorizedUser!=null}"><strong>Delete</strong></h:link>
+				                    	<a4j:commandLink styleClass="button1" oncomplete="#{rich:component('DeletePopup')}.show();" rendered="#{authorizedUser!=null}">
+				                    		<strong>Delete</strong>
+											<f:param name="carId" value="#{car.vehicleId}"/>
+										</a4j:commandLink>										
 				                    	<acm:spacer width="10px"/>
 				                    	<h:link styleClass="button1" outcome="/sec/inv/invEdit?carId=#{car.vehicleId}" rendered="#{authorizedUser!=null}"><strong>Update</strong></h:link>
 				                    	<acm:spacer width="10px"/>
-				                    	<h:link styleClass="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}&amp;backTo=Inventory"><strong>More</strong></h:link>
+				                    	<h:link styleClass="button1" outcome="/pub/inv/invDisplay?carId=#{car.vehicleId}&amp;backTo=Inventory"><strong>Details</strong></h:link>
 				                    </h:panelGroup>
 			                    </h:panelGrid>		                    
 			                </div>
@@ -112,6 +115,25 @@
 	      		<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true" ></rich:notifyMessages>				            
 	         </div>	            
 	    </section>
+		<h:form id="VehicleDeleteForm" prependId="false">	
+			<rich:popupPanel id="DeletePopup" modal="true" width="250" height="75" domElementAttachment="parent">
+				<f:metadata>
+					<f:viewParam id="carId" name="carId" value="#{invCtrl.car}" converter="entityConverter">
+			        	<f:param name="entityName" value="Vehicle"/>
+			        </f:viewParam>		        
+			    </f:metadata>
+			    <h:panelGrid columnClasses="centerAlign" width="100%" rowClasses="s1row">
+			    	<h:outputLabel value="Are your sure you want to Delete this Car ?"/>
+			    	<h:panelGroup>
+			    		<a4j:commandLink styleClass="button1" value="Yes" action="#{invCtrl.deleteVehicle}" 
+							oncomplete="#{rich:component('DeletePopup')}.hide();" render="@all">
+				        </a4j:commandLink>
+					    <acm:spacer width="10px;"/>	
+					    <a4j:commandLink styleClass="button1" value="No" onclick="#{rich:component('DeletePopup')}.hide();"/>
+				    </h:panelGroup>
+			    </h:panelGrid>
+			</rich:popupPanel>
+		</h:form>	    	
 	</ui:define>
 </ui:composition>     
 </html>   	
