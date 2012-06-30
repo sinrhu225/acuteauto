@@ -65,7 +65,7 @@ public class ImageServlet extends HttpServlet {
 			Image image = null;
 			String imageId = request.getParameter("imgId");
 			String isUploaded = request.getParameter("isUploaded");
-			logger.info("Image Id: "+imageId);
+			logger.debug("Image Id: "+imageId);
 			if(!Utils.isEmpty(isUploaded)) {
 				List<Image> list = getUploadedImages(request);
 				image = list.get(Integer.valueOf(imageId.trim()));
