@@ -64,7 +64,9 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+			<property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://ns121.mochahost.com/javaweb_test"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 			<property name="hibernate.connection.username" value="javaweb_test"/>
 			<property name="hibernate.connection.password" value="acuteauto"/>
 			<property name="hibernate.show_sql" value="true"/>
@@ -72,13 +74,17 @@
             <property name="hibernate.max_fetch_depth" value="0"/>
             <property name="hibernate.query.substitutions" value="true 1, false 0"/>
             <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider"/>
+            
             <property name="hibernate.c3p0.min_size" value="5"/>
             <property name="hibernate.c3p0.max_size" value="50"/>
             <property name="hibernate.c3p0.timeout" value="1800"/>
             <property name="hibernate.c3p0.max_statements" value="0"/>
             <property name="hibernate.c3p0.idle_test_period" value="30"/>
-            <property name="hibernate.connection.driver_class" value="org.gjt.mm.mysql.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:mysql://ns121.mochahost.com/javaweb_test"/>
+            <property name="hibernate.c3p0.acquire_increment" value="2"/>
+			<property name="hibernate.c3p0.preferredTestQuery" value="select 1;"/>
+			<property name="hibernate.c3p0.validate" value="true"/>
+            
             <property name="hibernate.ejb.cfgfile" value="cfg/hibernate.cfg.xml"/>
 		</properties>
 	</persistence-unit>
