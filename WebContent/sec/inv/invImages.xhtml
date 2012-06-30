@@ -17,9 +17,9 @@
 					archive="mediautil_z.jar,sanselan_z.jar,jumploader_z.jar"
 					width="140"
 					height="44" 
-					codebase="/imageloaders"
+					codebase="#{facesContext.externalContext.requestContextPath}/imageloaders"
 					mayscript="true">
-				<param name="uc_uploadUrl" value="/img"/>
+				<param name="uc_uploadUrl" value="#{facesContext.externalContext.requestContextPath}/img"/>
 				<param name="ac_mode" value="framed"/>
 				<param name="uc_cookie" value="JSESSIONID=#{facesContext.externalContext.request.session.id};"/>
 				<param name="uc_maxFiles" value="5"/>
