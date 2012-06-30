@@ -18,7 +18,10 @@
 			            	<div class="col-#{stat.index+1}">
 			                	<div class="box">
 				                	<a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invDisplay.jsf?carId=#{car.vehicleId}&amp;backTo=Home Page">
-				                		<figure><h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="253" height="177"/></figure>
+				                		<figure>
+				                			<h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="254" height="177" rendered="#{stat.index == 0}"/>
+				                			<h:graphicImage value="/img/?imgId=#{car.displayImage.imageId}" width="252" height="177" rendered="#{stat.index != 0}"/>
+				                		</figure>
 				                	</a>
 			    	            	<div>
 			        	            	<p><strong>#{car.year}</strong> - #{car.make.name} #{car.model.name}</p>
