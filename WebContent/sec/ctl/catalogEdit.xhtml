@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition>
+			<rich:popupPanel id="CatalogPopup" modal="true" autosized="true" header="Quick Add Catalog" domElementAttachment="parent">
+				<h:outputStylesheet>
+			        .rf-ac {
+			        width: 300px;
+			        }			 
+			        .rf-ac-itm-c {
+			        height: 200px;
+			        }
+			    </h:outputStylesheet>
+			    <f:facet name="controls">
+			    	<h:graphicImage value="/images/icons/close.gif" width="16" height="16" onclick="#{rich:component('CatalogPopup')}.hide();" style="cursor:pointer;"/>
+			    </f:facet>
+			    <h:form id="QuickCatalogForm" prependId="false">		
+			        <rich:accordion switchType="client">
+			            <rich:accordionItem header="New Make">
+			                <h:panelGrid id="MakeGrid" columns="2" columnClasses="col-padding, col-padding">
+			                	<rich:inplaceInput id="NewMake" showControls="true" defaultLabel="New Make Name - Ex: Acura"  
+			                		value="#{ctlCtrl.make.name}">
+			                		<a4j:ajax event="change" render="Makes,StyleGrid,NewMakeLink" listener="#{ctlCtrl.submitMake}"/>
+			                	</rich:inplaceInput>
+			                	<h:panelGroup id="NewMakeLink">
+			                		<a4j:commandLink value="Add Another Make" action="#{ctlCtrl.prepareCatalog}" execute="@this" rendered="#{ctlCtrl.make.persistent}" render="MakeGrid,Makes"></a4j:commandLink>
+			                	</h:panelGroup>
+			                </h:panelGrid>
+			            </rich:accordionItem>
+			            <rich:accordionItem header="New Model">
+			                <h:panelGrid id="ModelGrid" rowClasses="s1row">
+			                	<h:selectOneListbox id="Makes" value="#{ctlCtrl.model.make}" size="1" converter="entityConverter" required="true" 
+			                		label="Make" requiredMessage="Please select a Make.">
+						        	<f:selectItem itemLabel="Select a Make" itemValue="0"/>
+					           		<f:selectItems value="#{ctlCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
+					           		<f:ajax event="change" execute="@this"/>
+					           		<f:param name="entityName" value="Make"/>
+					           	</h:selectOneListbox>
+					           	<h:panelGrid columns="2" columnClasses="col-padding, col-padding">
+						           	<rich:inplaceInput id="Model" showControls="true" defaultLabel="New Model Name - Ex: MDX"  value="#{ctlCtrl.model.name}">
+				                		<a4j:ajax event="change" render="StyleGrid,NewModelLink" listener="#{ctlCtrl.submitModel}" execute="ModelGrid"/>
+				                	</rich:inplaceInput>
+				                	<h:panelGroup id="NewModelLink">
+				                		<a4j:commandLink value="Add Another Model" action="#{ctlCtrl.prepareCatalog}" execute="@this" rendered="#{ctlCtrl.model.persistent}" render="MakeGrid,ModelGrid,StyleGrid"></a4j:commandLink>
+				                	</h:panelGroup>
+			                	</h:panelGrid>
+			                </h:panelGrid>
+			            </rich:accordionItem>
+			            <rich:accordionItem header="New Style">
+			                <h:panelGrid id="StyleGrid" rowClasses="s1row">
+			                	<h:selectOneListbox value="#{ctlCtrl.style.make}" size="1" converter="entityConverter" required="true" label="Make"
+			                		requiredMessage="Please select a Make.">
+						        	<f:selectItem itemLabel="Select a Make" itemValue="0"/>
+					           		<f:selectItems value="#{ctlCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
+					           		<f:ajax event="change" execute="@this" render="Models"/>
+					           		<f:param name="entityName" value="Make"/>
+					           	</h:selectOneListbox>
+					           	<h:selectOneListbox id="Models" value="#{ctlCtrl.style.model}" size="1" converter="entityConverter" required="true" 
+					           		label="Model" requiredMessage="Please select a Model.">
+						        	<f:selectItem itemLabel="Select a Model" itemValue="0"/>
+					           		<f:selectItems value="#{ctlCtrl.style.make.models}" var="model" itemLabel="#{model.name}" itemValue="#{model}"/>			           		
+					           		<f:param name="entityName" value="Model"/>
+					           		<f:ajax event="change" execute="@this"/>
+					           	</h:selectOneListbox>
+					           	<acm:uiTypes typeName="bodyTypes" required="true" value="#{ctlCtrl.style.bodyType}" label="Body Type"></acm:uiTypes>
+					           	<h:panelGrid columns="2" columnClasses="col-padding, col-padding">
+						           	<rich:inplaceInput showControls="true" defaultLabel="New Style Name - Ex: LXI"  value="#{ctlCtrl.style.name}">
+				                		<a4j:ajax event="change" listener="#{ctlCtrl.submitStyle}" execute="StyleGrid" render="NewStyleLink"/>
+				                	</rich:inplaceInput>
+				                	<h:panelGroup id="NewStyleLink">
+  				                		<a4j:commandLink value="Add Another Style" action="#{ctlCtrl.prepareCatalog}" execute="@this" rendered="#{ctlCtrl.style.persistent}" render="MakeGrid,ModelGrid,StyleGrid"></a4j:commandLink>
+				                	</h:panelGroup>
+				                </h:panelGrid>	
+			                </h:panelGrid>
+			            </rich:accordionItem>
+			        </rich:accordion>
+				</h:form>        
+    		</rich:popupPanel>
+	</ui:composition>
+</html>	
