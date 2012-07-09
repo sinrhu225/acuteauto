@@ -55,10 +55,14 @@ public class CatalogController extends InventoryController {
 		try {
 			logger.info("Saving Make.");
 			baseService.saveOrUpdate(make, true);
-			baseService.refresh(make);
-			getAllMakes().add(make);
-			// TO PRESELECT MAKE WHILE CREATING NEW MODEL 
-			model.setMake(make);
+			if(!make.isPersistent()) {
+				baseService.refresh(make);
+				getAllMakes().add(make);
+				// TO PRESELECT MAKE WHILE CREATING NEW MODEL 
+				model.setMake(make);
+			} else {
+				make.setEditable(false);
+			}
 			logger.info("Make saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveMakeSuccessful");
 		} catch(Exception e) {
@@ -72,10 +76,12 @@ public class CatalogController extends InventoryController {
 		try {
 			logger.info("Saving Model.");
 			baseService.saveOrUpdate(model, true);
-			baseService.refresh(model);
-			// TO PRESELECT MODEL WHILE CREATING NEW STYLE
-			style.setModel(model);
-			style.setMake(model.getMake());
+			if(!model.isPersistent()) {
+				baseService.refresh(model);
+				// TO PRESELECT MODEL WHILE CREATING NEW STYLE
+				style.setModel(model);
+				style.setMake(model.getMake());
+			}
 			logger.info("Model saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveModelSuccessful");
 		} catch(Exception e) {
@@ -89,7 +95,9 @@ public class CatalogController extends InventoryController {
 		try {
 			logger.info("Saving Style.");
 			baseService.saveOrUpdate(style, true);
-			baseService.refresh(style);
+			if(!style.isPersistent()) {
+				baseService.refresh(style);
+			}
 			logger.info("Style saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveStyleSuccessful");
 		} catch(Exception e) {
