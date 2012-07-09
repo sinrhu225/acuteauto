@@ -52,6 +52,9 @@
 	    				<h:graphicImage value="/img/?imgId=#{stat.index}&amp;isUploaded=true" width="180" height="135" style="cursor:pointer;"
 	    					onclick="document.getElementById('FullPreview').src = this.src; #{rich:component('PreviewPopup')}.show();"/>
 	    				<h:panelGroup>
+	    					<h:graphicImage value="/images/icons/search.png" style="cursor:pointer"
+	    						onclick="document.getElementById('FullPreview').src = '/img/?imgId=#{stat.index}&amp;isUploaded=true'; #{rich:component('PreviewPopup')}.show();"/>
+	    					<acm:spacer width="20" height="0"/>
 	    					<a4j:commandButton image="/images/icons/trash.png" action="#{invCtrl.removeImage(stat.index)}" render="images" />	    					
 	    				</h:panelGroup>
 	    				<h:panelGroup>
@@ -71,9 +74,12 @@
 	        </a4j:commandButton>
 	        <a4j:commandButton styleClass="fright button1" value="Submit" action="#{invCtrl.submitVehicleInfo}" render="@all">
 	        </a4j:commandButton>
-	    </div>
-	    <rich:popupPanel id="PreviewPopup" autosized="true">
-			<h:graphicImage id="FullPreview" onclick="#{rich:component('PreviewPopup')}.hide();" style="cursor:pointer;"/>
-		</rich:popupPanel>	       
-    </div>    
+	    </div>	    	       
+    </div> 
+    <rich:popupPanel id="PreviewPopup" autosized="true" modal="false" resizeable="false" header="Preview">
+    	<f:facet name="controls">
+	    	<h:graphicImage value="/images/icons/close.gif" width="16" height="16" onclick="#{rich:component('PreviewPopup')}.hide();" style="cursor:pointer;"/>
+	    </f:facet>
+		<h:graphicImage id="FullPreview" onclick="#{rich:component('PreviewPopup')}.hide();" style="cursor:pointer;"/>
+	</rich:popupPanel>   
 </ui:composition>
