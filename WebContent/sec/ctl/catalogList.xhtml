@@ -15,38 +15,42 @@
 			    	<h:panelGrid columns="3" width="100%" columnClasses="fleft, threeColBlock fleft, threeColBlock fleft">
 			    		<rich:panel id="Makes" header="Makes" style="width:200px;">
 			    			<div id="manageCatalog">
-								<rich:list var="make" value="#{ctlCtrl.allMakes}" rowKeyVar="stat" type="unordered"
-									rowClass="hideSpan">
-									<h:panelGroup id="EditMake" styleClass="fright">
-										<a4j:commandButton image="/images/icons/edit.gif" oncomplete="#{rich:component('CatalogPopup')}.show();"
-											render="NewMake">
+								<rich:list id="MakesList" var="make" value="#{ctlCtrl.allMakes}" rowKeyVar="stat" type="unordered"
+									onrowmouseover="document.getElementById('MakesList:#{stat}:Editor').style.visibility='visible';"
+									onrowmouseout="document.getElementById('MakesList:#{stat}:Editor').style.visibility='hidden';">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
+										<a4j:commandButton image="/images/icons/edit.gif" render="group">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
+											<f:setPropertyActionListener value="true" target="#{make.editable}" />																						
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
 										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('MakeDelPopup')}.show();">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
 										</a4j:commandButton>											
 									</h:panelGroup>
-									<a4j:commandLink id="SelectMake" value="#{make.name}" render="Makes,Models,DynaStyle"
-										styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}">
-										<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
-									</a4j:commandLink>																			
+									<h:panelGroup id="group">
+										<a4j:commandLink id="SelectMake" value="#{make.name}" render="Makes,Models"
+											styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}">
+											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
+										</a4j:commandLink>										
+				                	</h:panelGroup>																		
 								</rich:list>								
 							</div>
 			    		</rich:panel>
 			    		<rich:panel id="Models" header="Models" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
-								<rich:list var="model" value="#{ctlCtrl.make.models}" rowKeyVar="stat" type="unordered"
-									rowClass="hideSpan">
-									<h:panelGroup id="EditModel" styleClass="fright">
-										<a4j:commandButton image="/images/icons/edit.gif" render="SelectModel,EditModel">
+								<rich:list id="ModelsList" var="model" value="#{ctlCtrl.make.models}" rowKeyVar="stat" type="unordered"
+									onrowmouseover="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='visible';"
+									onrowmouseout="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='hidden';">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
+										<a4j:commandButton image="/images/icons/edit.gif">
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
 										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('ModelDelPopup')}.show();">
 											<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
-									<a4j:commandLink id="SelectModel" value="#{model.name}" render="Models,Styles,DynaStyle" 
+									<a4j:commandLink id="SelectModel" value="#{model.name}" render="Models,Styles" 
 										styleClass="#{ctlCtrl.model.name == model.name ? 'active' : ''}">
 										<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 									</a4j:commandLink>									
@@ -55,9 +59,10 @@
 			    		</rich:panel>
 			    		<rich:panel id="Styles" header="Styles" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
-								<rich:list var="style" value="#{ctlCtrl.model.styles}" rowKeyVar="stat" type="unordered"
-									rowClass="hideSpan">
-									<h:panelGroup id="EditStyle" styleClass="fright">
+								<rich:list id="StylesList" var="style" value="#{ctlCtrl.model.styles}" rowKeyVar="stat" type="unordered"
+									onrowmouseover="document.getElementById('StylesList:#{stat}:Editor').style.visibility='visible';"
+									onrowmouseout="document.getElementById('StylesList:#{stat}:Editor').style.visibility='hidden';">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
 										<a4j:commandButton image="/images/icons/edit.gif" render="SelectStyle,EditStyle">
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
@@ -65,7 +70,7 @@
 											<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
-									<a4j:commandLink id="SelectStyle" value="#{style.name}" render="Styles,DynaStyle" 
+									<a4j:commandLink id="SelectStyle" value="#{style.name}" render="Styles" 
 										styleClass="#{ctlCtrl.style.name == style.name ? 'active' : ''}">
 										<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 									</a4j:commandLink>									
@@ -74,15 +79,10 @@
 			    		</rich:panel>
 			    	</h:panelGrid>
 			    </h:panelGrid>	
-			</h:form>
-			<h:panelGroup id="DynaStyle">
-				<rich:jQuery selector="#manageCatalog li" event="mouseover" query="jQuery(this).addClass('showSpan')" />
-	    		<rich:jQuery selector="#manageCatalog li" event="mouseout" query="jQuery(this).removeClass('showSpan')" />
-    		</h:panelGroup>         	            
+			</h:form>			        	            
 	    </section>
-	    <ui:include src="/sec/ctl/catalogEdit.xhtml"></ui:include>
 	    <h:form id="CatEditForm" prependId="false">	
-			<rich:popupPanel id="MakeDelPopup" modal="true" autosized="true" domElementAttachment="parent">
+	    	<rich:popupPanel id="MakeDelPopup" modal="true" autosized="true" domElementAttachment="parent">
 				<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding">
 					<h:outputText value="Are you sure, you want to delete this Make?" />
 					<h:outputText value="This would also delete all its corresponding Models and Styles." />
