@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:composite="http://java.sun.com/jsf/composite"
+    xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+    
+  <!-- INTERFACE -->
+  <composite:interface>
+  	<composite:attribute name="confirmText"/>
+    <composite:attribute name="panelId"/>
+    <composite:attribute name="renderIds"/>
+    <composite:attribute name="actionMethod" method-signature="java.lang.String action()"/>
+  </composite:interface>
+
+  <!-- IMPLEMENTATION -->
+    <composite:implementation>
+   		<rich:popupPanel id="#{cc.attrs.panelId}" modal="true" autosized="true" domElementAttachment="parent">
+			<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding">
+				<p>
+					<h:outputText value="#{cc.attrs.confirmText}" escape="false"/>
+				</p>
+				<h:panelGroup>
+					<a4j:commandButton styleClass="button1" value="Yes" action="#{cc.attrs.actionMethod}" 
+						oncomplete="#{rich:component('#{cc.attrs.panelId}')}.hide();" render="#{cc.attrs.renderIds}">
+			        </a4j:commandButton>
+			        <acm:spacer width="10px;"/>
+			        <a4j:commandButton styleClass="button1" value="No">	
+			        	<rich:componentControl event="click" operation="hide" target="#{cc.attrs.panelId}"/>
+			        </a4j:commandButton>
+		        </h:panelGroup>
+			</h:panelGrid>
+		</rich:popupPanel>			
+  	</composite:implementation>
+</html>  
