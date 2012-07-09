@@ -15,7 +15,8 @@
 
   <!-- IMPLEMENTATION -->          
     <composite:implementation>
-    	<h:selectOneMenu value="#{cc.attrs.value}" label="#{cc.attrs.label}" required="#{cc.attrs.required}">
+    	<h:selectOneMenu value="#{cc.attrs.value}" label="#{cc.attrs.label}" required="#{cc.attrs.required}"
+    		requiredMessage="Please select a #{cc.attrs.label}.">
 			<f:selectItems value="#{uiTypes[cc.attrs.typeName]}"/>
 		</h:selectOneMenu>
   	</composite:implementation>
