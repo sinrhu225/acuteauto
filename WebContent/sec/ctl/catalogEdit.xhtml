@@ -25,16 +25,16 @@
 			                <h:panelGrid id="MakeGrid" columns="2" columnClasses="col-padding, col-padding">
 			                	<rich:inplaceInput id="NewMake" showControls="true" defaultLabel="New Make Name - Ex: Acura"  
 			                		value="#{ctlCtrl.make.name}">
-			                		<a4j:ajax event="change" render="Makes,StyleGrid,NewMakeLink" listener="#{ctlCtrl.submitMake}"/>
+			                		<a4j:ajax event="change" render="MakesList,StyleGrid,NewMakeLink" listener="#{ctlCtrl.submitMake}"/>
 			                	</rich:inplaceInput>
 			                	<h:panelGroup id="NewMakeLink">
-			                		<a4j:commandLink value="Add Another Make" action="#{ctlCtrl.prepareCatalog}" execute="@this" rendered="#{ctlCtrl.make.persistent}" render="MakeGrid,Makes"></a4j:commandLink>
+			                		<a4j:commandLink value="Add Another Make" action="#{ctlCtrl.prepareCatalog}" execute="@this" rendered="#{ctlCtrl.make.persistent}" render="MakeGrid,MakesList"></a4j:commandLink>
 			                	</h:panelGroup>
 			                </h:panelGrid>
 			            </rich:accordionItem>
 			            <rich:accordionItem header="New Model">
 			                <h:panelGrid id="ModelGrid" rowClasses="s1row">
-			                	<h:selectOneListbox id="Makes" value="#{ctlCtrl.model.make}" size="1" converter="entityConverter" required="true" 
+			                	<h:selectOneListbox id="MakesList" value="#{ctlCtrl.model.make}" size="1" converter="entityConverter" required="true" 
 			                		label="Make" requiredMessage="Please select a Make.">
 						        	<f:selectItem itemLabel="Select a Make" itemValue="0"/>
 					           		<f:selectItems value="#{ctlCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
@@ -57,10 +57,10 @@
 			                		requiredMessage="Please select a Make.">
 						        	<f:selectItem itemLabel="Select a Make" itemValue="0"/>
 					           		<f:selectItems value="#{ctlCtrl.allMakes}" var="make" itemLabel="#{make.name}" itemValue="#{make}"/>
-					           		<f:ajax event="change" execute="@this" render="Models"/>
+					           		<f:ajax event="change" execute="@this" render="ModelsList"/>
 					           		<f:param name="entityName" value="Make"/>
 					           	</h:selectOneListbox>
-					           	<h:selectOneListbox id="Models" value="#{ctlCtrl.style.model}" size="1" converter="entityConverter" required="true" 
+					           	<h:selectOneListbox id="ModelsList" value="#{ctlCtrl.style.model}" size="1" converter="entityConverter" required="true" 
 					           		label="Model" requiredMessage="Please select a Model.">
 						        	<f:selectItem itemLabel="Select a Model" itemValue="0"/>
 					           		<f:selectItems value="#{ctlCtrl.style.make.models}" var="model" itemLabel="#{model.name}" itemValue="#{model}"/>			           		

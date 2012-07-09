@@ -4,6 +4,8 @@ package com.acminds.acuteauto.persistence.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -90,7 +92,7 @@ public abstract class AbstractMake extends
 		this.features = features;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "make")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "make", cascade = {CascadeType.ALL})
 	public List<Model> getModels() {
 		return this.models;
 	}

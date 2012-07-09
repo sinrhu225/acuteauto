@@ -32,10 +32,14 @@
 								<h3>Catalog Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
-										<li><a href="#">Add New Make / Model / Style</a></li>
+										<li>
+											<a4j:commandLink value="Add New Make / Model / Style" action="#{ctlCtrl.prepareCatalog}"
+												oncomplete="#{rich:component('CatalogPopup')}.show();">												 
+											</a4j:commandLink>
+										</li>
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/ctl/catalogList.jsf">Manage Catalog</a></li>
 										<li><a href="#">Add New Feature</a></li>
-										<li><a href="#">Search / Manage Catalog</a></li>
-										<li><a href="#">Search / Manage Features</a></li>																			
+										<li><a href="#">Manage Features</a></li>																			
 									</ul>
 								</div>
 							</h:panelGroup>
@@ -58,7 +62,7 @@
 								<h3>Inventory Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
-										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/inv/invEdit.jsf?carId=0">Add New Car</a></li>
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/inv/invEdit.jsf?carId=0">Add a Car</a></li>
 										<li><a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf">Manage Cars</a></li>																		
 									</ul>
 								</div>
@@ -118,7 +122,8 @@
 				</h:form>			
 				<ui:include src="/sec/hmp/menuMaint.xhtml"></ui:include>
 				<ui:include src="/sec/rom/privEdit.xhtml"></ui:include>
-				<ui:include src="/sec/rom/roleEdit.xhtml"></ui:include>						
+				<ui:include src="/sec/rom/roleEdit.xhtml"></ui:include>
+				<ui:include src="/sec/ctl/catalogEdit.xhtml"></ui:include>						
 			</section>			
 		</ui:define>
 	</ui:composition>

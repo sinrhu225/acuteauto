@@ -359,7 +359,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 
 .threeColBlock {
 	width:305px; 
-	height:200px	
+	min-height:200px	
 }
 
 .twoColBlock {
@@ -367,7 +367,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	height:200px	
 }
 
-#adminConsole ul {
+#adminConsole ul, #manageCatalog ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0px 0 0 20px;
@@ -384,7 +384,7 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	font-size:19px;
 }
 
-#adminConsole a:hover {
+#adminConsole a:hover, #manageCatalog .active, #manageCatalog li:hover {
 	background-color: #def4fd;
 	text-decoration: none;
 }
@@ -392,5 +392,24 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 #adminConsole h4 {font-size:19px; line-height:1.2em; color:#55544c; margin:0px 0 10px; font-weight:normal;}
 #adminConsole h4 span {color:#7ac142;}
 
+
+
+#manageCatalog ul a {
+	display: block;
+	margin: 0;
+	padding: 0 0 0 0px;
+	line-height: 1.8em; 
+	border-bottom: 1px dotted #dfdfdf; 	
+	text-decoration: none;
+	font-size:12px;
+}
+
+.hideSpan span {
+	visibility: hidden;
+}
+
+.showSpan span {
+	visibility: visible;
+}
 
 .selectItem table td {padding:0 0 0 10px;}
