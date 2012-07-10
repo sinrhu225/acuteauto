@@ -12,7 +12,7 @@
 		<section id="content">
 			<h:form id="CatalogListForm" prependId="false">
 				<h:panelGrid styleClass="wrapper" width="100%">
-			    	<h:panelGrid columns="3" width="100%" columnClasses="threeColBlock fleft, threeColBlock fleft, threeColBlock fleft">
+			    	<h:panelGrid columns="3" width="100%" columnClasses="fleft, fleft, fleft">
 			    		<rich:panel id="Makes" header="Makes" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
 			    				<rich:list id="MakesList" var="make" value="#{ctlCtrl.makesForCatList}" rowKeyVar="stat" type="unordered"
@@ -41,7 +41,7 @@
 										</a4j:commandButton>											
 									</h:panelGroup>
 									<h:panelGroup id="group">
-										<rich:inplaceInput id="NewMake" showControls="true" defaultLabel="New Make Name - Ex: Acura"  
+										<rich:inplaceInput id="NewMake" showControls="true" defaultLabel="Click here to add a new Make"  
 					                		value="#{make.name}" rendered="#{!make.persistent}">
 					                		<a4j:ajax event="change" render="Makes,Models,Styles" listener="#{ctlCtrl.submitMakeFromList}"/>
 					                	</rich:inplaceInput>
@@ -82,7 +82,7 @@
 											<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
-									<rich:inplaceInput id="NewModel" showControls="true" defaultLabel="New Model Name - Ex: MDX"  
+									<rich:inplaceInput id="NewModel" showControls="true" defaultLabel="Click here to add new Model for #{ctlCtrl.make.name}"  
 				                		value="#{model.name}" rendered="#{!model.persistent}">
 				                		<a4j:ajax event="change" render="Models,Styles" listener="#{ctlCtrl.submitModelFromList}"/>
 				                	</rich:inplaceInput>
@@ -121,7 +121,7 @@
 											<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
-									<rich:inplaceInput id="NewStyle" showControls="true" defaultLabel="New Style Name - Ex: LXI"  
+									<rich:inplaceInput id="NewStyle" showControls="true" defaultLabel="Click here to add new Style for #{ctlCtrl.model.name}"  
 				                		value="#{style.name}" rendered="#{!style.persistent}">
 				                		<a4j:ajax event="change" render="Styles" listener="#{ctlCtrl.submitStyleFromList}"/>
 				                	</rich:inplaceInput>
@@ -144,8 +144,8 @@
 					<h:outputText value="This would also delete all its corresponding Models and Styles." />
 					<br/>
 					<h:panelGroup>
-						<a4j:commandButton styleClass="button1" value="Delete" action="#{ctlCtrl.deleteMake}" 
-							oncomplete="#{rich:component('MakeDelPopup')}.hide();" render="Makes,Models,Styles">
+						<a4j:commandButton styleClass="button1" value="Delete" action="#{ctlCtrl.deleteMake}" immediate="true"
+							oncomplete="#{rich:component('MakeDelPopup')}.hide();" execute="@this" render="CatalogListForm">
 				        </a4j:commandButton>
 				        <acm:spacer width="10px;"/>
 				        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('MakeDelPopup')}.hide();" immediate="true">				            
