@@ -27,6 +27,13 @@ public class Style extends AbstractStyle {
 	public void setMake(Make make) {
 		this.make = make;
 	}
-	
+	private boolean editable;
+	@Transient
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 
 }

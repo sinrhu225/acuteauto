@@ -13,18 +13,30 @@
 			<h:form id="CatalogListForm" prependId="false">
 				<h:panelGrid styleClass="wrapper" width="100%">
 			    	<h:panelGrid columns="3" width="100%" columnClasses="threeColBlock fleft, threeColBlock fleft, threeColBlock fleft">
-			    		<rich:panel id="Makes" header="Makes">
+			    		<rich:panel id="Makes" header="Makes" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
 			    				<rich:list id="MakesList" var="make" value="#{ctlCtrl.makesForCatList}" rowKeyVar="stat" type="unordered"
 									onrowmouseover="document.getElementById('MakesList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('MakesList:#{stat}:Editor').style.visibility='hidden';">
 									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{make.persistent}">
-										<a4j:commandButton image="/images/icons/edit.gif" render="group">
+										<a4j:commandButton image="/images/icons/save.gif" actionListener="#{ctlCtrl.submitMake}" 
+											render="Makes" rendered="#{make.editable}" title="Save" execute="UpdateMake">
+											<f:setPropertyActionListener value="false" target="#{make.editable}" />																						
+										</a4j:commandButton>
+										<acm:spacer width="10"/>
+										<a4j:commandButton image="/images/icons/cancel.gif" render="Makes" 
+											rendered="#{make.editable}" title="Cancel" immediate="true" execute="@this">
+											<f:setPropertyActionListener value="false" target="#{make.editable}" />																						
+										</a4j:commandButton>
+										
+										<a4j:commandButton image="/images/icons/edit.gif" render="Makes" rendered="#{!make.editable}" 
+											title="Modify" execute="@this" immediate="true">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
 											<f:setPropertyActionListener value="true" target="#{make.editable}" />																						
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
-										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('MakeDelPopup')}.show();">
+										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('MakeDelPopup')}.show();" 
+											rendered="#{!make.editable}" title="Delete">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
 										</a4j:commandButton>											
 									</h:panelGroup>
@@ -33,8 +45,9 @@
 					                		value="#{make.name}" rendered="#{!make.persistent}">
 					                		<a4j:ajax event="change" render="Makes,Models,Styles" listener="#{ctlCtrl.submitMakeFromList}"/>
 					                	</rich:inplaceInput>
+					                	<h:inputText id="UpdateMake" value="#{make.name}" rendered="#{make.editable}" />
 										<a4j:commandLink id="SelectMake" value="#{make.name}" render="Makes,Models,Styles"
-											styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}" rendered="#{make.persistent}">
+											styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}" rendered="#{make.persistent and !make.editable}">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
 											<f:setPropertyActionListener value="" target="#{ctlCtrl.model}" />
 										</a4j:commandLink>										
@@ -48,10 +61,24 @@
 									onrowmouseover="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='hidden';">
 									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{model.persistent}">
-										<a4j:commandButton image="/images/icons/edit.gif">
+										<a4j:commandButton image="/images/icons/save.gif" actionListener="#{ctlCtrl.submitModel}" 
+											render="Models" rendered="#{model.editable}" title="Save" execute="UpdateModel">
+											<f:setPropertyActionListener value="false" target="#{model.editable}" />																						
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
-										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('ModelDelPopup')}.show();">
+										<a4j:commandButton image="/images/icons/cancel.gif" render="Models" 
+											rendered="#{model.editable}" title="Cancel" immediate="true" execute="@this">
+											<f:setPropertyActionListener value="false" target="#{model.editable}" />																						
+										</a4j:commandButton>
+										
+										<a4j:commandButton image="/images/icons/edit.gif" rendered="#{!model.editable}"
+											execute="@this" immediate="true" title="Modify" render="Models">
+											<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
+											<f:setPropertyActionListener value="true" target="#{model.editable}" />	
+										</a4j:commandButton>
+										<acm:spacer width="10"/>
+										<a4j:commandButton image="/images/icons/trash.png" rendered="#{!model.editable}" 
+											oncomplete="#{rich:component('ModelDelPopup')}.show();" title="Delete">
 											<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
@@ -59,8 +86,9 @@
 				                		value="#{model.name}" rendered="#{!model.persistent}">
 				                		<a4j:ajax event="change" render="Models,Styles" listener="#{ctlCtrl.submitModelFromList}"/>
 				                	</rich:inplaceInput>
+				                	<h:inputText id="UpdateModel" value="#{model.name}" rendered="#{model.editable}" />
 									<a4j:commandLink id="SelectModel" value="#{model.name}" render="Models,Styles" 
-										styleClass="#{ctlCtrl.model.name == model.name ? 'active' : ''}" rendered="#{model.persistent}">
+										styleClass="#{ctlCtrl.model.name == model.name ? 'active' : ''}" rendered="#{model.persistent and !model.editable}">
 										<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 									</a4j:commandLink>									
 								</rich:list>
@@ -72,10 +100,24 @@
 									onrowmouseover="document.getElementById('StylesList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('StylesList:#{stat}:Editor').style.visibility='hidden';">
 									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{style.persistent}">
-										<a4j:commandButton image="/images/icons/edit.gif" render="SelectStyle,EditStyle">
+										<a4j:commandButton image="/images/icons/save.gif" actionListener="#{ctlCtrl.submitStyle}" 
+											render="Styles" rendered="#{style.editable}" title="Save" execute="UpdateStyle">
+											<f:setPropertyActionListener value="false" target="#{style.editable}" />																						
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
-										<a4j:commandButton image="/images/icons/trash.png" oncomplete="#{rich:component('StyleDelPopup')}.show();">
+										<a4j:commandButton image="/images/icons/cancel.gif" render="Styles" 
+											rendered="#{style.editable}" title="Cancel" immediate="true" execute="@this">
+											<f:setPropertyActionListener value="false" target="#{style.editable}" />																						
+										</a4j:commandButton>
+										
+										<a4j:commandButton image="/images/icons/edit.gif" rendered="#{!style.editable}" 
+											title="Modify" execute="@this" immediate="true" render="Styles">
+											<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
+											<f:setPropertyActionListener value="true" target="#{style.editable}" />	
+										</a4j:commandButton>
+										<acm:spacer width="10"/>
+										<a4j:commandButton image="/images/icons/trash.png" rendered="#{!style.editable}"  
+											oncomplete="#{rich:component('StyleDelPopup')}.show();">
 											<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
@@ -83,8 +125,9 @@
 				                		value="#{style.name}" rendered="#{!style.persistent}">
 				                		<a4j:ajax event="change" render="Styles" listener="#{ctlCtrl.submitStyleFromList}"/>
 				                	</rich:inplaceInput>
+				                	<h:inputText id="UpdateStyle" value="#{style.name}" rendered="#{style.editable}" />
 				                	<a4j:commandLink id="SelectStyle" value="#{style.name}" render="Styles" 
-										styleClass="#{ctlCtrl.style.name == style.name ? 'active' : ''}" rendered="#{style.persistent}">
+										styleClass="#{ctlCtrl.style.name == style.name ? 'active' : ''}" rendered="#{style.persistent and !style.editable}">
 										<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 									</a4j:commandLink>									
 								</rich:list>

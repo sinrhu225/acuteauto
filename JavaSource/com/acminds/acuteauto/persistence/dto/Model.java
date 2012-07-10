@@ -21,6 +21,14 @@ import com.acminds.acuteauto.persistence.entities.AbstractModel;
 @Table(name = "MODEL")
 public class Model extends AbstractModel {
 	private static final long serialVersionUID = 1L;
+	private boolean editable;
+	@Transient
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
 	
 	private List<Style> stylesForCatList;
 	@Transient

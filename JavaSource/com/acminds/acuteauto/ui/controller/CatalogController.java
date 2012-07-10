@@ -62,6 +62,20 @@ public class CatalogController extends InventoryController {
 		return null;
 	}
 	
+	public String submitMake() {
+		try {
+			logger.info("Saving Make.");
+			baseService.saveOrUpdate(make, true);
+			logger.info("Make saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveMakeSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Make could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return null;
+	}
+	
 	public void submitMake(AjaxBehaviorEvent abe) {
 		try {
 			logger.info("Saving Make.");
@@ -100,6 +114,20 @@ public class CatalogController extends InventoryController {
 		}		
 	}
 	
+	public String submitModel() {
+		try {
+			logger.info("Saving Model.");
+			baseService.saveOrUpdate(model, true);
+			logger.info("Model saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveModelSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Model could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return null;
+	}
+	
 	public void submitModel(AjaxBehaviorEvent abe) {
 		try {
 			logger.info("Saving Model.");
@@ -133,6 +161,20 @@ public class CatalogController extends InventoryController {
 			logger.error("Model could not be saved due to an internal error.", e);
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
+	}
+	
+	public String submitStyle() {
+		try {
+			logger.info("Saving Style.");
+			baseService.saveOrUpdate(style, true);
+			logger.info("Style saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveStyleSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Style could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+		return null;
 	}
 	
 	public void submitStyle(AjaxBehaviorEvent abe) {
