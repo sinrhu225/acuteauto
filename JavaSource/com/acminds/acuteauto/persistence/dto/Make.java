@@ -2,6 +2,9 @@ package com.acminds.acuteauto.persistence.dto;
 
 // Generated Feb 29, 2012 11:25:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -26,6 +29,19 @@ public class Make extends AbstractMake {
 	}
 	public void setEditable(boolean editable) {
 		this.editable = editable;
+	}
+	
+	private List<Model> modelsForCatList;
+	@Transient
+	public List<Model> getModelsForCatList() {
+		if(modelsForCatList==null)
+			modelsForCatList = new ArrayList<Model>(getModels());
+		if(modelsForCatList.size()==0 || modelsForCatList.get(0).isPersistent()) {
+			Model m = new Model();
+			m.setMake(this);
+			modelsForCatList.add(0, m);			
+		}
+		return modelsForCatList;
 	}
 	
 }

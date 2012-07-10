@@ -3,6 +3,9 @@
  */
 package com.acminds.acuteauto.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -24,6 +27,7 @@ public class CatalogController extends InventoryController {
 	private Make make;
 	private Model model;
 	private Style style;
+	private List<Make> makesForCatList;
 	
 	public Make getMake() {
 		return make;
@@ -43,6 +47,13 @@ public class CatalogController extends InventoryController {
 	public void setStyle(Style style) {
 		this.style = style;
 	}
+	public List<Make> getMakesForCatList(){
+		if(makesForCatList==null)
+			makesForCatList = new ArrayList<Make>(getAllMakes());
+		if(makesForCatList.get(0).isPersistent())
+			makesForCatList.add(0, new Make());
+		return makesForCatList;
+	}
 	
 	public String prepareCatalog() {
 		this.make = new Make();
@@ -57,12 +68,29 @@ public class CatalogController extends InventoryController {
 			baseService.saveOrUpdate(make, true);
 			if(!make.isPersistent()) {
 				baseService.refresh(make);
-				getAllMakes().add(make);
+				getMakesForCatList().add(1, make);
 				// TO PRESELECT MAKE WHILE CREATING NEW MODEL 
 				model.setMake(make);
 			} else {
 				make.setEditable(false);
 			}
+			logger.info("Make saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveMakeSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Make could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}		
+	}
+	
+	public void submitMakeFromList(AjaxBehaviorEvent abe) {
+		try {
+			logger.info("Saving Make.");
+			this.make = getMakesForCatList().get(0);
+			baseService.saveOrUpdate(make, true);
+			baseService.refresh(make);
+			setModel(null);
+			setStyle(null);
 			logger.info("Make saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveMakeSuccessful");
 		} catch(Exception e) {
@@ -91,6 +119,22 @@ public class CatalogController extends InventoryController {
 		}
 	}
 	
+	public void submitModelFromList(AjaxBehaviorEvent abe) {
+		try {
+			logger.info("Saving Model.");
+			model = make.getModelsForCatList().get(0);
+			baseService.saveOrUpdate(model, true);
+			baseService.refresh(model);
+			setStyle(null);
+			logger.info("Model saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveModelSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Model could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+	}
+	
 	public void submitStyle(AjaxBehaviorEvent abe) {
 		try {
 			logger.info("Saving Style.");
@@ -107,11 +151,26 @@ public class CatalogController extends InventoryController {
 		}
 	}
 	
+	public void submitStyleFromList(AjaxBehaviorEvent abe) {
+		try {
+			logger.info("Saving Style.");
+			style = model.getStylesForCatList().get(0);
+			baseService.saveOrUpdate(style, true);
+			baseService.refresh(style);
+			logger.info("Style saved successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveStyleSuccessful");
+		} catch(Exception e) {
+			baseService.rollback();
+			logger.error("Style could not be saved due to an internal error.", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
+		}
+	}
+	
 	public String deleteMake() {
 		try {
 			logger.info("Deleting Make.");
 			baseService.delete(make, true);
-			getAllMakes().remove(make);
+			getMakesForCatList().remove(make);
 			setMake(null);
 			logger.info("Make deleted successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delMakeSuccessful");
@@ -127,6 +186,7 @@ public class CatalogController extends InventoryController {
 		try {
 			logger.info("Deleting Model.");
 			make.getModels().remove(model);
+			make.getModelsForCatList().remove(model);
 			baseService.delete(model, true);
 			setModel(null);
 			logger.info("Model deleted successfully.");
@@ -143,6 +203,7 @@ public class CatalogController extends InventoryController {
 		try {
 			logger.info("Deleting Style.");
 			model.getStyles().remove(style);
+			model.getStylesForCatList().remove(style);
 			baseService.delete(style, true);
 			setStyle(null);
 			logger.info("Style deleted successfully.");

@@ -12,13 +12,13 @@
 		<section id="content">
 			<h:form id="CatalogListForm" prependId="false">
 				<h:panelGrid styleClass="wrapper" width="100%">
-			    	<h:panelGrid columns="3" width="100%" columnClasses="fleft, threeColBlock fleft, threeColBlock fleft">
-			    		<rich:panel id="Makes" header="Makes" style="width:200px;">
+			    	<h:panelGrid columns="3" width="100%" columnClasses="threeColBlock fleft, threeColBlock fleft, threeColBlock fleft">
+			    		<rich:panel id="Makes" header="Makes">
 			    			<div id="manageCatalog">
-								<rich:list id="MakesList" var="make" value="#{ctlCtrl.allMakes}" rowKeyVar="stat" type="unordered"
+			    				<rich:list id="MakesList" var="make" value="#{ctlCtrl.makesForCatList}" rowKeyVar="stat" type="unordered"
 									onrowmouseover="document.getElementById('MakesList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('MakesList:#{stat}:Editor').style.visibility='hidden';">
-									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{make.persistent}">
 										<a4j:commandButton image="/images/icons/edit.gif" render="group">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
 											<f:setPropertyActionListener value="true" target="#{make.editable}" />																						
@@ -29,9 +29,14 @@
 										</a4j:commandButton>											
 									</h:panelGroup>
 									<h:panelGroup id="group">
-										<a4j:commandLink id="SelectMake" value="#{make.name}" render="Makes,Models"
-											styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}">
+										<rich:inplaceInput id="NewMake" showControls="true" defaultLabel="New Make Name - Ex: Acura"  
+					                		value="#{make.name}" rendered="#{!make.persistent}">
+					                		<a4j:ajax event="change" render="Makes,Models,Styles" listener="#{ctlCtrl.submitMakeFromList}"/>
+					                	</rich:inplaceInput>
+										<a4j:commandLink id="SelectMake" value="#{make.name}" render="Makes,Models,Styles"
+											styleClass="#{ctlCtrl.make.name == make.name ? 'active' : ''}" rendered="#{make.persistent}">
 											<f:setPropertyActionListener value="#{make}" target="#{ctlCtrl.make}" />
+											<f:setPropertyActionListener value="" target="#{ctlCtrl.model}" />
 										</a4j:commandLink>										
 				                	</h:panelGroup>																		
 								</rich:list>								
@@ -39,10 +44,10 @@
 			    		</rich:panel>
 			    		<rich:panel id="Models" header="Models" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
-								<rich:list id="ModelsList" var="model" value="#{ctlCtrl.make.models}" rowKeyVar="stat" type="unordered"
+								<rich:list id="ModelsList" var="model" value="#{ctlCtrl.make.modelsForCatList}" rowKeyVar="stat" type="unordered"
 									onrowmouseover="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('ModelsList:#{stat}:Editor').style.visibility='hidden';">
-									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{model.persistent}">
 										<a4j:commandButton image="/images/icons/edit.gif">
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
@@ -50,8 +55,12 @@
 											<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
+									<rich:inplaceInput id="NewModel" showControls="true" defaultLabel="New Model Name - Ex: MDX"  
+				                		value="#{model.name}" rendered="#{!model.persistent}">
+				                		<a4j:ajax event="change" render="Models,Styles" listener="#{ctlCtrl.submitModelFromList}"/>
+				                	</rich:inplaceInput>
 									<a4j:commandLink id="SelectModel" value="#{model.name}" render="Models,Styles" 
-										styleClass="#{ctlCtrl.model.name == model.name ? 'active' : ''}">
+										styleClass="#{ctlCtrl.model.name == model.name ? 'active' : ''}" rendered="#{model.persistent}">
 										<f:setPropertyActionListener value="#{model}" target="#{ctlCtrl.model}" />
 									</a4j:commandLink>									
 								</rich:list>
@@ -59,10 +68,10 @@
 			    		</rich:panel>
 			    		<rich:panel id="Styles" header="Styles" styleClass="threeColBlock">
 			    			<div id="manageCatalog">
-								<rich:list id="StylesList" var="style" value="#{ctlCtrl.model.styles}" rowKeyVar="stat" type="unordered"
+								<rich:list id="StylesList" var="style" value="#{ctlCtrl.model.stylesForCatList}" rowKeyVar="stat" type="unordered"
 									onrowmouseover="document.getElementById('StylesList:#{stat}:Editor').style.visibility='visible';"
 									onrowmouseout="document.getElementById('StylesList:#{stat}:Editor').style.visibility='hidden';">
-									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;">
+									<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{style.persistent}">
 										<a4j:commandButton image="/images/icons/edit.gif" render="SelectStyle,EditStyle">
 										</a4j:commandButton>
 										<acm:spacer width="10"/>
@@ -70,8 +79,12 @@
 											<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 										</a4j:commandButton>										
 									</h:panelGroup>
-									<a4j:commandLink id="SelectStyle" value="#{style.name}" render="Styles" 
-										styleClass="#{ctlCtrl.style.name == style.name ? 'active' : ''}">
+									<rich:inplaceInput id="NewStyle" showControls="true" defaultLabel="New Style Name - Ex: LXI"  
+				                		value="#{style.name}" rendered="#{!style.persistent}">
+				                		<a4j:ajax event="change" render="Styles" listener="#{ctlCtrl.submitStyleFromList}"/>
+				                	</rich:inplaceInput>
+				                	<a4j:commandLink id="SelectStyle" value="#{style.name}" render="Styles" 
+										styleClass="#{ctlCtrl.style.name == style.name ? 'active' : ''}" rendered="#{style.persistent}">
 										<f:setPropertyActionListener value="#{style}" target="#{ctlCtrl.style}" />
 									</a4j:commandLink>									
 								</rich:list>

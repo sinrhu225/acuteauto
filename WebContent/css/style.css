@@ -392,8 +392,6 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 #adminConsole h4 {font-size:19px; line-height:1.2em; color:#55544c; margin:0px 0 10px; font-weight:normal;}
 #adminConsole h4 span {color:#7ac142;}
 
-
-
 #manageCatalog ul a {
 	display: block;
 	margin: 0;
@@ -402,14 +400,6 @@ footer .row-1 {width:100%; padding:11px 0 12px; margin-bottom:11px; background:#
 	border-bottom: 1px dotted #dfdfdf; 	
 	text-decoration: none;
 	font-size:12px;
-}
-
-.hideSpan span {
-	visibility: hidden;
-}
-
-.showSpan span {
-	visibility: visible;
 }
 
 .selectItem table td {padding:0 0 0 10px;}
