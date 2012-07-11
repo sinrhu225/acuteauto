@@ -81,7 +81,7 @@
 			                    	<h:panelGroup>			                    	
 					                    <h:link styleClass="button1" outcome="/pub/inq/inquire?carId=#{car.vehicleId}"><strong>Inquire</strong></h:link>					                    
 					                    <acm:spacer width="10px"/>
-					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{car.carfaxApprvUrl!=null}"><strong>Carfax Approved</strong></h:outputLink>
+					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{not empty car.carfaxApprvUrl}"><strong>Carfax Approved</strong></h:outputLink>
 				                    </h:panelGroup>
 				                    <h:panelGroup styleClass="fright">
 				                    	<a4j:commandLink styleClass="button1" oncomplete="#{rich:component('DeletePopup')}.show();" rendered="#{authorizedUser!=null}">
