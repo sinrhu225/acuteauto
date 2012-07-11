@@ -221,6 +221,8 @@ public class InventoryController extends BaseController {
 			List<Feature> defaultFeatures = service.createNamedQuery("getDefaultFeatures", Feature.class).getResultList();
 			if(!Utils.isEmpty(defaultFeatures))
 				car.getSelectedFeatures().addAll(defaultFeatures);
+			if(getDealer().getLocations().size()==1)
+				car.setLocation(getDealer().getPrimaryLocation());
 		}
 		List<Image> list = getUploadedImages(WebUtils.getRequest());
 		if(car.isPersistent() && !listLoadedAlready(list))

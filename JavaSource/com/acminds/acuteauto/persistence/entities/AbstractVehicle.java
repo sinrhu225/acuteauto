@@ -62,6 +62,7 @@ public abstract class AbstractVehicle extends
 	private String additionalInfo;
 	private Date dateSold;
 	private Date createDate;
+	private Location location;
 	private List<LoanApplication> loanApplications = new ArrayList<LoanApplication>(
 			0);
 	private List<Advertisement> advertisements = new ArrayList<Advertisement>(0);
@@ -320,6 +321,16 @@ public abstract class AbstractVehicle extends
 		this.dateSold = dateSold;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "LOCATION_ID", nullable = false)
+	public Location getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATE_DATE", nullable = false, length = 19)
 	public Date getCreateDate() {
