@@ -13,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.Client;
+import com.acminds.acuteauto.persistence.dto.FeatureGroup;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.service.BaseService;
 import com.acminds.acuteauto.utils.Utils;
@@ -27,6 +28,7 @@ public class BaseController {
 	
 	protected BaseService baseService = new BaseService();
 	private Client dealer;
+	private List<FeatureGroup> allFeatureGroups;
 	
 	@ManagedProperty(value="#{authorizedUser}")
 	protected UserInfo authorizedUser;
@@ -60,6 +62,13 @@ public class BaseController {
 			}
 		}
 		return prices;
+	}
+	
+	public List<FeatureGroup> getAllFeatureGroups() {
+		if(Utils.isEmpty(allFeatureGroups)) {
+			allFeatureGroups = baseService.createNamedQuery("getFeatureGrpByName", FeatureGroup.class).setParameter("name", "OPTIONS").getSingleResult().getFeatureGroups();
+		}
+		return allFeatureGroups;
 	}
 	
 	public Client getDealer() {

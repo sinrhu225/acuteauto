@@ -62,6 +62,12 @@ public class CatalogController extends InventoryController {
 		return null;
 	}
 	
+	public void reset() {
+		this.make = null;
+		this.model = null;
+		this.style = null;		
+	}
+	
 	public String submitMake() {
 		try {
 			logger.info("Saving Make.");
@@ -82,7 +88,7 @@ public class CatalogController extends InventoryController {
 			baseService.saveOrUpdate(make, true);
 			if(!make.isPersistent()) {
 				baseService.refresh(make);
-				getMakesForCatList().add(1, make);
+				getAllMakes().add(make);
 				// TO PRESELECT MAKE WHILE CREATING NEW MODEL 
 				model.setMake(make);
 			} else {
@@ -153,6 +159,7 @@ public class CatalogController extends InventoryController {
 			model = make.getModelsForCatList().get(0);
 			baseService.saveOrUpdate(model, true);
 			baseService.refresh(model);
+			make.getModels().add(model);
 			setStyle(null);
 			logger.info("Model saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveModelSuccessful");
@@ -199,6 +206,7 @@ public class CatalogController extends InventoryController {
 			style = model.getStylesForCatList().get(0);
 			baseService.saveOrUpdate(style, true);
 			baseService.refresh(style);
+			model.getStyles().add(style);
 			logger.info("Style saved successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "saveStyleSuccessful");
 		} catch(Exception e) {
@@ -213,7 +221,7 @@ public class CatalogController extends InventoryController {
 			logger.info("Deleting Make.");
 			baseService.delete(make, true);
 			getMakesForCatList().remove(make);
-			setMake(null);
+			reset();
 			logger.info("Make deleted successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delMakeSuccessful");
 		} catch(Exception e) {
@@ -231,6 +239,7 @@ public class CatalogController extends InventoryController {
 			make.getModelsForCatList().remove(model);
 			baseService.delete(model, true);
 			setModel(null);
+			setStyle(null);
 			logger.info("Model deleted successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delModelSuccessful");
 		} catch(Exception e) {

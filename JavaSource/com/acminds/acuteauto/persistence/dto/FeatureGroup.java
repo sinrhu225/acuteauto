@@ -2,6 +2,9 @@ package com.acminds.acuteauto.persistence.dto;
 
 // Generated Feb 29, 2012 11:25:37 PM by Hibernate Tools 3.4.0.CR1
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -26,6 +29,19 @@ public class FeatureGroup extends AbstractFeatureGroup {
 	}
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+	
+	private List<Feature> managedFeatures;
+	@Transient
+	public List<Feature> getManagedFeatures() {
+		if(managedFeatures==null)
+			managedFeatures = new ArrayList<Feature>(getFeatures());
+		if(isPersistent() && (managedFeatures.size()==0 || managedFeatures.get(0).isPersistent())) {
+			Feature s = new Feature();
+			s.setFeatureGroup(this);
+			managedFeatures.add(0, s);
+		}
+		return managedFeatures;
 	}
 	
 }

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:acm="http://java.sun.com/jsf/composite/comp">
+	<ui:composition template="/templates/baseLayout.xhtml">
+		<ui:define name="body">
+			<style>
+				.rf-p {
+					border : none;					
+				}				
+			</style>
+			<section id="content">
+				<h:form id="FeatureListForm" prependId="false">
+					<h:panelGrid styleClass="wrapper" width="100%">
+			   			<rich:dataGrid id="MainGrid" columns="4" elements="12" value="#{fetCtrl.managedFeatureGroups}" var="group" style="width: 100%;" rowKeyVar="rowNum">
+							<rich:panel id="FeatureGroup">
+								<f:facet name="header">
+					                <h:panelGroup> 
+					                	<h:outputText value="#{group.name}" rendered="#{group.persistent}"/>
+					                	<rich:inplaceInput id="NewGroup" showControls="true" defaultLabel="Click here to add a new Group"  
+					                		value="#{group.name}" rendered="#{!group.persistent}">
+					                		<a4j:ajax event="change" render="MainGrid" listener="#{fetCtrl.submitGroupFromList(rowNum)}"/>
+					                	</rich:inplaceInput>
+					                </h:panelGroup>
+					            </f:facet>
+				    			<div id="manageCatalog">
+				    				<rich:list id="Features" var="feature" value="#{group.managedFeatures}" rowKeyVar="stat" type="unordered"
+										onrowmouseover="document.getElementById('MainGrid:#{rowNum}:Features:#{stat}:Editor').style.visibility='visible';"
+										onrowmouseout="document.getElementById('MainGrid:#{rowNum}:Features:#{stat}:Editor').style.visibility='hidden';">
+										<h:panelGroup id="Editor" styleClass="fright" style="visibility: hidden;" rendered="#{feature.persistent}">
+											<a4j:commandButton image="/images/icons/save.gif" actionListener="#{fetCtrl.updateFeature}" 
+												render="Features" rendered="#{feature.selected}" title="Save" execute="UpdateFeature">
+												<f:setPropertyActionListener value="false" target="#{feature.selected}" />																						
+											</a4j:commandButton>
+											<acm:spacer width="10"/>
+											<a4j:commandButton id="Cancel" image="/images/icons/cancel.gif" render="Features" 
+												rendered="#{feature.selected}" title="Cancel" immediate="true" execute="@this">
+												<f:setPropertyActionListener value="false" target="#{feature.selected}" />																						
+											</a4j:commandButton>
+											
+											<a4j:commandButton image="/images/icons/edit.gif" render="Features" rendered="#{!feature.selected}" 
+												title="Modify" execute="@this" immediate="true">
+												<f:setPropertyActionListener value="#{feature}" target="#{fetCtrl.feature}" />
+												<f:setPropertyActionListener value="true" target="#{feature.selected}" />																						
+											</a4j:commandButton>
+											<acm:spacer width="10"/>
+											<a4j:commandButton image="/images/icons/trash.png" rendered="#{!feature.selected}" title="Delete"
+												oncomplete="#{rich:component('FeatDelPopup')}.show();">
+												<f:setPropertyActionListener value="#{feature}" target="#{fetCtrl.feature}" />
+												<f:setPropertyActionListener value="#{rowNum}" target="#{fetCtrl.groupIndex}" />												
+											</a4j:commandButton>											
+										</h:panelGroup>
+										<h:panelGroup id="group">
+											<rich:inplaceInput id="NewFeature" showControls="true" defaultLabel="Click here to add a new Feature"  
+						                		value="#{feature.featureValue}" rendered="#{!feature.persistent}">
+						                		<a4j:ajax event="change" render="Features" listener="#{fetCtrl.submitFeatureFromList(rowNum)}" execute="NewFeature"/>
+						                	</rich:inplaceInput>
+						                	<h:inputText id="UpdateFeature" value="#{feature.featureValue}" rendered="#{feature.selected}" onblur="document.getElementById('MainGrid:#{rowNum}:Features:#{stat}:Cancel').click();"/>
+											<a4j:commandLink id="SelectFeature" value="#{feature.featureValue}" render="Features"
+												styleClass="#{fetCtrl.feature.featureValue == feature.featureValue ? 'active' : ''}" rendered="#{feature.persistent and !feature.selected}">
+												<f:setPropertyActionListener value="#{feature}" target="#{fetCtrl.feature}" />												
+											</a4j:commandLink>										
+					                	</h:panelGroup>																		
+									</rich:list>								
+								</div>
+				    		</rich:panel>																 	   		    			
+			    		</rich:dataGrid>		    			    	
+			    	</h:panelGrid>
+			    </h:form>	
+		    </section>
+		    <h:form id="FeatDelForm" prependId="false">	
+		    	<rich:popupPanel id="FeatDelPopup" modal="true" autosized="true" domElementAttachment="parent">
+					<h:panelGrid width="100%" styleClass="centerAlign" columnClasses="col-padding">
+						<h:outputText value="Are you sure, you want to delete this Feature?" />
+						<br/>
+						<h:panelGroup>
+							<h:commandButton styleClass="button1" value="Delete" action="#{fetCtrl.deleteFeature}" immediate="true">								
+					        </h:commandButton>
+					        <acm:spacer width="10px;"/>
+					        <a4j:commandButton styleClass="button1" value="Cancel" onclick="#{rich:component('FeatDelPopup')}.hide();" immediate="true">				            
+					        </a4j:commandButton>
+				        </h:panelGroup>			        				
+					</h:panelGrid>
+				</rich:popupPanel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

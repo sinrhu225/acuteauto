@@ -56,8 +56,7 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> models = new ArrayList<SelectItem>();
 	private List<SelectItem> styles = new ArrayList<SelectItem>();
 	private List<SelectItem> years = new ArrayList<SelectItem>();
-	private List<SelectItem> prices = new ArrayList<SelectItem>();
-	private List<FeatureGroup> allFeatureGroups;
+	private List<SelectItem> prices = new ArrayList<SelectItem>();	
 	
 	public InventoryController() {
 		WebUtils.getSession().removeAttribute(Constants.UPLOADED_IMAGES);
@@ -205,13 +204,6 @@ public class InventoryController extends BaseController {
 			}
 		}
 		return prices;
-	}
-	
-	public List<FeatureGroup> getAllFeatureGroups() {
-		if(Utils.isEmpty(allFeatureGroups)) {
-			allFeatureGroups = service.createNamedQuery("getFeatureGrpByName", FeatureGroup.class).setParameter("name", "OPTIONS").getSingleResult().getFeatureGroups();
-		}
-		return allFeatureGroups;
 	}
 	
 	/***************************
