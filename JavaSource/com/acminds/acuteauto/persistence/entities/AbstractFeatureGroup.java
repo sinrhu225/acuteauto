@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -101,7 +103,7 @@ public abstract class AbstractFeatureGroup extends
 		this.featureGroups = featureGroups;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "featureGroup")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "featureGroup", cascade = {CascadeType.ALL})
 	public List<Feature> getFeatures() {
 		return this.features;
 	}
