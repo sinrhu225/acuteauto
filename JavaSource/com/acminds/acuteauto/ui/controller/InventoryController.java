@@ -212,7 +212,7 @@ public class InventoryController extends BaseController {
 	public void addVehicle(ComponentSystemEvent event) {
 		if(car == null) {
 			car = new Vehicle();
-			car.setStockNbr(RandomStringUtils.randomAlphanumeric(7));
+			car.setStockNbr(RandomStringUtils.randomAlphabetic(1).toUpperCase()+RandomStringUtils.randomNumeric(5));
 			car.setStatus(VehicleStatus.AVAILABLE);
 			car.setVehCondition(VehicleCondition.USED);
 			car.setWarrantyType(WarrantyType.NO_WARRANTY);
