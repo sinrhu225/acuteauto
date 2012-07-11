@@ -9,12 +9,12 @@
    		<div class="wizard-steps">
 			<div class="completed-step"><a href="#"><span>1</span> Vehicle Info</a></div>
 			<div class="active-step"><a href="#"><span>2</span> Vehicle Options</a></div>
-			<h:panelGroup layout="block" rendered="#{invCtrl.car.persistent}"><a href="#"><span>3</span> Upload Images</a></h:panelGroup>			
+			<div><a href="#"><span>3</span> Upload Images</a></div>			
 		</div>
         <h:panelGrid width="100%">
    			<rich:dataGrid columns="4" elements="12" value="#{invCtrl.allFeatureGroups}" var="group" style="width: 100%;">
- 				<h:panelGrid id="OptionsGrid" width="100%" headerClass="subHeader nowrap" columnClasses="leftAlign padding-top">
-	    			<f:facet name="header">
+				<h:panelGrid id="OptionsGrid" width="100%" headerClass="subHeader nowrap" columnClasses="leftAlign padding-top">
+		   			<f:facet name="header">
 		                <h:panelGroup> 
 		                	<h:selectBooleanCheckbox value="#{group.selected}" styleClass="fleft">
 		                		<f:ajax event="change" listener="#{invCtrl.selectGroup(group.featureGroupId)}" render="OptionsGrid"/>
@@ -26,18 +26,16 @@
 		            	<f:selectItems value="#{group.features}" var="feat" itemLabel="#{feat.featureValue}" itemValue="#{feat}" />
 		            	<f:param name="entityName" value="Feature"/>
 		            </h:selectManyCheckbox>	   				
-			 	</h:panelGrid>   		    			
+			 	</h:panelGrid>			 	   		    			
     		</rich:dataGrid>		    			    	
     	</h:panelGrid>
 	    <div class="navPanel">
 	    	<a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>
-	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;" rendered="#{invCtrl.car.persistent}">
+	        <a4j:commandButton styleClass="fright button1" value="Next &gt;&gt;">
 	            <rich:toggleControl targetItem="@next" event="click"/>
-	        </a4j:commandButton>
-	        <a4j:commandButton styleClass="fright button1" value="Submit" action="#{invCtrl.submitInventory}" render="@all" rendered="#{!invCtrl.car.persistent}">
-	        </a4j:commandButton>
+	        </a4j:commandButton>	        
 	    </div>
     </div>
 </ui:composition>
