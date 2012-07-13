@@ -21,7 +21,7 @@ import com.acminds.acuteauto.utils.Utils;
  */
 public class InventoryDAO extends BaseDAO {
 	
-	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType) {
+	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType, int cond) {
 		String q = "from Vehicle v where 1=1 ";
 		if(makeId>0) q= q+" and v.make.id = "+makeId;
 		if(modelId>0) q= q+" and v.model.id = "+modelId;
@@ -29,7 +29,8 @@ public class InventoryDAO extends BaseDAO {
 		if(year>0) q= q+" and v.year = "+year;
 		if(bodyType>0) q= q+" and v.style.vehicleType= "+bodyType;
 		if(price>0) q= q+" and v.salePrice <= "+price;
-		if(mileage>0) q= q+" and v.mileage <= "+mileage;		
+		if(mileage>0) q= q+" and v.mileage <= "+mileage;
+		if(cond>0) q= q+" and v.vehCondition = "+cond;
 		TypedQuery<Vehicle> tq = createQuery(q, Vehicle.class);
 		return tq.getResultList();		
 	}

@@ -9,6 +9,13 @@
 	xmlns:acm="http://java.sun.com/jsf/composite/comp">
 <ui:composition template="/templates/baseLayout.xhtml">
 	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam id="makeId" name="makeId" value="#{invCtrl.makeId}" />
+			<f:viewParam id="modelId" name="modelId" value="#{invCtrl.modelId}" />
+			<f:viewParam id="year" name="year" value="#{invCtrl.year}" />
+			<f:viewParam id="price" name="price" value="#{invCtrl.price}" />
+			<f:viewParam id="cond" name="cond" value="#{invCtrl.cond}" />
+	    </f:metadata>
 		<section id="content">
 	    	<div class="row-2">
 	      		<h3> 

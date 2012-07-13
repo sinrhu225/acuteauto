@@ -43,6 +43,7 @@ public class InventoryController extends BaseController {
 	protected InventoryService service = new InventoryService();
 	private String backTo;
 	private Vehicle car;
+	private int cond;
 	private int makeId;
 	private int modelId;
 	private int styleId;
@@ -72,7 +73,7 @@ public class InventoryController extends BaseController {
 			this.car = car;
 	}
 	public List<Vehicle> getCars() {
-		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType, cond);
 		return cars;
 	}
 	
@@ -135,6 +136,14 @@ public class InventoryController extends BaseController {
 		this.mileage = mileage;
 	}
 	
+	public int getCond() {
+		return cond;
+	}
+
+	public void setCond(int cond) {
+		this.cond = cond;
+	}
+
 	public List<Make> getAllMakes() {
 		if(Utils.isEmpty(allMakes)) {
 			allMakes = service.getMakes(0);			
@@ -264,7 +273,7 @@ public class InventoryController extends BaseController {
 	 ***************************/
 
 	public String searchCars() {
-		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+		cars = service.getCars(makeId, modelId, styleId, year, price, mileage, bodyType, cond);
 		return "/pub/inv/invList";
 	}
 	

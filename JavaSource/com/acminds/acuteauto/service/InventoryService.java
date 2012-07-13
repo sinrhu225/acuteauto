@@ -31,8 +31,8 @@ public class InventoryService extends BaseService {
 		return dao.getMakes(year);
 	}
 	
-	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType) {
-		return dao.getCars(makeId, modelId, styleId, year, price, mileage, bodyType);
+	public List<Vehicle> getCars(int makeId, int modelId, int styleId, int year, int price, int mileage, int bodyType, int cond) {
+		return dao.getCars(makeId, modelId, styleId, year, price, mileage, bodyType, cond);
 	}
 	
 	public List<Vehicle> getCarsForBanner() {

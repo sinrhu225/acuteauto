@@ -51,7 +51,8 @@
                                         	<f:param name="makeId" value="#{invCtrl.makeId}"/>
                                         	<f:param name="modelId" value="#{invCtrl.modelId}"/>
                                         	<f:param name="year" value="#{invCtrl.year}"/>
-                                        	<f:param name="price" value="#{invCtrl.price}"/>
+                                        	<f:param name="price" value="#{invCtrl.price}"/>   
+                                        	<f:param name="cond" value="101"/>                                     	
                                         </h:link>
                                     </fieldset>
                                 </h:form>                                
@@ -63,41 +64,39 @@
                                 	<fieldset>
                                     	<label>
                                         	Make<br/>
-                                            <select>
-                                            	<option selected="selected">Any Make</option>
-                                            </select>
+                                        	<h:selectOneListbox value="#{invCtrl.makeId}" size="1" >
+                                        		<f:selectItems value="#{invCtrl.makes}"/>
+                                        		<f:ajax event="change" render="Model1 searchNew" execute="@this"/>
+                                        	</h:selectOneListbox>                                            
                                         </label>
                                         <label>
                                         	Model<br/>
-                                            <select>
-                                            	<option selected="selected">Any Model</option>
-                                            </select>
+                                            <h:selectOneListbox id="Model1" value="#{invCtrl.modelId}" size="1" disabled="#{invCtrl.makeId == null}">
+                                        		<f:selectItems value="#{invCtrl.models}"/>
+                                        		<f:ajax event="change" render="searchNew"/>
+                                        	</h:selectOneListbox>
                                         </label>
-                                        <div class="wrapper p1">
-                                        	<span class="fright">
-                                            	Max Year<br/>
-        	                                    <select class="select">
-    	                                        	<option selected="selected">2010</option>
-	                                            </select>
-                                            </span>
-                                            Min Year<br/>
-       	                                    <select class="select">
-   	                                        	<option selected="selected">Min</option>
-                                            </select>
-                                        </div>
-                                        <div class="wrapper p1">
-                                        	<span class="fright">
-                                            	Max Price<br/>
-        	                                    <select class="select">
-    	                                        	<option selected="selected">Max</option>
-	                                            </select>
-                                            </span>
-                                            Min Price<br/>
-       	                                    <select class="select">
-   	                                        	<option selected="selected">Min</option>
-                                            </select>
-                                        </div>
-                                        <a class="button" href="#">search</a>
+                                        <label>
+                                        	Year<br/>
+                                            <h:selectOneListbox value="#{invCtrl.year}" size="1">
+                                        		<f:selectItems value="#{invCtrl.years}"/>
+                                        		<f:ajax event="change" render="searchNew"/>
+                                        	</h:selectOneListbox>
+                                        </label>
+                                        <label>
+                                        	Price<br/>
+                                            <h:selectOneListbox value="#{invCtrl.price}" size="1">
+                                        		<f:selectItems value="#{invCtrl.prices}"/>
+                                        		<f:ajax event="change" render="searchNew"/>
+                                        	</h:selectOneListbox>
+                                        </label>
+                                        <h:link id="searchNew" styleClass="button" value="search" outcome="/pub/inv/invList">
+                                        	<f:param name="makeId" value="#{invCtrl.makeId}"/>
+                                        	<f:param name="modelId" value="#{invCtrl.modelId}"/>
+                                        	<f:param name="year" value="#{invCtrl.year}"/>
+                                        	<f:param name="price" value="#{invCtrl.price}"/>  
+                                        	<f:param name="cond" value="100"/>                                        	                                      	
+                                        </h:link>
                                     </fieldset>
                                 </h:form>                                
                                 </div>

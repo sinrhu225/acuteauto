@@ -52,7 +52,7 @@
 					    	</h:panelGrid>
 					    	<br/>
 					    	<h:panelGrid width="100%" columnClasses="centerAlign">
-					    	<h:outputLink value="#{invCtrl.car.carfaxApprvUrl}" target="_new" rendered="#{invCtrl.car.carfaxApprvUrl!=null}">
+					    	<h:outputLink value="#{invCtrl.car.carfaxApprvUrl}" target="_new" rendered="#{not empty invCtrl.car.carfaxApprvUrl}">
 		                    	<h:graphicImage value="/images/carfax_yes.gif"/>
 							</h:outputLink>
 							</h:panelGrid>
