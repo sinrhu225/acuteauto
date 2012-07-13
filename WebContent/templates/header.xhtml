@@ -18,8 +18,15 @@
         	<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">Acute Auto</a></h1>
         	<div class="extra-box">
             	<ul class="sub-menu">
-                	<li><a href="#"><strong>New User?</strong> </a></li>
-                    <li><a href="#">Register </a></li>
+                	<c:if test="#{hmpCtrl.dealer==null}"><li><a href="#">Register </a></li></c:if>
+                	<c:if test="#{authorizedUser!=null}">
+                		<li>
+                			Welcome 
+                			<a href="#{facesContext.externalContext.requestContextPath}/sec/usm/userEdit.jsf?userId=#{authorizedUser.userInfoId}">
+                				<strong>#{authorizedUser.firstName}&nbsp;#{authorizedUser.lastName}</strong>
+                			</a>
+                		</li>
+                	</c:if>
                     <li>
 	                    <h:outputLink value="#" id="ll" rendered="#{authorizedUser==null}">
 	                    	<rich:componentControl event="click" operation="show" target="lp" />
@@ -27,7 +34,7 @@
 	                    </h:outputLink>
 	                    <h:form rendered="#{authorizedUser!=null}">
 	                    	<h:commandLink action="#{loginCtrl.logout}" immediate="true">
-	                    		<strong>Sign Out</strong>
+	                    		Sign Out
 	                    	</h:commandLink>
 	                    </h:form>                    
                     </li>
@@ -54,7 +61,7 @@
 		        </h:form>		        
 		    </rich:popupPanel>
 		    
-            <div class="extra-box">
+            <!--<div class="extra-box">
             	<ul class="sub-menu">
                 	<li><a href="#">Buying </a></li>
                     <li><a href="#">Selling </a></li>
@@ -65,7 +72,7 @@
                 </ul>
             </div>
 
-        </div>
+        --></div>
 
         <div class="row-2">
         	<nav class="wrapper">
