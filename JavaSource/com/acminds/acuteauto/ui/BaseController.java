@@ -72,8 +72,9 @@ public class BaseController {
 	}
 	
 	public Client getDealer() {
-		if(Utils.isEmpty(dealer))
-			dealer = baseService.createNamedQuery("getDealer", Client.class).getSingleResult();
+		if(Utils.isEmpty(dealer)) {
+			dealer = baseService.createNamedQuery("getDealer", Client.class).getResultList().get(0);			
+		}
 		return dealer;
 	}
 		
