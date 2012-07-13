@@ -88,6 +88,8 @@
 			                    	<h:panelGroup>			                    	
 					                    <h:link styleClass="button1" outcome="/pub/inq/inquire?carId=#{car.vehicleId}"><strong>Inquire</strong></h:link>					                    
 					                    <acm:spacer width="10px"/>
+					                    <h:link styleClass="button1" outcome="/pub/loan/loanApp?carId=#{car.vehicleId}"><strong>Need Finance</strong></h:link>
+					                    <acm:spacer width="10px"/>
 					                    <h:outputLink value="#{car.carfaxApprvUrl}" target="_new" styleClass="button1" rendered="#{not empty car.carfaxApprvUrl}"><strong>Carfax Approved</strong></h:outputLink>
 				                    </h:panelGroup>
 				                    <h:panelGroup styleClass="fright">

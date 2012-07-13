@@ -7,7 +7,12 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:a4j="http://richfaces.org/a4j">
 <ui:composition template="/home.xhtml">
-	<ui:define name="banner">		
+	<ui:define name="banner">	
+		<f:metadata>
+			<f:viewParam id="carId" name="carId" value="#{lnCtrl.car}" converter="entityConverter">
+	        	<f:param name="entityName" value="Vehicle"/>
+	        </f:viewParam>
+		</f:metadata>		
 	    <section id="content">
 		<div class="row-2 p1">	
 			<h3>Loan Application Form</h3>	
@@ -16,7 +21,7 @@
 					<div class="loanbox" style="width:100%; height:320px;">
 						<rich:notifyMessages stayTime="6000" nonblocking="true" showCloseButton="true"></rich:notifyMessages>
 					    <h:panelGrid width="100%">
-				            <h:form>
+				            <h:form prependId="false">
 				                <rich:togglePanel switchType="ajax">
 				                    <rich:togglePanelItem>
 				                        <ui:include src="/pub/loan/appInfo.xhtml" />
