@@ -4,7 +4,7 @@
 package com.acminds.acuteauto.ui.filter;
 
 import java.io.IOException;
-import java.util.List;
+import java.net.SocketException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,8 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.acminds.acuteauto.persistence.PersistenceManager;
-import com.acminds.acuteauto.persistence.dto.Privilege;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.utils.Utils;
 
@@ -50,15 +48,14 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)arg0;
 		HttpServletResponse response = (HttpServletResponse)arg1;
 		UserInfo authorizedUser = null;
-		boolean authorized = false;
+		//boolean authorized = false;
 		try {
-			/*if(isURISecure(request.getRequestURI())) {
+			if(isURISecure(request.getRequestURI())) {
 				authorizedUser = (UserInfo)request.getSession().getAttribute("authorizedUser");
 				if(Utils.isEmpty(authorizedUser)) {
-					response.sendRedirect(request.getContextPath() + UNAUTH_URL);
-					PersistenceManager.closeEnityManager();
+					response.sendRedirect(request.getContextPath() + UNAUTH_URL);					
 				} else {
-					List<Privilege> privs = authorizedUser.getRole().getPrivileges();
+					/*List<Privilege> privs = authorizedUser.getRole().getPrivileges();
 					for(Privilege priv:privs) {
 						if(request.getRequestURI().contains(priv.getTranUri())) {
 							authorized = true;
@@ -66,14 +63,16 @@ public class SecurityFilter implements Filter {
 						}
 					}
 					if(!authorized) {
-						response.sendRedirect(request.getContextPath() + UNAUTH_URL);
-						PersistenceManager.closeEnityManager();
-					} else
+						response.sendRedirect(request.getContextPath() + UNAUTH_URL);						
+					} else*/
 						arg2.doFilter(arg0, arg1);
 				}
-			} else {*/
+			} else {
 				arg2.doFilter(arg0, arg1);
-			//}
+			}
+		} catch(SocketException e) {
+			logger.error("Network Issues detected", e);
+			response.sendRedirect(request.getContextPath() + ERROR_URL);
 		} catch(Throwable e) {
 			logger.error("Error occured while trying to serve a request", e);
 			response.sendRedirect(request.getContextPath() + ERROR_URL);
