@@ -3,12 +3,11 @@
  */
 package com.acminds.acuteauto.persistence;
 
+import java.util.logging.Logger;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.ui.WebPersistenceManager;
 
@@ -17,14 +16,14 @@ import com.acminds.acuteauto.ui.WebPersistenceManager;
  *
  */
 public abstract class PersistenceManager {
-	protected Log logger = LogFactory.getLog(this.getClass());
+	protected Logger logger = Logger.getLogger(getClass().getName());	
 	
 	public static final String EM_HOLDER = "EMHolder";
 	private EntityManagerFactory entityManagerFactory;
 	private static PersistenceManager instance;
+	protected ThreadLocal<Object> executionContext = new ThreadLocal<Object>();
 	
-	
-	public static PersistenceManager getInstance() {
+	public synchronized static PersistenceManager getInstance() {
 		if(instance == null) {
 			//if(WebUtils.isWebRequest()) {
 				instance = new WebPersistenceManager();
@@ -64,5 +63,6 @@ public abstract class PersistenceManager {
 	public abstract EntityManager getCurrentEntityManager(boolean createIfEmpty);
 	public abstract void setCurrentEntityManager(EntityManager em);
 	public abstract void closeCurrentEntityManager();
+	public abstract void setExecutionContext(Object context);
 
 }
