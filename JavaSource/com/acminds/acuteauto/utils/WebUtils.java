@@ -2,6 +2,7 @@ package com.acminds.acuteauto.utils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -110,5 +111,13 @@ public class WebUtils {
 		System.out.println(formatDisplayId("Mansur", 12).substring(4) +" of "+formatDisplayId("Mansur", 12));
 		System.out.println(retrieveId(formatDisplayId("Mansur", 12)));
 		
+	}
+	
+	public static void printRequestHeaders(HttpServletRequest req) {
+		Enumeration<String> names = req.getHeaderNames();
+		while(names.hasMoreElements()) {
+			String name = names.nextElement();
+			System.out.println(name+"----------"+req.getHeader(name));
+		}
 	}
 }

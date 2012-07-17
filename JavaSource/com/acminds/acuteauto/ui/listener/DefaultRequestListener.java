@@ -6,7 +6,6 @@ package com.acminds.acuteauto.ui.listener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.persistence.EntityManager;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +31,7 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestDestroyed(ServletRequestEvent arg0) {
-		log.log(Level.FINE, "ServletRequest destroyed");
-		EntityManager em = PersistenceManager.getInstance().getCurrentEntityManager(false);
-		if(em!=null) {
-			HttpSession session = ((HttpServletRequest)arg0.getServletRequest()).getSession();
-			session.setAttribute(PersistenceManager.EM_HOLDER, em);
-			log.log(Level.FINE, "Entity Manager: "+em.hashCode()+" saved for session: "+session.getId());
-		}
+		log.log(Level.FINE, "ServletRequest destroyed");		
 	}
 
 	/* (non-Javadoc)
@@ -46,15 +39,16 @@ public class DefaultRequestListener implements ServletRequestListener {
 	 */
 	@Override
 	public void requestInitialized(ServletRequestEvent arg0) {
-		EntityManager em = getEntityManager((HttpServletRequest)arg0.getServletRequest());
-		if(em!=null) PersistenceManager.setEntityManager(em);
+		setEntityManager((HttpServletRequest)arg0.getServletRequest());
 		log.log(Level.FINE, "Servlet Request Initialized");
 	}
 	
-	private EntityManager getEntityManager(HttpServletRequest req) {
+	private void setEntityManager(HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
-		if(session!=null) return (EntityManager)session.getAttribute(PersistenceManager.EM_HOLDER);
-		return null;			
-	}
+		if(session!=null)  {
+			PersistenceManager.getInstance().setExecutionContext(session);
+		}
+		else log.log(Level.INFO, "No Session found for this request");		
+	}		
 
 }

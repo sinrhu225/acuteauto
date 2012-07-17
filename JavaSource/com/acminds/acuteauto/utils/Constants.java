@@ -9,6 +9,7 @@ package com.acminds.acuteauto.utils;
  */
 public final class Constants {
 
+	public static final String AUTH_USER = "authorizedUser";
 	public static final String IMG_HOLDER = "imgHolder";
 	public static final String UPLOADED_IMAGES = "uploadedImages";
 	public static final String USER_IMG_LOC = "/acuteauto/images/users/";

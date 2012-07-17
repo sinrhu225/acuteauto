@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.UserInfo;
+import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.Utils;
 
 /**
@@ -48,10 +49,13 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest)arg0;
 		HttpServletResponse response = (HttpServletResponse)arg1;
 		UserInfo authorizedUser = null;
+		if(isImageRequest(request.getRequestURI()) && request.getSession(false)==null)
+			return;
+		
 		//boolean authorized = false;
 		try {
 			if(isURISecure(request.getRequestURI())) {
-				authorizedUser = (UserInfo)request.getSession().getAttribute("authorizedUser");
+				authorizedUser = (UserInfo)request.getSession().getAttribute(Constants.AUTH_USER);
 				if(Utils.isEmpty(authorizedUser)) {
 					response.sendRedirect(request.getContextPath() + UNAUTH_URL);					
 				} else {
@@ -75,7 +79,7 @@ public class SecurityFilter implements Filter {
 			response.sendRedirect(request.getContextPath() + ERROR_URL);
 		} catch(Throwable e) {
 			logger.error("Error occured while trying to serve a request", e);
-			response.sendRedirect(request.getContextPath() + ERROR_URL);
+			//response.sendRedirect(request.getContextPath() + ERROR_URL);
 		}
 	}
 
@@ -89,6 +93,10 @@ public class SecurityFilter implements Filter {
 	
 	private boolean isURISecure(String uri){
 		return uri.contains("/sec/");
+	}
+	
+	private boolean isImageRequest(String uri) {
+		return uri.contains("/img");
 	}
 
 }

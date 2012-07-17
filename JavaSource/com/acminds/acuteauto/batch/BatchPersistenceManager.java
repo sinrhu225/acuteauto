@@ -53,4 +53,9 @@ public class BatchPersistenceManager extends PersistenceManager {
 		}		
 	}
 
+	@Override
+	public void setExecutionContext(Object context) {
+		
+	}
+
 }
