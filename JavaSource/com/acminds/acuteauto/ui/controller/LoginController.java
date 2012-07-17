@@ -53,6 +53,6 @@ public class LoginController extends BaseController {
 	
 	public String logout() {
 		WebUtils.getSession().invalidate();
-		return "/home";
+		return "/home?faces-redirect=true";
 	}
 }
