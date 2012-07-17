@@ -14,8 +14,11 @@
  	</script>
 	<header>
 		<div class="row-1">
-
-        	<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">Acute Auto</a></h1>
+			<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">
+       				<h:graphicImage value="/img/?imgId=#{hmpCtrl.dealer.logo.imageId}" width="425" height="100" rendered="#{not empty hmpCtrl.dealer.logo}"/>
+       				<h:outputText value="Acute Auto" rendered="#{empty hmpCtrl.dealer.logo}"/>
+       			</a>
+       		</h1>
         	<div class="extra-box">
             	<ul class="sub-menu">
                 	<c:if test="#{hmpCtrl.dealer==null}"><li><a href="#">Register </a></li></c:if>
