@@ -11,33 +11,66 @@
 			<div class="completed-step"><a href="#"><span>2</span> Vehicle Options</a></div>
 			<div class="active-step"><a href="#"><span>3</span> Upload Images</a></div>			
 		</div>
-        <h:panelGrid width="100%" styleClass="p1">
-    		<applet id="jumpLoaderApplet" name="jumpLoaderApplet"
-					code="jmaster.jumploader.app.JumpLoaderApplet.class"
-					archive="mediautil_z.jar,sanselan_z.jar,jumploader_z.jar"
-					width="140"
-					height="44" 
-					codebase="#{facesContext.externalContext.requestContextPath}/imageloaders"
-					mayscript="true">
-				<param name="uc_uploadUrl" value="#{facesContext.externalContext.requestContextPath}/img"/>
-				<param name="ac_mode" value="framed"/>
-				<param name="uc_cookie" value="JSESSIONID=#{facesContext.externalContext.request.session.id};"/>
-				<param name="uc_maxFiles" value="5"/>
-				<param name="uc_imageEditorEnabled" value="true"/>
-		        <param name="uc_useLosslessJpegTransformations" value="true"/>
-				<param name="uc_uploadScaledImages" value="true"/>
-				<param name="uc_uploadScaledImagesNoZip" value="true"/>
-				<param name="uc_scaledInstanceNames" value="img"/>
-		        <param name="uc_scaledInstanceDimensions" value="640x480"/>
-		        <param name="uc_scaledInstanceQualityFactors" value="900"/>
-		        <param name="vc_disableLocalFileSystem" value="false"/>
-		        <param name="vc_mainViewFileTreeViewVisible" value="false"/>
-		        <param name="vc_mainViewFileListViewVisible" value="false"/>
-		        <param name="uc_imageRotateEnabled" value="true"/>
-		        <param name="uc_scaledInstancePreserveMetadata" value="true"/>
-		        <param name="uc_deleteTempFilesOnRemove" value="true"/>	
-		        <param name="ac_fireUploaderStatusChanged" value="true"/>	        
-			</applet>
+		<h:panelGrid width="100%" styleClass="p1" >
+			<h:panelGroup layout="block">
+				<h:button styleClass="button1" onclick="document.jumpLoaderImages.showFrame(true); return false;" value="Upload Images"/>
+				<acm:spacer width="10"/>
+				<h:button styleClass="button1" onclick="document.jumpLoaderBanner.showFrame(true); return false;" value="Upload Banner"/>				
+			</h:panelGroup>
+			<h:panelGroup layout="block" style="visibility: hidden;">
+	    		<applet id="jumpLoaderImages" name="jumpLoaderImages"
+						code="jmaster.jumploader.app.JumpLoaderApplet.class"
+						archive="mediautil_z.jar,sanselan_z.jar,jumploader_z.jar"
+						width="10"
+						height="5" 
+						codebase="#{facesContext.externalContext.requestContextPath}/imageloaders"
+						mayscript="true">
+					<param name="uc_uploadUrl" value="#{facesContext.externalContext.requestContextPath}/img"/>
+					<param name="ac_mode" value="framed"/>
+					<param name="uc_cookie" value="JSESSIONID=#{facesContext.externalContext.request.session.id};"/>
+					<param name="uc_maxFiles" value="5"/>
+					<param name="uc_imageEditorEnabled" value="true"/>
+			        <param name="uc_useLosslessJpegTransformations" value="true"/>
+					<param name="uc_uploadScaledImages" value="true"/>
+					<param name="uc_uploadScaledImagesNoZip" value="true"/>
+					<param name="uc_scaledInstanceNames" value="img"/>
+			        <param name="uc_scaledInstanceDimensions" value="640x480"/>
+			        <param name="uc_scaledInstanceQualityFactors" value="900"/>
+			        <param name="vc_disableLocalFileSystem" value="false"/>
+			        <param name="vc_mainViewFileTreeViewVisible" value="false"/>
+			        <param name="vc_mainViewFileListViewVisible" value="false"/>
+			        <param name="uc_imageRotateEnabled" value="true"/>
+			        <param name="uc_scaledInstancePreserveMetadata" value="true"/>
+			        <param name="uc_deleteTempFilesOnRemove" value="true"/>	
+			        <param name="ac_fireUploaderStatusChanged" value="true"/>	        
+				</applet>
+				<applet id="jumpLoaderBanner" name="jumpLoaderBanner"
+						code="jmaster.jumploader.app.JumpLoaderApplet.class"
+						archive="mediautil_z.jar,sanselan_z.jar,jumploader_z.jar"
+						width="10"
+						height="5" 
+						codebase="#{facesContext.externalContext.requestContextPath}/imageloaders"
+						mayscript="true">
+					<param name="uc_uploadUrl" value="#{facesContext.externalContext.requestContextPath}/img?banner=true"/>
+					<param name="ac_mode" value="framed"/>
+					<param name="uc_cookie" value="JSESSIONID=#{facesContext.externalContext.request.session.id};"/>
+					<param name="uc_maxFiles" value="1"/>
+					<param name="uc_imageEditorEnabled" value="true"/>
+			        <param name="uc_useLosslessJpegTransformations" value="true"/>
+					<param name="uc_uploadScaledImages" value="true"/>
+					<param name="uc_uploadScaledImagesNoZip" value="true"/>
+					<param name="uc_scaledInstanceNames" value="img"/>
+			        <param name="uc_scaledInstanceDimensions" value="721x300"/>
+			        <param name="uc_scaledInstanceQualityFactors" value="900"/>
+			        <param name="vc_disableLocalFileSystem" value="false"/>
+			        <param name="vc_mainViewFileTreeViewVisible" value="false"/>
+			        <param name="vc_mainViewFileListViewVisible" value="false"/>
+			        <param name="uc_imageRotateEnabled" value="true"/>
+			        <param name="uc_scaledInstancePreserveMetadata" value="true"/>
+			        <param name="uc_deleteTempFilesOnRemove" value="true"/>	
+			        <param name="ac_fireUploaderStatusChanged" value="true"/>	        
+				</applet>
+			</h:panelGroup>
 			<a4j:jsFunction name="renderImages" render="images" />			
     	</h:panelGrid>
     	<rich:panel id="images">
@@ -57,13 +90,22 @@
 	    					<acm:spacer width="20" height="0"/>
 	    					<a4j:commandButton image="/images/icons/trash.png" action="#{invCtrl.removeImage(stat.index)}" render="images" />	    					
 	    				</h:panelGroup>
-	    				<h:panelGroup>
+	    				<h:panelGroup rendered="#{!image.banner}">
 	    					<h:selectBooleanCheckbox value="#{image.selectForDisplay}" />
 	    					<acm:spacer width="5"/>
 	    					<h:outputText value="Select for Display">
-	    						<rich:tooltip value="Selecting for Display would mark this photo as a default display photo for this car. This photo will be used as a default display on home page or search page." />
+	    						<rich:tooltip id="tt1" layout="block">
+					                <span class="nowrap"> Selecting for Display would mark this photo as a default display image for this car. <br/> 
+					                This image will be shown as a default display on home page, search page etc.</span>
+					            </rich:tooltip>	    						
 	    					</h:outputText>	    					
 	    				</h:panelGroup>
+	    				<h:outputText value="Banner Image" rendered="#{image.banner}" >
+	    					<rich:tooltip id="tt2" layout="block">
+				                <span class="nowrap"> Please goto Manage Advertisements on Admin Console, to enroll this car <br/> 
+				                into an advertisement to be displayed on the home page banner.</span>
+				            </rich:tooltip>	    					
+	    				</h:outputText>
 	    			</h:panelGrid>
 	    		</rich:panel>	    		
 	    	</rich:dataGrid>	    	

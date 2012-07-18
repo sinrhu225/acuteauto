@@ -11,7 +11,8 @@
 		<script>
 		function uploaderStatusChanged( uploader ) {
 		    if(uploader.getStatus()=='0') {
-		    	document.jumpLoaderApplet.showFrame(false);
+		    	document.jumpLoaderImages.showFrame(false);
+		    	document.jumpLoaderBanner.showFrame(false);
 				renderImages();
 			}
 		}	

@@ -146,6 +146,7 @@ public class ImageServlet extends HttpServlet {
 	        	img.setImageSize((int)fi.getSize());
 	        	img.setImageData(fi.get());
 	        	img.setImageLocation("temp");
+	        	img.setBanner(!Utils.isEmpty(request.getParameter("banner")));
 	            uploadedImages.add(img);
 	            logger.info("Image uploaded: "+img.getName()+"@@@@"+img.getImageSize());
         	}
