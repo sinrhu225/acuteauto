@@ -15,6 +15,7 @@
 								<h3>Home Page Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
+										<li><h:commandLink action="#{hmpCtrl.reset}" value="Reset Home Page" /></li>
 										<li>
 											<a4j:commandLink value="Manage Menu" onclick="#{rich:component('MenuMaintPopup')}.show();">
 											</a4j:commandLink>
@@ -23,8 +24,8 @@
 											<h:link outcome="/sec/hmp/groupMaint">Manage Groups</h:link>											
 										</li>
 										<li><h:link outcome="/sec/hmp/groupMaint" rendered="false">Manage RSS Feeds</h:link></li>
-										<li><a href="#">Customize Theme</a></li>
-										<li><h:commandLink action="#{hmpCtrl.reset}" value="Reset Home Page" /></li>
+										<li style="display:none;"><a href="#">Customize Theme</a></li>
+										<li><a href="#">Manage Advertisements</a></li>										
 									</ul>
 								</div>
 							</h:panelGroup>
@@ -46,7 +47,7 @@
 								<h3>User Maintenance</h3>	
 								<div id="adminConsole">
 									<ul>
-										<li><a href="#">Update Dealer Profile</a></li>
+										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/dlr/dealerProfile.jsf">Manage Dealer Profile</a></li>
 										<li>
 											<a href="#{facesContext.externalContext.requestContextPath}/sec/usm/userEdit.jsf?userId=#{authorizedUser.userInfoId}">Update Personal Profile</a>											
 										</li>
@@ -62,7 +63,7 @@
 								<div id="adminConsole">
 									<ul>
 										<li><a href="#{facesContext.externalContext.requestContextPath}/sec/inv/invEdit.jsf?carId=0">Add a Car</a></li>
-										<li><a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf">Manage Cars</a></li>																		
+										<li><a href="#{facesContext.externalContext.requestContextPath}/pub/inv/invList.jsf">Manage Cars</a></li>										
 									</ul>
 								</div>
 							</h:panelGroup>

@@ -14,11 +14,18 @@
  	</script>
 	<header>
 		<div class="row-1">
-			<h1><a class="logo" href="#{facesContext.externalContext.requestContextPath}">
-       				<h:graphicImage value="/img/?imgId=#{hmpCtrl.dealer.logo.imageId}" width="425" height="100" rendered="#{not empty hmpCtrl.dealer.logo}"/>
-       				<h:outputText value="Acute Auto" rendered="#{empty hmpCtrl.dealer.logo}"/>
-       			</a>
-       		</h1>
+			<c:if test="#{empty hmpCtrl.dealer.logo}">
+				<a class="logo" style="padding-top:8px;" href="#{facesContext.externalContext.requestContextPath}">
+	   				<h:graphicImage value="/img/?imgId=#{hmpCtrl.dealer.logo.imageId}" height="120" width="280" rendered="#{not empty hmpCtrl.dealer.logo}"/>   				
+	   			</a>
+   			</c:if>
+   			<c:if test="#{empty hmpCtrl.dealer.logo}">
+	       		<h1>
+	       			<a class="logo" href="#{facesContext.externalContext.requestContextPath}">
+	       				<h:outputText value="#{hmpCtrl.dealer.clientName}" rendered="#{empty hmpCtrl.dealer.logo}"/>	
+	       			</a>
+	       		</h1>
+       		</c:if>
         	<div class="extra-box">
             	<ul class="sub-menu">
                 	<c:if test="#{hmpCtrl.dealer==null}"><li><a href="#">Register </a></li></c:if>

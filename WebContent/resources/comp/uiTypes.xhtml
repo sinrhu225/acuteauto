@@ -11,12 +11,13 @@
     <composite:attribute name="typeName"/>
     <composite:attribute name="label"/>
     <composite:attribute name="required"/>
+    <composite:attribute name="disabled"/>
   </composite:interface>
 
   <!-- IMPLEMENTATION -->          
     <composite:implementation>
     	<h:selectOneMenu value="#{cc.attrs.value}" label="#{cc.attrs.label}" required="#{cc.attrs.required}"
-    		requiredMessage="Please select a #{cc.attrs.label}.">
+    		requiredMessage="Please select a #{cc.attrs.label}." disabled="#{cc.attrs.disabled}">
 			<f:selectItems value="#{uiTypes[cc.attrs.typeName]}"/>
 		</h:selectOneMenu>
   	</composite:implementation>

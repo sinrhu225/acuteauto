@@ -8,14 +8,17 @@ import java.util.List;
 
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.acminds.acuteauto.persistence.dto.Client;
 import com.acminds.acuteauto.persistence.dto.FeatureGroup;
+import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.UserInfo;
 import com.acminds.acuteauto.service.BaseService;
+import com.acminds.acuteauto.utils.Constants;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
 
@@ -27,7 +30,7 @@ public class BaseController {
 	protected Log logger = LogFactory.getLog(this.getClass());
 	
 	protected BaseService baseService = new BaseService();
-	private Client dealer;
+	protected Client dealer;
 	private List<FeatureGroup> allFeatureGroups;
 	
 	@ManagedProperty(value="#{authorizedUser}")
@@ -100,5 +103,19 @@ public class BaseController {
 	
 	public String getMaxMemory() {
 		return String.valueOf(java.lang.Runtime.getRuntime().maxMemory()/1024/1024)+" MB";
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected List<Image> getUploadedImages(HttpServletRequest request) {
+		Object obj = request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
+		if(obj == null)
+			request.getSession(false).setAttribute(Constants.UPLOADED_IMAGES, new ArrayList<Image>());
+		return (List<Image>) request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
+	}
+	
+	protected boolean listLoadedAlready(List<Image> list) {
+		for(Image i:list)
+			if(i.isPersistent()) return true;
+		return false;
 	}
 }

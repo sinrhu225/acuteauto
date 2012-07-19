@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:acm="http://java.sun.com/jsf/composite/comp">
+    <f:metadata>
+        <f:event listener="#{cntCtrl.prepareImages}" type="preRenderView" />
+    </f:metadata>
+    <div>
+   		<div class="wizard-steps">
+			<div class="completed-step"><a href="#"><span>1</span> Vehicle Info</a></div>
+			<div class="completed-step"><a href="#"><span>2</span> Vehicle Options</a></div>
+			<div class="active-step"><a href="#"><span>3</span> Upload Images</a></div>			
+		</div>
+		<h:panelGrid width="100%" styleClass="p1" >
+			<h:panelGroup layout="block">
+				<h:button styleClass="button1" onclick="document.jumpLoaderImages.showFrame(true); return false;" value="Upload Logo">
+					<rich:tooltip>
+						<p>Logo will be rescaled to 280x120 before upload.</p>
+					</rich:tooltip>
+				</h:button>								
+			</h:panelGroup>
+			<h:panelGroup layout="block" style="visibility: hidden;">
+	    		<applet id="jumpLoaderImages" name="jumpLoaderImages"
+						code="jmaster.jumploader.app.JumpLoaderApplet.class"
+						archive="mediautil_z.jar,sanselan_z.jar,jumploader_z.jar"
+						width="10"
+						height="5" 
+						codebase="#{facesContext.externalContext.requestContextPath}/imageloaders"
+						mayscript="true">
+					<param name="uc_uploadUrl" value="#{facesContext.externalContext.requestContextPath}/img"/>
+					<param name="ac_mode" value="framed"/>
+					<param name="uc_cookie" value="JSESSIONID=#{facesContext.externalContext.request.session.id};"/>
+					<param name="uc_maxFiles" value="1"/>
+					<param name="uc_imageEditorEnabled" value="true"/>
+			        <param name="uc_useLosslessJpegTransformations" value="true"/>
+					<param name="uc_uploadScaledImages" value="true"/>
+					<param name="uc_uploadScaledImagesNoZip" value="true"/>
+					<param name="uc_scaledInstanceNames" value="img"/>
+			        <param name="uc_scaledInstanceDimensions" value="280x120"/>
+			        <param name="uc_scaledInstanceQualityFactors" value="900"/>
+			        <param name="vc_disableLocalFileSystem" value="false"/>
+			        <param name="vc_mainViewFileTreeViewVisible" value="false"/>
+			        <param name="vc_mainViewFileListViewVisible" value="false"/>
+			        <param name="uc_imageRotateEnabled" value="true"/>
+			        <param name="uc_scaledInstancePreserveMetadata" value="true"/>
+			        <param name="uc_deleteTempFilesOnRemove" value="true"/>	
+			        <param name="ac_fireUploaderStatusChanged" value="true"/>	        
+				</applet>				
+			</h:panelGroup>
+			<h:outputLabel value="No Logo Uploaded" rendered="#{empty uploadedImages}"/>
+			<a4j:jsFunction name="renderImages" render="images" />			
+    	</h:panelGrid>
+    		
+    		<rich:dataGrid id="images" columns="2" elements="2" value="#{uploadedImages}" var="image" iterationStatusVar="stat" 
+    			rendered="#{not empty uploadedImages}" style="align:center;">
+	    		<rich:panel style="width:300px; height:180px;" styleClass="fleft">
+	    			<h:panelGrid width="100%" columnClasses="centerAlign" rowClasses="s1row">
+	    				<h:graphicImage value="/img/?imgId=#{stat.index}&amp;isUploaded=true" width="280" height="120" style="cursor:pointer;"
+	    					onclick="document.getElementById('FullPreview').src = this.src; #{rich:component('PreviewPopup')}.show();"/>
+	    				<h:panelGroup styleClass="padding-top">
+	    					<h:graphicImage value="/images/icons/search.png" style="cursor:pointer"
+	    						onclick="document.getElementById('FullPreview').src = '/img/?imgId=#{stat.index}&amp;isUploaded=true'; #{rich:component('PreviewPopup')}.show();"/>
+	    					<acm:spacer width="20" height="0"/>
+	    					<a4j:commandButton image="/images/icons/trash.png" action="#{cntCtrl.removeImage(stat.index)}" render="images" />	    					
+	    				</h:panelGroup>
+	    				<h:outputText value="Current Logo" rendered="#{image.persistent}" >	    						    					
+	    				</h:outputText>
+	    				<h:outputText value="New Uploaded Logo" rendered="#{!image.persistent}" />	
+	    			</h:panelGrid>
+	    		</rich:panel>	    		
+	    	</rich:dataGrid>	    	
+    	<div class="navPanel">
+	        <a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
+	            <rich:toggleControl targetItem="@prev" event="click" />
+	        </a4j:commandButton>
+	        <a4j:commandButton styleClass="fright button1" value="Submit" action="#{cntCtrl.submitClientProfile}" render="@all">
+	        </a4j:commandButton>
+	    </div>	    	       
+    </div> 
+    <rich:popupPanel id="PreviewPopup" autosized="true" modal="false" resizeable="false" header="Preview">
+    	<f:facet name="controls">
+	    	<h:graphicImage value="/images/icons/close.gif" width="16" height="16" onclick="#{rich:component('PreviewPopup')}.hide();" style="cursor:pointer;"/>
+	    </f:facet>
+		<h:graphicImage id="FullPreview" onclick="#{rich:component('PreviewPopup')}.hide();" style="cursor:pointer;"/>
+	</rich:popupPanel>   
+</ui:composition>

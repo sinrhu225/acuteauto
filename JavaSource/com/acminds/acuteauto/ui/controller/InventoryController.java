@@ -12,7 +12,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.model.SelectItem;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -60,6 +59,7 @@ public class InventoryController extends BaseController {
 	private List<SelectItem> prices = new ArrayList<SelectItem>();	
 	
 	public InventoryController() {
+		logger.info("Cleaning UPLOADED_IMAGES.");
 		WebUtils.getSession().removeAttribute(Constants.UPLOADED_IMAGES);
 	}
 	
@@ -239,14 +239,6 @@ public class InventoryController extends BaseController {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
-	private List<Image> getUploadedImages(HttpServletRequest request) {
-		Object obj = request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
-		if(obj == null)
-			request.getSession(false).setAttribute(Constants.UPLOADED_IMAGES, new ArrayList<Image>());
-		return (List<Image>) request.getSession(false).getAttribute(Constants.UPLOADED_IMAGES);
-	}
-	
 	public void selectGroup(Integer groupId) {
 		for(FeatureGroup fg:getAllFeatureGroups()) {
 			if(fg.getFeatureGroupId() == groupId) {
@@ -260,12 +252,6 @@ public class InventoryController extends BaseController {
 	
 	public void resetUploadedImages(ActionEvent e) {
 		WebUtils.getSession().removeAttribute(Constants.UPLOADED_IMAGES);		
-	}
-	
-	private boolean listLoadedAlready(List<Image> list) {
-		for(Image i:list)
-			if(i.isPersistent()) return true;
-		return false;
 	}
 	
 	/***************************
@@ -293,7 +279,9 @@ public class InventoryController extends BaseController {
 	
 	public String deleteVehicle() {
 		try {
+			logger.info("Deleting Vehicle.");
 			service.deleteCar(car, getAuthorizedUser());
+			logger.info("Vehicle Deleted.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "delCarSuccessful");
 		} catch(Exception e) {
 			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
@@ -315,5 +303,4 @@ public class InventoryController extends BaseController {
 		}		
 		return null;
 	}
-		
 }
