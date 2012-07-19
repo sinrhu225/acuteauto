@@ -48,7 +48,7 @@ public class DefaultRequestListener implements ServletRequestListener {
 		if(session!=null)  {
 			PersistenceManager.getInstance().setExecutionContext(session);
 		}
-		else log.log(Level.INFO, "No Session found for this request");		
+		else log.log(Level.INFO, "No Session found for this request: "+req.getRequestURI());		
 	}		
 
 }
