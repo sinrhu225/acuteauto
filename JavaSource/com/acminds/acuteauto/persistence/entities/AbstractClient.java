@@ -4,6 +4,8 @@ package com.acminds.acuteauto.persistence.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -90,7 +92,7 @@ public abstract class AbstractClient extends
 		this.registeredName = registeredName;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = {CascadeType.ALL})
 	public List<Location> getLocations() {
 		return this.locations;
 	}
@@ -108,7 +110,7 @@ public abstract class AbstractClient extends
 		this.userInfos = userInfos;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = {CascadeType.ALL})
 	public List<Image> getImages() {
 		return this.images;
 	}
