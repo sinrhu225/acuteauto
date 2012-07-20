@@ -14,7 +14,7 @@
  	</script>
 	<header>
 		<div class="row-1">
-			<c:if test="#{empty hmpCtrl.dealer.logo}">
+			<c:if test="#{not empty hmpCtrl.dealer.logo}">
 				<a class="logo" style="padding-top:8px;" href="#{facesContext.externalContext.requestContextPath}">
 	   				<h:graphicImage value="/img/?imgId=#{hmpCtrl.dealer.logo.imageId}" height="120" width="280" rendered="#{not empty hmpCtrl.dealer.logo}"/>   				
 	   			</a>

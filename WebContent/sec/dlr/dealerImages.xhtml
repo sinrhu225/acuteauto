@@ -11,7 +11,7 @@
 			<div class="completed-step"><a href="#"><span>2</span> Vehicle Options</a></div>
 			<div class="active-step"><a href="#"><span>3</span> Upload Images</a></div>			
 		</div>
-		<h:panelGrid width="100%" styleClass="p1" >
+		<h:panelGrid width="100%" styleClass="p1" columnClasses="centerAlign">
 			<h:panelGroup layout="block">
 				<h:button styleClass="button1" onclick="document.jumpLoaderImages.showFrame(true); return false;" value="Upload Logo">
 					<rich:tooltip>
@@ -47,29 +47,32 @@
 			        <param name="ac_fireUploaderStatusChanged" value="true"/>	        
 				</applet>				
 			</h:panelGroup>
-			<h:outputLabel value="No Logo Uploaded" rendered="#{empty uploadedImages}"/>
 			<a4j:jsFunction name="renderImages" render="images" />			
     	</h:panelGrid>
-    		
-    		<rich:dataGrid id="images" columns="2" elements="2" value="#{uploadedImages}" var="image" iterationStatusVar="stat" 
-    			rendered="#{not empty uploadedImages}" style="align:center;">
-	    		<rich:panel style="width:300px; height:180px;" styleClass="fleft">
-	    			<h:panelGrid width="100%" columnClasses="centerAlign" rowClasses="s1row">
-	    				<h:graphicImage value="/img/?imgId=#{stat.index}&amp;isUploaded=true" width="280" height="120" style="cursor:pointer;"
-	    					onclick="document.getElementById('FullPreview').src = this.src; #{rich:component('PreviewPopup')}.show();"/>
-	    				<h:panelGroup styleClass="padding-top">
-	    					<h:graphicImage value="/images/icons/search.png" style="cursor:pointer"
-	    						onclick="document.getElementById('FullPreview').src = '/img/?imgId=#{stat.index}&amp;isUploaded=true'; #{rich:component('PreviewPopup')}.show();"/>
-	    					<acm:spacer width="20" height="0"/>
-	    					<a4j:commandButton image="/images/icons/trash.png" action="#{cntCtrl.removeImage(stat.index)}" render="images" />	    					
-	    				</h:panelGroup>
-	    				<h:outputText value="Current Logo" rendered="#{image.persistent}" >	    						    					
-	    				</h:outputText>
-	    				<h:outputText value="New Uploaded Logo" rendered="#{!image.persistent}" />	
-	    			</h:panelGrid>
-	    		</rich:panel>	    		
-	    	</rich:dataGrid>	    	
-    	<div class="navPanel">
+    	<h:panelGroup layout="block" id="images" style="width: 100%;">
+    		<h:outputLabel value="No Logo Uploaded" rendered="#{empty uploadedImages}"/>
+    		<div align="center" style="width: 100%;">				
+	    		<rich:dataGrid columns="2" elements="2" value="#{uploadedImages}" var="image" iterationStatusVar="stat" 
+	    			rendered="#{not empty uploadedImages}">
+		    		<rich:panel style="width:300px; height:180px; align: center;">
+		    			<h:panelGrid width="100%" columnClasses="centerAlign" rowClasses="s1row">
+		    				<h:graphicImage value="/img/?imgId=#{stat.index}&amp;isUploaded=true" width="280" height="120" style="cursor:pointer;"
+		    					onclick="document.getElementById('FullPreview').src = this.src; #{rich:component('PreviewPopup')}.show();"/>
+		    				<h:panelGroup styleClass="padding-top">
+		    					<h:graphicImage value="/images/icons/search.png" style="cursor:pointer"
+		    						onclick="document.getElementById('FullPreview').src = '/img/?imgId=#{stat.index}&amp;isUploaded=true'; #{rich:component('PreviewPopup')}.show();"/>
+		    					<acm:spacer width="20" height="0"/>
+		    					<a4j:commandButton image="/images/icons/trash.png" action="#{cntCtrl.removeImage(stat.index)}" render="images" />	    					
+		    				</h:panelGroup>
+		    				<h:outputText value="Current Logo" rendered="#{image.persistent}" >	    						    					
+		    				</h:outputText>
+		    				<h:outputText value="New Uploaded Logo" rendered="#{!image.persistent}" />	
+		    			</h:panelGrid>
+		    		</rich:panel>	    		
+		    	</rich:dataGrid>
+	    	</div>
+	    </h:panelGroup>
+	    <div class="navPanel">
 	        <a4j:commandButton value="&lt;&lt;Previous" styleClass="button1 alignright" immediate="true">
 	            <rich:toggleControl targetItem="@prev" event="click" />
 	        </a4j:commandButton>

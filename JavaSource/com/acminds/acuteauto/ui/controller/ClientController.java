@@ -14,7 +14,6 @@ import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Location;
 import com.acminds.acuteauto.service.ClientService;
 import com.acminds.acuteauto.ui.BaseController;
-import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
@@ -98,19 +97,12 @@ public class ClientController extends BaseController {
 	
 	public String submitClientProfile() {
 		try {
-			if(dealer.getImages().size()>1) {
+			List<Image> images = getUploadedImages(WebUtils.getRequest());
+			if(!Utils.isEmpty(images) && images.size()>1) {
 				WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "multipleLogos");
 				return null;
 			}
-			for(Image img:getUploadedImages(WebUtils.getRequest())) {
-				if(!img.isPersistent()) {
-					img.setClient(dealer);
-					img.setImageType(ImageType.LOGO);
-					dealer.getImages().clear();
-					dealer.getImages().add(img);
-				}
-			}			
-			baseService.saveOrUpdate(dealer, true);
+			service.updateClientProfile(images, dealer);
 			logger.info("Dealer Profile updated successfully.");
 			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "clientUpdated");
 		} catch (Exception e) {
