@@ -12,6 +12,7 @@ import javax.persistence.Transient;
 import javax.faces.bean.ManagedBean;
 
 import com.acminds.acuteauto.persistence.entities.AbstractLocation;
+import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 
 @ManagedBean(name = "location")
 @Entity
@@ -34,6 +35,10 @@ public class Location extends AbstractLocation {
 			.append(getZip());
 		}
 		return addressForMap.toString();
+	}
+	@Transient
+	public boolean isPrimary() {
+		return (getLocationType() == LocationType.PRIMARY);
 	}
 
 }

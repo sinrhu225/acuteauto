@@ -14,6 +14,7 @@ import com.acminds.acuteauto.persistence.dto.Image;
 import com.acminds.acuteauto.persistence.dto.Location;
 import com.acminds.acuteauto.service.ClientService;
 import com.acminds.acuteauto.ui.BaseController;
+import com.acminds.acuteauto.utils.EnumConstants.ImageType;
 import com.acminds.acuteauto.utils.EnumConstants.LocationType;
 import com.acminds.acuteauto.utils.Utils;
 import com.acminds.acuteauto.utils.WebUtils;
@@ -81,17 +82,40 @@ public class ClientController extends BaseController {
 	
 	public String removeLocation(int index) {
 		try {
+			logger.info("Removing Location at index: "+index);
+			Location l = getDealer().getLocations().get(index);
 			getDealer().getLocations().remove(index);
+			if(l.isPersistent()) {				
+				baseService.delete(l, true);
+				logger.info("Deleted a saved Location");
+			} 
 		} catch (Exception e) {
-			
+			logger.error("Exception thrown while deleting a location", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
 		return null;
 	}
 	
 	public String submitClientProfile() {
 		try {
+			if(dealer.getImages().size()>1) {
+				WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "multipleLogos");
+				return null;
+			}
+			for(Image img:getUploadedImages(WebUtils.getRequest())) {
+				if(!img.isPersistent()) {
+					img.setClient(dealer);
+					img.setImageType(ImageType.LOGO);
+					dealer.getImages().clear();
+					dealer.getImages().add(img);
+				}
+			}			
 			baseService.saveOrUpdate(dealer, true);
+			logger.info("Dealer Profile updated successfully.");
+			WebUtils.addMessage(FacesMessage.SEVERITY_INFO, "clientUpdated");
 		} catch (Exception e) {
+			logger.error("Dealer Profile Update failed", e);
+			WebUtils.addMessage(FacesMessage.SEVERITY_ERROR, "submitFailed");
 		}
 		return null;
 	}
@@ -103,6 +127,7 @@ public class ClientController extends BaseController {
 			Image im = list.get(index);
 			if(im.isPersistent()) {
 				service.deleteImage(im, dealer, getAuthorizedUser());
+				logger.info("Deleted a saved Image");
 			}
 			list.remove(index);
 		} catch(Exception e) {

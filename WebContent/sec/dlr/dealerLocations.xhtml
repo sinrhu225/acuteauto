@@ -49,7 +49,7 @@
 					   		<h:outputText value="" />
 					   		<h:outputText value="" rendered="#{loc.persistent}"/>
 					   		<a4j:commandLink value="Discard Location" action="#{cntCtrl.discardLocation(stat.index)}" 
-					   			render="LocationsGrid" rendered="#{!loc.persistent}" execute="@this">
+					   			render="LocationsGrid" rendered="#{!loc.primary}" execute="@this">
 					   		</a4j:commandLink>
 					   		<h:outputText value="" />
 					   		<h:outputText value="" rendered="#{loc.persistent}"/>
